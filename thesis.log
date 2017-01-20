@@ -1,10 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200 64-bit) (preloaded format=pdflatex 2016.11.2)  19 JAN 2017 12:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200 64-bit) (preloaded format=pdflatex 2016.11.2)  20 JAN 2017 13:32
 entering extended mode
-**"C:/Users/filip.kocovski/Google Drive/Scuola/FS17/Master Thesis/Report/thesis
-.tex"
-
-("C:/Users/filip.kocovski/Google Drive/Scuola/FS17/Master Thesis/Report/thesis.
-tex"
+**C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
+(C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 (seal_thesis.cls
@@ -1278,12 +1275,12 @@ Appendix B.
 ]) [30] (thesis.aux) ) 
 Here is how much of TeX's memory you used:
  15486 strings out of 493334
- 297157 string characters out of 3126325
+ 297000 string characters out of 3126325
  356112 words of memory out of 3000000
  18805 multiletter control sequences out of 15000+200000
  79972 words of font info for 102 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,13n,45p,10429b,1809s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 40i,13n,45p,10396b,1809s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.
 9/fonts/enc/dvips/base/8r.enc}<C:/Users/filip.kocovski/AppData/Local/Programs/M
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/filip.kocovski/Ap
@@ -1308,8 +1305,8 @@ lip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a
 /palatino/uplb8a.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9
 /fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/filip.kocovski/AppData/Local/Pro
 grams/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "C:/Users/filip.kocovski/Google Drive/Scuola/FS17/Master Thes
-is/Report/thesis.pdf" (44 pages, 365600 bytes).
+Output written on C:/Users/filip.kocovski/Desktop/thesis/thesis.pdf (44 pages, 
+365599 bytes).
 PDF statistics:
  243 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
