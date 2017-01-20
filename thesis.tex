@@ -4,6 +4,7 @@
 \usepackage[inline]{enumitem}
 \usepackage{amsmath}
 \usepackage{siunitx}
+\usepackage{booktabs}
 
 \thesisType{Master Thesis}
 \date{\today}
@@ -454,9 +455,22 @@ Again, all variables definition still hold without loss of generality as describ
 
 This formulation clearly gets rid of the nonlinear constraints while still accounting for dynamical arrival of tasks, making thus the DMF problem as defined by Zeng effectively solvable.
 
-\todo{add text about simplified dmf method}
+When considering the minimization of the maximum flowtime of a task inside a process, the EDMF formulation can be further simplified by adopting some assumptions about the order and sequence of tasks. Based on how the batching policies are implemented, the policy job objects to be worked by users are implicitly stored in a sorted fashion. This means that the $z$ helper variables defined for EDMF are not strictly necessary and thus can be compressed by \equref{eq:simplified_z_with_k}:
 
-With $k$ indexing:
+\begin{equation}
+\label{eq:simplified_z_with_k}
+	a_i + \sum_{t=1}^k \sum_j (p_{ij} + w_j I(t=k))x_{ijt}
+\end{equation}
+
+The whole concept consists in the introduction of an identity variable $I$ which is true only if task $j$ is currently being assigned as the $k$th task to user $i$, meaning that for this specific case also the waiting time for task $j$ has to be accounted for. For all other cases, \ie $j<k$ the identity variable $I$ will not hold thus effectively zeroing the $w_j$ variable.
+
+\figref{fig:edmf_task_assignment} depicts the potential scenario where three tasks are assigned to a specific user $i$ following a sequence where task 2, 3 and $j$ are assigned respectively as first, second and third tasks (thus respecting the $k$ notation outlined above them). 
+
+In order to calculate $z_{ijk}$, one has to consider also when user $i$ will actually be available to process his first task. This is depicted by the variable $a_i$, which summed together with the respective service times of user $i$ for task $j$ gives the complete work time user $i$ will require to process all tasks assigned to him.
+
+\fig[\textwidth]{dmf_problem}{EDMF Task Assignment}{fig:edmf_task_assignment}
+
+Without further ado, the simplified formulation of the extended DMF variant (called SDMF, which stands for simplified DMF) is the following:
 
 \begin{align}
     \min_{z_{\text{max}}} \quad z_{\text{max}}\\
@@ -467,7 +481,11 @@ With $k$ indexing:
     \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0
 \end{align}
 
-Without $k$ indexing:
+By comparing both formulation it is clear that SDMF manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness. Please note, however, that this simplification is only possible because of the nature of the implementation.
+
+Based on this approach and by further exploiting the implicit order implementation of task arrival in the global queues for both batching policies, it is possible to argue that the $k$ sequence indexing can be relaxed as well, thus even further simplifying the mathematical formulation and respectively the optimization problem size and computation costs.
+
+The formulation of the DMF problem by relaxing both the $z$ variables and $k$ indexes, it is possible to formulate the same DMF problem as follows:
 
 \begin{align}
     \min_{z_{\text{max}}} \quad z_{\text{max}}\\
@@ -475,6 +493,26 @@ Without $k$ indexing:
     \sum_{i \in W} x_{ij} &= 1 \quad \forall j \in T\\
     a_i + \sum_{k=1}^j (p_{ik} + w_k I(k=j))x_{ik} &\leq z_{\text{max}}
 \end{align}
+
+This formulation is colloquially called the ESDMF method (extremely simplified DMF).
+
+\todo{add explanation that by exploiting how the arrival order is implemented one can solve the same DMF problem without increasing the computability costs.}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[htb]
+\centering
+\begin{tabular}{@{}lc@{}}
+\toprule
+Solver & Computation Costs \\ \midrule
+MSA    & $O(mn)$           \\
+EDMF   & $O(mn^2)$         \\
+SDMF   & $O(mn^2)$         \\
+ESDMF  & $O(mn)$           \\ \bottomrule
+\end{tabular}
+\caption{Comparison of computational costs for different solvers}
+\label{tab:big_oh_solvers}
+\end{table}
 
 Sum of service times minimization with DMF as upper bound:
 
