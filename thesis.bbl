@@ -1,0 +1,159 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{BCMW07}
+
+\bibitem[AR]{Adan2002}
+Ivo Adan and Jacques Resing.
+\newblock Queueing theory.
+
+\bibitem[AS]{Aguilar-Saven2004}
+Ruth~Sara Aguilar-Savén.
+\newblock Business process modelling: Review and framework.
+\newblock 90(2):129 -- 149.
+\newblock Production Planning and Control.
+
+\bibitem[Bak74]{Baker1974}
+Kenneth~R Baker.
+\newblock {\em Introduction to sequencing and scheduling}.
+\newblock John Wiley \& Sons, 1974.
+
+\bibitem[BCMW07]{Bahouth2007}
+Alex Bahouth, Steven Crites, Norman Matloff, and Todd Williamson.
+\newblock Revisiting the issue of performance enhancement of discrete event
+  simulation software.
+\newblock In {\em Annual Simulation Symposium}, volume~40, page 114. Citeseer,
+  2007.
+
+\bibitem[Bis16]{Bisschop2016}
+Johannes Bisschop.
+\newblock {AIMMS Optimization Modeling}, December 2016.
+
+\bibitem[BV04]{Boyd2004}
+Stephen Boyd and Lieven Vandenberghe.
+\newblock {\em Convex optimization}.
+\newblock Cambridge university press, 2004.
+
+\bibitem[CW]{Cattrysse1992}
+Dirk~G. Cattrysse and Luk N.~Van Wassenhove.
+\newblock A survey of algorithms for the generalized assignment problem.
+\newblock 60(3):260 -- 272.
+
+\bibitem[{Evo}]{EvolvedTechnologist2009}
+{Evolved Technologist}.
+\newblock Bpm technology taxonomy: A guided tour to the application of bpm.
+
+\bibitem[FZDL]{Fan2012}
+Shaokun Fan, J.~Leon Zhao, Wanchun Dou, and Manlu Liu.
+\newblock A framework for transformation from conceptual to logical workflow
+  models.
+\newblock 54(1):781 -- 794.
+
+\bibitem[GHS]{Georgakopoulos1995}
+Diimitrios Georgakopoulos, Mark Hornick, and Amit Sheth.
+\newblock An overview of workflow management: From process modeling to workflow
+  automation infrastructure.
+\newblock 3(2):119--153.
+
+\bibitem[Gia]{Giaglis2001}
+George~M. Giaglis.
+\newblock A taxonomy of business process modeling and information systems
+  modeling techniques.
+\newblock 13(2):209--228.
+
+\bibitem[Ken]{Kendall1953}
+David~G. Kendall.
+\newblock Stochastic processes occurring in the theory of queues and their
+  analysis by the method of the imbedded markov chain.
+\newblock 24(3):338--354.
+
+\bibitem[Mac93]{Macintosh1993}
+A.~L. Macintosh.
+\newblock The need for enriched knowledge representation for enterprise
+  modelling.
+\newblock In {\em IEE Colloquium on AI (Artificial Intelligence) in Enterprise
+  Modelling}, pages 3/1--3/3, Apr 1993.
+
+\bibitem[Mat08]{Matloff2008}
+Norm Matloff.
+\newblock Introduction to discrete-event simulation and the simpy language.
+\newblock {\em Davis, CA. Dept of Computer Science. University of California at
+  Davis. Retrieved on August}, 2:2009, 2008.
+
+\bibitem[MHK]{Mentzas2001}
+Gregory Mentzas, Christos Halaris, and Stylianos Kavadias.
+\newblock Modelling business processes with workflow systems: an evaluation of
+  alternative approaches.
+\newblock 21(2):123 -- 135.
+
+\bibitem[MKS{\etalchar{+}}15]{Mnih2015}
+Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei~A Rusu, Joel Veness,
+  Marc~G Bellemare, Alex Graves, Martin Riedmiller, Andreas~K Fidjeland, Georg
+  Ostrovski, et~al.
+\newblock Human-level control through deep reinforcement learning.
+\newblock {\em Nature}, 518(7540):529--533, 2015.
+
+\bibitem[Pin]{Pinedo2008}
+Michael~L. Pinedo.
+\newblock {\em Scheduling: Theory, Algorithms, and Systems}.
+\newblock Springer Publishing Company, Incorporated, 3rd edition.
+
+\bibitem[RA]{Racer1994}
+Michael Racer and Mohammad~M. Amini.
+\newblock A robust heuristic for the generalized assignment problem.
+\newblock 50(1):487--503.
+
+\bibitem[RvdA]{Reijers2005}
+Hajo~A. Reijers and Wil~M.P. van~der Aalst.
+\newblock The effectiveness of workflow management systems: Predictions and
+  lessons learned.
+\newblock 25(5):458 -- 472.
+
+\bibitem[SB]{Sutton1998}
+Richard~S Sutton and Andrew~G Barto.
+\newblock {\em Reinforcement learning: An introduction}, volume~1.
+\newblock MIT press Cambridge.
+
+\bibitem[SBW{\etalchar{+}}10]{Schaul2010}
+Tom Schaul, Justin Bayer, Daan Wierstra, Yi~Sun, Martin Felder, Frank Sehnke,
+  Thomas R\"{u}ckstie\ss, and J\"{u}rgen Schmidhuber.
+\newblock {PyBrain}.
+\newblock {\em Journal of Machine Learning Research}, 2010.
+
+\bibitem[SHM{\etalchar{+}}16]{Silver2016}
+David Silver, Aja Huang, Chris~J Maddison, Arthur Guez, Laurent Sifre, George
+  Van Den~Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda
+  Panneershelvam, Marc Lanctot, et~al.
+\newblock Mastering the game of go with deep neural networks and tree search.
+\newblock {\em Nature}, 529(7587):484--489, 2016.
+
+\bibitem[SR09]{Silver2009}
+Bruce Silver and Bruce Richard.
+\newblock {\em BPMN method and style}, volume~2.
+\newblock Cody-Cassidy Press Aptos, 2009.
+
+\bibitem[SZ]{Sun2013}
+Sherry~X. Sun and J.~Leon Zhao.
+\newblock Formal workflow design analytics using data flow modeling.
+\newblock 55(1):270 -- 283.
+
+\bibitem[SZNS]{Sun2006}
+Sherry~X. Sun, J.~Leon Zhao, Jay~F. Nunamaker, and Olivia R.~Liu Sheng.
+\newblock Formulating the data-flow perspective for business process
+  management.
+\newblock 17(4):374--391.
+
+\bibitem[Trk]{Trkman2010}
+Peter Trkman.
+\newblock The critical success factors of business process management.
+\newblock 30(2):125 -- 134.
+
+\bibitem[WZ]{Wang2011}
+Harry~Jiannan Wang and J.~Leon Zhao.
+\newblock Constraint-centric workflow change analytics.
+\newblock 51(3):562 -- 575.
+
+\bibitem[ZZ]{Zeng2005}
+Daniel~D. Zeng and J.~Leon Zhao.
+\newblock Effective role resolution in workflow management.
+\newblock 17(3):374--387.
+
+\end{thebibliography}

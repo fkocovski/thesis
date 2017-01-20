@@ -1,0 +1,525 @@
+\documentclass{seal_thesis}
+
+\usepackage{url}
+\usepackage[inline]{enumitem}
+\usepackage{amsmath}
+\usepackage{siunitx}
+
+\thesisType{Master Thesis}
+\date{\today}
+\title{Business Process Management}
+\subtitle{Discrete Event Simulation For Optimal Role Resolution In Workflow Processes}
+\author{Filip Ko\v{c}ovski}
+\home{Lugano} % Geburtsort
+\country{Switzerland}
+\legi{10-932-994}
+\prof{Prof. Dr. Daning Hu}
+\assistent{Dr. Markus Uhr}
+\email{filip.kocovski@uzh.ch}
+\begindate{November 15, 2016}
+\enddate{May 15, 2017}
+
+\begin{document}
+\maketitle
+
+\frontmatter
+
+\begin{acknowledgements}
+
+\end{acknowledgements}
+
+\begin{abstract}
+	
+\end{abstract}
+
+\begin{zusammenfassung}
+
+\end{zusammenfassung}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\lstlistoflistings
+
+\pagebreak
+
+\mainmatter
+
+Structure for the thesis adapted from \url{https://wwz.unibas.ch/fileadmin/wwz/redaktion/fmgt/Images/FinanzmanagementLeitfadenfuerArbeiten.pdf}
+
+\chapter{Introduction}
+\label{ch:intro}
+
+\section{Problem Definition}
+
+Workflows are IT solutions that can help increase efficiency and get tasks done better and faster. However a key element of each workflow process still remains the human aspect. This human aspect can take many facets, such as humans analyzing a process, humans designing a process and humans executing the latter. This thesis focuses on the latter, \ie where human agents interact with the workflow process in order to work on tasks. A business process that has been efficiently analyzed and subsequently optimally implemented still cannot ensure optimal execution, or no optimal execution can be achieved while a human intervention for task execution is present. It is here that optimal role resolution comes in play: optimally choosing and assigning a specific task inside the workflow process to the best possible actor is a non trivial task that has to be solved in order to close the ``optimization'' circle that workflow engines advertise.
+
+This field is relevant since an optimal role resolution can bring optimization from many sides:
+\begin{enumerate*}
+	\item cost savings,
+	\item fairness in workload assignment
+	\item optimal resources usage.
+\end{enumerate*}
+
+Currently many different workflow engines exist, ranging from complete fully functional suites and down to extensible frameworks that allow the implementer to adapt it to its own needs. However all these solutions lack optimality in the task assignment sector.
+
+\section{Objectives}
+\label{sec:objectives}
+
+The objectives of these thesis build upon the work of Zeng and Zhao \cite{Zeng2005}, in which they depicted preliminary policies for optimal role resolution, and extends these capabilities from a threefold perspective:
+\begin{enumerate*}
+	\item further develops the mathematical premises and extends the capabilities of the batching policies proposed by Zeng and Zhao
+	\item explores the capabilities offered by reinforcement learning as addition and improvement for even precises, faster and better task assignment
+	\item deployment of the aforementioned optimization techniques in an operative environment of a real estate company using a workflow engine.
+\end{enumerate*}
+
+Formally, this thesis tries to answer the following research questions:
+
+\begin{enumerate}
+	\item Are there better optimization techniques for optimal role resolution techniques inside workflow processes?
+	\item Is the deployment of optimization policies in a working environment for a workflow engine a critical success factor?
+	\item How is optimization in the field of task assignment perceived by the workflow users (actors)?
+\end{enumerate}
+
+\section{Thesis Structure}
+
+This thesis is subdivided in five main chapters:
+
+\begin{itemize}
+	\item \chpref{ch:intro} gives an overview of why the chosen topic is relevant, what is the current context of the work and how this work fits in. It moreover articulates the central research questions that permeate this thesis and gives an overview of this essay
+	\item \chpref{ch:foundations} gives an overview of the most important conceptual definitions and the state of the art literature review in the touched thematic topics of this work. Conclusively this chapter critically reflects upon the existing literature and exposes the deficits that this thesis aims filling
+	\item \chpref{ch:methodology} gives an overview of the approach used for the research, \eg the analysis environment and the used tools, states the hypothesis that wants to be proved and eventually describes statistically and qualitatively the data sets upon which the methodology is applied
+	\item \chpref{ch:empirical_analysis} builds upon \chpref{ch:methodology} and makes its way into the hypothesis test field and the respective analysis results. Furthermore looks introspectively on the data correlation and gives an interpretation of the latter. Eventually in this section a statement about the contribution that the results bring into this field is given
+	\item \chpref{ch:conclusion} is the culminating chapter in which a summary of the key findings of the thesis are outlined, the research questions posed in \secref{sec:objectives} are answered by looking at the actual usability, limitations and to whom the results are most applicable. Finally outlooks about the future trends and how the empirical results of this thesis can be extended by prospective researchers. 
+\end{itemize}
+
+\chapter{Theoretical Foundations}
+\label{ch:foundations}
+
+\section{Definitions}
+\subsection{Queueing Theory}
+\subsection{Workflow Processes}
+\subsection{Reinforcement Learning}
+\subsection{Mixed Integer Linear Optimization}
+\subsection{Discrete Event Simulation}
+\section{Literature Overview}
+\label{sec:literature_overview}
+
+This section servers as an overview of the state of the art literature that exists and has been used as a foundation basis for this work. \secref{sec:literature_overview} is divided in different thematic subsections. 
+
+\subsection{Queueing}
+
+Queuing is a topic that talks about how people or more general agents are to be server while waiting. 
+
+Starting with one of the most notable contributions to this field done by Kendall in 1953 and his work on the Markov chains in queuing theory, where he formally defines different types of queues \cite{Kendall1953}. 
+
+In 2002, Adan describes the necessary basic concepts for queuing theory and an important topic here is the statistical foundation outlined in his work about different modeling techniques for randomized generation rates, such as the Erlang's distributions \cite{Adan2002}. 
+
+Pinedo outlines in his work in 2008 the most prominent key metrics that can be used in order to assert and measure queues performance \cite{Pinedo2008}. 
+
+Sun and Zhao in their work cover the aspect of formal analysis for workflow models and they claim that it should help ``...alleviating the intellectual challenge faced by business analysts when creating workflow models'' \cite{Sun2013}.
+
+\subsection{Workflow}
+\label{subsec:workflow}
+
+A good starting point in the workflow thematic is Macintosh's work in which he gives an overview of the five levels of process maturity \cite{Macintosh1993}:
+
+\begin{enumerate}
+	\item Initial, the process has to be set up
+	\item Repeatable, the process has to be repeatable
+	\item Defined, documentation standardization of processes
+	\item Managed, measurement and control of processes
+	\item Optimizing, continuous process improvement
+\end{enumerate}
+
+Even though Georgakopoulos' work dates back to 1995, he still gives a comprehensive business oriented overview of the different workflow technologies present on the market \cite{Georgakopoulos1995}. 
+
+On this note, Giaglis lays out four different process perspectives:
+\begin{enumerate*}
+	\item Functional
+	\item Behavioral
+	\item Organizational
+	\item Informational
+\end{enumerate*}
+
+His framework focuses on three dimensions:
+\begin{enumerate*}
+	\item Breadth, where modeling goals are typically addressed by technique
+	\item Depth, where modeling perspectives are covered
+	\item Fit, where typical project to which techniques can be fit
+\end{enumerate*}
+
+The presented framework is used to combine the three different dimensions in order to assert a possible best fit of a specific modeling technique based on which approach to be used under the constraints of a modeling perspective to cover \cite{Giaglis2001}.
+
+Mentzas focuses on a qualitative level on how workflow technologies can facilitate implementation of business processes by focusing on the pros and cons of adopting alternative workflow modeling techniques \cite{Mentzas2001}. Moreover he formally defines what a workflow management system is and subdivides it in three main categories:
+\begin{enumerate*}
+	\item Process modeling
+	\item Process re-engineering
+	\item Workflow implementation and automation
+\end{enumerate*}
+
+Each level of maturity as defined by Macintosh requires a different model, such as the first three levels might require more descriptive models whereas levels four and five require decision support keen models in order to monitor and control processes \cite{Mentzas2001}.
+
+Aguilar describes the main modeling techniques existing with workflow being one of them \cite{Aguilar-Saven2004}.
+
+The key core topics on which this thesis lays its foundations upon is the work done by Zeng in 2005. Effective role resolution, \ie the mechanism of assigning tasks to individual workers at runtime according to the role qualification defined in the workflow model \cite{Zeng2005}, is the core aspect that is being extended during this thesis work.
+
+Zeng differentiates between staffing decisions and role resolution, with the former being the assignment one or more role to each user and the latter being the assignment of a specific task to an appropriate worker at runtime \cite{Zeng2005}. Staffing decisions are usually made off-line and periodically, thus being more of a strategic nature \cite{Zeng2005}. If role resolution were to be made on-line it could translate to a major operational level decision, \ie the differentiation between strategic vs. operational playing role \cite{Zeng2005}.
+
+He moreover defines three roles a workflow can fulfill:
+\begin{enumerate*}
+	\item System built-in policies
+	\item User customizable policies
+	\item Rule based policies
+\end{enumerate*}
+
+Considering capacities of resources restrictions under the assignment problem is an NP-hard computational problem and in his work Zeng focuses on how to solve the assignment problem and scheduling decisions with consideration of worker's preferences \cite{Zeng2005}. For this purpose he defines five workflow resolution policies:
+
+\begin{enumerate}
+	\item Load balanced approach (LLQP)
+	\item Shared queue (SQ)
+	\item K-Batch
+	\item K-Batch-1
+	\item 1-Batch-1
+\end{enumerate}
+
+For all batching policies a simplified version of the dynamic minimization of the maximum flowtime (DMF) has to be solved \cite{Zeng2005}.
+
+Zeng's key findings are outlined as follows:
+\begin{enumerate*}
+	\item Batching policies to be used when system load is medium to high
+	\item Processing time variation has major impact on system performance, \ie higher variation favors optimization based policies
+	\item Average workload and workload variation can be significantly reduced by online optimization
+	\item 1-Batch-1 online optimization policy yields best results in operational conditions
+\end{enumerate*}
+
+Interestingly enough, workflow implementation in real world cases is not always only coupled with directly measurable effects, sometimes even unexpected results happen. What is called the ``workflow paradox'' according to Reijers is the fact that the very fact of companies accepting requests for workflow introduction might actually be the most promising way that leads to potentially better and more suitable alternatives \cite{Reijers2005}.
+
+Specifically speaking on the data flow inside workflow processes, one has to consider possible anomalies that might happens. This has been extensively studies by Sun \etal where they formally define data flow methodologies for detecting such anomalies \cite{Sun2006}. Their framework is divided in two components:
+\begin{enumerate*}
+	\item Data flow specification
+	\item Data flow analysis
+\end{enumerate*}
+
+Yet again we stumble upon mentioning that simulation for workflow management systems is usually inefficient and inaccurate \cite{Sun2006}. They moreover discuss aspects that data requirements have been analyzed but the required methodologies on discovering data flow errors have not been extensively researched \cite{Sun2006}.
+
+A more recent taxonomy of different BPM application is given by a collaboration between SAP and accenture in 2009 \cite{EvolvedTechnologist2009}.
+
+In the realm of workflow processes and engines BPMN's notation permeates the field and the work of Silver summarizes these foundations very well \cite{Silver2009}.
+
+An analysis of the critical success factors (CSF) for BPM is required in order to assert a product validity and this has been done by Trkman where he defines CSF from three perspectives \cite{Trkman2010}:
+\begin{enumerate*}
+	\item Contingency theory
+	\item Dynamic capabilities
+	\item Task-technology fit theory
+\end{enumerate*}
+
+
+Change management in workflow is yet another interesting aspect that should be considered and this has been broadly studied by Wang where he developed an analytical framework for workflow change management through formal modeling of workflow constraints \cite{Wang2011}.
+
+In companies different types of workflow models can exist and Fan focuses on two of these, namely:
+\begin{enumerate*}
+	\item Conceptual
+	\item Logical
+\end{enumerate*}
+
+Conceptual models serve as documentation for generic process requirements whereas logical models are used as definitions for technology oriented requirements \cite{Fan2012}. One difficult aspect is the transition from the former to the latter and Fan proposes a formal approach to efficiently support such transitions \cite{Fan2012}.
+
+\subsection{Reinforcement Learning}
+
+
+Reinforcement learning is a branch of machine learning that promises to overcome the drawbacks posed by the latter by not requiring a training set for efficient machine decisions. 
+
+In their work, Schaul \etal have developed a modular machine learning library for python that contains different algorithm implementations such as Q-learning, SARSA and REINFORCE and yet also natural actor-critic and neural-fitted implementations such as Q-iteration, recurrent policy gradients, state-dependent exploration and reward-weighted regressions \cite{Schaul2010}.
+
+Notable works in the field of reinforcement learning and its application include Google DeepMind work on novel algorithms for tackling fields previously barely scratched, as mentioned by Mnih \etal and Silver \etal \cite{Mnih2015,Silver2016}.
+
+Sutton started working on the reinforcement learning topic in the early nineties and is now planning his third edition of his famous book on machine learning, which is due in 2017 \cite{Sutton1998}. In our case reinforcement learning is used in order for the policies to be able to alone get better by continuously analyzing their own decision models and optimize upon them.
+
+\subsection{Optimization}
+
+For all batching policies implemented in this work, a mixed integer optimization was solved in order to optimally assign jobs to users in the workflow processes. The generalized assignment problem is a very well known problem in combinatorial mathematics. Cattrysse gives an overview of different algorithms for solving the generalized assignment problem \cite{Cattrysse1992}. Heuristics are also a viable solution for solving such adaptation of the generalized assignment problem, as Racer states \cite{Racer1994}. Moreover a global perspective of optimization from a mathematical perspective is given in Boyd's work on convex optimization \cite{Boyd2004}.
+
+Last but not least, according to the AIMMS guidelines, there are different linear programming tricks that can be used to shape such problems in solvable outlines \cite{Bisschop2016}. In this thesis, a specific linear programming trick, called either-or constraints, was used by adding so called auxiliary variables to the evaluation method presented in order to efficiently solve an otherwise non solvable equation \cite[p. 77]{Bisschop2016}.
+
+\subsection{Simulation}
+
+Simulating queues can prove to be extremely difficult. The main differentiation needed here is that between continuous and step functions: the former is the result when the events being simulated yield values that if plotted against the simulation time give a continuous function. On the other hand, if we simulate events that yield discrete values, such as inventory changes in a storage facility and plot the results against the simulation time we would get so called step functions \cite{Matloff2008}.
+
+According to Matloff, there exist different world views for discrete event programing, as he calls them paradigms \cite{Matloff2008}:
+
+\begin{enumerate}
+	\item Activity oriented
+	\item Event oriented
+	\item Process oriented
+\end{enumerate}
+
+Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities. Since very small subdivisions of time are possible in such types of simulations, it is clear that the program might prove extremely inefficient, since most of the time there won't be any change in state for the simulated entities \cite{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated. By filling these gaps, a dramatical increase in computation can be observed \cite{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks.
+
+On another note, Bahouth focuses in work on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues \cite{Bahouth2007}. According to his findings, a significant speedup can be achieved if one addresses the afore mentioned facets.
+
+\section{Research Deficit}
+
+\chapter{Methodology}
+\label{ch:methodology}
+
+\section{Analysis Structure}
+\subsection{Tools}
+Different tools were used in the analysis environment in order to efficiently simulate and analyze the work of this thesis.
+
+The whole architecture is subdivided as follows:
+\begin{enumerate}
+	\item The simulation environment is based on \texttt{Python 3.5.2}\foot{https://www.python.org}{06.01.2017} and as a discrete event simulation the \texttt{SimPy}\foot{https://simpy.readthedocs.io/en/latest/}{06.01.2017} package is used.
+	\item The resulting data are interpreted and analyzed using \texttt{R}\foot{https://www.r-project.org}{06.01.2017}.
+	\item The workflow engine itself is \texttt{Java}\foot{https://www.java.com/en/}{06.01.2017} based and uses the \texttt{jBPM}\foot{https://www.jbpm.org}{06.01.2017} suite.
+	\item \texttt{PyBrain}\foot{http://pybrain.org}{04.01.2017} is the library used for reinforcement learning.
+	\item Coding IDE used were \texttt{PyCharm 2016.3}\foot{https://www.jetbrains.com/pycharm/}{06.01.2017} for \texttt{Python} respectively \texttt{IntelliJ IDEA 2016.3} for \texttt{Java}\foot{https://www.jetbrains.com/idea/}{06.01.2017}.
+	\item For solving the mixed integer problems for batching policies \texttt{Gurobi 7.0.1}\foot{http://www.gurobi.com}{06.01.2017} was used.
+	\item In order to allow a seamless integration between the optimal resolution policies implemented in \texttt{Python} and the workflow engine developed in \texttt{Java}, \texttt{Jython 2.7.0}\foot{http://www.jython.org}{06.01.2017} was used.
+\end{enumerate}
+
+\subsection{Discrete event simulation using SimPy}
+
+SimPy is a Python process-based discrete-event simulation framework. It exploits Python generators according to which it models its processes. 
+
+Active components such as agents in a workflow are modeled as processes which live inside an environment and the interaction between them happens via events. 
+
+As previously mentioned, processes in SimPy are described by Python generators. During their lifetime they create events yield (Note that with the term \texttt{yield} here it is to be understood as Python's yield statements)\foot{https://docs.python.org/3.5/reference/simple_stmts.html#the-yield-statement}{06.01.2017} them to the environment, which then wait until they are triggered. The important logic to understand here is how SimPy treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in SimPy's notation when it gets triggered).
+
+SimPy offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since a timeout event are created and called by called the appropriate method of the passed \texttt{Environment}.
+
+\subsection{Analysis Environment}
+
+The analysis environment consists in an object-oriented implementations of workflow process elements such as user task, starting, decision and end nodes which have been developed to allow the simulation framework to effectively run. This object-oriented exoskeleton implementation of the workflow elements can be seen depicted in \figref{fig:workflow_elements}.
+
+\fig[\textwidth]{workflow_elements}{Workflow elements}{fig:workflow_elements}
+
+An implicit object that is not part of the workflow elements is the token: a token is to be understood as an object that travels through the whole process and all its elements and gets worked by in different ways by them. In this implementation the token object is directly a policy element as it can be seen in \figref{fig:policies_init}.
+
+\fig[0.5\textwidth]{policies_init}{Policies initialization objects}{fig:policies_init}
+
+The core elements of a workflow process (relevant for the simulation environment) are start nodes, user tasks, decision nodes and end nodes. Start events are used to indicate where and how a process starts and usually each process has only one such event \cite[p. 42]{Silver2009}. No distinction between trigger types is being made.
+
+\subsubsection{Start event}
+
+Start event objects require a simulation environment, a policy to be used, a generation interval and the number of tokens to be generated. The simulation environment is generated with SimPy, the policy object is initialized prior to the simulation and the tokens to be generated is a plain scalar value. The generation interval is generated in a three step process:
+\begin{enumerate*}
+ 	\item before the simulation starts, a fixed service interval time unit $s$, number of users $n$ and an average system load $l$ are set. Analog to Zeng's and Zhao's work, the generation $\lambda$ interval follows a Poisson distribution \cite{Zeng2005} and is defined in \equref{eq:generation_interval}
+ 	\item for a Poisson random exponential sampling of the generation rate, \texttt{NumPy}'s implementation of its exponential distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.exponential.html}{06.01.2017}. The scale parameter $\beta$, which is the inverse of the rate parameter $\lambda = 1/\beta$ is used, meaning that the generation rate $\lambda$ defined in \equref{eq:generation_interval} is passed to the start event inverted.
+ \end{enumerate*} 
+
+\begin{equation}
+\label{eq:generation_interval}
+	\lambda = \frac{l n}{s}
+\end{equation}
+
+\lstref{lst:generate_tokens} shows the token generation method for the start event. As shown, this method generates infinitely many tokens and for each token a random exponential simulation time is being drawn. Note that a random state with a fixed seed is used in order to preserve generality across multiple simulation runs. Furthermore the aforementioned timeout event of the SimPy framework can be seen in action. For each token a timeout event is being automatically triggered after its sampled arrival time has elapsed.
+
+\begin{lstlisting}[caption=Token generation method for start event object,label=lst:generate_tokens,language=Python]
+    def generate_tokens(self):
+        while True:
+            exp_arrival = round(RANDOM_STATE.exponential(self.generation_interval), 1)
+            yield self.env.timeout(exp_arrival)
+            token = Token()
+\end{lstlisting}
+
+Even though tokens are generated infinitely, this process is controlled from the simulation environment where a discrete simulation time steps have to be set, as it can be seen from \lstref{lst:simulation_steps}. 
+
+This can be interpreted as that the whole simulation will persist for 100 time steps and it will then stop when the internal clock reaches 100. Please note that events that have been scheduled for time step 100 will not be processed. The logic is similar to a new environment where the clock is zero and no event have been processed yet.
+
+\begin{lstlisting}[caption=Starting the simulation with discrete time steps,label=lst:simulation_steps,language=Python]
+    # "global" variables
+    SIM_TIME = 100
+    ...
+    # runs simulation
+    env.run(until=SIM_TIME)
+\end{lstlisting}
+
+\subsubsection{User task}
+
+User task objects also require a simulation environment, a policy, a descriptive name, a knowledge level, a service interval and task variability. Each user task has a unique \texttt{child} field which is being set prior to starting the simulation by the method depicted in \lstref{lst:connect}.
+
+\begin{lstlisting}[caption=Method used to connect workflow elements,label=lst:connect,language=Python]
+    def connect(source, destination):
+    if isinstance(source, ExclusiveGatewayDivergent):
+        for child in destination:
+            source.children.append(child)
+    elif isinstance(source, (StartEvent, UserTask, EndEvent, ExclusiveGatewayConvergent)):
+        source.child = destination
+\end{lstlisting}
+
+In regards to parameters service interval and task variability a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. Zeng and Zhao in their work follow a two way process to generate such intervals \cite[p. 8]{Zeng2005}. However in this thesis' implementation an refined version of this process is used:
+\begin{enumerate*}
+	\item at initialization time, each user task receives a service rate $s$ and a task variability $t$ value
+	\item in the class initialization method, each user task samples an average processing time following an Erlang distribution (a special case of the gamma distribution) which takes as input parameters a shape $k$ and a scale $\theta$. The shape value $k$, as the name suggests, defines the curve shape that the Erlang distribution will follow. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_task}
+	\item the average processing time becomes a unique value of each user task object and is used by each policy to sample each user's service time, again from an Erlang sampled pool as depicted in \lstref{lst:user_service_rate} and we shall call this value $p_j$
+\end{enumerate*}
+
+\lstref{lst:user_service_rate} gives a glimpse of the inner logic of how policies work. It is however out of scope for this section to cover this aspect and it is provided ``as is''. For each user eligible to work the assigned token, its service rate is sampled following the Erlang distribution. This time, the Erlang distribution takes as parameters the unique average processing time $p_j$ of user task $j$ and a value worker variability, which is a unique property of each policy, which we shall call $w$.
+
+In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$, shape $k$ is evaluated as $k=p_j/w$ and scale as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate} 
+
+	
+
+\begin{lstlisting}[caption=User service rate sampling following an Erlang distribution,label=lst:user_service_rate,language=Python]
+    user_service_rate = [round(
+            RANDOM_STATE.gamma(kbatchone_request_job.user_task.average_processing_time / self.worker_variability,
+                               self.worker_variability),
+            1) for _ in range(self.number_of_users)]
+\end{lstlisting}
+
+As previously mentioned, the Erlang distribution is a special case of the Gamma distribution where $k$ defines the shape of the curve. This distribution is better suited to model service rates since with an appropriate $k$ one can approximate a normal distribution without incurring in the aspect of having to manually reset negative values to one (thus loosing statistical generality). This is asserted by the formal definition of Erlang's support with $x \in [0,\infty)$.
+
+\texttt{NumPy}'s implementation of its Erlang distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.gamma.html}{06.01.2017}. \equref{eq:erlang_density} defines the probability density function of the Erlang's distribution with the alternative parametrization that uses $\mu$ instead of $\lambda$ as scale parameter, which is its reciprocal. This corresponds to the NumPy's implementation.
+
+\begin{equation}
+\label{eq:erlang_density}
+	f(x;k,\mu) = \frac{x^{k-1} e^{-\frac{x}{\mu}}}{\mu^k (k-1)!} \text{ for } x,\mu \geq 0
+\end{equation}
+
+Each user task object has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. On this top level, without stepping into the single policies implementations, the logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask to the designated policies to work the token assigned to them and finally, after a service interval timeout which corresponds to the user's specific service interval, they release the token. The logic can be seen in \lstref{lst:user_task}.
+
+\begin{lstlisting}[caption=User task initialization,label=lst:user_task,language=Python]
+    class UserTask(object):
+    def __init__(self, env, policy, name, knowledge, service_interval, task_variability):
+        self.env = env
+        self.policy = policy
+        self.name = name
+        self.knowledge = knowledge
+        self.child = None
+        self.average_processing_time = round(RANDOM_STATE.gamma(service_interval / task_variability, task_variability),
+                                             1)
+
+    def claim_token(self, token):
+        policy_job = self.policy.request(self, token)
+        service_time = yield policy_job.request_event
+        yield self.env.timeout(service_time)
+        self.policy.release(policy_job)
+\end{lstlisting}
+
+\subsubsection{Policy}
+
+Different types of policies have been implemented following the foundations laid by Zeng and Zhao as outlined in \subsecref{subsec:workflow}. In their work the authors investigate five ``role-resolution'' policies used for optimal task to user assignment \cite[p. 7]{Zeng2005}. Following a brief description of the five aforementioned policies:
+
+\begin{enumerate}
+	\item A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a FIFO fashion. The authors call this policy the ``least loaded qualified person'' or LLQP.
+	\item A policy that maintains a single queue being shared among all users is referred to the authors as ``shared queue'' or SQ policy.
+	\item Another policy that maintains both a shared queue among all users and each user having an own queue and transfers tasks from the former to the latter is called ``K-Batch'' policy. Transfer of tasks from the shared queue to users is done using an optimal task assignment procedure as soon as the shared queue reaches a critical batch size $K$.
+	\item The following policies takes the ``K-Batch'' policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the shared queue reaches the critical size $K$, however actual movement of tasks from the shared queue to the individual user queue happens only when user $i$ is not busy, \ie his individual queue is empty at simulation time $t$. This policy is called according to the authors as ``K-Batch-1''
+	\item The last policy further simplifies the fourth by weakening the batch size constraint and reduces it to one. This means that the optimal task assignment procedure is executed immediately. This policy is referred by the authors as ``1-Batch-1''.
+\end{enumerate}
+
+All batching policies require the solution of an optimization problem. The authors define this problem as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``minimizing sequential assignment (MSA)''\cite[p. 7]{Zeng2005}. The authors define the task flowtime as the elapsed simulation time between task generation and its completion \cite{Zeng2005,Baker1974}. Formally MSA is formulated as follows:
+
+\begin{align}
+    \min_z \quad z\\
+    \text{subject to: } \notag \\
+    \sum_{i \in W} x_{ij} &= 1 \quad \forall j \in T\\
+    a_i + \sum_{j \in T} x_{ij} p_{ij} &\leq z \quad \forall i \in W\\
+    x_{ij} \quad \text{or} \quad x_{ij}&=1 \quad \forall i \in W, \forall j \in T
+\end{align}
+
+All variables definition still hold without loss of generality as defined by the authors \cite[pp. 5-7]{Zeng2005}.
+
+The class inheritance structure of the policies implementation with the corresponding fields and methods can be seen in \figref{fig:policies}.
+
+\fig[\textwidth]{policies}{Policies class structure}{fig:policies}
+
+The authors definition of the MSA problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' (MF) as defined by Baker \cite{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the DMF problem \cite{Zeng2005}. The DMF problem is formally defined by Zeng as follows:
+
+\begin{align}
+    \min_z \quad z\\
+    \text{subject to: } \notag \\
+    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
+    s_j &\geq r_j \quad \forall j \in T\\
+    (x_{ijk} + x_{ij'(k+1)} - 1)(s_j + p_{ij}) &\leq s_{j'} \quad \forall i \in W, \forall k \in T, \forall j \in T, \forall j' \in T \label{eq:nonlinear_constraints_dmf}\\
+    s_j + \sum_{i \in W} \sum_{k \in T} p_{ij} x_{ijk} - r_j &\leq z \quad \forall j \in T\\
+    x_{ijk} = 0 \quad \text{or} \quad x_{ijk} = 1 &\quad \forall i \in W, \forall j \in T, \forall k \in T\\
+    s_j &\geq 0
+\end{align}
+
+Again, all variables definition still hold without loss of generality as described by the authors \cite[p. 6]{Zeng2005}. As Zeng notes in his work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints but mentions that by adding auxiliary variables the aforementioned DMF formulation can be effectively converted into a mixed integer program and thus solve it \cite[p. 6]{Zeng2005}. On this note Zeng argues that the application of the DMF problem in practice poses some problems \cite{Zeng2005}. In this thesis however a conversion of the DMF formulation proposed by Zeng is formulated in order to adequately solve the optimization problem. The formal definition of such optimization problem is called EDMF (which stands for extended DMF) and is devised as follows:
+
+\begin{align}
+    \min_{z_{\text{max}}} \quad z_{\text{max}}\\
+    \text{subject to: } \notag \\
+    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
+    a_i + \sum_{j \in T} p_{ij} x_{ijk} &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+    z_{i*k-1} + \sum_{j \in T} p_{ij} x_{ijk} &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
+    z_{i*k}+ \sum_{j \in T} w_j x_{ijk} &\leq z_{\text{max}} \quad \forall i \in W, \forall k \in T\\
+    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
+    z_{i*k} &\geq 0 \quad \forall i \in W, \forall k \in T
+\end{align}
+
+This formulation clearly gets rid of the nonlinear constraints while still accounting for dynamical arrival of tasks, making thus the DMF problem as defined by Zeng effectively solvable.
+
+\todo{add text about simplified dmf method}
+
+With $k$ indexing:
+
+\begin{align}
+    \min_{z_{\text{max}}} \quad z_{\text{max}}\\
+    \text{subject to: } \notag \\
+    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
+    a_i + \sum_{t=1}^k \sum_j (p_{ij} + w_j I(t=k))x_{ijt} &\leq z_{\text{max}}\\
+    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0
+\end{align}
+
+Without $k$ indexing:
+
+\begin{align}
+    \min_{z_{\text{max}}} \quad z_{\text{max}}\\
+    \text{subject to: } \notag \\
+    \sum_{i \in W} x_{ij} &= 1 \quad \forall j \in T\\
+    a_i + \sum_{k=1}^j (p_{ik} + w_k I(k=j))x_{ik} &\leq z_{\text{max}}
+\end{align}
+
+Sum of service times minimization with DMF as upper bound:
+
+\begin{align}
+    \min_z \quad \sum_{i \in W} \sum_{k \in T} z_{ik}\\
+    \text{subject to: } \notag \\
+    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
+    a_i + \sum_{j \in T} p_{ij} x_{ijk} - M(1 - \sum_{j \in T} x_{ijk}) &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+    z_{i*k-1} + \sum_{j \in T} p_{ij} x_{ijk} - M(1 - \sum_{j \in T} x_{ijk}) &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
+    z_{i*k}+ \sum_{j \in T} w_j x_{ijk} &\leq z_{\text{max}} + \epsilon \quad \forall i \in W, \forall k \in T\\
+    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
+    z_{i*k} &\geq 0 \quad \forall i \in W, \forall k \in T\\
+    M &= \max_a a_i + \max_p \sum_{i \in W} \sum_{j \in T} p_{ij}\\
+    \epsilon &= \num{1e-4}
+\end{align}
+
+\section{Hypothesis}
+\section{Data}
+
+\chapter{Empirical Analysis}
+\label{ch:empirical_analysis}
+
+
+
+\section{Results}
+\section{Discussion}
+\section{Research Contribution}
+
+\chapter{Conclusion}
+\label{ch:conclusion}
+
+\section{Summary}
+\section{Resulting Conclusions}
+\section{Outlook}
+
+\appendix
+
+\chapter{test}
+\chapter{test2}
+
+\backmatter
+
+
+\bibliographystyle{alpha}
+\bibliography{sources}
+
+\end{document}
