@@ -25,8 +25,8 @@
 \contentsline {subsubsection}{Start event}{13}
 \contentsline {subsubsection}{User task}{14}
 \contentsline {subsubsection}{Policy}{15}
-\contentsline {section}{\numberline {3.2}Hypothesis}{19}
-\contentsline {section}{\numberline {3.3}Data}{19}
+\contentsline {section}{\numberline {3.2}Hypothesis}{20}
+\contentsline {section}{\numberline {3.3}Data}{20}
 \contentsline {chapter}{\numberline {4}Empirical Analysis}{21}
 \contentsline {section}{\numberline {4.1}Results}{21}
 \contentsline {section}{\numberline {4.2}Discussion}{21}
