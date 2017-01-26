@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200 64-bit) (preloaded format=pdflatex 2016.11.2)  20 JAN 2017 15:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200 64-bit) (preloaded format=pdflatex 2016.11.2)  26 JAN 2017 11:12
 entering extended mode
 **C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
 (C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
@@ -886,43 +886,22 @@ anslator\translator.sty"
 Package: translator 2010/06/12 ver 1.10
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\beamer\tr
-anslator\translator-language-mappings.tex")))
-("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\booktabs\
-booktabs.sty"
-Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen166
-\lightrulewidth=\dimen167
-\cmidrulewidth=\dimen168
-\belowrulesep=\dimen169
-\belowbottomsep=\dimen170
-\aboverulesep=\dimen171
-\abovetopsep=\dimen172
-\cmidrulesep=\dimen173
-\cmidrulekern=\dimen174
-\defaultaddspace=\dimen175
-\@cmidla=\count155
-\@cmidlb=\count156
-\@aboverulesep=\dimen176
-\@belowrulesep=\dimen177
-\@thisruleclass=\count157
-\@lastruleclass=\count158
-\@thisrulewidth=\dimen178
-) (thesis.aux)
+anslator\translator-language-mappings.tex"))) (thesis.aux)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Try loading font information for T1+ppl on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 22.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 ppl.fd"
@@ -931,16 +910,16 @@ File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\su
 pp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count159
-\scratchdimen=\dimen179
+\scratchcounter=\count155
+\scratchdimen=\dimen166
 \scratchbox=\box54
-\nofMPsegments=\count160
-\nofMParguments=\count161
+\nofMPsegments=\count156
+\nofMParguments=\count157
 \everyMPshowfont=\toks25
-\MPscratchCnt=\count162
-\MPscratchDim=\dimen180
-\MPnumerator=\count163
-\makeMPintoPDFobject=\count164
+\MPscratchCnt=\count158
+\MPscratchDim=\dimen167
+\MPnumerator=\count159
+\makeMPintoPDFobject=\count160
 \everyMPtoPDFconversion=\toks26
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
@@ -997,7 +976,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\c@lstlisting=\count165
+\c@lstlisting=\count161
 Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
 
@@ -1083,29 +1062,29 @@ Dictionary: translator-basic-dictionary, Language: English
 iunitx-abbreviations.cfg"
 File: siunitx-abbreviations.cfg 2017/01/01 v2.7a siunitx: Abbreviated units
 )
-\c__siunitx_mathsf_int=\count166
-\c__siunitx_mathtt_int=\count167
-LaTeX Font Info:    Try loading font information for T1+phv on input line 24.
+\c__siunitx_mathsf_int=\count162
+\c__siunitx_mathtt_int=\count163
+LaTeX Font Info:    Try loading font information for T1+phv on input line 23.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 phv.fd"
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <40> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 24.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 23.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 24.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 23.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 24.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 23.
 <logo_uzh.pdf, id=1, 154.5775pt x 49.18375pt>
 File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
-Package pdftex.def Info: logo_uzh.pdf used on input line 24.
+Package pdftex.def Info: logo_uzh.pdf used on input line 23.
 (pdftex.def)             Requested size: 142.26378pt x 45.26984pt.
 <logo_immopac.pdf, id=2, 436.94342pt x 64.49269pt>
 File: logo_immopac.pdf Graphic file (type pdf)
 <use logo_immopac.pdf>
-Package pdftex.def Info: logo_immopac.pdf used on input line 24.
+Package pdftex.def Info: logo_immopac.pdf used on input line 23.
 (pdftex.def)             Requested size: 170.71652pt x 25.19731pt.
 [1
 
@@ -1116,20 +1095,20 @@ logo_uzh.pdf> <./logo_immopac.pdf>] [2
 ]
 File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
-Package pdftex.def Info: logo_uzh.pdf used on input line 24.
-(pdftex.def)             Requested size: 128.0374pt x 40.74292pt.
+Package pdftex.def Info: logo_uzh.pdf used on input line 23.
+(pdftex.def)             Requested size: 142.26378pt x 45.26984pt.
 File: logo_immopac.pdf Graphic file (type pdf)
 <use logo_immopac.pdf>
-Package pdftex.def Info: logo_immopac.pdf used on input line 24.
-(pdftex.def)             Requested size: 199.16928pt x 29.39735pt.
+Package pdftex.def Info: logo_immopac.pdf used on input line 23.
+(pdftex.def)             Requested size: 170.71652pt x 25.19731pt.
 [3]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 24.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 23.
 [4
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <32> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 28.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 27.
 [1
 
 
@@ -1148,10 +1127,10 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <32> not available
 \openout3 = `thesis.toc'.
 
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 41.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 40.
 [8]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 41.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 40.
 (thesis.lof)
 \tf@lof=\write4
 \openout4 = `thesis.lof'.
@@ -1170,13 +1149,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [9] [10
 
 ]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 49.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 48.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Overfull \hbox (25.84691pt too wide) in paragraph at lines 49--50
+Overfull \hbox (25.84691pt too wide) in paragraph at lines 48--49
 []\T1/ppl/m/n/10 Structure for the the-sis adapted from $\T1/pcr/m/n/10 https :
  / / wwz . unibas . ch / fileadmin / wwz / redaktion /
  []
@@ -1187,15 +1166,15 @@ Overfull \hbox (25.84691pt too wide) in paragraph at lines 49--50
 ]
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <18> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 51.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 50.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 51.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 50.
 [3] [4]
 Chapter 2.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 101.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 100.
 
-Overfull \hbox (1.60321pt too wide) in paragraph at lines 126--127
+Overfull \hbox (1.60321pt too wide) in paragraph at lines 125--126
 \T1/ppl/m/n/10 A good start-ing point in the work-flow the-matic is Mac-in-tosh
 's work in which he gives an overview
  []
@@ -1209,32 +1188,32 @@ Overfull \hbox (1.60321pt too wide) in paragraph at lines 126--127
 ]
 Chapter 3.
 
-Overfull \hbox (16.29642pt too wide) in paragraph at lines 277--278
+Overfull \hbox (16.29642pt too wide) in paragraph at lines 285--286
 []\T1/ppl/m/n/10 Coding IDE used were \T1/pcr/m/n/10 PyCharm 2016.3[] \T1/ppl/m
 /n/10 for \T1/pcr/m/n/10 Python \T1/ppl/m/n/10 re-spec-tively \T1/pcr/m/n/10 In
 telliJ IDEA 2016.3
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 288--288
+Underfull \hbox (badness 10000) in paragraph at lines 296--296
 [][]$\T1/pcr/m/n/8 https : / / docs . python . org / 3 . 5 / reference / simple
  _ stmts . html # the-[]yield-[]statement$ \T1/ppl/m/n/8 (ac-cessed:
  []
 
-<img/workflow_elements.png, id=111, 1247.66125pt x 307.1475pt>
+<img/workflow_elements.png, id=112, 1247.66125pt x 307.1475pt>
 File: img/workflow_elements.png Graphic file (type png)
 <use img/workflow_elements.png>
-Package pdftex.def Info: img/workflow_elements.png used on input line 296.
+Package pdftex.def Info: img/workflow_elements.png used on input line 304.
 (pdftex.def)             Requested size: 426.79134pt x 105.06615pt.
-<img/policies_init.png, id=112, 421.575pt x 227.85126pt>
+<img/policies_init.png, id=113, 421.575pt x 227.85126pt>
 File: img/policies_init.png Graphic file (type png)
 <use img/policies_init.png>
-Package pdftex.def Info: img/policies_init.png used on input line 300.
+Package pdftex.def Info: img/policies_init.png used on input line 308.
 (pdftex.def)             Requested size: 213.39566pt x 115.33688pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 304.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 312.
 
-Underfull \hbox (badness 3460) in paragraph at lines 309--309
+Underfull \hbox (badness 3460) in paragraph at lines 317--317
 [][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / reference / g
 enerated / numpy . random . exponential . html$ \T1/ppl/m/n/8 (ac-
  []
@@ -1248,9 +1227,9 @@ lstlang1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 320.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 328.
 [13 <./img/policies_init.png (PNG copy)>] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 374--374
+Underfull \hbox (badness 10000) in paragraph at lines 382--382
 [][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / reference / g
 enerated / numpy . random . gamma . html$ \T1/ppl/m/n/8 (ac-cessed:
  []
@@ -1258,31 +1237,22 @@ enerated / numpy . random . gamma . html$ \T1/ppl/m/n/8 (ac-cessed:
 [15] <img/policies.png, id=132, 2723.17375pt x 580.1675pt>
 File: img/policies.png Graphic file (type png)
 <use img/policies.png>
-Package pdftex.def Info: img/policies.png used on input line 427.
+Package pdftex.def Info: img/policies.png used on input line 435.
 (pdftex.def)             Requested size: 426.79134pt x 90.92537pt.
 [16]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[17 <./img/policies.png (PNG copy)>] <img/dmf_problem.pdf, id=141, 865.2325pt x
- 259.97125pt>
-File: img/dmf_problem.pdf Graphic file (type pdf)
-<use img/dmf_problem.pdf>
-Package pdftex.def Info: img/dmf_problem.pdf used on input line 471.
-(pdftex.def)             Requested size: 426.79134pt x 128.23592pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[18]
+[17 <./img/policies.png (PNG copy)>]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 499.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 466.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 499.
-[19 <./img/dmf_problem.pdf>] [20]
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 466.
+[18] [19] [20
+
+
+]
 Chapter 4.
-[21
-
-
-] [22
+[21] [22
 
 
 ]
@@ -1299,18 +1269,29 @@ Appendix A.
 Appendix B.
 [27] [28
 
-] (thesis.bbl [29
+] (thesis.bbl
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 67.
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\om
+sppl.fd"
+File: omsppl.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ppl/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 67.
+LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 67.
+[29
 
 
 ]) [30] (thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 15551 strings out of 493334
- 298024 string characters out of 3126325
- 356884 words of memory out of 3000000
- 18865 multiletter control sequences out of 15000+200000
+ 15506 strings out of 493334
+ 297396 string characters out of 3126325
+ 356125 words of memory out of 3000000
+ 18822 multiletter control sequences out of 15000+200000
  79972 words of font info for 102 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,13n,45p,10417b,1809s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 40i,13n,45p,10396b,1809s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.
 9/fonts/enc/dvips/base/8r.enc}<C:/Users/filip.kocovski/AppData/Local/Programs/M
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/filip.kocovski/Ap
@@ -1336,9 +1317,9 @@ lip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a
 /fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/filip.kocovski/AppData/Local/Pro
 grams/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
 Output written on C:/Users/filip.kocovski/Desktop/thesis/thesis.pdf (44 pages, 
-381919 bytes).
+368099 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
+ 243 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

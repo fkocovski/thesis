@@ -161,7 +161,7 @@
  \end{flushright}%
  \vskip 174\p@
  \parindent \z@
- \includegraphics[width=4.5cm]{logo_uzh}\hfill\includegraphics[width=7cm]{logo_immopac}
+ \includegraphics[width=5cm]{logo_uzh}\hfill\includegraphics[width=6cm]{logo_immopac}
  \endgroup
  \clearpage\thispagestyle{empty}
  \normalfont

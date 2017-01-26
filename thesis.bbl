@@ -59,6 +59,14 @@ George~M. Giaglis.
   modeling techniques.
 \newblock 13(2):209--228.
 
+\bibitem[GWT{\etalchar{+}}13]{Geramifard2013}
+Alborz Geramifard, Thomas~J Walsh, Stefanie Tellex, Girish Chowdhary, Nicholas
+  Roy, Jonathan~P How, et~al.
+\newblock A tutorial on linear function approximators for dynamic programming
+  and reinforcement learning.
+\newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
+  6(4):375--451, 2013.
+
 \bibitem[Ken]{Kendall1953}
 David~G. Kendall.
 \newblock Stochastic processes occurring in the theory of queues and their
