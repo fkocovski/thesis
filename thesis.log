@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.31)  31 JAN 2017 15:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.31)  31 JAN 2017 15:21
 entering extended mode
 **C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
 (C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
@@ -1215,16 +1215,16 @@ File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
 Package pdftex.def Info: logo_uzh.pdf used on input line 28.
 (pdftex.def)             Requested size: 142.26378pt x 45.26984pt.
-<logo_immopac.pdf, id=4, 436.94342pt x 64.49269pt>
-File: logo_immopac.pdf Graphic file (type pdf)
-<use logo_immopac.pdf>
-Package pdftex.def Info: logo_immopac.pdf used on input line 28.
-(pdftex.def)             Requested size: 170.71652pt x 25.19731pt.
+<ifi_logo.pdf, id=4, 117.95413pt x 135.26477pt>
+File: ifi_logo.pdf Graphic file (type pdf)
+<use ifi_logo.pdf>
+Package pdftex.def Info: ifi_logo.pdf used on input line 28.
+(pdftex.def)             Requested size: 42.67912pt x 48.94089pt.
 [1
 
 {C:/Users/filip.kocovski/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:
 /Users/filip.kocovski/Desktop/thesis/logo_uzh.pdf> <C:/Users/filip.kocovski/Des
-ktop/thesis/logo_immopac.pdf>] [2
+ktop/thesis/ifi_logo.pdf>] [2
 
 
 ]
@@ -1232,10 +1232,10 @@ File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
 Package pdftex.def Info: logo_uzh.pdf used on input line 28.
 (pdftex.def)             Requested size: 142.26378pt x 45.26984pt.
-File: logo_immopac.pdf Graphic file (type pdf)
-<use logo_immopac.pdf>
-Package pdftex.def Info: logo_immopac.pdf used on input line 28.
-(pdftex.def)             Requested size: 170.71652pt x 25.19731pt.
+File: ifi_logo.pdf Graphic file (type pdf)
+<use ifi_logo.pdf>
+Package pdftex.def Info: ifi_logo.pdf used on input line 28.
+(pdftex.def)             Requested size: 42.67912pt x 48.94089pt.
 [3]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 28.
@@ -1356,12 +1356,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 301--301
 mple _ stmts . html # the-[]yield-[]statement$[] \T1/ppl/m/n/8 (ac-cessed:
  []
 
-<img/workflow_elements.png, id=403, 1247.66125pt x 307.1475pt>
+<img/workflow_elements.png, id=398, 1247.66125pt x 307.1475pt>
 File: img/workflow_elements.png Graphic file (type png)
 <use img/workflow_elements.png>
 Package pdftex.def Info: img/workflow_elements.png used on input line 309.
 (pdftex.def)             Requested size: 426.79134pt x 105.06615pt.
-<img/policies_init.png, id=405, 421.575pt x 227.85126pt>
+<img/policies_init.png, id=400, 421.575pt x 227.85126pt>
 File: img/policies_init.png Graphic file (type png)
 <use img/policies_init.png>
 Package pdftex.def Info: img/policies_init.png used on input line 313.
@@ -1392,7 +1392,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 387--387
  / generated / numpy . random . gamma . html$[] \T1/ppl/m/n/8 (ac-cessed:
  []
 
-[15] <img/policies.png, id=501, 2723.17375pt x 580.1675pt>
+[15] <img/policies.png, id=496, 2723.17375pt x 580.1675pt>
 File: img/policies.png Graphic file (type png)
 <use img/policies.png>
 Package pdftex.def Info: img/policies.png used on input line 440.
@@ -1401,7 +1401,7 @@ Package pdftex.def Info: img/policies.png used on input line 440.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [17 <C:/Users/filip.kocovski/Desktop/thesis/img/policies.png (PNG copy)>] <img/
-dmf_problem.pdf, id=537, 865.2325pt x 259.97125pt>
+dmf_problem.pdf, id=532, 865.2325pt x 259.97125pt>
 File: img/dmf_problem.pdf Graphic file (type pdf)
 <use img/dmf_problem.pdf>
 Package pdftex.def Info: img/dmf_problem.pdf used on input line 484.
@@ -1461,8 +1461,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 576.
  ) 
 Here is how much of TeX's memory you used:
  19369 strings out of 493342
- 352542 string characters out of 3126575
- 440837 words of memory out of 3000000
+ 352522 string characters out of 3126575
+ 440834 words of memory out of 3000000
  22373 multiletter control sequences out of 15000+200000
  79972 words of font info for 102 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1492,9 +1492,9 @@ MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/filip.kocovski/AppData
 atino/uplr8a.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/urw/palatino/uplri8a.pfb>
 Output written on C:/Users/filip.kocovski/Desktop/thesis/thesis.pdf (44 pages, 
-457940 bytes).
+452658 bytes).
 PDF statistics:
- 853 PDF objects out of 1000 (max. 8388607)
+ 848 PDF objects out of 1000 (max. 8388607)
  281 named destinations out of 1000 (max. 500000)
  311 words of extra memory for PDF output out of 10000 (max. 10000000)
 
