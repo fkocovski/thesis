@@ -5,6 +5,8 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{bookmark}
 
 \thesisType{Master Thesis}
 \date{\today}
@@ -294,7 +296,7 @@ SimPy is a Python process-based discrete-event simulation framework. It exploits
 
 Active components such as agents in a workflow are modeled as processes which live inside an environment and the interaction between them happens via events. 
 
-As previously mentioned, processes in SimPy are described by Python generators. During their lifetime they create events yield (Note that with the term \texttt{yield} here it is to be understood as Python's yield statements)\foot{https://docs.python.org/3.5/reference/simple_stmts.html#the-yield-statement}{06.01.2017} them to the environment, which then wait until they are triggered. The important logic to understand here is how SimPy treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in SimPy's notation when it gets triggered).
+As previously mentioned, processes in SimPy are described by Python generators. During their lifetime they create events yield (Note that with the term \texttt{yield} here it is to be understood as Python's yield statements)\foot{https://docs.python.org/3.5/reference/simple_stmts.html\#the-yield-statement}{06.01.2017} them to the environment, which then wait until they are triggered. The important logic to understand here is how SimPy treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in SimPy's notation when it gets triggered).
 
 SimPy offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since a timeout event are created and called by called the appropriate method of the passed \texttt{Environment}.
 

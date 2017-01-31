@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6200 64-bit) (preloaded format=pdflatex 2016.11.2)  26 JAN 2017 11:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.31)  31 JAN 2017 14:18
 entering extended mode
 **C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
 (C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
-LaTeX2e <2016/03/31> patch level 3
-Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
+LaTeX2e <2017/01/01> patch level 1
+Babel <3.9r> and hyphenation patterns for 73 language(s) loaded.
 (seal_thesis.cls
 Document Class: seal_thesis 2011/09/16 v3.0e seal LaTeX thesis class
 
@@ -13,7 +13,7 @@ Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\fleq
 n.clo"
-File: fleqn.clo 2015/03/31 v1.1i Standard LaTeX option (flush left equations)
+File: fleqn.clo 2016/12/29 v1.2a Standard LaTeX option (flush left equations)
 \mathindent=\dimen102
 Applying: [2015/01/01] Make \[ robust on input line 50.
 LaTeX Info: Redefining \[ on input line 51.
@@ -55,7 +55,7 @@ File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\babel-eng
 lish\english.ldf"
-Language: english 2012/08/20 v3.3p English support from the babel system
+Language: english 2017/01/24 v3.3q English support from the babel system
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\b
 abel.def"
@@ -85,7 +85,7 @@ Package color Info: Driver file: pdftex.def on input line 147.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-
 def\pdftex.def"
-File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
 k\infwarerr.sty"
@@ -99,11 +99,11 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 ))
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\font
 enc.sty"
-Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
+Package: fontenc 2017/01/24 v2.0c Standard LaTeX package
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1en
 c.def"
-File: t1enc.def 2016/06/19 v1.99m Standard LaTeX file
+File: t1enc.def 2017/01/24 v2.0c Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\
@@ -117,7 +117,7 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\
 graphics.sty"
-Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2016/10/09 v1.0u Standard LaTeX Graphics (DPC,SPQR)
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\
 trig.sty"
@@ -518,7 +518,7 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\a
 msmath.sty"
-Package: amsmath 2016/06/28 v2.15d AMS math features
+Package: amsmath 2016/11/05 v2.16a AMS math features
 \@mathmargin=\skip54
 For additional information on amsmath, use the `?' option.
 
@@ -542,20 +542,20 @@ msopn.sty"
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count99
-LaTeX Info: Redefining \frac on input line 199.
+LaTeX Info: Redefining \frac on input line 213.
 \uproot@=\count100
 \leftroot@=\count101
-LaTeX Info: Redefining \overline on input line 297.
+LaTeX Info: Redefining \overline on input line 375.
 \classnum@=\count102
 \DOTSCASE@=\count103
-LaTeX Info: Redefining \ldots on input line 394.
-LaTeX Info: Redefining \dots on input line 397.
-LaTeX Info: Redefining \cdots on input line 518.
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box29
 \strutbox@=\box30
 \big@size=\dimen114
-LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count104
 \c@MaxMatrixCols=\count105
 \dotsspace@=\muskip11
@@ -576,45 +576,45 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 \multlinegap=\skip55
 \multlinetaggap=\skip56
 \mathdisplay@stack=\toks23
-LaTeX Info: Redefining \[ on input line 2739.
-LaTeX Info: Redefining \] on input line 2740.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\siunitx\s
 iunitx.sty"
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\l3kernel\
 expl3.sty"
-Package: expl3 2016/11/21 v6760 L3 programming layer (loader) 
+Package: expl3 2017/01/28 v6834 L3 programming layer (loader) 
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\l3kernel\
 expl3-code.tex"
-Package: expl3 2016/11/21 v6760 L3 programming layer (code)
-L3 Module: l3bootstrap 2016/06/13 v6596 L3 Bootstrap code
-L3 Module: l3names 2016/10/13 v6722 L3 Namespace for primitives
-L3 Module: l3basics 2016/09/01 v6696 L3 Basic definitions
-L3 Module: l3expan 2016/08/19 v6684 L3 Argument expansion
-L3 Module: l3tl 2016/08/19 v6692 L3 Token lists
-L3 Module: l3str 2016/08/19 v6692 L3 Strings
-L3 Module: l3seq 2016/08/19 v6685 L3 Sequences and stacks
-L3 Module: l3int 2016/09/07 v6700 L3 Integers
+Package: expl3 2017/01/28 v6834 L3 programming layer (code)
+L3 Module: l3bootstrap 2016/12/28 v6805 L3 Bootstrap code
+L3 Module: l3names 2016/12/28 v6805 L3 Namespace for primitives
+L3 Module: l3basics 2016/12/28 v6805 L3 Basic definitions
+L3 Module: l3expan 2016/12/28 v6805 L3 Argument expansion
+L3 Module: l3tl 2016/12/28 v6805 L3 Token lists
+L3 Module: l3str 2017/01/01 v6809 L3 Strings
+L3 Module: l3seq 2016/12/28 v6805 L3 Sequences and stacks
+L3 Module: l3int 2016/12/28 v6805 L3 Integers
 \c_max_int=\count111
 \l_tmpa_int=\count112
 \l_tmpb_int=\count113
 \g_tmpa_int=\count114
 \g_tmpb_int=\count115
-L3 Module: l3quark 2016/08/19 v6685 L3 Quarks
-L3 Module: l3prg 2016/08/18 v6679 L3 Control structures
+L3 Module: l3quark 2016/12/28 v6805 L3 Quarks
+L3 Module: l3prg 2017/01/01 v6811 L3 Control structures
 \g__prg_map_int=\count116
-L3 Module: l3clist 2016/08/19 v6685 L3 Comma separated lists
-L3 Module: l3token 2016/09/01 v6695 L3 Experimental token manipulation
-L3 Module: l3prop 2016/08/19 v6685 L3 Property lists
-L3 Module: l3msg 2016/08/19 v6691 L3 Messages
-L3 Module: l3file 2016/08/19 v6685 L3 File and I/O operations
+L3 Module: l3clist 2016/12/28 v6805 L3 Comma separated lists
+L3 Module: l3token 2016/12/28 v6805 L3 Experimental token manipulation
+L3 Module: l3prop 2016/12/28 v6805 L3 Property lists
+L3 Module: l3msg 2016/12/28 v6805 L3 Messages
+L3 Module: l3file 2016/12/28 v6805 L3 File and I/O operations
 \l_iow_line_count_int=\count117
 \l__iow_target_count_int=\count118
 \l__iow_current_line_int=\count119
 \l__iow_current_word_int=\count120
 \l__iow_current_indentation_int=\count121
-L3 Module: l3skip 2016/08/19 v6692 L3 Dimensions and skips
+L3 Module: l3skip 2017/01/01 v6809 L3 Dimensions and skips
 \c_zero_dim=\dimen121
 \c_max_dim=\dimen122
 \l_tmpa_dim=\dimen123
@@ -633,9 +633,9 @@ L3 Module: l3skip 2016/08/19 v6692 L3 Dimensions and skips
 \l_tmpb_muskip=\muskip15
 \g_tmpa_muskip=\muskip16
 \g_tmpb_muskip=\muskip17
-L3 Module: l3keys 2016/09/21 v6711 L3 Key-value interfaces
+L3 Module: l3keys 2017/01/01 v6811 L3 Key-value interfaces
 \l_keys_choice_int=\count122
-L3 Module: l3fp 2016/11/21 v6761 L3 Floating points
+L3 Module: l3fp 2016/12/28 v6805 L3 Floating points
 \c__fp_leading_shift_int=\count123
 \c__fp_middle_shift_int=\count124
 \c__fp_trailing_shift_int=\count125
@@ -645,13 +645,16 @@ L3 Module: l3fp 2016/11/21 v6761 L3 Floating points
 \c__fp_Bigg_leading_shift_int=\count129
 \c__fp_Bigg_middle_shift_int=\count130
 \c__fp_Bigg_trailing_shift_int=\count131
-L3 Module: l3box 2016/08/19 v6685 L3 Experimental boxes
+\c__fp_rand_size_int=\count132
+\c__fp_rand_four_int=\count133
+\c__fp_rand_eight_int=\count134
+L3 Module: l3box 2016/12/28 v6805 L3 Experimental boxes
 \c_empty_box=\box31
 \l_tmpa_box=\box32
 \l_tmpb_box=\box33
 \g_tmpa_box=\box34
 \g_tmpb_box=\box35
-L3 Module: l3coffins 2016/08/19 v6685 L3 Coffin code layer
+L3 Module: l3coffins 2016/12/28 v6805 L3 Coffin code layer
 \l__coffin_internal_box=\box36
 \l__coffin_internal_dim=\dimen127
 \l__coffin_offset_x_dim=\dimen128
@@ -671,9 +674,9 @@ L3 Module: l3coffins 2016/08/19 v6685 L3 Coffin code layer
 \l__coffin_display_offset_dim=\dimen134
 \l__coffin_display_x_dim=\dimen135
 \l__coffin_display_y_dim=\dimen136
-L3 Module: l3color 2016/06/13 v6596 L3 Experimental color support
-L3 Module: l3sys 2015/09/25 v6087 L3 Experimental system/runtime functions
-L3 Module: l3candidates 2016/08/19 v6688 L3 Experimental additions to l3kernel
+L3 Module: l3color 2016/12/28 v6805 L3 Experimental color support
+L3 Module: l3sys 2017/01/01 v6811 L3 Experimental system/runtime functions
+L3 Module: l3candidates 2017/01/01 v6809 L3 Experimental additions to l3kernel
 \l__box_top_dim=\dimen137
 \l__box_bottom_dim=\dimen138
 \l__box_left_dim=\dimen139
@@ -690,28 +693,28 @@ L3 Module: l3candidates 2016/08/19 v6688 L3 Experimental additions to l3kernel
 \l__coffin_top_corner_dim=\dimen149
 \l__coffin_scaled_total_height_dim=\dimen150
 \l__coffin_scaled_width_dim=\dimen151
-L3 Module: l3luatex 2016/08/18 v6679 L3 Experimental LuaTeX-specific functions
+L3 Module: l3luatex 2016/12/28 v6805 L3 Experimental LuaTeX-specific functions
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\l3kernel\
 l3pdfmode.def"
-File: l3pdfmode.def 2016/08/18 v6679 L3 Experimental driver: PDF mode
-\l__driver_color_stack_int=\count132
+File: l3pdfmode.def 2016/12/28 v6805 L3 Experimental driver: PDF mode
+\l__driver_color_stack_int=\count135
 \l__driver_tmp_box=\box46
 ))
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\l3package
 s\xparse\xparse.sty"
-Package: xparse 2016/11/21 v6760 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count133
-\l__xparse_m_args_int=\count134
-\l__xparse_mandatory_args_int=\count135
-\l__xparse_processor_int=\count136
-\l__xparse_v_nesting_int=\count137
+Package: xparse 2017/01/28 v6834 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count136
+\l__xparse_m_args_int=\count137
+\l__xparse_mandatory_args_int=\count138
+\l__xparse_processor_int=\count139
+\l__xparse_v_nesting_int=\count140
 )
-Package: siunitx 2017/01/01 v2.7a A comprehensive (SI) units package
+Package: siunitx 2017/01/28 v2.7b A comprehensive (SI) units package
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\arr
 ay.sty"
-Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \col@sep=\dimen152
 \extrarowheight=\dimen153
 \NC@list=\toks24
@@ -720,31 +723,31 @@ Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\l3package
 s\l3keys2e\l3keys2e.sty"
-Package: l3keys2e 2016/11/21 v6760 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2017/01/28 v6834 LaTeX2e option processing using LaTeX3 keys
 )
 \l__siunitx_tmp_box=\box47
 \l__siunitx_tmp_dim=\dimen154
-\l__siunitx_tmp_int=\count138
-\l__siunitx_number_mantissa_length_int=\count139
-\l__siunitx_number_uncert_length_int=\count140
-\l__siunitx_round_int=\count141
-\l__siunitx_process_decimal_int=\count142
-\l__siunitx_process_uncertainty_int=\count143
-\l__siunitx_process_fixed_int=\count144
-\l__siunitx_process_integer_min_int=\count145
-\l__siunitx_process_precision_int=\count146
-\l__siunitx_group_min_int=\count147
+\l__siunitx_tmp_int=\count141
+\l__siunitx_number_mantissa_length_int=\count142
+\l__siunitx_number_uncert_length_int=\count143
+\l__siunitx_round_int=\count144
+\l__siunitx_process_decimal_int=\count145
+\l__siunitx_process_uncertainty_int=\count146
+\l__siunitx_process_fixed_int=\count147
+\l__siunitx_process_integer_min_int=\count148
+\l__siunitx_process_precision_int=\count149
+\l__siunitx_group_min_int=\count150
 \l__siunitx_angle_marker_box=\box48
 \l__siunitx_angle_unit_box=\box49
 \l__siunitx_angle_marker_dim=\dimen155
 \l__siunitx_angle_unit_dim=\dimen156
-\l__siunitx_unit_int=\count148
-\l__siunitx_unit_denominator_int=\count149
-\l__siunitx_unit_numerator_int=\count150
-\l__siunitx_unit_prefix_int=\count151
-\l__siunitx_unit_prefix_base_int=\count152
-\l__siunitx_unit_prefix_gram_int=\count153
-\l__siunitx_number_product_int=\count154
+\l__siunitx_unit_int=\count151
+\l__siunitx_unit_denominator_int=\count152
+\l__siunitx_unit_numerator_int=\count153
+\l__siunitx_unit_prefix_int=\count154
+\l__siunitx_unit_prefix_base_int=\count155
+\l__siunitx_unit_prefix_gram_int=\count156
+\l__siunitx_number_product_int=\count157
 \c__siunitx_one_fill_skip=\skip65
 \l__siunitx_table_unit_align_skip=\skip66
 \l__siunitx_table_exponent_dim=\dimen157
@@ -900,29 +903,162 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \cmidrulesep=\dimen173
 \cmidrulekern=\dimen174
 \defaultaddspace=\dimen175
-\@cmidla=\count155
-\@cmidlb=\count156
+\@cmidla=\count158
+\@cmidlb=\count159
 \@aboverulesep=\dimen176
 \@belowrulesep=\dimen177
-\@thisruleclass=\count157
-\@lastruleclass=\count158
+\@thisruleclass=\count160
+\@lastruleclass=\count161
 \@thisrulewidth=\dimen178
-) (thesis.aux)
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\
+hyperref.sty"
+Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
+k\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
+k\hobsub-generic.sty"
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex
+\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\
+auxhook.sty"
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\
+kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen179
+\Hy@linkcounter=\count162
+\Hy@pagecounter=\count163
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\
+pd1enc.def"
+File: pd1enc.def 2016/06/24 v6.83q Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count164
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\
+hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4486.
+Package hyperref Info: Link nesting OFF on input line 4491.
+Package hyperref Info: Hyper index ON on input line 4494.
+Package hyperref Info: Plain pages OFF on input line 4501.
+Package hyperref Info: Backreferencing OFF on input line 4506.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4735.
+\c@Hy@tempcnt=\count165
+LaTeX Info: Redefining \url on input line 5088.
+\XeTeXLinkMargin=\dimen180
+\Fld@menulength=\count166
+\Field@Width=\dimen181
+\Fld@charsize=\dimen182
+Package hyperref Info: Hyper figures OFF on input line 6342.
+Package hyperref Info: Link nesting OFF on input line 6347.
+Package hyperref Info: Hyper index ON on input line 6350.
+Package hyperref Info: backreferencing OFF on input line 6357.
+Package hyperref Info: Link coloring OFF on input line 6362.
+Package hyperref Info: Link coloring with OCG OFF on input line 6367.
+Package hyperref Info: PDF/A mode OFF on input line 6372.
+LaTeX Info: Redefining \ref on input line 6412.
+LaTeX Info: Redefining \pageref on input line 6416.
+\Hy@abspage=\count167
+\c@Item=\count168
+\c@Hfootnote=\count169
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\
+hpdftex.def"
+File: hpdftex.def 2016/06/24 v6.83q Hyperref driver for pdfTeX
+\Fld@listcount=\count170
+\c@bookmark@seq@number=\count171
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\
+rerunfilecheck.sty"
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip69
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\
+bookmark.sty"
+Package: bookmark 2016/05/17 v1.26 PDF bookmarks (HO)
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\
+bkm-pdftex.def"
+File: bkm-pdftex.def 2016/05/17 v1.26 bookmark driver for pdfTeX (HO)
+\BKM@id=\count172
+)) (thesis.aux)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Try loading font information for T1+ppl on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 25.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 ppl.fd"
@@ -931,36 +1067,17 @@ File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\su
 pp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count159
-\scratchdimen=\dimen179
+\scratchcounter=\count173
+\scratchdimen=\dimen183
 \scratchbox=\box54
-\nofMPsegments=\count160
-\nofMParguments=\count161
+\nofMPsegments=\count174
+\nofMParguments=\count175
 \everyMPshowfont=\toks25
-\MPscratchCnt=\count162
-\MPscratchDim=\dimen180
-\MPnumerator=\count163
-\makeMPintoPDFobject=\count164
+\MPscratchCnt=\count176
+\MPscratchDim=\dimen184
+\MPnumerator=\count177
+\makeMPintoPDFobject=\count178
 \everyMPtoPDFconversion=\toks26
-)
-("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
-k\pdftexcmds.sty"
-Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
-k\ifluatex.sty"
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
-k\ifpdf.sty"
-Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\
 epstopdf-base.sty"
@@ -969,27 +1086,7 @@ Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\
 grfext.sty"
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
-k\kvdefinekeys.sty"
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-))
-("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\
-kvoptions.sty"
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
-k\kvsetkeys.sty"
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
-k\etexcmds.sty"
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 38.
 Package grfext Info: Graphics extension search list:
@@ -997,7 +1094,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\c@lstlisting=\count165
+\c@lstlisting=\count179
 Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
 
@@ -1081,31 +1178,47 @@ Dictionary: translator-basic-dictionary, Language: English
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\siunitx\s
 iunitx-abbreviations.cfg"
-File: siunitx-abbreviations.cfg 2017/01/01 v2.7a siunitx: Abbreviated units
+File: siunitx-abbreviations.cfg 2017/01/28 v2.7b siunitx: Abbreviated units
 )
-\c__siunitx_mathsf_int=\count166
-\c__siunitx_mathtt_int=\count167
-LaTeX Font Info:    Try loading font information for T1+phv on input line 24.
+\AtBeginShipoutBox=\box55
+Package hyperref Info: Link coloring OFF on input line 25.
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\
+nameref.sty"
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdie
+k\gettitlestring.sty"
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count180
+)
+LaTeX Info: Redefining \ref on input line 25.
+LaTeX Info: Redefining \pageref on input line 25.
+LaTeX Info: Redefining \nameref on input line 25.
+\c__siunitx_mathsf_int=\count181
+\c__siunitx_mathtt_int=\count182
+LaTeX Font Info:    Try loading font information for T1+phv on input line 27.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 phv.fd"
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <40> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 24.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 27.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 24.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 27.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 24.
-<logo_uzh.pdf, id=1, 154.5775pt x 49.18375pt>
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 27.
+<logo_uzh.pdf, id=3, 154.5775pt x 49.18375pt>
 File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
-Package pdftex.def Info: logo_uzh.pdf used on input line 24.
+Package pdftex.def Info: logo_uzh.pdf used on input line 27.
 (pdftex.def)             Requested size: 142.26378pt x 45.26984pt.
-<logo_immopac.pdf, id=2, 436.94342pt x 64.49269pt>
+<logo_immopac.pdf, id=4, 436.94342pt x 64.49269pt>
 File: logo_immopac.pdf Graphic file (type pdf)
 <use logo_immopac.pdf>
-Package pdftex.def Info: logo_immopac.pdf used on input line 24.
+Package pdftex.def Info: logo_immopac.pdf used on input line 27.
 (pdftex.def)             Requested size: 170.71652pt x 25.19731pt.
 [1
 
@@ -1116,20 +1229,20 @@ logo_uzh.pdf> <./logo_immopac.pdf>] [2
 ]
 File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
-Package pdftex.def Info: logo_uzh.pdf used on input line 24.
+Package pdftex.def Info: logo_uzh.pdf used on input line 27.
 (pdftex.def)             Requested size: 142.26378pt x 45.26984pt.
 File: logo_immopac.pdf Graphic file (type pdf)
 <use logo_immopac.pdf>
-Package pdftex.def Info: logo_immopac.pdf used on input line 24.
+Package pdftex.def Info: logo_immopac.pdf used on input line 27.
 (pdftex.def)             Requested size: 170.71652pt x 25.19731pt.
 [3]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 24.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 27.
 [4
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <32> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 28.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 30.
 [1
 
 
@@ -1148,10 +1261,10 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <32> not available
 \openout3 = `thesis.toc'.
 
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 41.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 43.
 [8]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 41.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 43.
 (thesis.lof)
 \tf@lof=\write4
 \openout4 = `thesis.lof'.
@@ -1170,32 +1283,53 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [9] [10
 
 ]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 49.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 51.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Overfull \hbox (25.84691pt too wide) in paragraph at lines 49--50
-[]\T1/ppl/m/n/10 Structure for the the-sis adapted from $\T1/pcr/m/n/10 https :
- / / wwz . unibas . ch / fileadmin / wwz / redaktion /
+Overfull \hbox (25.84691pt too wide) in paragraph at lines 51--52
+[]\T1/ppl/m/n/10 Structure for the the-sis adapted from []$\T1/pcr/m/n/10 https
+ : / / wwz . unibas . ch / fileadmin / wwz / redaktion /
  []
 
-[1] [2
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.53 \chapter
+             {Introduction} [1]pdfTeX warning (ext4): destination with the same
+ identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.53 \chapter
+             {Introduction} [2
 
 
 ]
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <18> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 51.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 53.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 51.
-[3] [4]
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 53.
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.92 	\item \chpref
+                   {ch:intro} gives an overview of why the chosen topic is r...
+[3]pdfTeX warning (ext4): destination with the same identifier (name{page.4}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.99 \chapter
+             {Theoretical Foundations} [4]
 Chapter 2.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 101.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 103.
 
-Overfull \hbox (1.60321pt too wide) in paragraph at lines 126--127
+Overfull \hbox (1.60321pt too wide) in paragraph at lines 128--129
 \T1/ppl/m/n/10 A good start-ing point in the work-flow the-matic is Mac-in-tosh
 's work in which he gives an overview
  []
@@ -1209,34 +1343,34 @@ Overfull \hbox (1.60321pt too wide) in paragraph at lines 126--127
 ]
 Chapter 3.
 
-Overfull \hbox (16.29642pt too wide) in paragraph at lines 286--287
-[]\T1/ppl/m/n/10 Coding IDE used were \T1/pcr/m/n/10 PyCharm 2016.3[] \T1/ppl/m
-/n/10 for \T1/pcr/m/n/10 Python \T1/ppl/m/n/10 re-spec-tively \T1/pcr/m/n/10 In
-telliJ IDEA 2016.3
+Overfull \hbox (16.29642pt too wide) in paragraph at lines 288--289
+[]\T1/ppl/m/n/10 Coding IDE used were \T1/pcr/m/n/10 PyCharm 2016.3[][][] \T1/p
+pl/m/n/10 for \T1/pcr/m/n/10 Python \T1/ppl/m/n/10 re-spec-tively \T1/pcr/m/n/1
+0 IntelliJ IDEA 2016.3
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 297--297
-[][]$\T1/pcr/m/n/8 https : / / docs . python . org / 3 . 5 / reference / simple
- _ stmts . html # the-[]yield-[]statement$ \T1/ppl/m/n/8 (ac-cessed:
+Underfull \hbox (badness 10000) in paragraph at lines 299--299
+[][][][]$\T1/pcr/m/n/8 https : / / docs . python . org / 3 . 5 / reference / si
+mple _ stmts . html # the-[]yield-[]statement$[] \T1/ppl/m/n/8 (ac-cessed:
  []
 
-<img/workflow_elements.png, id=112, 1247.66125pt x 307.1475pt>
+<img/workflow_elements.png, id=401, 1247.66125pt x 307.1475pt>
 File: img/workflow_elements.png Graphic file (type png)
 <use img/workflow_elements.png>
-Package pdftex.def Info: img/workflow_elements.png used on input line 305.
+Package pdftex.def Info: img/workflow_elements.png used on input line 307.
 (pdftex.def)             Requested size: 426.79134pt x 105.06615pt.
-<img/policies_init.png, id=113, 421.575pt x 227.85126pt>
+<img/policies_init.png, id=403, 421.575pt x 227.85126pt>
 File: img/policies_init.png Graphic file (type png)
 <use img/policies_init.png>
-Package pdftex.def Info: img/policies_init.png used on input line 309.
+Package pdftex.def Info: img/policies_init.png used on input line 311.
 (pdftex.def)             Requested size: 213.39566pt x 115.33688pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 313.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 315.
 
-Underfull \hbox (badness 3460) in paragraph at lines 318--318
-[][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / reference / g
-enerated / numpy . random . exponential . html$ \T1/ppl/m/n/8 (ac-
+Underfull \hbox (badness 3460) in paragraph at lines 320--320
+[][][][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / reference
+ / generated / numpy . random . exponential . html$[] \T1/ppl/m/n/8 (ac-
  []
 
 
@@ -1248,35 +1382,35 @@ lstlang1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 329.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 331.
 [13 <./img/policies_init.png (PNG copy)>] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 383--383
-[][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / reference / g
-enerated / numpy . random . gamma . html$ \T1/ppl/m/n/8 (ac-cessed:
+Underfull \hbox (badness 10000) in paragraph at lines 385--385
+[][][][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / reference
+ / generated / numpy . random . gamma . html$[] \T1/ppl/m/n/8 (ac-cessed:
  []
 
-[15] <img/policies.png, id=132, 2723.17375pt x 580.1675pt>
+[15] <img/policies.png, id=499, 2723.17375pt x 580.1675pt>
 File: img/policies.png Graphic file (type png)
 <use img/policies.png>
-Package pdftex.def Info: img/policies.png used on input line 436.
+Package pdftex.def Info: img/policies.png used on input line 438.
 (pdftex.def)             Requested size: 426.79134pt x 90.92537pt.
 [16]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[17 <./img/policies.png (PNG copy)>] <img/dmf_problem.pdf, id=141, 865.2325pt x
+[17 <./img/policies.png (PNG copy)>] <img/dmf_problem.pdf, id=535, 865.2325pt x
  259.97125pt>
 File: img/dmf_problem.pdf Graphic file (type pdf)
 <use img/dmf_problem.pdf>
-Package pdftex.def Info: img/dmf_problem.pdf used on input line 480.
+Package pdftex.def Info: img/dmf_problem.pdf used on input line 482.
 (pdftex.def)             Requested size: 426.79134pt x 128.23592pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [18]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 508.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 510.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 508.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 510.
 [19 <./img/dmf_problem.pdf>] [20]
 Chapter 4.
 [21
@@ -1313,43 +1447,51 @@ LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10> not available
 [29
 
 
-]) [30] (thesis.aux) ) 
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 574.
+[30]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 574.
+(thesis.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 574.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 574.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 574.
+ ) 
 Here is how much of TeX's memory you used:
- 15571 strings out of 493334
- 298420 string characters out of 3126325
- 356897 words of memory out of 3000000
- 18882 multiletter control sequences out of 15000+200000
+ 19367 strings out of 493342
+ 351815 string characters out of 3126575
+ 440802 words of memory out of 3000000
+ 22372 multiletter control sequences out of 15000+200000
  79972 words of font info for 102 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,13n,45p,10417b,1809s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.
-9/fonts/enc/dvips/base/8r.enc}<C:/Users/filip.kocovski/AppData/Local/Programs/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/filip.kocovski/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/U
-sers/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmmi5.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/filip.kocovski/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/filip.kocov
-ski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+ 40i,13n,45p,10417b,2292s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/ba
+se/8r.enc}<C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmex10.pfb><C:/Users/filip.kocovski/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/filip.kocovski/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/
+Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmmi7.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/filip.kocovski/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/filip.koco
+vski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb>
 <C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr7.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/filip.kocovski/AppData/Loca
-l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/filip.
-kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7
-.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw
-/courier/ucrb8a.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/filip.kocovski/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/filip.kocovski/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/fi
-lip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a
-.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw
-/palatino/uplb8a.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9
-/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/filip.kocovski/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
+msfonts/cm/cmsy10.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/filip.kocovski/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/filip
+.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb>
+<C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/cour
+ier/ucrr8a.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/urw/helvetic/uhvb8a.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/filip.kocovski/AppData
+/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Users/filip
+.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb
+><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/pal
+atino/uplr8a.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/urw/palatino/uplri8a.pfb>
 Output written on C:/Users/filip.kocovski/Desktop/thesis/thesis.pdf (44 pages, 
-384267 bytes).
+456741 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 851 PDF objects out of 1000 (max. 8388607)
+ 280 named destinations out of 1000 (max. 500000)
+ 311 words of extra memory for PDF output out of 10000 (max. 10000000)
 
