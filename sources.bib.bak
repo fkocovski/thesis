@@ -408,6 +408,8 @@ Brief description of these 3 types of discrete event simulations.},
   year      = {1974},
   author    = {Baker, Kenneth R},
   groups    = {Workflow},
+  keywords  = {rank3},
+  review    = {Referenced in Zeng's paper where they formally define the task flowtime},
 }
 
 @Article{Mnih2015,
@@ -448,8 +450,26 @@ Brief description of these 3 types of discrete event simulations.},
   pages     = {375--451},
   file      = {:lit/Geramifard2013 - A tutorial on linear function approximators for dynamic programming and reinforcement learning.pdf:PDF},
   groups    = {Reinforcement Learning},
+  keywords  = {rank4},
   publisher = {Now Publishers, Inc.},
   review    = {Gives a good explanation of different value function approximation methods and pseudocode algorithms},
+}
+
+@Article{Smith2002,
+  author   = {Andrew James Smith},
+  title    = {Applications of the self-organising map to reinforcement learning},
+  journal  = {Neural Networks},
+  year     = {2002},
+  volume   = {15},
+  number   = {8–9},
+  pages    = {1107 - 1124},
+  issn     = {0893-6080},
+  abstract = {This article is concerned with the representation and generalisation of continuous action spaces in reinforcement learning (RL) problems. A model is proposed based on the self-organising map (SOM) of Kohonen [Self Organisation and Associative Memory, 1987] which allows either the one-to-one, many-to-one or one-to-many structure of the desired state–action mapping to be captured. Although presented here for tasks involving immediate reward, the approach is easily extended to delayed reward. We conclude that the \{SOM\} is a useful tool for providing real-time, on-line generalisation in \{RL\} problems in which the latent dimensionalities of the state and action spaces are small. Scalability issues are also discussed.},
+  doi      = {10.1016/S0893-6080(02)00083-7},
+  file     = {:lit\\Smith2002 - Applications of the self-organising map to reinforcement learning.pdf:PDF},
+  groups   = {Reinforcement Learning},
+  keywords = {Reinforcement learning, Self-organising map, Continuous action spaces, Generalisation, Real-valued actions, Unsupervised learning, Q-learning },
+  url      = {//www.sciencedirect.com/science/article/pii/S0893608002000837},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

@@ -133,6 +133,11 @@ David Silver, Aja Huang, Chris~J Maddison, Arthur Guez, Laurent Sifre, George
 \newblock Mastering the game of go with deep neural networks and tree search.
 \newblock {\em Nature}, 529(7587):484--489, 2016.
 
+\bibitem[Smi02]{Smith2002}
+Andrew~James Smith.
+\newblock Applications of the self-organising map to reinforcement learning.
+\newblock {\em Neural Networks}, 15(8–9):1107 -- 1124, 2002.
+
 \bibitem[SR09]{Silver2009}
 Bruce Silver and Bruce Richard.
 \newblock {\em BPMN method and style}, volume~2.
