@@ -33,7 +33,7 @@
 \end{acknowledgements}
 
 \begin{abstract}
-	
+
 \end{abstract}
 
 \begin{zusammenfassung}
@@ -94,7 +94,7 @@ This thesis is subdivided in five main chapters:
 	\item \chpref{ch:foundations} gives an overview of the most important conceptual definitions and the state of the art literature review in the touched thematic topics of this work. Conclusively this chapter critically reflects upon the existing literature and exposes the deficits that this thesis aims filling
 	\item \chpref{ch:methodology} gives an overview of the approach used for the research, \eg the analysis environment and the used tools, states the hypothesis that wants to be proved and eventually describes statistically and qualitatively the data sets upon which the methodology is applied
 	\item \chpref{ch:empirical_analysis} builds upon \chpref{ch:methodology} and makes its way into the hypothesis test field and the respective analysis results. Furthermore looks introspectively on the data correlation and gives an interpretation of the latter. Eventually in this section a statement about the contribution that the results bring into this field is given
-	\item \chpref{ch:conclusion} is the culminating chapter in which a summary of the key findings of the thesis are outlined, the research questions posed in \secref{sec:objectives} are answered by looking at the actual usability, limitations and to whom the results are most applicable. Finally outlooks about the future trends and how the empirical results of this thesis can be extended by prospective researchers. 
+	\item \chpref{ch:conclusion} is the culminating chapter in which a summary of the key findings of the thesis are outlined, the research questions posed in \secref{sec:objectives} are answered by looking at the actual usability, limitations and to whom the results are most applicable. Finally outlooks about the future trends and how the empirical results of this thesis can be extended by prospective researchers.
 \end{itemize}
 
 \chapter{Theoretical Foundations}
@@ -109,17 +109,17 @@ This thesis is subdivided in five main chapters:
 \section{Literature Overview}
 \label{sec:literature_overview}
 
-This section servers as an overview of the state of the art literature that exists and has been used as a foundation basis for this work. \secref{sec:literature_overview} is divided in different thematic subsections. 
+This section servers as an overview of the state of the art literature that exists and has been used as a foundation basis for this work. \secref{sec:literature_overview} is divided in different thematic subsections.
 
 \subsection{Queueing}
 
-Queuing is a topic that talks about how people or more general agents are to be server while waiting. 
+Queuing is a topic that talks about how people or more general agents are to be server while waiting.
 
-Starting with one of the most notable contributions to this field done by Kendall in 1953 and his work on the Markov chains in queuing theory, where he formally defines different types of queues \cite{Kendall1953}. 
+Starting with one of the most notable contributions to this field done by Kendall in 1953 and his work on the Markov chains in queuing theory, where he formally defines different types of queues \cite{Kendall1953}.
 
-In 2002, Adan describes the necessary basic concepts for queuing theory and an important topic here is the statistical foundation outlined in his work about different modeling techniques for randomized generation rates, such as the Erlang's distributions \cite{Adan2002}. 
+In 2002, Adan describes the necessary basic concepts for queuing theory and an important topic here is the statistical foundation outlined in his work about different modeling techniques for randomized generation rates, such as the Erlang's distributions \cite{Adan2002}.
 
-Pinedo outlines in his work in 2008 the most prominent key metrics that can be used in order to assert and measure queues performance \cite{Pinedo2008}. 
+Pinedo outlines in his work in 2008 the most prominent key metrics that can be used in order to assert and measure queues performance \cite{Pinedo2008}.
 
 Sun and Zhao in their work cover the aspect of formal analysis for workflow models and they claim that it should help ``...alleviating the intellectual challenge faced by business analysts when creating workflow models'' \cite{Sun2013}.
 
@@ -136,7 +136,7 @@ A good starting point in the workflow thematic is Macintosh's work in which he g
 	\item Optimizing, continuous process improvement
 \end{enumerate}
 
-Even though Georgakopoulos' work dates back to 1995, he still gives a comprehensive business oriented overview of the different workflow technologies present on the market \cite{Georgakopoulos1995}. 
+Even though Georgakopoulos' work dates back to 1995, he still gives a comprehensive business oriented overview of the different workflow technologies present on the market \cite{Georgakopoulos1995}.
 
 On this note, Giaglis lays out four different process perspectives:
 \begin{enumerate*}
@@ -294,9 +294,9 @@ The whole architecture is subdivided as follows:
 
 \subsection{Discrete event simulation using SimPy}
 
-SimPy is a Python process-based discrete-event simulation framework. It exploits Python generators according to which it models its processes. 
+SimPy is a Python process-based discrete-event simulation framework. It exploits Python generators according to which it models its processes.
 
-Active components such as agents in a workflow are modeled as processes which live inside an environment and the interaction between them happens via events. 
+Active components such as agents in a workflow are modeled as processes which live inside an environment and the interaction between them happens via events.
 
 As previously mentioned, processes in SimPy are described by Python generators. During their lifetime they create events yield (Note that with the term \texttt{yield} here it is to be understood as Python's yield statements)\foot{https://docs.python.org/3.5/reference/simple_stmts.html\#the-yield-statement}{06.01.2017} them to the environment, which then wait until they are triggered. The important logic to understand here is how SimPy treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in SimPy's notation when it gets triggered).
 
@@ -320,7 +320,7 @@ Start event objects require a simulation environment, a policy to be used, a gen
 \begin{enumerate*}
  	\item before the simulation starts, a fixed service interval time unit $s$, number of users $n$ and an average system load $l$ are set. Analog to Zeng's and Zhao's work, the generation $\lambda$ interval follows a Poisson distribution \cite{Zeng2005} and is defined in \equref{eq:generation_interval}
  	\item for a Poisson random exponential sampling of the generation rate, \texttt{NumPy}'s implementation of its exponential distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.exponential.html}{06.01.2017}. The scale parameter $\beta$, which is the inverse of the rate parameter $\lambda = 1/\beta$ is used, meaning that the generation rate $\lambda$ defined in \equref{eq:generation_interval} is passed to the start event inverted.
- \end{enumerate*} 
+ \end{enumerate*}
 
 \begin{equation}
 \label{eq:generation_interval}
@@ -337,7 +337,7 @@ Start event objects require a simulation environment, a policy to be used, a gen
             token = Token()
 \end{lstlisting}
 
-Even though tokens are generated infinitely, this process is controlled from the simulation environment where a discrete simulation time steps have to be set, as it can be seen from \lstref{lst:simulation_steps}. 
+Even though tokens are generated infinitely, this process is controlled from the simulation environment where a discrete simulation time steps have to be set, as it can be seen from \lstref{lst:simulation_steps}.
 
 This can be interpreted as that the whole simulation will persist for 100 time steps and it will then stop when the internal clock reaches 100. Please note that events that have been scheduled for time step 100 will not be processed. The logic is similar to a new environment where the clock is zero and no event have been processed yet.
 
@@ -371,9 +371,9 @@ In regards to parameters service interval and task variability a detailed explan
 
 \lstref{lst:user_service_rate} gives a glimpse of the inner logic of how policies work. It is however out of scope for this section to cover this aspect and it is provided ``as is''. For each user eligible to work the assigned token, its service rate is sampled following the Erlang distribution. This time, the Erlang distribution takes as parameters the unique average processing time $p_j$ of user task $j$ and a value worker variability, which is a unique property of each policy, which we shall call $w$.
 
-In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$, shape $k$ is evaluated as $k=p_j/w$ and scale as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate} 
+In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$, shape $k$ is evaluated as $k=p_j/w$ and scale as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate}
 
-	
+
 
 \begin{lstlisting}[caption=User service rate sampling following an Erlang distribution,label=lst:user_service_rate,language=Python]
     user_service_rate = [round(
@@ -477,7 +477,7 @@ When considering the minimization of the maximum flowtime of a task inside a pro
 
 The whole concept consists in the introduction of an identity variable $I$ which is true only if task $j$ is currently being assigned as the $k$th task to user $i$, meaning that for this specific case also the waiting time for task $j$ has to be accounted for. For all other cases, \ie $j<k$ the identity variable $I$ will not hold thus effectively zeroing the $w_j$ variable.
 
-\figref{fig:edmf_task_assignment} depicts the potential scenario where three tasks are assigned to a specific user $i$ following a sequence where task 2, 3 and $j$ are assigned respectively as first, second and third tasks (thus respecting the $k$ notation outlined above them). 
+\figref{fig:edmf_task_assignment} depicts the potential scenario where three tasks are assigned to a specific user $i$ following a sequence where task 2, 3 and $j$ are assigned respectively as first, second and third tasks (thus respecting the $k$ notation outlined above them).
 
 In order to calculate $z_{ijk}$, one has to consider also when user $i$ will actually be available to process his first task. This is depicted by the variable $a_i$, which summed together with the respective service times of user $i$ for task $j$ gives the complete work time user $i$ will require to process all tasks assigned to him.
 
