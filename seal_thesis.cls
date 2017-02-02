@@ -136,7 +136,7 @@
  \end{flushright}%
  \vskip 87\p@
  \parindent \z@
- \includegraphics[width=5cm]{logo_uzh}\hfill\includegraphics[width=1.5cm]{ifi_logo}
+ \includegraphics[width=4.5cm]{logo_uzh}\hfill\includegraphics[width=1.5cm]{ifi_logo}
  \endgroup
  \clearpage\thispagestyle{empty}\cleardoublepage
   \thispagestyle{empty}
@@ -161,7 +161,7 @@
  \end{flushright}%
  \vskip 174\p@
  \parindent \z@
- \includegraphics[width=5cm]{logo_uzh}\hfill\includegraphics[width=1.5cm]{ifi_logo}
+ \includegraphics[width=4.5cm]{logo_uzh}\hfill\includegraphics[width=1.5cm]{ifi_logo}
  \endgroup
  \clearpage\thispagestyle{empty}
  \normalfont

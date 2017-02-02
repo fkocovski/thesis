@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.31)  1 FEB 2017 13:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.31)  2 FEB 2017 15:18
 entering extended mode
 **C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
 (C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
@@ -1044,21 +1044,21 @@ File: bkm-pdftex.def 2016/05/17 v1.26 bookmark driver for pdfTeX (HO)
 )) (C:\Users\filip.kocovski\Desktop\thesis\thesis.aux)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Try loading font information for T1+ppl on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 27.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 ppl.fd"
@@ -1181,7 +1181,7 @@ iunitx-abbreviations.cfg"
 File: siunitx-abbreviations.cfg 2017/01/28 v2.7b siunitx: Abbreviated units
 )
 \AtBeginShipoutBox=\box55
-Package hyperref Info: Link coloring OFF on input line 26.
+Package hyperref Info: Link coloring OFF on input line 27.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\
 nameref.sty"
@@ -1193,32 +1193,32 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count180
 )
-LaTeX Info: Redefining \ref on input line 26.
-LaTeX Info: Redefining \pageref on input line 26.
-LaTeX Info: Redefining \nameref on input line 26.
+LaTeX Info: Redefining \ref on input line 27.
+LaTeX Info: Redefining \pageref on input line 27.
+LaTeX Info: Redefining \nameref on input line 27.
 \c__siunitx_mathsf_int=\count181
 \c__siunitx_mathtt_int=\count182
-LaTeX Font Info:    Try loading font information for T1+phv on input line 28.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 29.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 phv.fd"
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <40> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 28.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 29.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 28.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 29.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 28.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 29.
 <logo_uzh.pdf, id=3, 154.5775pt x 49.18375pt>
 File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
-Package pdftex.def Info: logo_uzh.pdf used on input line 28.
-(pdftex.def)             Requested size: 142.26378pt x 45.26984pt.
+Package pdftex.def Info: logo_uzh.pdf used on input line 29.
+(pdftex.def)             Requested size: 128.0374pt x 40.74292pt.
 <ifi_logo.pdf, id=4, 117.95413pt x 135.26477pt>
 File: ifi_logo.pdf Graphic file (type pdf)
 <use ifi_logo.pdf>
-Package pdftex.def Info: ifi_logo.pdf used on input line 28.
+Package pdftex.def Info: ifi_logo.pdf used on input line 29.
 (pdftex.def)             Requested size: 42.67912pt x 48.94089pt.
 [1
 
@@ -1230,20 +1230,20 @@ ktop/thesis/ifi_logo.pdf>] [2
 ]
 File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
-Package pdftex.def Info: logo_uzh.pdf used on input line 28.
-(pdftex.def)             Requested size: 142.26378pt x 45.26984pt.
+Package pdftex.def Info: logo_uzh.pdf used on input line 29.
+(pdftex.def)             Requested size: 128.0374pt x 40.74292pt.
 File: ifi_logo.pdf Graphic file (type pdf)
 <use ifi_logo.pdf>
-Package pdftex.def Info: ifi_logo.pdf used on input line 28.
+Package pdftex.def Info: ifi_logo.pdf used on input line 29.
 (pdftex.def)             Requested size: 42.67912pt x 48.94089pt.
 [3]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 28.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 29.
 [4
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <32> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 31.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 32.
 [1
 
 
@@ -1262,10 +1262,10 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <32> not available
 \openout3 = `thesis.toc'.
 
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 44.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 45.
 [8]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 44.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 45.
 (C:\Users\filip.kocovski\Desktop\thesis\thesis.lof)
 \tf@lof=\write4
 \openout4 = `thesis.lof'.
@@ -1284,13 +1284,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [9] [10
 
 ]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 52.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 53.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Overfull \hbox (25.84691pt too wide) in paragraph at lines 52--53
+Overfull \hbox (25.84691pt too wide) in paragraph at lines 53--54
 []\T1/ppl/m/n/10 Structure for the the-sis adapted from []$\T1/pcr/m/n/10 https
  : / / wwz . unibas . ch / fileadmin / wwz / redaktion /
  []
@@ -1299,38 +1299,38 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.54 \chapter
+l.55 \chapter
              {Introduction} [1]pdfTeX warning (ext4): destination with the same
  identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.54 \chapter
+l.55 \chapter
              {Introduction} [2
 
 
 ]
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <18> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 54.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 54.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 55.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.93 	\item \chpref
+l.94 	\item \chpref
                    {ch:intro} gives an overview of why the chosen topic is r...
 [3]pdfTeX warning (ext4): destination with the same identifier (name{page.4}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.100 \chapter
+l.101 \chapter
               {Theoretical Foundations} [4]
 Chapter 2.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 104.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 105.
 
-Overfull \hbox (1.60321pt too wide) in paragraph at lines 129--130
+Overfull \hbox (1.60321pt too wide) in paragraph at lines 130--131
 \T1/ppl/m/n/10 A good start-ing point in the work-flow the-matic is Mac-in-tosh
 's work in which he gives an overview
  []
@@ -1344,14 +1344,14 @@ Overfull \hbox (1.60321pt too wide) in paragraph at lines 129--130
 ]
 Chapter 3.
 
-Overfull \hbox (16.29642pt too wide) in paragraph at lines 290--291
+Overfull \hbox (16.29642pt too wide) in paragraph at lines 291--292
 []\T1/ppl/m/n/10 Coding IDE used were \T1/pcr/m/n/10 PyCharm 2016.3[][][] \T1/p
 pl/m/n/10 for \T1/pcr/m/n/10 Python \T1/ppl/m/n/10 re-spec-tively \T1/pcr/m/n/1
 0 IntelliJ IDEA 2016.3
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 301--301
+Underfull \hbox (badness 10000) in paragraph at lines 302--302
 [][][][]$\T1/pcr/m/n/8 https : / / docs . python . org / 3 . 5 / reference / si
 mple _ stmts . html # the-[]yield-[]statement$[] \T1/ppl/m/n/8 (ac-cessed:
  []
@@ -1359,17 +1359,17 @@ mple _ stmts . html # the-[]yield-[]statement$[] \T1/ppl/m/n/8 (ac-cessed:
 <img/workflow_elements.png, id=398, 1247.66125pt x 307.1475pt>
 File: img/workflow_elements.png Graphic file (type png)
 <use img/workflow_elements.png>
-Package pdftex.def Info: img/workflow_elements.png used on input line 309.
+Package pdftex.def Info: img/workflow_elements.png used on input line 310.
 (pdftex.def)             Requested size: 426.79134pt x 105.06615pt.
 <img/policies_init.png, id=400, 421.575pt x 227.85126pt>
 File: img/policies_init.png Graphic file (type png)
 <use img/policies_init.png>
-Package pdftex.def Info: img/policies_init.png used on input line 313.
+Package pdftex.def Info: img/policies_init.png used on input line 314.
 (pdftex.def)             Requested size: 213.39566pt x 115.33688pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 317.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 318.
 
-Underfull \hbox (badness 3460) in paragraph at lines 322--322
+Underfull \hbox (badness 3460) in paragraph at lines 323--323
 [][][][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / reference
  / generated / numpy . random . exponential . html$[] \T1/ppl/m/n/8 (ac-
  []
@@ -1384,10 +1384,10 @@ lstlang1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 333.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 334.
 [13 <C:/Users/filip.kocovski/Desktop/thesis/img/policies_init.png (PNG copy)>] 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 387--387
+Underfull \hbox (badness 10000) in paragraph at lines 388--388
 [][][][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / reference
  / generated / numpy . random . gamma . html$[] \T1/ppl/m/n/8 (ac-cessed:
  []
@@ -1395,7 +1395,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 387--387
 [15] <img/policies.png, id=496, 2723.17375pt x 580.1675pt>
 File: img/policies.png Graphic file (type png)
 <use img/policies.png>
-Package pdftex.def Info: img/policies.png used on input line 440.
+Package pdftex.def Info: img/policies.png used on input line 441.
 (pdftex.def)             Requested size: 426.79134pt x 90.92537pt.
 [16]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1404,16 +1404,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 dmf_problem.pdf, id=532, 865.2325pt x 259.97125pt>
 File: img/dmf_problem.pdf Graphic file (type pdf)
 <use img/dmf_problem.pdf>
-Package pdftex.def Info: img/dmf_problem.pdf used on input line 484.
+Package pdftex.def Info: img/dmf_problem.pdf used on input line 485.
 (pdftex.def)             Requested size: 426.79134pt x 128.23592pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [18]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 512.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 513.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 512.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 513.
 [19 <C:/Users/filip.kocovski/Desktop/thesis/img/dmf_problem.pdf>] [20]
 Chapter 4.
 [21
@@ -1451,18 +1451,18 @@ LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10> not available
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 576.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 577.
 [30]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 576.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 577.
 (C:\Users\filip.kocovski\Desktop\thesis\thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 576.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 576.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 576.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 577.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 577.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 577.
  ) 
 Here is how much of TeX's memory you used:
  19369 strings out of 493342
  352522 string characters out of 3126575
- 440834 words of memory out of 3000000
+ 440814 words of memory out of 3000000
  22373 multiletter control sequences out of 15000+200000
  79972 words of font info for 102 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1492,7 +1492,7 @@ MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/filip.kocovski/AppData
 atino/uplr8a.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/urw/palatino/uplri8a.pfb>
 Output written on C:/Users/filip.kocovski/Desktop/thesis/thesis.pdf (44 pages, 
-452567 bytes).
+452501 bytes).
 PDF statistics:
  848 PDF objects out of 1000 (max. 8388607)
  281 named destinations out of 1000 (max. 500000)
