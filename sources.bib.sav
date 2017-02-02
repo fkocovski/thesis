@@ -473,6 +473,22 @@ Brief description of these 3 types of discrete event simulations.},
   url      = {//www.sciencedirect.com/science/article/pii/S0893608002000837},
 }
 
+@Article{Korda2014,
+  author    = {Nathaniel Korda and Prashanth A. Prashanth},
+  title     = {On {TD(0)} with function approximation: Concentration bounds and a centered variant with exponential convergence},
+  journal   = {CoRR},
+  year      = {2014},
+  volume    = {abs/1411.3224},
+  bibsource = {dblp computer science bibliography, http://dblp.org},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/KordaP14},
+  file      = {:lit\\Korda2014 - On TD(0) with function approximation_ Concentration bounds and a centered variant with exponential convergence.pdf:PDF},
+  groups    = {Reinforcement Learning},
+  keywords  = {rank4},
+  review    = {Discussion on TD(0) with function approximation and how to set or not to set the step size parameter},
+  timestamp = {Mon, 01 Dec 2014 14:32:13 +0100},
+  url       = {http://arxiv.org/abs/1411.3224},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: groupstree:

@@ -73,6 +73,12 @@ David~G. Kendall.
   analysis by the method of the imbedded markov chain.
 \newblock 24(3):338--354.
 
+\bibitem[KP14]{Korda2014}
+Nathaniel Korda and Prashanth~A. Prashanth.
+\newblock On {TD(0)} with function approximation: Concentration bounds and a
+  centered variant with exponential convergence.
+\newblock {\em CoRR}, abs/1411.3224, 2014.
+
 \bibitem[Mac93]{Macintosh1993}
 A.~L. Macintosh.
 \newblock The need for enriched knowledge representation for enterprise
