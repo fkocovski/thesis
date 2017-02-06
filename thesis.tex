@@ -5,7 +5,7 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{booktabs}
-\usepackage{hyperref}
+\usepackage[colorlinks=true]{hyperref}
 % used to fix structure
 \usepackage{bookmark}
 
@@ -248,6 +248,8 @@ As Markov Decision Processes grow in size, so does the required computational me
 This very large state space requirement is a clear limitation to lookup tables. Even if memory would not be a constraint, the actual learning from such tables would be infeasible. In order to pragmatically learn by reinforcement on such huge problems, value function approximation in the domain of reinforcement learning proves to be a viable solution. For different types of reinforcement learning approaches, \ie Monte-Carlo (MC) or Temporal Difference (TD) methods exist different types of value function approximation, ranging from simple linear combinations of features for MC to neural networks for TD learning. All these different methodologies are outlined in the tutorial by Geramifard \cite{Geramifard2013}.
 
 When working with on-line algorithms such as TD(0) it is important to choose correct parameters for an effective learning process, otherwise the learning algorithm put in place might never converge towards an optimal solution. This aspect is being discussed by Korda in which he depicts different non-asymptotic bounds for the temporal difference learning algorithms \cite{Korda2014}.
+
+There are two main fields in reinforcement learning, one is using value function approximation for either the state value function or for using control mechanisms with the state action value function, while the other one is using policy gradient methods for policy optimization. The latter offers different methods such as the naive finite difference methods, monte carlo based policy gradient methods and finally actor critic policy gradient methods \cite{Silver2014}.
 
 Notable works in the field of reinforcement learning and its application include Google DeepMind work on novel algorithms for tackling fields previously barely scratched, as mentioned by Mnih \etal and Silver \etal \cite{Mnih2015,Silver2016}.
 
