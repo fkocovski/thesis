@@ -654,6 +654,25 @@ TD methods, same as MC methods, are not  excluded from the sufficient exploratio
 
 Up until now, the different methods presented are not suited for arbitrarily large state spaces. However, there exist solution to tackle such large state spaces: approximate solution methods. Under the assumption that one must always account for finite and limited computational resources, it is not feasible to find an optimal policy or value function, instead we have to settle for a good approximation of the solution \cite[p. 189]{Sutton1998}.
 
+An essential characteristic for reinforcement learning algorithms venturing in the area of approximation is being able of generalization, \ie using experience from a limited subset of the state space to effectively generalize and produce a valid approximation of a much larger subset  \cite[p. 189]{Sutton1998}. Reinforcement learning methods are capable of achieving this by relying on supervised-learning function approximation which essentially use backups as training example \cite[p. 222]{Sutton1998}. Specifically, one very efficient set of methods are those using parametrized function approximation, \ie the policy is parametrized by a weight vector $\theta$.
+
+The parametrized functional form with weight vector $\theta$ can be used to write $\hat{v}(s,\theta) \approx v_\pi (s)$, which is the approximated value of state $s$ given weight vector $\theta$ \cite[p. 191]{Sutton1998}.
+
+It is then clear that the weight vector $\theta$ has to be chosen wisely: this can be done by using variations of stochastic gradient descent (SGD) methods \cite[p. 223]{Sutton1998}. SGD methods adjust the weight vector after each step by a tiny amount following the direction that would reduce the error the most:
+
+\begin{align}
+	\theta_{t+1} &\doteq \theta_t - \frac{1}{2} \alpha \nabla [v_\pi (S_t) - \hat{v} (S_t,\theta_t)]^2\\
+	&= \theta_t + \alpha  [v_\pi (S_t) - \hat{v} (S_t,\theta_t)] \nabla \hat{v} (S_t,\theta_t)
+\end{align}
+
+where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$ is the vector of partial derivatives with respect to $\theta$:
+
+\begin{equation}
+	\nabla f(\theta) \doteq \left( \frac{\partial f(\theta)}{\partial \theta_1}, \frac{\partial f(\theta)}{\partial \theta_2}, \ldots, \frac{\partial f(\theta)}{\partial \theta_n} \right)^\top
+\end{equation}
+
+\ncite{add book citation}
+
 \subsection{On-policy Control with Approximation}
 
 \subsection{Policy Gradient Methods}
