@@ -25,15 +25,24 @@
 \contentsline {subsubsection}{Start event}{13}{section*.8}
 \contentsline {subsubsection}{User task}{14}{section*.9}
 \contentsline {subsubsection}{Policy}{15}{section*.10}
-\contentsline {section}{\numberline {3.2}Hypothesis}{20}{section.3.2}
-\contentsline {section}{\numberline {3.3}Data}{20}{section.3.3}
-\contentsline {chapter}{\numberline {4}Empirical Analysis}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Results}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Discussion}{21}{section.4.2}
-\contentsline {section}{\numberline {4.3}Research Contribution}{21}{section.4.3}
-\contentsline {chapter}{\numberline {5}Conclusion}{23}{chapter.5}
-\contentsline {section}{\numberline {5.1}Summary}{23}{section.5.1}
-\contentsline {section}{\numberline {5.2}Resulting Conclusions}{23}{section.5.2}
-\contentsline {section}{\numberline {5.3}Outlook}{23}{section.5.3}
-\contentsline {chapter}{\numberline {A}test}{25}{appendix.A}
-\contentsline {chapter}{\numberline {B}test2}{27}{appendix.B}
+\contentsline {section}{\numberline {3.2}Reinforcement Learning Analysis Environment}{20}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Reinforcement Learning}{20}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Finite Markov Decision Processes}{21}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Dynamic Programming}{22}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Monte Carlo Methods}{22}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Temporal-Difference Learning}{22}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}On-policy Prediction with Approximation}{22}{subsection.3.2.6}
+\contentsline {subsection}{\numberline {3.2.7}On-policy Control with Approximation}{22}{subsection.3.2.7}
+\contentsline {subsection}{\numberline {3.2.8}Policy Gradient Methods}{22}{subsection.3.2.8}
+\contentsline {section}{\numberline {3.3}Hypothesis}{22}{section.3.3}
+\contentsline {section}{\numberline {3.4}Data}{22}{section.3.4}
+\contentsline {chapter}{\numberline {4}Empirical Analysis}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Results}{23}{section.4.1}
+\contentsline {section}{\numberline {4.2}Discussion}{23}{section.4.2}
+\contentsline {section}{\numberline {4.3}Research Contribution}{23}{section.4.3}
+\contentsline {chapter}{\numberline {5}Conclusion}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}Summary}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}Resulting Conclusions}{25}{section.5.2}
+\contentsline {section}{\numberline {5.3}Outlook}{25}{section.5.3}
+\contentsline {chapter}{\numberline {A}test}{27}{appendix.A}
+\contentsline {chapter}{\numberline {B}test2}{29}{appendix.B}

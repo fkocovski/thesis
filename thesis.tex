@@ -548,6 +548,90 @@ Sum of service times minimization with DMF as upper bound:
     \epsilon &= \num{1e-4}
 \end{align}
 
+\section{Reinforcement Learning Analysis Environment}
+
+In this section the reinforcement learning approach used to solve the different role resolution problems is depicted. Initially a foundation basis in the required knowledge is depicted and afterwards the description of the analysis environment implementation is presented.
+
+\subsection{Reinforcement Learning}
+
+Reinforcement learning is a novel approach originated as a branch from the broader field of machine learning. It is an automated approach to understanding and automating learning and decision-making \cite[p. 15]{Sutton1998}. It distinguishes itself from other approaches by its novel focus on learning thanks to an agent which directly interacts with its environment, without the necessity of relying on training sets \cite[p. 15]{Sutton1998}.
+
+The formal framework used by reinforcement learning defines the interaction between the so called learning agent and its environment by means of states, actions and rewards \cite[p. 15]{Sutton1998}.
+
+Key concepts in the field of reinforcement learning are those of values and value functions which helps distinguish reinforcement learning methods from evolutionary methods which have to undergo scalar evaluations of entire policies \cite[p. 15]{Sutton1998}.
+
+\subsection{Finite Markov Decision Processes}
+
+Reinforcement learning approaches learn by interacting with the environment in order to achieve a goal. The agent interacting with the environment does this in a sequence of discrete time steps, it performs actions (choices made by the agent), reaches then states (basis for making decisions) and eventually receives rewards (basis for evaluating the choices) \cite[p. 73]{Sutton1998}. Moreover, a policy is a stochastic rule that the agent relies upon to choose actions as a function of states \cite[p. 73]{Sutton1998}. Ultimately, the sole goal of the agent is to maximize the reward that it receives over time \cite[p. 73]{Sutton1998}.
+
+Returns are modeled as functions of future rewards that an agents must maximize \cite[p. 73]{Sutton1998}. There exist two types of return functions which depend on the nature of the tasks and a discounting preference:
+\begin{enumerate*}
+	\item for episodic tasks a non discontinued approach is preferred while
+	\item for continuous tasks, however, a discounted approach is better suited \cite[p. 73]{Sutton1998}.
+\end{enumerate*}
+
+\equref{eq:expected_return} defines the sum of the rewards received over time step $t$:
+
+\begin{equation}
+\label{eq:expected_return}
+	G_t  \doteq R_{t+1} + R_{t+2} + R_{t+3} + \cdots R_{T}
+\end{equation}
+
+If we account for discounting, \equref{eq:expected_return} has to be slightly adapted by introducing a discounting factor $\gamma$ and can be found in \equref{eq:expected_discounted_return}:
+
+\begin{equation}
+\label{eq:expected_discounted_return}
+	G_t  \doteq R_{t+1} + R_{t+2} + R_{t+3} + \cdots = \sum_{k=0}^\infty \gamma^k R_{t+k+1}
+\end{equation}
+
+where $0 \leq \gamma \leq 1$.
+
+An environment  with which one agent interacts, can satisfy a Markov property if the information contained at present effectively summarizes the past without affecting the capability of effectively predicting the future \cite[p. 73]{Sutton1998}. If the Markov property is satisfied, then this environment is called a Markov decision process (MDP) \cite[p. 73]{Sutton1998}.
+
+Last but not least, value functions are used to assign each state or state-action pair an expected return based on the policy used by the agent \cite[p. 74]{Sutton1998}. Optimal value functions assign the highest achievable return by any policy to a state or state-action pair  and such policies, whose values are optimal, are called optimal policies \cite[p. 74]{Sutton1998}.
+
+Optimal state-value functions $v_*$ are formally defined as follows:
+
+\begin{equation}
+	v_* (s) \doteq \max_\pi v_\pi (s)
+\end{equation}
+
+whereas optimal action-value functions $q_*$ are formally defined as follows:
+
+\begin{equation}
+	q_* (s,a) \doteq \max_\pi q_\pi (s,a)
+\end{equation}
+
+\subsection{Dynamic Programming}
+\label{subsec:dp}
+
+Dynamic programming (DP) is a set of ideas and algorithms that can be used to solve MDPs \cite[p. 95]{Sutton1998}. There are two approaches in dynamic programming for solving MDPs:
+\begin{enumerate*}
+	\item policy evaluations is the iterative computation of value functions of a given policy and
+	\item policy improvement is the idea of computing an improved policy under the conditions of its given value functions \cite[p. 95]{Sutton1998}.
+\end{enumerate*}
+
+By combining these two approaches we obtain the two most notable DP methods, \ie policy and value iteration \cite[p. 95]{Sutton1998}.
+
+One very interesting property of DP methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \cite[p. 96]{Sutton1998}.
+
+\subsection{Monte Carlo Methods}
+
+Monte Carlo (MC) methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton1998}. This approach yields different advantages over the DP methods seen in \secref{subsec:dp}:
+\begin{enumerate*}
+	\item they do not need a model of the environment's dynamics as they learn the optimal solutions by merely interacting with the environment,
+	\item since the learn from sample episodes, they are very well suited for simulation environments and
+	\item it is efficient and surprisingly easy to use MC methods to focus on smaller regions or subsets of a problem \cite[p. 123]{Sutton1998}.
+\end{enumerate*}
+
+\subsection{Temporal-Difference Learning}
+
+\subsection{On-policy Prediction with Approximation}
+
+\subsection{On-policy Control with Approximation}
+
+\subsection{Policy Gradient Methods}
+
 \section{Hypothesis}
 \section{Data}
 
