@@ -616,17 +616,43 @@ By combining these two approaches we obtain the two most notable DP methods, \ie
 One very interesting property of DP methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \cite[p. 96]{Sutton1998}.
 
 \subsection{Monte Carlo Methods}
+\label{subsec:mc}
 
 Monte Carlo (MC) methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton1998}. This approach yields different advantages over the DP methods seen in \secref{subsec:dp}:
 \begin{enumerate*}
 	\item they do not need a model of the environment's dynamics as they learn the optimal solutions by merely interacting with the environment,
-	\item since the learn from sample episodes, they are very well suited for simulation environments and
-	\item it is efficient and surprisingly easy to use MC methods to focus on smaller regions or subsets of a problem \cite[p. 123]{Sutton1998}.
+	\item since the learn from sample episodes, they are very well suited for simulation environments,
+	\item it is efficient and surprisingly easy to use MC methods to focus on smaller regions or subsets of a problem and
+	\item MC methods are more robust when it comes to violations of the Markov property since they do not bootstrap for updating their values \cite[p. 123]{Sutton1998}.
 \end{enumerate*}
+
+One of the drawbacks that MC methods bring along is the concept of maintaining sufficient exploration: by always acting greedily, alternative states will never yield their returns thus potentially never learning that they might prove to be better \cite[p. 123]{Sutton1998}.
+
+A MC simplified method can be formally defined as follows:
+
+\begin{equation}
+	V(S_t) \leftarrow V(S_t) + \alpha [G_t - V(S_t)]
+\end{equation}
+
+where $G_t$ is the discounted return function defined by \equref{eq:expected_discounted_return} and $\alpha$ is a constant step-size parameter \cite[p. 127]{Sutton1998}. MC methods must wait until the end of one episode in order to evaluate the incremental value of $V(S_t)$ since only at that point in time $G_t$ is known \cite[p. 128]{Sutton1998}.
 
 \subsection{Temporal-Difference Learning}
 
+Temporal-difference (TD) are yet another set of learning methods for reinforcement learning. Compared to the MC methods explained in \subsecref{subsec:mc}, TD methods do not need to wait all the way up to the end of an episode to actually learn, they only must wait until the next step, \ie they can bootstrap \cite[p. 128]{Sutton1998}. When they reach time step $t+1$, they observe a reward $R_{t+1}$ which then use to estimate $V(S_{t+1})$ \cite[p. 128]{Sutton1998}. The simplest TD method, which is called $TD(0)$, is defined as follows:
+
+\begin{equation}
+	V(S_t) \leftarrow V(S_t) + \alpha [R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]
+\end{equation}
+
+TD methods, same as MC methods, are not  excluded from the sufficient exploration methods \cite[p. 147]{Sutton1998}. TD methods deal with this complication in two different ways:
+\begin{enumerate*}
+	\item on policy by using an algorithm called Sarsa and
+	\item off policy by using an algorithm called Q-learning \cite[p. 128]{Sutton1998}.
+\end{enumerate*}
+
 \subsection{On-policy Prediction with Approximation}
+
+Up until now, the different methods presented are not suited for arbitrarily large state spaces. However, there exist solution to tackle such large state spaces: approximate solution methods. Under the assumption that one must always account for finite and limited computational resources, it is not feasible to find an optimal policy or value function, instead we have to settle for a good approximation of the solution \cite[p. 189]{Sutton1998}.
 
 \subsection{On-policy Control with Approximation}
 
