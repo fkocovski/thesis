@@ -8,6 +8,7 @@
 \usepackage[colorlinks=true]{hyperref}
 % used to fix structure
 \usepackage{bookmark}
+\usepackage{amsfonts}
 
 
 \thesisType{Master Thesis}
@@ -703,6 +704,30 @@ For the special case of the so called one-step Sarsa method, its gradient-descen
 and this method has also very good convergence properties towards optimality \cite[p. 230]{Sutton1998}.
 
 \subsection{Policy Gradient Methods}
+
+Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{Actor-critic methods are an exception, where a learned value function is used in combination with policy gradient as a baseline in order to lower variance.}  \cite[p. 265]{Sutton1998}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton1998}. For policy gradient methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
+
+\begin{equation}
+	\theta_{t+1} \doteq \theta_t + \alpha \widehat{\nabla \eta (\theta_t)}
+\end{equation}
+
+where $ \widehat{\nabla \eta (\theta_t)}$ is nothing else than a stochastic estimate that approximates the gradient of $\eta(\theta)$ \cite[p. 265]{Sutton1998}.
+
+For discrete action spaces, a suitable solution consists in forming parametrized numerical preferences $h(s,a,\theta) \in \mathbb{R}$ \cite[p. 266]{Sutton1998}. This means that the best actions is given the highest probability according to a softmax distribution:
+
+\begin{equation}
+	\pi(a|s,\theta) \doteq \frac{e^{h(s,a,\theta)}}{\sum_b e^{h(s,b,\theta)}}
+\end{equation}
+
+where $e \approx 2.71828$ \cite[p. 266]{Sutton1998}.
+
+Moreover, the preferences can be, as previously mentioned:
+
+\begin{equation}
+	h(s,a,\theta) \doteq \theta^\top \phi (s,a)
+\end{equation}
+
+\ie simply linear in features \cite[p. 266]{Sutton1998}.
 
 \section{Hypothesis}
 \section{Data}

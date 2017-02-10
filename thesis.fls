@@ -131,6 +131,8 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdi
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/bookmark.sty
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/bkm-pdftex.def
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/bkm-pdftex.def
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/amsfonts.sty
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/amsfonts.sty
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.aux
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.aux
 OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.aux
@@ -156,6 +158,16 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/generic/ober
 OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.pdf
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/umsa.fd
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/umsa.fd
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/umsb.fd
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/umsb.fd
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmss10.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmss8.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmss8.tfm
@@ -263,6 +275,10 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmss8.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmtt8.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmtt8.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8t.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/courier/pcrr8t.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr8t.vf
@@ -313,6 +329,8 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmss9.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmtt9.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvro8t.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb8t.vf
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
@@ -344,6 +362,8 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb
