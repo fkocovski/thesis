@@ -234,6 +234,8 @@ Conceptual models serve as documentation for generic process requirements wherea
 
 Reinforcement learning is a branch of machine learning that promises to overcome the drawbacks posed by the latter by not requiring a training set for efficient machine decisions.
 
+Policy gradient methods with value function approximation and their convergence is of vital importance and this can be achieved by representing the policy by an own function approximation which is independent of the value function and it is updated according to gradient of the expected rewards with respect to the afore mentioned policy \cite{Sutton1999}.
+
 Discretization of the state action space is not always feasible and different techniques have to be used for tractability. Smith proposes such an approach which he calls ``self-organizing map'' \cite{Smith2002}.
 
 In their work, Schaul \etal have developed a modular machine learning library for python that contains different algorithm implementations such as Q-learning, SARSA and REINFORCE and yet also natural actor-critic and neural-fitted implementations such as Q-iteration, recurrent policy gradients, state-dependent exploration and reward-weighted regressions \cite{Schaul2010}.
@@ -673,7 +675,32 @@ where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$ is the v
 
 \ncite{add book citation}
 
+A very special case (and also very simple) is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton1998}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton1998}. With this definition in mind, we can now formally define the state-value function approximation as the inner product between $\theta$ and $\phi (s)$:
+
+\begin{equation}
+	\hat{v} (s,\theta) \doteq \theta^\top \phi (s) \doteq \sum_{i=1}^n \theta_i \phi_i (s)
+\end{equation}
+
+This simplified case of linear function approximation for state-value functions finally brings us to how we can use the SGD:
+
+\begin{equation}
+\label{eq:sgd_linear}
+	\nabla \hat{v} (s,\theta) = \phi (s)
+\end{equation}
+
+\equref{eq:sgd_linear} tells us that for the simple linear case the SGD is nothing more than the corresponding features value  \cite[p. 199]{Sutton1998}.
+
 \subsection{On-policy Control with Approximation}
+
+Moving towards control with value function approximation, we now focus on the approximation of the action-value function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton1998}.
+
+For the special case of the so called one-step Sarsa method, its gradient-descent update for the action-value function is defined as follows:
+
+\begin{equation}
+	\theta_{t+1} \doteq \theta_t + \alpha [ R_{t+1} + \gamma \hat{q} (S_{t+1}, A_{t+1}, \theta_t) - \hat{q} (S_t, A_t, \theta_t) ] \nabla \hat{q} (S_t, A_t, \theta_t)
+\end{equation}
+
+and this method has also very good convergence properties towards optimality \cite[p. 230]{Sutton1998}.
 
 \subsection{Policy Gradient Methods}
 

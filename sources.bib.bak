@@ -489,7 +489,7 @@ Brief description of these 3 types of discrete event simulations.},
   url       = {http://arxiv.org/abs/1411.3224},
 }
 
-@Article{Lever2014,
+@Article{Silver2014,
   author   = {Silver, David and Lever, Guy and Heess, Nicolas and Degris, Thomas and Wierstra, Daan and Riedmiller, Martin},
   title    = {Deterministic Policy Gradient Algorithms},
   journal  = {Journal of Machine Learning Research},
@@ -498,6 +498,19 @@ Brief description of these 3 types of discrete event simulations.},
   groups   = {Reinforcement Learning},
   keywords = {rank3},
   review   = {Theory about policy gradient algorithms},
+}
+
+@InProceedings{Sutton1999,
+  author    = {Sutton, Richard S and McAllester, David A and Singh, Satinder P and Mansour, Yishay and others},
+  title     = {Policy gradient methods for reinforcement learning with function approximation.},
+  booktitle = {NIPS},
+  year      = {1999},
+  volume    = {99},
+  pages     = {1057--1063},
+  file      = {:Sutton1999 - Policy gradient methods for reinforcement learning with function approximation..pdf:PDF},
+  groups    = {Reinforcement Learning},
+  keywords  = {rank4},
+  review    = {Discussion on convergence of policy gradient methods with function approximation},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

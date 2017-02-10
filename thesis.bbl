@@ -150,6 +150,12 @@ Andrew~James Smith.
 \newblock Applications of the self-organising map to reinforcement learning.
 \newblock {\em Neural Networks}, 15(8–9):1107 -- 1124, 2002.
 
+\bibitem[SMS{\etalchar{+}}99]{Sutton1999}
+Richard~S Sutton, David~A McAllester, Satinder~P Singh, Yishay Mansour, et~al.
+\newblock Policy gradient methods for reinforcement learning with function
+  approximation.
+\newblock In {\em NIPS}, volume~99, pages 1057--1063, 1999.
+
 \bibitem[SR09]{Silver2009}
 Bruce Silver and Bruce Richard.
 \newblock {\em BPMN method and style}, volume~2.

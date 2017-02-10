@@ -32,10 +32,10 @@
 \contentsline {subsection}{\numberline {3.2.4}Monte Carlo Methods}{22}{subsection.3.2.4}
 \contentsline {subsection}{\numberline {3.2.5}Temporal-Difference Learning}{22}{subsection.3.2.5}
 \contentsline {subsection}{\numberline {3.2.6}On-policy Prediction with Approximation}{23}{subsection.3.2.6}
-\contentsline {subsection}{\numberline {3.2.7}On-policy Control with Approximation}{23}{subsection.3.2.7}
-\contentsline {subsection}{\numberline {3.2.8}Policy Gradient Methods}{23}{subsection.3.2.8}
-\contentsline {section}{\numberline {3.3}Hypothesis}{23}{section.3.3}
-\contentsline {section}{\numberline {3.4}Data}{23}{section.3.4}
+\contentsline {subsection}{\numberline {3.2.7}On-policy Control with Approximation}{24}{subsection.3.2.7}
+\contentsline {subsection}{\numberline {3.2.8}Policy Gradient Methods}{24}{subsection.3.2.8}
+\contentsline {section}{\numberline {3.3}Hypothesis}{24}{section.3.3}
+\contentsline {section}{\numberline {3.4}Data}{24}{section.3.4}
 \contentsline {chapter}{\numberline {4}Empirical Analysis}{25}{chapter.4}
 \contentsline {section}{\numberline {4.1}Results}{25}{section.4.1}
 \contentsline {section}{\numberline {4.2}Discussion}{25}{section.4.2}
