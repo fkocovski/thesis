@@ -177,6 +177,12 @@ Peter Trkman.
 \newblock The critical success factors of business process management.
 \newblock 30(2):125 -- 134.
 
+\bibitem[Wil92]{Williams1992}
+Ronald~J Williams.
+\newblock Simple statistical gradient-following algorithms for connectionist
+  reinforcement learning.
+\newblock {\em Machine learning}, 8(3-4):229--256, 1992.
+
 \bibitem[WZ]{Wang2011}
 Harry~Jiannan Wang and J.~Leon Zhao.
 \newblock Constraint-centric workflow change analytics.
