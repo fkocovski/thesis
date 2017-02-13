@@ -513,7 +513,7 @@ Brief description of these 3 types of discrete event simulations.},
   review    = {Discussion on convergence of policy gradient methods with function approximation},
 }
 
-@Article{williams1992simple,
+@Article{Williams1992,
   author    = {Williams, Ronald J},
   title     = {Simple statistical gradient-following algorithms for connectionist reinforcement learning},
   journal   = {Machine learning},
@@ -525,6 +525,15 @@ Brief description of these 3 types of discrete event simulations.},
   keywords  = {rank4},
   publisher = {Springer},
   review    = {Monte Carlo based policy gradient method},
+}
+
+@InProceedings{Zhang2011,
+  author    = {Zhang, Kun and Hyv{\"a}rinen, Aapo},
+  title     = {A general linear non-Gaussian state-space model: Identifiability, identification, and applications},
+  booktitle = {JMLR Workshop and Conference Proc., Asian Conf. on Machine Learning},
+  year      = {2011},
+  pages     = {113--128},
+  file      = {:Zhang2011 - A general linear non-Gaussian state-space model_ Identifiability, identification, and applications.pdf:PDF},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

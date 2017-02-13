@@ -34,15 +34,17 @@
 \contentsline {subsection}{\numberline {3.2.6}On-policy Prediction with Approximation}{23}{subsection.3.2.6}
 \contentsline {subsection}{\numberline {3.2.7}On-policy Control with Approximation}{24}{subsection.3.2.7}
 \contentsline {subsection}{\numberline {3.2.8}Policy Gradient Methods}{24}{subsection.3.2.8}
-\contentsline {section}{\numberline {3.3}Hypothesis}{24}{section.3.3}
-\contentsline {section}{\numberline {3.4}Data}{24}{section.3.4}
-\contentsline {chapter}{\numberline {4}Empirical Analysis}{25}{chapter.4}
-\contentsline {section}{\numberline {4.1}Results}{25}{section.4.1}
-\contentsline {section}{\numberline {4.2}Discussion}{25}{section.4.2}
-\contentsline {section}{\numberline {4.3}Research Contribution}{25}{section.4.3}
-\contentsline {chapter}{\numberline {5}Conclusion}{27}{chapter.5}
-\contentsline {section}{\numberline {5.1}Summary}{27}{section.5.1}
-\contentsline {section}{\numberline {5.2}Resulting Conclusions}{27}{section.5.2}
-\contentsline {section}{\numberline {5.3}Outlook}{27}{section.5.3}
-\contentsline {chapter}{\numberline {A}test}{29}{appendix.A}
-\contentsline {chapter}{\numberline {B}test2}{31}{appendix.B}
+\contentsline {subsubsection}{Policy Gradient with Baseline}{25}{section*.11}
+\contentsline {subsubsection}{Actor-Critic Policy Gradient}{25}{section*.12}
+\contentsline {section}{\numberline {3.3}Hypothesis}{25}{section.3.3}
+\contentsline {section}{\numberline {3.4}Data}{25}{section.3.4}
+\contentsline {chapter}{\numberline {4}Empirical Analysis}{27}{chapter.4}
+\contentsline {section}{\numberline {4.1}Results}{27}{section.4.1}
+\contentsline {section}{\numberline {4.2}Discussion}{27}{section.4.2}
+\contentsline {section}{\numberline {4.3}Research Contribution}{27}{section.4.3}
+\contentsline {chapter}{\numberline {5}Conclusion}{29}{chapter.5}
+\contentsline {section}{\numberline {5.1}Summary}{29}{section.5.1}
+\contentsline {section}{\numberline {5.2}Resulting Conclusions}{29}{section.5.2}
+\contentsline {section}{\numberline {5.3}Outlook}{29}{section.5.3}
+\contentsline {chapter}{\numberline {A}test}{31}{appendix.A}
+\contentsline {chapter}{\numberline {B}test2}{33}{appendix.B}
