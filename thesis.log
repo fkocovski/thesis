@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.31)  13 FEB 2017 11:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.31)  13 FEB 2017 11:38
 entering extended mode
 **C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
 (C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
@@ -1473,19 +1473,19 @@ LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10> not available
 
 
 ] [36])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 795.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 806.
 [37]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 795.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 806.
 (C:\Users\filip.kocovski\Desktop\thesis\thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 795.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 795.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 795.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 806.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 806.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 806.
  ) 
 Here is how much of TeX's memory you used:
- 19519 strings out of 493342
- 354715 string characters out of 3126575
- 441942 words of memory out of 3000000
- 22456 multiletter control sequences out of 15000+200000
+ 19521 strings out of 493342
+ 354750 string characters out of 3126575
+ 442005 words of memory out of 3000000
+ 22457 multiletter control sequences out of 15000+200000
  82452 words of font info for 114 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,13n,45p,10417b,2292s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1515,9 +1515,9 @@ pe1/urw/palatino/uplb8a.pfb><C:/Users/filip.kocovski/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/filip.kocovski/AppData/Lo
 cal/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
 Output written on C:/Users/filip.kocovski/Desktop/thesis/thesis.pdf (51 pages, 
-509904 bytes).
+511701 bytes).
 PDF statistics:
- 1032 PDF objects out of 1200 (max. 8388607)
- 332 named destinations out of 1000 (max. 500000)
+ 1037 PDF objects out of 1200 (max. 8388607)
+ 333 named destinations out of 1000 (max. 500000)
  383 words of extra memory for PDF output out of 10000 (max. 10000000)
 

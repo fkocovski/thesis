@@ -641,6 +641,7 @@ A MC simplified method can be formally defined as follows:
 where $G_t$ is the discounted return function defined by \equref{eq:expected_discounted_return} and $\alpha$ is a constant step-size parameter \cite[p. 127]{Sutton1998}. MC methods must wait until the end of one episode in order to evaluate the incremental value of $V(S_t)$ since only at that point in time $G_t$ is known \cite[p. 128]{Sutton1998}.
 
 \subsection{Temporal-Difference Learning}
+\label{subsec:td_learning}
 
 Temporal-difference (TD) are yet another set of learning methods for reinforcement learning. Compared to the MC methods explained in \subsecref{subsec:mc}, TD methods do not need to wait all the way up to the end of an episode to actually learn, they only must wait until the next step \ie they can bootstrap \cite[p. 128]{Sutton1998}. When they reach time step $t+1$, they observe a reward $R_{t+1}$ which then use to estimate $V(S_{t+1})$ \cite[p. 128]{Sutton1998}. The simplest TD method, which is called $TD(0)$, is defined as follows:
 
@@ -760,7 +761,17 @@ one can achieve a positive effect towards diminishing variance of the update rul
 
 \subsubsection{Actor-Critic Policy Gradient}
 
-By introducing a base line, we have seen that variance can be lowered, however, the REINFORCE algorithm with a baseline is not a proper actor-critic method as its state-value function is only used as baseline and not as a critic \ie it is not used for bootstrapping \cite[p. 273]{Sutton1998}.
+By introducing a base line, we have seen that variance can be lowered, however, the REINFORCE algorithm with a baseline is not a proper actor-critic method as its state-value function is only used as baseline and not as a critic \ie it is not used for bootstrapping \cite[p. 273]{Sutton1998}. By introducing bootstrapping we introduce bias and dependence of the quality of the approximated function, which in turn help to reduce variance and learn faster \cite[p. 273]{Sutton1998}. 
+
+The only negative aspect still remaining is that policy gradient methods are still based on a full Monte Carlo update trajectory: this can be also mitigated by replacing the update function by temporal difference learning approaches, such as those defined in \secref{subsec:td_learning} \cite[p. 273]{Sutton1998}.
+
+The formal definition of a one-step actor-critic update method is depicted as follows:
+
+\begin{equation}
+	\theta_{t+1} \doteq \theta_t + \alpha(R_{t+1} + \overbrace{\gamma \hat{v}(S_{t+1},w)-\hat{v}(S_t,w)}^{\text{TD update}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
+\end{equation}
+
+and this is now a fully online implementation that executes updated after each newly visited state \cite[p. 274]{Sutton1998}. 
 
 \section{Hypothesis}
 \section{Data}
@@ -783,8 +794,8 @@ By introducing a base line, we have seen that variance can be lowered, however, 
 
 \appendix
 
-\chapter{test}
-\chapter{test2}
+\chapter{First}
+\chapter{Second}
 
 \backmatter
 

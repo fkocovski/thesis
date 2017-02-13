@@ -46,5 +46,5 @@
 \contentsline {section}{\numberline {5.1}Summary}{29}{section.5.1}
 \contentsline {section}{\numberline {5.2}Resulting Conclusions}{29}{section.5.2}
 \contentsline {section}{\numberline {5.3}Outlook}{29}{section.5.3}
-\contentsline {chapter}{\numberline {A}test}{31}{appendix.A}
-\contentsline {chapter}{\numberline {B}test2}{33}{appendix.B}
+\contentsline {chapter}{\numberline {A}First}{31}{appendix.A}
+\contentsline {chapter}{\numberline {B}Second}{33}{appendix.B}
