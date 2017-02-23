@@ -533,7 +533,19 @@ Brief description of these 3 types of discrete event simulations.},
   booktitle = {JMLR Workshop and Conference Proc., Asian Conf. on Machine Learning},
   year      = {2011},
   pages     = {113--128},
-  file      = {:Zhang2011 - A general linear non-Gaussian state-space model_ Identifiability, identification, and applications.pdf:PDF},
+  file      = {:lit\\Zhang2011 - A general linear non-Gaussian state-space model_ Identifiability, identification, and applications.pdf:PDF},
+  groups    = {Reinforcement Learning},
+}
+
+@Article{Gershman2016,
+  author    = {Gershman, Samuel J},
+  title     = {Empirical priors for reinforcement learning models},
+  journal   = {Journal of Mathematical Psychology},
+  year      = {2016},
+  volume    = {71},
+  pages     = {1--6},
+  file      = {:lit\\Gershman2016 - Empirical priors for reinforcement learning models.pdf:PDF},
+  publisher = {Elsevier},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

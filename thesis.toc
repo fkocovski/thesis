@@ -33,11 +33,12 @@
 \contentsline {subsection}{\numberline {3.2.5}Temporal-Difference Learning}{22}{subsection.3.2.5}
 \contentsline {subsection}{\numberline {3.2.6}On-policy Prediction with Approximation}{23}{subsection.3.2.6}
 \contentsline {subsection}{\numberline {3.2.7}On-policy Control with Approximation}{24}{subsection.3.2.7}
-\contentsline {subsection}{\numberline {3.2.8}Policy Gradient Methods}{24}{subsection.3.2.8}
+\contentsline {subsection}{\numberline {3.2.8}Off-policy Methods with Approximation}{24}{subsection.3.2.8}
+\contentsline {subsection}{\numberline {3.2.9}Policy Gradient Methods}{24}{subsection.3.2.9}
 \contentsline {subsubsection}{Policy Gradient with Baseline}{25}{section*.11}
-\contentsline {subsubsection}{Actor-Critic Policy Gradient}{25}{section*.12}
-\contentsline {section}{\numberline {3.3}Hypothesis}{25}{section.3.3}
-\contentsline {section}{\numberline {3.4}Data}{25}{section.3.4}
+\contentsline {subsubsection}{Actor-Critic Policy Gradient}{26}{section*.12}
+\contentsline {section}{\numberline {3.3}Hypothesis}{26}{section.3.3}
+\contentsline {section}{\numberline {3.4}Data}{26}{section.3.4}
 \contentsline {chapter}{\numberline {4}Empirical Analysis}{27}{chapter.4}
 \contentsline {section}{\numberline {4.1}Results}{27}{section.4.1}
 \contentsline {section}{\numberline {4.2}Discussion}{27}{section.4.2}

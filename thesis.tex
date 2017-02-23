@@ -705,6 +705,30 @@ For the special case of the so called one-step Sarsa method, its gradient-descen
 
 and this method has also very good convergence properties towards optimality \cite[p. 230]{Sutton1998}.
 
+\subsection{Off-policy Methods with Approximation}
+
+When moving towards the field of off-policy learning, one of the biggest problems that one might incur in is the convergence problem: off-policy learning with approximation is considerably harder compared to its tabular counterpart \cite[p. 243]{Sutton1998}. Off-policy learning defines two policies, $\pi$ and $\mu$, where the former is the value function we seek to learn based on the latter \cite[p. 243]{Sutton1998}.
+
+A new aspect being introduced in off-policy learning is the importance sampling concept, formally defined as follow:
+
+\begin{equation}
+\label{eq:importance_sampling}
+	\rho_t \doteq \frac{\pi(A_t|S_t)}{\mu(A_t|S_t)}
+\end{equation}
+
+which can be used to ``warp the update distribution back to the on-policy distribution, so that semi-gradient methods are guaranteed to converge.'' \cite[p. 243]{Sutton1998}.
+
+During off-policy learning, both policies $\pi$ and $\mu$ are usually defined as full greedy and somewhat more exploratory $\epsilon$-greedy \cite[p. 243]{Sutton1998}.
+
+For the purpose of this thesis, the focus has been put upon the episodic action value update algorithms, defined as follows:
+
+\begin{align}
+	\theta_{t+1} &\doteq \theta_t + \alpha \delta_t \nabla \hat{q} (S_t,A_t,\theta_t)\\
+	\delta_t &\doteq R_{t+1} + \gamma \underbrace{\sum_a \pi (a|S_{t+1}) \hat{q} (S_{t+1},a,\theta_t)}_{\max_a \hat{q} (S_{t+1},a,\theta_t)} - \hat{q} (S_t,A_t,\theta_t)
+\end{align}
+
+what is important to note here, is that the episodic off-policy algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \cite[p. 244]{Sutton1998}. The authors state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed \cite[p. 244]{Sutton1998}.
+
 \subsection{Policy Gradient Methods}
 
 Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{Actor-critic methods are an exception, where a learned value function is used in combination with policy gradient as a baseline in order to lower variance.}  \cite[p. 265]{Sutton1998}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton1998}. For policy gradient methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
