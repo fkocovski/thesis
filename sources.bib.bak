@@ -545,7 +545,16 @@ Brief description of these 3 types of discrete event simulations.},
   volume    = {71},
   pages     = {1--6},
   file      = {:lit\\Gershman2016 - Empirical priors for reinforcement learning models.pdf:PDF},
+  groups    = {Reinforcement Learning},
   publisher = {Elsevier},
+}
+
+@Article{Clevert2015,
+  author  = {Clevert, Djork-Arn{\'e} and Unterthiner, Thomas and Hochreiter, Sepp},
+  title   = {Fast and accurate deep network learning by exponential linear units (elus)},
+  journal = {arXiv preprint arXiv:1511.07289},
+  year    = {2015},
+  file    = {:Clevert2015 - Fast and accurate deep network learning by exponential linear units (elus).pdf:PDF},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
