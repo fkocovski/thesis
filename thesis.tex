@@ -118,7 +118,7 @@ Queuing is a topic that talks about how people or more general agents are to be 
 
 Starting with one of the most notable contributions to this field done by Kendall in 1953 and his work on the Markov chains in queuing theory, where he formally defines different types of queues \cite{Kendall1953}.
 
-In 2002, Adan describes the necessary basic concepts for queuing theory and an important topic here is the statistical foundation outlined in his work about different modeling techniques for randomized generation rates, such as the Erlang's distributions \cite{Adan2002}.
+In 2016, Adan describes the necessary basic concepts for queuing theory and an important topic here is the statistical foundation outlined in his work about different modeling techniques for randomized generation rates, such as the Erlang's distributions \cite{Adan2016}.
 
 Pinedo outlines in his work in 2008 the most prominent key metrics that can be used in order to assert and measure queues performance \cite{Pinedo2008}.
 
@@ -210,7 +210,7 @@ Yet again we stumble upon mentioning that simulation for workflow management sys
 
 A more recent taxonomy of different BPM application is given by a collaboration between SAP and accenture in 2009 \cite{EvolvedTechnologist2009}.
 
-In the realm of workflow processes and engines BPMN's notation permeates the field and the work of Silver summarizes these foundations very well \cite{Silver2009}.
+In the realm of workflow processes and engines BPMN's notation permeates the field and the work of Silver summarizes these foundations very well \cite{Silver2011}.
 
 An analysis of the critical success factors (CSF) for BPM is required in order to assert a product validity and this has been done by Trkman where he defines CSF from three perspectives \cite{Trkman2010}:
 \begin{enumerate*}
@@ -240,8 +240,6 @@ Policy gradient methods with value function approximation and their convergence 
 
 Discretization of the state action space is not always feasible and different techniques have to be used for tractability. Smith proposes such an approach which he calls ``self-organizing map'' \cite{Smith2002}.
 
-In their work, Schaul \etal have developed a modular machine learning library for python that contains different algorithm implementations such as Q-learning, SARSA and REINFORCE and yet also natural actor-critic and neural-fitted implementations such as Q-iteration, recurrent policy gradients, state-dependent exploration and reward-weighted regressions \cite{Schaul2010}.
-
 As Markov Decision Processes grow in size, so does the required computational memory to solve possible discrete lookup tables modeling the state-actions spaces that characterizes them. Notable examples that show how large some of the most common problems can be:
 \begin{enumerate*}
 	\item the game of backgammon has a total of $10^{20}$ states
@@ -257,7 +255,7 @@ There are two main fields in reinforcement learning, one is using value function
 
 Notable works in the field of reinforcement learning and its application include Google DeepMind work on novel algorithms for tackling fields previously barely scratched, as mentioned by Mnih \etal and Silver \etal \cite{Mnih2015,Silver2016}.
 
-Sutton started working on the reinforcement learning topic in the early nineties and is now planning his third edition of his famous book on machine learning, which is due in 2017 \cite{Sutton1998}. In our case reinforcement learning is used in order for the policies to be able to alone get better by continuously analyzing their own decision models and optimize upon them.
+Sutton started working on the reinforcement learning topic in the early nineties and is now planning his third edition of his famous book on machine learning, which is due in 2017 \cite{Sutton2017}. In our case reinforcement learning is used in order for the policies to be able to alone get better by continuously analyzing their own decision models and optimize upon them.
 
 \subsection{Optimization}
 
@@ -321,7 +319,7 @@ An implicit object that is not part of the workflow elements is the token: a tok
 
 \fig[0.5\textwidth]{policies_init}{Policies initialization objects}{fig:policies_init}
 
-The core elements of a workflow process (relevant for the simulation environment) are start nodes, user tasks, decision nodes and end nodes. Start events are used to indicate where and how a process starts and usually each process has only one such event \cite[p. 42]{Silver2009}. No distinction between trigger types is being made.
+The core elements of a workflow process (relevant for the simulation environment) are start nodes, user tasks, decision nodes and end nodes. Start events are used to indicate where and how a process starts and usually each process has only one such event \cite[p. 42]{Silver2011}. No distinction between trigger types is being made.
 
 \subsubsection{Start event}
 
@@ -558,20 +556,20 @@ In this section the reinforcement learning approach used to solve the different 
 
 \subsection{Reinforcement Learning}
 
-Reinforcement learning is a novel approach originated as a branch from the broader field of machine learning. It is an automated approach to understanding and automating learning and decision-making \cite[p. 15]{Sutton1998}. It distinguishes itself from other approaches by its novel focus on learning thanks to an agent which directly interacts with its environment, without the necessity of relying on training sets \cite[p. 15]{Sutton1998}.
+Reinforcement learning is a novel approach originated as a branch from the broader field of machine learning. It is an automated approach to understanding and automating learning and decision-making \cite[p. 15]{Sutton2017}. It distinguishes itself from other approaches by its novel focus on learning thanks to an agent which directly interacts with its environment, without the necessity of relying on training sets \cite[p. 15]{Sutton2017}.
 
-The formal framework used by reinforcement learning defines the interaction between the so called learning agent and its environment by means of states, actions and rewards \cite[p. 15]{Sutton1998}.
+The formal framework used by reinforcement learning defines the interaction between the so called learning agent and its environment by means of states, actions and rewards \cite[p. 15]{Sutton2017}.
 
-Key concepts in the field of reinforcement learning are those of values and value functions which helps distinguish reinforcement learning methods from evolutionary methods which have to undergo scalar evaluations of entire policies \cite[p. 15]{Sutton1998}.
+Key concepts in the field of reinforcement learning are those of values and value functions which helps distinguish reinforcement learning methods from evolutionary methods which have to undergo scalar evaluations of entire policies \cite[p. 15]{Sutton2017}.
 
 \subsection{Finite Markov Decision Processes}
 
-Reinforcement learning approaches learn by interacting with the environment in order to achieve a goal. The agent interacting with the environment does this in a sequence of discrete time steps, it performs actions (choices made by the agent), reaches then states (basis for making decisions) and eventually receives rewards (basis for evaluating the choices) \cite[p. 73]{Sutton1998}. Moreover, a policy is a stochastic rule that the agent relies upon to choose actions as a function of states \cite[p. 73]{Sutton1998}. Ultimately, the sole goal of the agent is to maximize the reward that it receives over time \cite[p. 73]{Sutton1998}.
+Reinforcement learning approaches learn by interacting with the environment in order to achieve a goal. The agent interacting with the environment does this in a sequence of discrete time steps, it performs actions (choices made by the agent), reaches then states (basis for making decisions) and eventually receives rewards (basis for evaluating the choices) \cite[p. 73]{Sutton2017}. Moreover, a policy is a stochastic rule that the agent relies upon to choose actions as a function of states \cite[p. 73]{Sutton2017}. Ultimately, the sole goal of the agent is to maximize the reward that it receives over time \cite[p. 73]{Sutton2017}.
 
-Returns are modeled as functions of future rewards that an agents must maximize \cite[p. 73]{Sutton1998}. There exist two types of return functions which depend on the nature of the tasks and a discounting preference:
+Returns are modeled as functions of future rewards that an agents must maximize \cite[p. 73]{Sutton2017}. There exist two types of return functions which depend on the nature of the tasks and a discounting preference:
 \begin{enumerate*}
 	\item for episodic tasks a non discontinued approach is preferred while
-	\item for continuous tasks, however, a discounted approach is better suited \cite[p. 73]{Sutton1998}.
+	\item for continuous tasks, however, a discounted approach is better suited \cite[p. 73]{Sutton2017}.
 \end{enumerate*}
 
 \equref{eq:expected_return} defines the sum of the rewards received over time step $t$:
@@ -590,9 +588,9 @@ If we account for discounting, \equref{eq:expected_return} has to be slightly ad
 
 where $0 \leq \gamma \leq 1$.
 
-An environment  with which one agent interacts, can satisfy a Markov property if the information contained at present effectively summarizes the past without affecting the capability of effectively predicting the future \cite[p. 73]{Sutton1998}. If the Markov property is satisfied, then this environment is called a Markov decision process (MDP) \cite[p. 73]{Sutton1998}.
+An environment  with which one agent interacts, can satisfy a Markov property if the information contained at present effectively summarizes the past without affecting the capability of effectively predicting the future \cite[p. 73]{Sutton2017}. If the Markov property is satisfied, then this environment is called a Markov decision process (MDP) \cite[p. 73]{Sutton2017}.
 
-Last but not least, value functions are used to assign each state or state-action pair an expected return based on the policy used by the agent \cite[p. 74]{Sutton1998}. Optimal value functions assign the highest achievable return by any policy to a state or state-action pair  and such policies, whose values are optimal, are called optimal policies \cite[p. 74]{Sutton1998}.
+Last but not least, value functions are used to assign each state or state-action pair an expected return based on the policy used by the agent \cite[p. 74]{Sutton2017}. Optimal value functions assign the highest achievable return by any policy to a state or state-action pair  and such policies, whose values are optimal, are called optimal policies \cite[p. 74]{Sutton2017}.
 
 Optimal state-value functions $v_*$ are formally defined as follows:
 
@@ -609,28 +607,28 @@ whereas optimal action-value functions $q_*$ are formally defined as follows:
 \subsection{Dynamic Programming}
 \label{subsec:dp}
 
-Dynamic programming (DP) is a set of ideas and algorithms that can be used to solve MDPs \cite[p. 95]{Sutton1998}. There are two approaches in dynamic programming for solving MDPs:
+Dynamic programming (DP) is a set of ideas and algorithms that can be used to solve MDPs \cite[p. 95]{Sutton2017}. There are two approaches in dynamic programming for solving MDPs:
 \begin{enumerate*}
 	\item policy evaluations is the iterative computation of value functions of a given policy and
-	\item policy improvement is the idea of computing an improved policy under the conditions of its given value functions \cite[p. 95]{Sutton1998}.
+	\item policy improvement is the idea of computing an improved policy under the conditions of its given value functions \cite[p. 95]{Sutton2017}.
 \end{enumerate*}
 
-By combining these two approaches we obtain the two most notable DP methods \ie policy and value iteration \cite[p. 95]{Sutton1998}.
+By combining these two approaches we obtain the two most notable DP methods \ie policy and value iteration \cite[p. 95]{Sutton2017}.
 
-One very interesting property of DP methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \cite[p. 96]{Sutton1998}.
+One very interesting property of DP methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \cite[p. 96]{Sutton2017}.
 
 \subsection{Monte Carlo Methods}
 \label{subsec:mc}
 
-Monte Carlo (MC) methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton1998}. This approach yields different advantages over the DP methods seen in \secref{subsec:dp}:
+Monte Carlo (MC) methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton2017}. This approach yields different advantages over the DP methods seen in \secref{subsec:dp}:
 \begin{enumerate*}
 	\item they do not need a model of the environment's dynamics as they learn the optimal solutions by merely interacting with the environment,
 	\item since the learn from sample episodes, they are very well suited for simulation environments,
 	\item it is efficient and surprisingly easy to use MC methods to focus on smaller regions or subsets of a problem and
-	\item MC methods are more robust when it comes to violations of the Markov property since they do not bootstrap for updating their values \cite[p. 123]{Sutton1998}.
+	\item MC methods are more robust when it comes to violations of the Markov property since they do not bootstrap for updating their values \cite[p. 123]{Sutton2017}.
 \end{enumerate*}
 
-One of the drawbacks that MC methods bring along is the concept of maintaining sufficient exploration: by always acting greedily, alternative states will never yield their returns thus potentially never learning that they might prove to be better \cite[p. 123]{Sutton1998}.
+One of the drawbacks that MC methods bring along is the concept of maintaining sufficient exploration: by always acting greedily, alternative states will never yield their returns thus potentially never learning that they might prove to be better \cite[p. 123]{Sutton2017}.
 
 A MC simplified method can be formally defined as follows:
 
@@ -638,32 +636,32 @@ A MC simplified method can be formally defined as follows:
 	V(S_t) \leftarrow V(S_t) + \alpha [G_t - V(S_t)]
 \end{equation}
 
-where $G_t$ is the discounted return function defined by \equref{eq:expected_discounted_return} and $\alpha$ is a constant step-size parameter \cite[p. 127]{Sutton1998}. MC methods must wait until the end of one episode in order to evaluate the incremental value of $V(S_t)$ since only at that point in time $G_t$ is known \cite[p. 128]{Sutton1998}.
+where $G_t$ is the discounted return function defined by \equref{eq:expected_discounted_return} and $\alpha$ is a constant step-size parameter \cite[p. 127]{Sutton2017}. MC methods must wait until the end of one episode in order to evaluate the incremental value of $V(S_t)$ since only at that point in time $G_t$ is known \cite[p. 128]{Sutton2017}.
 
 \subsection{Temporal-Difference Learning}
 \label{subsec:td_learning}
 
-Temporal-difference (TD) are yet another set of learning methods for reinforcement learning. Compared to the MC methods explained in \subsecref{subsec:mc}, TD methods do not need to wait all the way up to the end of an episode to actually learn, they only must wait until the next step \ie they can bootstrap \cite[p. 128]{Sutton1998}. When they reach time step $t+1$, they observe a reward $R_{t+1}$ which then use to estimate $V(S_{t+1})$ \cite[p. 128]{Sutton1998}. The simplest TD method, which is called $TD(0)$, is defined as follows:
+Temporal-difference (TD) are yet another set of learning methods for reinforcement learning. Compared to the MC methods explained in \subsecref{subsec:mc}, TD methods do not need to wait all the way up to the end of an episode to actually learn, they only must wait until the next step \ie they can bootstrap \cite[p. 128]{Sutton2017}. When they reach time step $t+1$, they observe a reward $R_{t+1}$ which then use to estimate $V(S_{t+1})$ \cite[p. 128]{Sutton2017}. The simplest TD method, which is called $TD(0)$, is defined as follows:
 
 \begin{equation}
 	V(S_t) \leftarrow V(S_t) + \alpha [R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]
 \end{equation}
 
-TD methods, same as MC methods, are not  excluded from the sufficient exploration methods \cite[p. 147]{Sutton1998}. TD methods deal with this complication in two different ways:
+TD methods, same as MC methods, are not  excluded from the sufficient exploration methods \cite[p. 147]{Sutton2017}. TD methods deal with this complication in two different ways:
 \begin{enumerate*}
 	\item on policy by using an algorithm called Sarsa and
-	\item off policy by using an algorithm called Q-learning \cite[p. 128]{Sutton1998}.
+	\item off policy by using an algorithm called Q-learning \cite[p. 128]{Sutton2017}.
 \end{enumerate*}
 
 \subsection{On-policy Prediction with Approximation}
 
-Up until now, the different methods presented are not suited for arbitrarily large state spaces. However, there exist solution to tackle such large state spaces: approximate solution methods. Under the assumption that one must always account for finite and limited computational resources, it is not feasible to find an optimal policy or value function, instead we have to settle for a good approximation of the solution \cite[p. 189]{Sutton1998}.
+Up until now, the different methods presented are not suited for arbitrarily large state spaces. However, there exist solution to tackle such large state spaces: approximate solution methods. Under the assumption that one must always account for finite and limited computational resources, it is not feasible to find an optimal policy or value function, instead we have to settle for a good approximation of the solution \cite[p. 189]{Sutton2017}.
 
-An essential characteristic for reinforcement learning algorithms venturing in the area of approximation is being able of generalization \ie using experience from a limited subset of the state space to effectively generalize and produce a valid approximation of a much larger subset  \cite[p. 189]{Sutton1998}. Reinforcement learning methods are capable of achieving this by relying on supervised-learning function approximation which essentially use backups as training example \cite[p. 222]{Sutton1998}. Specifically, one very efficient set of methods are those using parametrized function approximation \ie the policy is parametrized by a weight vector $\theta$.
+An essential characteristic for reinforcement learning algorithms venturing in the area of approximation is being able of generalization \ie using experience from a limited subset of the state space to effectively generalize and produce a valid approximation of a much larger subset  \cite[p. 189]{Sutton2017}. Reinforcement learning methods are capable of achieving this by relying on supervised-learning function approximation which essentially use backups as training example \cite[p. 222]{Sutton2017}. Specifically, one very efficient set of methods are those using parametrized function approximation \ie the policy is parametrized by a weight vector $\theta$.
 
-The parametrized functional form with weight vector $\theta$ can be used to write $\hat{v}(s,\theta) \approx v_\pi (s)$, which is the approximated value of state $s$ given weight vector $\theta$ \cite[p. 191]{Sutton1998}.
+The parametrized functional form with weight vector $\theta$ can be used to write $\hat{v}(s,\theta) \approx v_\pi (s)$, which is the approximated value of state $s$ given weight vector $\theta$ \cite[p. 191]{Sutton2017}.
 
-It is then clear that the weight vector $\theta$ has to be chosen wisely: this can be done by using variations of stochastic gradient descent (SGD) methods \cite[p. 223]{Sutton1998}. SGD methods adjust the weight vector after each step by a tiny amount following the direction that would reduce the error the most:
+It is then clear that the weight vector $\theta$ has to be chosen wisely: this can be done by using variations of stochastic gradient descent (SGD) methods \cite[p. 223]{Sutton2017}. SGD methods adjust the weight vector after each step by a tiny amount following the direction that would reduce the error the most:
 
 \begin{align}
 	\theta_{t+1} &\doteq \theta_t - \frac{1}{2} \alpha \nabla [v_\pi (S_t) - \hat{v} (S_t,\theta_t)]^2\\
@@ -678,7 +676,7 @@ where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$ is the v
 
 \ncite{add book citation}
 
-A very special case (and also very simple) is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton1998}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton1998}. With this definition in mind, we can now formally define the state-value function approximation as the inner product between $\theta$ and $\phi (s)$:
+A very special case (and also very simple) is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-value function approximation as the inner product between $\theta$ and $\phi (s)$:
 
 \begin{equation}
 	\hat{v} (s,\theta) \doteq \theta^\top \phi (s) \doteq \sum_{i=1}^n \theta_i \phi_i (s)
@@ -691,11 +689,11 @@ This simplified case of linear function approximation for state-value functions 
 	\nabla \hat{v} (s,\theta) = \phi (s)
 \end{equation}
 
-\equref{eq:sgd_linear} tells us that for the simple linear case the SGD is nothing more than the corresponding features value  \cite[p. 199]{Sutton1998}.
+\equref{eq:sgd_linear} tells us that for the simple linear case the SGD is nothing more than the corresponding features value  \cite[p. 199]{Sutton2017}.
 
 \subsection{On-policy Control with Approximation}
 
-Moving towards control with value function approximation, we now focus on the approximation of the action-value function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton1998}.
+Moving towards control with value function approximation, we now focus on the approximation of the action-value function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton2017}.
 
 For the special case of the so called one-step Sarsa method, its gradient-descent update for the action-value function is defined as follows:
 
@@ -703,11 +701,11 @@ For the special case of the so called one-step Sarsa method, its gradient-descen
 	\theta_{t+1} \doteq \theta_t + \alpha [ R_{t+1} + \gamma \hat{q} (S_{t+1}, A_{t+1}, \theta_t) - \hat{q} (S_t, A_t, \theta_t) ] \nabla \hat{q} (S_t, A_t, \theta_t)
 \end{equation}
 
-and this method has also very good convergence properties towards optimality \cite[p. 230]{Sutton1998}.
+and this method has also very good convergence properties towards optimality \cite[p. 230]{Sutton2017}.
 
 \subsection{Off-policy Methods with Approximation}
 
-When moving towards the field of off-policy learning, one of the biggest problems that one might incur in is the convergence problem: off-policy learning with approximation is considerably harder compared to its tabular counterpart \cite[p. 243]{Sutton1998}. Off-policy learning defines two policies, $\pi$ and $\mu$, where the former is the value function we seek to learn based on the latter \cite[p. 243]{Sutton1998}.
+When moving towards the field of off-policy learning, one of the biggest problems that one might incur in is the convergence problem: off-policy learning with approximation is considerably harder compared to its tabular counterpart \cite[p. 243]{Sutton2017}. Off-policy learning defines two policies, $\pi$ and $\mu$, where the former is the value function we seek to learn based on the latter \cite[p. 243]{Sutton2017}.
 
 A new aspect being introduced in off-policy learning is the importance sampling concept, formally defined as follow:
 
@@ -716,9 +714,9 @@ A new aspect being introduced in off-policy learning is the importance sampling 
 	\rho_t \doteq \frac{\pi(A_t|S_t)}{\mu(A_t|S_t)}
 \end{equation}
 
-which can be used to ``warp the update distribution back to the on-policy distribution, so that semi-gradient methods are guaranteed to converge.'' \cite[p. 243]{Sutton1998}.
+which can be used to ``warp the update distribution back to the on-policy distribution, so that semi-gradient methods are guaranteed to converge.'' \cite[p. 243]{Sutton2017}.
 
-During off-policy learning, both policies $\pi$ and $\mu$ are usually defined as full greedy and somewhat more exploratory $\epsilon$-greedy \cite[p. 243]{Sutton1998}.
+During off-policy learning, both policies $\pi$ and $\mu$ are usually defined as full greedy and somewhat more exploratory $\epsilon$-greedy \cite[p. 243]{Sutton2017}.
 
 For the purpose of this thesis, the focus has been put upon the episodic action value update algorithms, defined as follows:
 
@@ -727,25 +725,25 @@ For the purpose of this thesis, the focus has been put upon the episodic action 
 	\delta_t &\doteq R_{t+1} + \gamma \underbrace{\sum_a \pi (a|S_{t+1}) \hat{q} (S_{t+1},a,\theta_t)}_{\max_a \hat{q} (S_{t+1},a,\theta_t)} - \hat{q} (S_t,A_t,\theta_t)
 \end{align}
 
-what is important to note here, is that the episodic off-policy algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \cite[p. 244]{Sutton1998}. The authors state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed \cite[p. 244]{Sutton1998}.
+what is important to note here, is that the episodic off-policy algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \cite[p. 244]{Sutton2017}. The authors state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed \cite[p. 244]{Sutton2017}.
 
 \subsection{Policy Gradient Methods}
 
-Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{Actor-critic methods are an exception, where a learned value function is used in combination with policy gradient as a baseline in order to lower variance.}  \cite[p. 265]{Sutton1998}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton1998}. For policy gradient methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
+Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{Actor-critic methods are an exception, where a learned value function is used in combination with policy gradient as a baseline in order to lower variance.}  \cite[p. 265]{Sutton2017}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton2017}. For policy gradient methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha \widehat{\nabla \eta (\theta_t)}
 \end{equation}
 
-where $ \widehat{\nabla \eta (\theta_t)}$ is nothing else than a stochastic estimate that approximates the gradient of $\eta(\theta)$ \cite[p. 265]{Sutton1998}.
+where $ \widehat{\nabla \eta (\theta_t)}$ is nothing else than a stochastic estimate that approximates the gradient of $\eta(\theta)$ \cite[p. 265]{Sutton2017}.
 
-For discrete action spaces, a suitable solution consists in forming parametrized numerical preferences $h(s,a,\theta) \in \mathbb{R}$ \cite[p. 266]{Sutton1998}. This means that the best actions is given the highest probability according to a softmax distribution:
+For discrete action spaces, a suitable solution consists in forming parametrized numerical preferences $h(s,a,\theta) \in \mathbb{R}$ \cite[p. 266]{Sutton2017}. This means that the best actions is given the highest probability according to a softmax distribution:
 
 \begin{equation}
 	\pi(a|s,\theta) \doteq \frac{e^{h(s,a,\theta)}}{\sum_b e^{h(s,b,\theta)}}
 \end{equation}
 
-where $e \approx 2.71828$ \cite[p. 266]{Sutton1998}.
+where $e \approx 2.71828$ \cite[p. 266]{Sutton2017}.
 
 Moreover, the preferences can be, as previously mentioned:
 
@@ -753,7 +751,7 @@ Moreover, the preferences can be, as previously mentioned:
 	h(s,a,\theta) \doteq \theta^\top \phi (s,a)
 \end{equation}
 
-\ie simply linear in features \cite[p. 266]{Sutton1998}.
+\ie simply linear in features \cite[p. 266]{Sutton2017}.
 
 With these definitions in mind, one can formally define one of the very first Monte Carlo based policy gradient methods: REINFORCE \cite{Williams1992}.
 
@@ -763,7 +761,7 @@ Williams defines his REINFORCE algorithm by the following update function:
 	\theta_{t+1} \doteq \theta_t + \alpha \gamma^t G_t \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
 \end{equation}
 
-note that the vector $\frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}$ is called eligibility vector and it is usually written in a more compact form of $\nabla \log \pi(A_t|S_t,\theta)$ by relying on the mathematical identity $\nabla \log x = \frac{\nabla x}{x}$ \cite[p. 271]{Sutton1998}.
+note that the vector $\frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}$ is called eligibility vector and it is usually written in a more compact form of $\nabla \log \pi(A_t|S_t,\theta)$ by relying on the mathematical identity $\nabla \log x = \frac{\nabla x}{x}$ \cite[p. 271]{Sutton2017}.
 
 For the REINFORCE algorithm, its eligibility vector is defined as follows:
 
@@ -771,23 +769,23 @@ For the REINFORCE algorithm, its eligibility vector is defined as follows:
 	\nabla_\theta \log \pi (a|s,\theta) = \phi (s,a) - \sum_b \pi (b|s,\theta) \phi (s,b)
 \end{equation}
 
-and this method has solid convergence properties \cite[p. 271]{Sutton1998}.
+and this method has solid convergence properties \cite[p. 271]{Sutton2017}.
 
 \subsubsection{Policy Gradient with Baseline}
 
-REINFORCE, however, being a method based on Monte Carlo it might exhibit high variance and prove relatively slow in its learning rate \cite[p. 271]{Sutton1998}. By introducing a baseline $b(s)$ to compare the action value:
+REINFORCE, however, being a method based on Monte Carlo it might exhibit high variance and prove relatively slow in its learning rate \cite[p. 271]{Sutton2017}. By introducing a baseline $b(s)$ to compare the action value:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha (G_t - \overbrace{b(S_t)}^{\text{baseline}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
 \end{equation}
 
-one can achieve a positive effect towards diminishing variance of the update rule \cite[p. 271]{Sutton1998}.
+one can achieve a positive effect towards diminishing variance of the update rule \cite[p. 271]{Sutton2017}.
 
 \subsubsection{Actor-Critic Policy Gradient}
 
-By introducing a base line, we have seen that variance can be lowered, however, the REINFORCE algorithm with a baseline is not a proper actor-critic method as its state-value function is only used as baseline and not as a critic \ie it is not used for bootstrapping \cite[p. 273]{Sutton1998}. By introducing bootstrapping we introduce bias and dependence of the quality of the approximated function, which in turn help to reduce variance and learn faster \cite[p. 273]{Sutton1998}. 
+By introducing a base line, we have seen that variance can be lowered, however, the REINFORCE algorithm with a baseline is not a proper actor-critic method as its state-value function is only used as baseline and not as a critic \ie it is not used for bootstrapping \cite[p. 273]{Sutton2017}. By introducing bootstrapping we introduce bias and dependence of the quality of the approximated function, which in turn help to reduce variance and learn faster \cite[p. 273]{Sutton2017}. 
 
-The only negative aspect still remaining is that policy gradient methods are still based on a full Monte Carlo update trajectory: this can be also mitigated by replacing the update function by temporal difference learning approaches, such as those defined in \secref{subsec:td_learning} \cite[p. 273]{Sutton1998}.
+The only negative aspect still remaining is that policy gradient methods are still based on a full Monte Carlo update trajectory: this can be also mitigated by replacing the update function by temporal difference learning approaches, such as those defined in \secref{subsec:td_learning} \cite[p. 273]{Sutton2017}.
 
 The formal definition of a one-step actor-critic update method is depicted as follows:
 
@@ -795,7 +793,7 @@ The formal definition of a one-step actor-critic update method is depicted as fo
 	\theta_{t+1} \doteq \theta_t + \alpha(R_{t+1} + \overbrace{\gamma \hat{v}(S_{t+1},w)-\hat{v}(S_t,w)}^{\text{TD update}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
 \end{equation}
 
-and this is now a fully online implementation that executes updated after each newly visited state \cite[p. 274]{Sutton1998}. 
+and this is now a fully online implementation that executes updated after each newly visited state \cite[p. 274]{Sutton2017}. 
 
 \section{Hypothesis}
 \section{Data}
@@ -823,6 +821,7 @@ and this is now a fully online implementation that executes updated after each n
 
 \backmatter
 
+\nocite{*}
 
 \bibliographystyle{alpha}
 \bibliography{sources}

@@ -1,27 +1,28 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
 \begin{thebibliography}{BCMW07}
 
-\bibitem[AR]{Adan2002}
+\bibitem[AR16]{Adan2016}
 Ivo Adan and Jacques Resing.
-\newblock Queueing theory.
+\newblock {Queueing Systems}, March 2016.
 
-\bibitem[AS]{Aguilar-Saven2004}
+\bibitem[AS04]{Aguilar-Saven2004}
 Ruth~Sara Aguilar-Savén.
 \newblock Business process modelling: Review and framework.
-\newblock 90(2):129 -- 149.
+\newblock {\em International Journal of Production Economics}, 90(2):129 --
+  149, 2004.
 \newblock Production Planning and Control.
 
 \bibitem[Bak74]{Baker1974}
-Kenneth~R Baker.
-\newblock {\em Introduction to sequencing and scheduling}.
+K.~R. Baker.
+\newblock {\em Introduction to Sequencing and Scheduling}.
 \newblock John Wiley \& Sons, 1974.
 
 \bibitem[BCMW07]{Bahouth2007}
-Alex Bahouth, Steven Crites, Norman Matloff, and Todd Williamson.
+A.~Bahouth, S.~Crites, N.~Matloff, and T.~Williamson.
 \newblock Revisiting the issue of performance enhancement of discrete event
   simulation software.
-\newblock In {\em Annual Simulation Symposium}, volume~40, page 114. Citeseer,
-  2007.
+\newblock In {\em Simulation Symposium, 2007. ANSS '07. 40th Annual}, pages
+  114--122, March 2007.
 
 \bibitem[Bis16]{Bisschop2016}
 Johannes Bisschop.
@@ -29,55 +30,73 @@ Johannes Bisschop.
 
 \bibitem[BV04]{Boyd2004}
 Stephen Boyd and Lieven Vandenberghe.
-\newblock {\em Convex optimization}.
-\newblock Cambridge university press, 2004.
+\newblock {\em Convex Optimization}.
+\newblock Cambridge University Press, 2004.
 
-\bibitem[CW]{Cattrysse1992}
+\bibitem[CUH15]{Clevert2015}
+D.-A. {Clevert}, T.~{Unterthiner}, and S.~{Hochreiter}.
+\newblock {Fast and Accurate Deep Network Learning by Exponential Linear Units
+  (ELUs)}.
+\newblock {\em ArXiv e-prints}, November 2015.
+
+\bibitem[CW92]{Cattrysse1992}
 Dirk~G. Cattrysse and Luk N.~Van Wassenhove.
 \newblock A survey of algorithms for the generalized assignment problem.
-\newblock 60(3):260 -- 272.
+\newblock {\em European Journal of Operational Research}, 60(3):260 -- 272,
+  1992.
 
-\bibitem[{Evo}]{EvolvedTechnologist2009}
+\bibitem[{Evo}09]{EvolvedTechnologist2009}
 {Evolved Technologist}.
-\newblock Bpm technology taxonomy: A guided tour to the application of bpm.
+\newblock {BPM Technology Taxonomy: A Guided Tour to the Application of BPM},
+  March 2009.
 
-\bibitem[FZDL]{Fan2012}
+\bibitem[FZDL12]{Fan2012}
 Shaokun Fan, J.~Leon Zhao, Wanchun Dou, and Manlu Liu.
 \newblock A framework for transformation from conceptual to logical workflow
   models.
-\newblock 54(1):781 -- 794.
+\newblock {\em Decision Support Systems}, 54(1):781 -- 794, 2012.
 
-\bibitem[GHS]{Georgakopoulos1995}
+\bibitem[Ger16]{Gershman2016}
+Samuel~J. Gershman.
+\newblock Empirical priors for reinforcement learning models.
+\newblock {\em Journal of Mathematical Psychology}, 71:1 -- 6, 2016.
+
+\bibitem[GHS95]{Georgakopoulos1995}
 Diimitrios Georgakopoulos, Mark Hornick, and Amit Sheth.
 \newblock An overview of workflow management: From process modeling to workflow
   automation infrastructure.
-\newblock 3(2):119--153.
+\newblock {\em Distributed and Parallel Databases}, 3(2):119--153, 1995.
 
-\bibitem[Gia]{Giaglis2001}
+\bibitem[Gia01]{Giaglis2001}
 George~M. Giaglis.
 \newblock A taxonomy of business process modeling and information systems
   modeling techniques.
-\newblock 13(2):209--228.
+\newblock {\em International Journal of Flexible Manufacturing Systems},
+  13(2):209--228, 2001.
 
 \bibitem[GWT{\etalchar{+}}13]{Geramifard2013}
-Alborz Geramifard, Thomas~J Walsh, Stefanie Tellex, Girish Chowdhary, Nicholas
-  Roy, Jonathan~P How, et~al.
+Alborz Geramifard, Thomas~J. Walsh, Stefanie Tellex, Girish Chowdhary, Nicholas
+  Roy, and Jonathan~P. How.
 \newblock A tutorial on linear function approximators for dynamic programming
   and reinforcement learning.
-\newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
-  6(4):375--451, 2013.
+\newblock {\em Found. Trends Mach. Learn.}, 6(4):375--451, December 2013.
 
-\bibitem[Ken]{Kendall1953}
+\bibitem[Hay98]{Haykin1998}
+Simon Haykin.
+\newblock {\em Neural Networks: A Comprehensive Foundation}.
+\newblock Prentice Hall PTR, Upper Saddle River, NJ, USA, 2nd edition, 1998.
+
+\bibitem[Ken53]{Kendall1953}
 David~G. Kendall.
 \newblock Stochastic processes occurring in the theory of queues and their
   analysis by the method of the imbedded markov chain.
-\newblock 24(3):338--354.
+\newblock {\em The Annals of Mathematical Statistics}, 24(3):338--354, 1953.
 
 \bibitem[KP14]{Korda2014}
-Nathaniel Korda and Prashanth~A. Prashanth.
-\newblock On {TD(0)} with function approximation: Concentration bounds and a
-  centered variant with exponential convergence.
-\newblock {\em CoRR}, abs/1411.3224, 2014.
+N.~{Korda} and L.~A. {Prashanth}.
+\newblock {On TD(0) with function approximation: Concentration bounds and a
+  centered variant with exponential convergence}.
+\newblock {\em ArXiv e-prints}, November 2014.
 
 \bibitem[Mac93]{Macintosh1993}
 A.~L. Macintosh.
@@ -88,56 +107,62 @@ A.~L. Macintosh.
 
 \bibitem[Mat08]{Matloff2008}
 Norm Matloff.
-\newblock Introduction to discrete-event simulation and the simpy language.
-\newblock {\em Davis, CA. Dept of Computer Science. University of California at
-  Davis. Retrieved on August}, 2:2009, 2008.
+\newblock Introduction to discrete-event simulation and the simpy language,
+  February 2008.
 
-\bibitem[MHK]{Mentzas2001}
+\bibitem[MHK01]{Mentzas2001}
 Gregory Mentzas, Christos Halaris, and Stylianos Kavadias.
 \newblock Modelling business processes with workflow systems: an evaluation of
   alternative approaches.
-\newblock 21(2):123 -- 135.
+\newblock {\em International Journal of Information Management}, 21(2):123 --
+  135, 2001.
 
 \bibitem[MKS{\etalchar{+}}15]{Mnih2015}
-Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei~A Rusu, Joel Veness,
-  Marc~G Bellemare, Alex Graves, Martin Riedmiller, Andreas~K Fidjeland, Georg
-  Ostrovski, et~al.
+Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei~A. Rusu, Joel Veness,
+  Marc~G. Bellemare, Alex Graves, Martin Riedmiller, Andreas~K. Fidjeland,
+  Georg Ostrovski, Stig Petersen, Charles Beattie, Amir Sadik, Ioannis
+  Antonoglou, Helen King, Dharshan Kumaran, Daan Wierstra, Shane Legg, and
+  Demis Hassabis.
 \newblock Human-level control through deep reinforcement learning.
-\newblock {\em Nature}, 518(7540):529--533, 2015.
+\newblock {\em Nature}, 518(7540):529--533, Feb 2015.
+\newblock Letter.
 
-\bibitem[Pin]{Pinedo2008}
+\bibitem[Pin08]{Pinedo2008}
 Michael~L. Pinedo.
 \newblock {\em Scheduling: Theory, Algorithms, and Systems}.
-\newblock Springer Publishing Company, Incorporated, 3rd edition.
+\newblock Springer Publishing Company, Incorporated, 3rd edition, 2008.
 
-\bibitem[RA]{Racer1994}
+\bibitem[RA94]{Racer1994}
 Michael Racer and Mohammad~M. Amini.
 \newblock A robust heuristic for the generalized assignment problem.
-\newblock 50(1):487--503.
+\newblock {\em Annals of Operations Research}, 50(1):487--503, 1994.
 
-\bibitem[RvdA]{Reijers2005}
+\bibitem[RvdA05]{Reijers2005}
 Hajo~A. Reijers and Wil~M.P. van~der Aalst.
 \newblock The effectiveness of workflow management systems: Predictions and
   lessons learned.
-\newblock 25(5):458 -- 472.
+\newblock {\em International Journal of Information Management}, 25(5):458 --
+  472, 2005.
 
-\bibitem[SB]{Sutton1998}
-Richard~S Sutton and Andrew~G Barto.
-\newblock {\em Reinforcement learning: An introduction}, volume~1.
-\newblock MIT press Cambridge.
-
-\bibitem[SBW{\etalchar{+}}10]{Schaul2010}
-Tom Schaul, Justin Bayer, Daan Wierstra, Yi~Sun, Martin Felder, Frank Sehnke,
-  Thomas R\"{u}ckstie\ss, and J\"{u}rgen Schmidhuber.
-\newblock {PyBrain}.
-\newblock {\em Journal of Machine Learning Research}, 2010.
+\bibitem[SB17]{Sutton2017}
+Richard~S. Sutton and Andrew~G. Barto.
+\newblock {\em Reinforcement Learning: An Introduction}.
+\newblock The MIT Press, 2017.
 
 \bibitem[SHM{\etalchar{+}}16]{Silver2016}
-David Silver, Aja Huang, Chris~J Maddison, Arthur Guez, Laurent Sifre, George
-  Van Den~Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda
-  Panneershelvam, Marc Lanctot, et~al.
+David Silver, Aja Huang, Chris~J. Maddison, Arthur Guez, Laurent Sifre, George
+  van~den Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda
+  Panneershelvam, Marc Lanctot, Sander Dieleman, Dominik Grewe, John Nham, Nal
+  Kalchbrenner, Ilya Sutskever, Timothy Lillicrap, Madeleine Leach, Koray
+  Kavukcuoglu, Thore Graepel, and Demis Hassabis.
 \newblock Mastering the game of go with deep neural networks and tree search.
-\newblock {\em Nature}, 529(7587):484--489, 2016.
+\newblock {\em Nature}, 529(7587):484--489, Jan 2016.
+\newblock Article.
+
+\bibitem[Sil11]{Silver2011}
+Bruce Silver.
+\newblock {\em BPMN Method and Style: With BPMN Implementer's Guide}.
+\newblock Cody-Cassidy Press, 2011.
 
 \bibitem[SLH{\etalchar{+}}14]{Silver2014}
 David Silver, Guy Lever, Nicolas Heess, Thomas Degris, Daan Wierstra, and
@@ -150,43 +175,45 @@ Andrew~James Smith.
 \newblock Applications of the self-organising map to reinforcement learning.
 \newblock {\em Neural Networks}, 15(8–9):1107 -- 1124, 2002.
 
-\bibitem[SMS{\etalchar{+}}99]{Sutton1999}
-Richard~S Sutton, David~A McAllester, Satinder~P Singh, Yishay Mansour, et~al.
+\bibitem[SMSM99]{Sutton1999}
+Richard~S. Sutton, David~A. McAllester, Satinder Singh, and Yishay Mansour.
 \newblock Policy gradient methods for reinforcement learning with function
-  approximation.
-\newblock In {\em NIPS}, volume~99, pages 1057--1063, 1999.
+  approximation, 1999.
 
-\bibitem[SR09]{Silver2009}
-Bruce Silver and Bruce Richard.
-\newblock {\em BPMN method and style}, volume~2.
-\newblock Cody-Cassidy Press Aptos, 2009.
-
-\bibitem[SZ]{Sun2013}
+\bibitem[SZ13]{Sun2013}
 Sherry~X. Sun and J.~Leon Zhao.
 \newblock Formal workflow design analytics using data flow modeling.
-\newblock 55(1):270 -- 283.
+\newblock {\em Decision Support Systems}, 55(1):270 -- 283, 2013.
 
-\bibitem[SZNS]{Sun2006}
+\bibitem[SZNS06]{Sun2006}
 Sherry~X. Sun, J.~Leon Zhao, Jay~F. Nunamaker, and Olivia R.~Liu Sheng.
 \newblock Formulating the data-flow perspective for business process
   management.
-\newblock 17(4):374--391.
+\newblock {\em Info. Sys. Research}, 17(4):374--391, December 2006.
 
-\bibitem[Trk]{Trkman2010}
+\bibitem[Trk10]{Trkman2010}
 Peter Trkman.
 \newblock The critical success factors of business process management.
-\newblock 30(2):125 -- 134.
+\newblock {\em International Journal of Information Management}, 30(2):125 --
+  134, 2010.
 
 \bibitem[Wil92]{Williams1992}
-Ronald~J Williams.
+Ronald~J. Williams.
 \newblock Simple statistical gradient-following algorithms for connectionist
   reinforcement learning.
-\newblock {\em Machine learning}, 8(3-4):229--256, 1992.
+\newblock {\em Mach. Learn.}, 8(3-4):229--256, May 1992.
 
-\bibitem[WZ]{Wang2011}
+\bibitem[WZ11]{Wang2011}
 Harry~Jiannan Wang and J.~Leon Zhao.
 \newblock Constraint-centric workflow change analytics.
-\newblock 51(3):562 -- 575.
+\newblock {\em Decision Support Systems}, 51(3):562 -- 575, 2011.
+
+\bibitem[ZH11]{Zhang2011}
+Kun Zhang and Aapo Hyv{\"a}rinen.
+\newblock A general linear non-gaussian state-space model: Identifiability,
+  identification, and applications.
+\newblock In {\em Asian Conference on Machine Learning}, volume~20, pages
+  113--128. JMLR: Workshop and Conference Proceedings, 2011.
 
 \bibitem[ZZ]{Zeng2005}
 Daniel~D. Zeng and J.~Leon Zhao.
