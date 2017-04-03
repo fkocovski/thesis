@@ -19,28 +19,32 @@
 \contentsline {subsubsection}{Start event}{12}{section*.8}
 \contentsline {subsubsection}{User task}{13}{section*.9}
 \contentsline {subsubsection}{Policy}{14}{section*.10}
-\contentsline {section}{\numberline {3.2}Optimization}{15}{section.3.2}
-\contentsline {section}{\numberline {3.3}Reinforcement Learning Analysis Environment}{20}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Reinforcement Learning}{20}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Finite Markov Decision Processes}{20}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Dynamic Programming}{21}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Monte Carlo Methods}{21}{subsection.3.3.4}
-\contentsline {subsection}{\numberline {3.3.5}Temporal-Difference Learning}{22}{subsection.3.3.5}
-\contentsline {subsection}{\numberline {3.3.6}On-policy Prediction with Approximation}{22}{subsection.3.3.6}
-\contentsline {subsection}{\numberline {3.3.7}On-policy Control with Approximation}{23}{subsection.3.3.7}
-\contentsline {subsection}{\numberline {3.3.8}Off-policy Methods with Approximation}{23}{subsection.3.3.8}
-\contentsline {subsection}{\numberline {3.3.9}Policy Gradient Methods}{24}{subsection.3.3.9}
-\contentsline {subsubsection}{Policy Gradient with Baseline}{25}{section*.11}
-\contentsline {subsubsection}{Actor-Critic Policy Gradient}{25}{section*.12}
-\contentsline {section}{\numberline {3.4}Hypothesis}{25}{section.3.4}
-\contentsline {section}{\numberline {3.5}Data}{25}{section.3.5}
-\contentsline {chapter}{\numberline {4}Empirical Analysis}{27}{chapter.4}
-\contentsline {section}{\numberline {4.1}Results}{27}{section.4.1}
-\contentsline {section}{\numberline {4.2}Discussion}{27}{section.4.2}
-\contentsline {section}{\numberline {4.3}Research Contribution}{27}{section.4.3}
-\contentsline {chapter}{\numberline {5}Conclusion}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}Summary}{29}{section.5.1}
-\contentsline {section}{\numberline {5.2}Resulting Conclusions}{29}{section.5.2}
-\contentsline {section}{\numberline {5.3}Outlook}{29}{section.5.3}
-\contentsline {chapter}{\numberline {A}First}{31}{appendix.A}
-\contentsline {chapter}{\numberline {B}Second}{33}{appendix.B}
+\contentsline {section}{\numberline {3.2}Optimization Policies}{15}{section.3.2}
+\contentsline {section}{\numberline {3.3}Reinforcement Learning Theory}{21}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Reinforcement Learning Definition}{21}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Finite Markov Decision Processes}{21}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Dynamic Programming}{22}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Monte Carlo Methods}{22}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.5}Temporal-Difference Learning}{23}{subsection.3.3.5}
+\contentsline {subsection}{\numberline {3.3.6}On-policy Prediction with Approximation}{23}{subsection.3.3.6}
+\contentsline {subsection}{\numberline {3.3.7}On-policy Control with Approximation}{24}{subsection.3.3.7}
+\contentsline {subsection}{\numberline {3.3.8}Off-policy Methods with Approximation}{24}{subsection.3.3.8}
+\contentsline {subsection}{\numberline {3.3.9}Policy Gradient Methods}{25}{subsection.3.3.9}
+\contentsline {subsubsection}{Policy Gradient with Baseline}{26}{section*.11}
+\contentsline {subsubsection}{Actor-Critic Policy Gradient}{26}{section*.12}
+\contentsline {section}{\numberline {3.4}Reinforcement Learning Policies}{26}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Prediction and Control Methods}{27}{subsection.3.4.1}
+\contentsline {subsubsection}{Value Function Approximation}{27}{section*.13}
+\contentsline {subsubsection}{Policy Gradient}{29}{section*.14}
+\contentsline {section}{\numberline {3.5}Hypothesis}{29}{section.3.5}
+\contentsline {section}{\numberline {3.6}Data}{29}{section.3.6}
+\contentsline {chapter}{\numberline {4}Empirical Analysis}{31}{chapter.4}
+\contentsline {section}{\numberline {4.1}Results}{31}{section.4.1}
+\contentsline {section}{\numberline {4.2}Discussion}{31}{section.4.2}
+\contentsline {section}{\numberline {4.3}Research Contribution}{31}{section.4.3}
+\contentsline {chapter}{\numberline {5}Conclusion}{33}{chapter.5}
+\contentsline {section}{\numberline {5.1}Summary}{33}{section.5.1}
+\contentsline {section}{\numberline {5.2}Resulting Conclusions}{33}{section.5.2}
+\contentsline {section}{\numberline {5.3}Outlook}{33}{section.5.3}
+\contentsline {chapter}{\numberline {A}First}{35}{appendix.A}
+\contentsline {chapter}{\numberline {B}Second}{37}{appendix.B}

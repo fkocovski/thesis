@@ -395,7 +395,7 @@ Each user task object has a claim token method, which takes tokens as input para
 
 \subsubsection{Policy}
 
-Policies are a particular object that does not directly participate in the workflow processes, it merely serves a role as a general supervisor that has the whole overview of the process allowing it to operate on a more abstract level.
+Policies are a particular object that does not directly participate in the workflow processes, it merely serves a role as a general supervisor that has the whole overview of the process allowing it to operate on a more abstract level. 
 
 The implementation of the policy objects can be seen in \figref{fig:policies_init}.
 
@@ -403,7 +403,16 @@ The implementation of the policy objects can be seen in \figref{fig:policies_ini
 
 Each policy is a blueprint for the actual implementation of the policy itself. It holds minimal information such as a simulation environment, number of users and worker variability. The worker variability is a global parameter that is used for the service time generation as already explained in \subsecref{subsec:user_task}.
 
-\section{Optimization}
+As a blueprint, each policy object defines two abstract method for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it. Refer to \figref{fig:policy_met_att} for its implementation overview.
+
+\fig[0.5\textwidth]{policy_met_att}{Policy methods and attributes}{fig:policy_met_att}
+
+In its request method, each policy generates a policy job object, which is again an abstract implementation of a job that the policy will work in order to return an optimizes assignment to a user task. Each policy job requires a user task and a token object as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job object serves as a bookkeeping agent by storing and dumping useful information every time it status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users. Refer to \figref{fig:policyjob_met_att} for its implementation overview.
+
+\fig[0.5\textwidth]{policyjob_met_att}{Policy job methods and attributes}{fig:policyjob_met_att}
+
+\section{Optimization Policies}
+\label{sec:opt_policies}
 
 Different types of policies have been implemented following the foundations laid by Zeng and Zhao as outlined in \subsecref{subsec:workflow}. In their work the authors investigate five ``role-resolution'' policies used for optimal task to user assignment \cite[p. 7]{Zeng2005}. Following a brief description of the five aforementioned policies:
 
@@ -473,7 +482,7 @@ The whole concept consists in the introduction of an identity variable $I$ which
 
 In order to calculate $z_{ijk}$, one has to consider also when user $i$ will actually be available to process his first task. This is depicted by the variable $a_i$, which summed together with the respective service times of user $i$ for task $j$ gives the complete work time user $i$ will require to process all tasks assigned to him.
 
-\fig[\textwidth]{dmf_problem}{EDMF Task Assignment}{fig:edmf_task_assignment}
+\fig[0.75\textwidth]{dmf_problem}{EDMF Task Assignment}{fig:edmf_task_assignment}
 
 Without further ado, the simplified formulation of the extended DMF variant (called SDMF, which stands for simplified DMF) is the following:
 
@@ -542,11 +551,11 @@ ST 	   & $O(m^2n^2)$ \\	\bottomrule
 \label{tab:big_oh_solvers}
 \end{table}
 
-\section{Reinforcement Learning Analysis Environment}
+\section{Reinforcement Learning Theory}
 
 In this section the reinforcement learning approach used to solve the different role resolution problems is depicted. Initially a foundation basis in the required knowledge is depicted and afterwards the description of the analysis environment implementation is presented.
 
-\subsection{Reinforcement Learning}
+\subsection{Reinforcement Learning Definition}
 
 Reinforcement learning is a novel approach originated as a branch from the broader field of machine learning. It is an automated approach to understanding and automating learning and decision-making \cite[p. 15]{Sutton2017}. It distinguishes itself from other approaches by its novel focus on learning thanks to an agent which directly interacts with its environment, without the necessity of relying on training sets \cite[p. 15]{Sutton2017}.
 
@@ -612,7 +621,7 @@ One very interesting property of DP methods is the concept of bootstrapping: upd
 \subsection{Monte Carlo Methods}
 \label{subsec:mc}
 
-Monte Carlo (MC) methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton2017}. This approach yields different advantages over the DP methods seen in \secref{subsec:dp}:
+Monte Carlo (MC) methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton2017}. This approach yields different advantages over the DP methods seen in \subsecref{subsec:dp}:
 \begin{enumerate*}
 	\item they do not need a model of the environment's dynamics as they learn the optimal solutions by merely interacting with the environment,
 	\item since the learn from sample episodes, they are very well suited for simulation environments,
@@ -646,6 +655,7 @@ TD methods, same as MC methods, are not  excluded from the sufficient exploratio
 \end{enumerate*}
 
 \subsection{On-policy Prediction with Approximation}
+\label{subsec:onpol_pred}
 
 Up until now, the different methods presented are not suited for arbitrarily large state spaces. However, there exist solution to tackle such large state spaces: approximate solution methods. Under the assumption that one must always account for finite and limited computational resources, it is not feasible to find an optimal policy or value function, instead we have to settle for a good approximation of the solution \cite[p. 189]{Sutton2017}.
 
@@ -671,6 +681,7 @@ where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$ is the v
 A very special case (and also very simple) is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-value function approximation as the inner product between $\theta$ and $\phi (s)$:
 
 \begin{equation}
+\label{eq:function_approximation_dot}
 	\hat{v} (s,\theta) \doteq \theta^\top \phi (s) \doteq \sum_{i=1}^n \theta_i \phi_i (s)
 \end{equation}
 
@@ -684,6 +695,7 @@ This simplified case of linear function approximation for state-value functions 
 \equref{eq:sgd_linear} tells us that for the simple linear case the SGD is nothing more than the corresponding features value  \cite[p. 199]{Sutton2017}.
 
 \subsection{On-policy Control with Approximation}
+\label{subsec:onpol_control}
 
 Moving towards control with value function approximation, we now focus on the approximation of the action-value function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton2017}.
 
@@ -696,6 +708,7 @@ For the special case of the so called one-step Sarsa method, its gradient-descen
 and this method has also very good convergence properties towards optimality \cite[p. 230]{Sutton2017}.
 
 \subsection{Off-policy Methods with Approximation}
+\label{subsec:offpol_methods}
 
 When moving towards the field of off-policy learning, one of the biggest problems that one might incur in is the convergence problem: off-policy learning with approximation is considerably harder compared to its tabular counterpart \cite[p. 243]{Sutton2017}. Off-policy learning defines two policies, $\pi$ and $\mu$, where the former is the value function we seek to learn based on the latter \cite[p. 243]{Sutton2017}.
 
@@ -720,6 +733,7 @@ For the purpose of this thesis, the focus has been put upon the episodic action 
 what is important to note here, is that the episodic off-policy algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \cite[p. 244]{Sutton2017}. The authors state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed \cite[p. 244]{Sutton2017}.
 
 \subsection{Policy Gradient Methods}
+\label{subsec:polgrad_methods}
 
 Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{Actor-critic methods are an exception, where a learned value function is used in combination with policy gradient as a baseline in order to lower variance.}  \cite[p. 265]{Sutton2017}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton2017}. For policy gradient methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
 
@@ -732,6 +746,7 @@ where $ \widehat{\nabla \eta (\theta_t)}$ is nothing else than a stochastic esti
 For discrete action spaces, a suitable solution consists in forming parametrized numerical preferences $h(s,a,\theta) \in \mathbb{R}$ \cite[p. 266]{Sutton2017}. This means that the best actions is given the highest probability according to a softmax distribution:
 
 \begin{equation}
+\label{eq:probabilistic_preferences}
 	\pi(a|s,\theta) \doteq \frac{e^{h(s,a,\theta)}}{\sum_b e^{h(s,b,\theta)}}
 \end{equation}
 
@@ -777,7 +792,7 @@ one can achieve a positive effect towards diminishing variance of the update rul
 
 By introducing a base line, we have seen that variance can be lowered, however, the REINFORCE algorithm with a baseline is not a proper actor-critic method as its state-value function is only used as baseline and not as a critic \ie it is not used for bootstrapping \cite[p. 273]{Sutton2017}. By introducing bootstrapping we introduce bias and dependence of the quality of the approximated function, which in turn help to reduce variance and learn faster \cite[p. 273]{Sutton2017}. 
 
-The only negative aspect still remaining is that policy gradient methods are still based on a full Monte Carlo update trajectory: this can be also mitigated by replacing the update function by temporal difference learning approaches, such as those defined in \secref{subsec:td_learning} \cite[p. 273]{Sutton2017}.
+The only negative aspect still remaining is that policy gradient methods are still based on a full Monte Carlo update trajectory: this can be also mitigated by replacing the update function by temporal difference learning approaches, such as those defined in \subsecref{subsec:td_learning} \cite[p. 273]{Sutton2017}.
 
 The formal definition of a one-step actor-critic update method is depicted as follows:
 
@@ -786,6 +801,115 @@ The formal definition of a one-step actor-critic update method is depicted as fo
 \end{equation}
 
 and this is now a fully online implementation that executes updated after each newly visited state \cite[p. 274]{Sutton2017}. 
+
+\section{Reinforcement Learning Policies}
+\label{sec:rl_policies}
+
+Analog to \secref{sec:opt_policies}, the same policies are considered where now different reinforcement learning methods and techniques are used to solve the assignment problem.
+
+Different subsections are used in order to separate better the different approaches used for each type of policy:
+\begin{enumerate*}
+	\item Batch policy methods.
+	\item LLQP policy methods.
+	\item other policy methods that do not fit in any of the previous categories.
+\end{enumerate*}
+
+The two key concepts required in order to effectively apply reinforcement learning techniques in the domain of workflow processes and the optimal assignment of jobs to users are:
+\begin{enumerate}
+	\item correctly defined states and actions spaces.
+	\item precise rewards definition.
+	\item effective update method for the policy's internal parameters. 
+\end{enumerate}
+
+In the next subsections a distinction between prediction and update methods is outlined.
+
+\subsection{Prediction and Control Methods}
+
+As previously outlined in \subsecref{subsec:onpol_pred}, \subsecref{subsec:onpol_control}, \subsecref{subsec:offpol_methods} and \subsecref{subsec:polgrad_methods} there are different prediction and control methods that can be applied.
+
+\subsubsection{Value Function Approximation}
+
+Both the K-Batch as well as the K-Batch-One (specifically the One-Batch-One) have been implemented with a multitude of approaches. For an overview of the implemented batch policies with reinforcement learning refer to \figref{fig:rl_batch_policies}.
+
+\fig[\textwidth]{rl_batch_policies}{Batch Policies with Reinforcement Learning}{fig:rl_batch_policies}
+
+As mentioned in \secref{sec:rl_policies}, it is crucial to correctly define the states and actions space for each problem. For the K-Batch policies, each request that the policy receives generates a policy job object which is then passed in the internal evaluate method of the policy. Inside this method, for each policy job the state space $S$ is defined as a $n \times n+1$ matrix which contains all busy times of the potential candidates (\ie users) concatenated to the user's current service time for the job. Formally the state space is defined as depicted in \equref{eq:kbatch_sp}:
+
+\begin{equation}
+\label{eq:kbatch_sp}
+	S_{n,n+1} = 
+	\begin{pmatrix}
+	a_1 & \cdots & a_1 \\
+	a_2 & \cdots & a_2 \\
+	\vdots & \ddots & \vdots \\
+	p_{1,j} & \cdots & p_{i,j} \\
+	\end{pmatrix}
+\end{equation}
+
+Since the possible actions are represented by the number of users, the state space is modeled such that for each possible actions a 1-D vector containing all busy times plus the service time of the user are present.
+
+During the evaluation phase of a job the policy has to choose an action (\ie a user) by taking into account the current state space and its internal $\theta$ parameters. By using a state-value function approximation as defined in \equref{eq:function_approximation_dot}, the policy evaluates the highest score for each possible user.
+
+As an example, let us consider a snippet of how a K-Batch policy using a linear state-value function approximation performs its choices during its greedy phase: it iterates over all possible actions and performs the dot product between the state space and the corresponding $\theta$ vector and then maximizes the returned $Q$ value. This approach can be seen in \lstref{lst:e_greedy} 
+
+\begin{lstlisting}[caption=Epsilon greedy approach,label=lst:e_greedy,language=Python]
+    if self.greedy:
+        action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
+    else:
+        rnd = self.EPSILON_GREEDY_RANDOM_STATE.rand()
+        if rnd < self.epsilon:
+            action = self.EPSILON_GREEDY_RANDOM_STATE.randint(0, self.number_of_users)
+        else:
+            action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
+\end{lstlisting}
+
+and its respective state-value function approximation in \lstref{lst:value_f_approx}.
+
+\begin{lstlisting}[caption=State-value function approximation,label=lst:value_f_approx,language=Python]
+    def q(self, states, action):
+        features = self.features(states, action)
+        q = np.dot(features[action], self.theta[action])
+        return q
+\end{lstlisting}
+ 
+ $Q$ values are however only one part of the requirements set by reinforcement learning methods, the next crucial aspect is defining the reward function. Since reinforcement learning agents are able to back-propagate what they have learned from one episode and thus update their internal factors, correctly defining a reward is a must. Since the goal for our domain is minimizing the maximum flowtime (from now on this metric will be referred to as lateness) of a job, the reward itself corresponds to the lateness of a job during a specific task. This can be evaluated a priori since for each policy job we know its internal parameters required to calculate the lateness \ie busy time of user $i$ plus the service time of user $i$ for job $j$, or formally $a_i+p_{ij}$.
+
+ The last definition required in order to effectively apply the update on the policy's internal parameters $\theta$ is defining the SGD method as outlined by \equref{eq:sgd_linear}. This method will give us the direction in which we have to update our internal $\theta$ parameters during our chosen update method and it is nothing more than the features themselves. As an example, refer to \lstref{lst:features_definition} for the concrete implementation.
+
+ \begin{lstlisting}[caption=Features definition,label=lst:features_definition,language=Python]
+    def features(self, states, action):
+        features = np.zeros((self.number_of_users, self.number_of_users + 1))
+        features[action] = states[action]
+        return features
+\end{lstlisting}
+
+The features method outputs a matrix which has its values populated only for the actual chosen action. Let us assume our policy has chosen user 1 out of 2 possible users, then the state space looks as defined by \equref{eq:kbatch_sp_ex}:
+
+\begin{equation}
+\label{eq:kbatch_sp_ex}
+	S_{2,3} = 
+	\begin{pmatrix}
+	a_1 & a_1 \\
+	a_2 & a_2 \\
+	p_{1,j} & p_{2,j} \\
+	\end{pmatrix}
+\end{equation}
+
+and its features vector looks as defined by \equref{eq:kbatch_features_ex}:
+
+\begin{equation}
+\label{eq:kbatch_features_ex}
+	F_{2,3} = 
+	\begin{pmatrix}
+	a_1 & 0 \\
+	a_2 & 0 \\
+	p_{1,j} & 0 \\
+	\end{pmatrix}
+\end{equation}
+
+\subsubsection{Policy Gradient}
+
+With policy gradient methods the approach on how an action is chosen is shifted. Instead of maximizing a $Q$ value through internal $\theta$ parameters in order to choose the ``best greedy'' action, we now have probabilistic choices. As already outlined in \subsecref{subsec:polgrad_methods}, having a probabilistic policy $\pi$ means that the best action is now chosen according to the highest probability which follows a softmax distribution as defined in 
 
 \section{Hypothesis}
 \section{Data}
