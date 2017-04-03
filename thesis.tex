@@ -101,12 +101,6 @@ This thesis is subdivided in five main chapters:
 \chapter{Theoretical Foundations}
 \label{ch:foundations}
 
-\section{Definitions}
-\subsection{Queueing Theory}
-\subsection{Workflow Processes}
-\subsection{Reinforcement Learning}
-\subsection{Mixed Integer Linear Optimization}
-\subsection{Discrete Event Simulation}
 \section{Literature Overview}
 \label{sec:literature_overview}
 
@@ -290,13 +284,11 @@ Different tools were used in the analysis environment in order to efficiently si
 
 The whole architecture is subdivided as follows:
 \begin{enumerate}
-	\item The simulation environment is based on \texttt{Python 3.5.2}\foot{https://www.python.org}{06.01.2017} and as a discrete event simulation the \texttt{SimPy}\foot{https://simpy.readthedocs.io/en/latest/}{06.01.2017} package is used.
-	\item The resulting data are interpreted and analyzed using \texttt{R}\foot{https://www.r-project.org}{06.01.2017}.
-	\item The workflow engine itself is \texttt{Java}\foot{https://www.java.com/en/}{06.01.2017} based and uses the \texttt{jBPM}\foot{https://www.jbpm.org}{06.01.2017} suite.
-	\item \texttt{PyBrain}\foot{http://pybrain.org}{04.01.2017} is the library used for reinforcement learning.
-	\item Coding IDE used were \texttt{PyCharm 2016.3}\foot{https://www.jetbrains.com/pycharm/}{06.01.2017} for \texttt{Python} respectively \texttt{IntelliJ IDEA 2016.3} for \texttt{Java}\foot{https://www.jetbrains.com/idea/}{06.01.2017}.
+	\item The simulation environment is based on \texttt{Python 3.5.2}\foot{https://www.python.org}{06.01.2017} using the \texttt{Anaconda}\foot{https://www.continuum.io/anaconda-overview}{03.04.2017} platform and as a discrete event simulation the \texttt{SimPy 3.0.10}\foot{https://simpy.readthedocs.io/en/latest/}{06.01.2017} package is used.
+	\item The resulting data are interpreted and analyzed using Python and its plotting library: \texttt{Matplotlib 2.0.0}\foot{http://matplotlib.org/}{03.04.2017}.
+	\item \texttt{Tensorflow 1.0}\foot{https://www.tensorflow.org/}{03.04.2017} is the library used for the neural networks modeling.
+	\item Coding was done using \texttt{PyCharm 2017.1}\foot{https://www.jetbrains.com/pycharm/}{03.04.2017} as IDE for Python.
 	\item For solving the mixed integer problems for batching policies \texttt{Gurobi 7.0.1}\foot{http://www.gurobi.com}{06.01.2017} was used.
-	\item In order to allow a seamless integration between the optimal resolution policies implemented in \texttt{Python} and the workflow engine developed in \texttt{Java}, \texttt{Jython 2.7.0}\foot{http://www.jython.org}{06.01.2017} was used.
 \end{enumerate}
 
 \subsection{Discrete event simulation using SimPy}
@@ -315,18 +307,14 @@ The analysis environment consists in an object-oriented implementations of workf
 
 \fig[\textwidth]{workflow_elements}{Workflow elements}{fig:workflow_elements}
 
-An implicit object that is not part of the workflow elements is the token: a token is to be understood as an object that travels through the whole process and all its elements and gets worked by in different ways by them. In this implementation the token object is directly a policy element as it can be seen in \figref{fig:policies_init}.
-
-\fig[0.5\textwidth]{policies_init}{Policies initialization objects}{fig:policies_init}
-
 The core elements of a workflow process (relevant for the simulation environment) are start nodes, user tasks, decision nodes and end nodes. Start events are used to indicate where and how a process starts and usually each process has only one such event \cite[p. 42]{Silver2011}. No distinction between trigger types is being made.
 
 \subsubsection{Start event}
 
-Start event objects require a simulation environment, a policy to be used, a generation interval and the number of tokens to be generated. The simulation environment is generated with SimPy, the policy object is initialized prior to the simulation and the tokens to be generated is a plain scalar value. The generation interval is generated in a three step process:
+Start event objects require a simulation environment, a generation interval, an actions to follow array and its corresponding weights. The generation interval is generated in a three step process:
 \begin{enumerate*}
- 	\item before the simulation starts, a fixed service interval time unit $s$, number of users $n$ and an average system load $l$ are set. Analog to Zeng's and Zhao's work, the generation $\lambda$ interval follows a Poisson distribution \cite{Zeng2005} and is defined in \equref{eq:generation_interval}
- 	\item for a Poisson random exponential sampling of the generation rate, \texttt{NumPy}'s implementation of its exponential distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.exponential.html}{06.01.2017}. The scale parameter $\beta$, which is the inverse of the rate parameter $\lambda = 1/\beta$ is used, meaning that the generation rate $\lambda$ defined in \equref{eq:generation_interval} is passed to the start event inverted.
+ 	\item before the simulation starts, a fixed service interval time unit $s$, number of users $n$ and an average system load $l$ are set. In contrast to Zeng's and Zhao's work, where the generation $\lambda$ interval follows a Poisson distribution \cite{Zeng2005} and is defined as shown in \equref{eq:generation_interval}, here the generation interval is a plain scalar value.
+ 	\item for a Poisson random exponential sampling of the generation rate, \texttt{NumPy}'s implementation of its exponential distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.exponential.html}{06.01.2017}.
  \end{enumerate*}
 
 \begin{equation}
@@ -334,15 +322,15 @@ Start event objects require a simulation environment, a policy to be used, a gen
 	\lambda = \frac{l n}{s}
 \end{equation}
 
-\lstref{lst:generate_tokens} shows the token generation method for the start event. As shown, this method generates infinitely many tokens and for each token a random exponential simulation time is being drawn. Note that a random state with a fixed seed is used in order to preserve generality across multiple simulation runs. Furthermore the aforementioned timeout event of the SimPy framework can be seen in action. For each token a timeout event is being automatically triggered after its sampled arrival time has elapsed.
+The actions to be followed are also defined in a two step process:
+\begin{enumerate*}
+	\item a per workflow process action pool is defined a priori in order to assert that tokens navigate the process in a ``semantically correct'' fashion
+	\item then a weights vector is defined which assigns a weight to each possible action path to the actions pool.
+\end{enumerate*}
 
-\begin{lstlisting}[caption=Token generation method for start event object,label=lst:generate_tokens,language=Python]
-    def generate_tokens(self):
-        while True:
-            exp_arrival = round(RANDOM_STATE.exponential(self.generation_interval), 1)
-            yield self.env.timeout(exp_arrival)
-            token = Token()
-\end{lstlisting}
+Such an approach allows to fine tune how often tokens will follow a predefined path along the process in order to efficiently simulate and put under stress specific paths of the process.
+
+In order to assert fairness among all simulation runs a master random state is assigned to the start event. This master random state is generated from the PCG family of random generators which exhibit peculiar characteristics, one amongst all is the possibility of ``jumping ahead'' in the state. By such means of ahead jumps it is possible to assign a fixed number of random yet consistent choices among all runs, since each generated token receives from the start event a ``jumped'' copy from the master state. For a better overview of the characteristics of the PCG random generators family consult its official outline \foot{http://www.pcg-random.org/}{03.04.2017}.
 
 Even though tokens are generated infinitely, this process is controlled from the simulation environment where a discrete simulation time steps have to be set, as it can be seen from \lstref{lst:simulation_steps}.
 
@@ -357,22 +345,14 @@ This can be interpreted as that the whole simulation will persist for 100 time s
 \end{lstlisting}
 
 \subsubsection{User task}
+\label{subsec:user_task}
 
-User task objects also require a simulation environment, a policy, a descriptive name, a knowledge level, a service interval and task variability. Each user task has a unique \texttt{child} field which is being set prior to starting the simulation by the method depicted in \lstref{lst:connect}.
+User task objects also require a simulation environment, a policy, a descriptive name, a service interval and task variability. Each user task has a unique \texttt{child} field which is being set prior to starting the simulation.
 
-\begin{lstlisting}[caption=Method used to connect workflow elements,label=lst:connect,language=Python]
-    def connect(source, destination):
-    if isinstance(source, ExclusiveGatewayDivergent):
-        for child in destination:
-            source.children.append(child)
-    elif isinstance(source, (StartEvent, UserTask, EndEvent, ExclusiveGatewayConvergent)):
-        source.child = destination
-\end{lstlisting}
-
-In regards to parameters service interval and task variability a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. Zeng and Zhao in their work follow a two way process to generate such intervals \cite[p. 8]{Zeng2005}. However in this thesis' implementation an refined version of this process is used:
+In regards to parameters service interval and task variability a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. Zeng and Zhao in their work follow a two way process to generate such intervals \cite[p. 8]{Zeng2005}. However in this thesis' implementation a refined version of this process is used:
 \begin{enumerate*}
 	\item at initialization time, each user task receives a service rate $s$ and a task variability $t$ value
-	\item in the class initialization method, each user task samples an average processing time following an Erlang distribution (a special case of the gamma distribution) which takes as input parameters a shape $k$ and a scale $\theta$. The shape value $k$, as the name suggests, defines the curve shape that the Erlang distribution will follow. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_task}
+	\item inside the policy request method, for each user task a sample of an average processing time following an Erlang distribution (a special case of the gamma distribution) which takes as input parameters a shape $k$ and a scale $\theta$ is made. The shape value $k$, as the name suggests, defines the curve shape that the Erlang distribution will follow. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_task}
 	\item the average processing time becomes a unique value of each user task object and is used by each policy to sample each user's service time, again from an Erlang sampled pool as depicted in \lstref{lst:user_service_rate} and we shall call this value $p_j$
 \end{enumerate*}
 
@@ -383,10 +363,14 @@ In order to sample a service rate $p_{ij}$ following the Erlang distribution for
 
 
 \begin{lstlisting}[caption=User service rate sampling following an Erlang distribution,label=lst:user_service_rate,language=Python]
-    user_service_rate = [round(
-            RANDOM_STATE.gamma(kbatchone_request_job.user_task.average_processing_time / self.worker_variability,
-                               self.worker_variability),
-            1) for _ in range(self.number_of_users)]
+    def request(self, user_task,token):
+        average_processing_time = token.random_state.gamma(
+            user_task.service_interval ** 2 / user_task.task_variability,
+            user_task.task_variability / user_task.service_interval)
+
+        policy_job.service_rate = [token.random_state.gamma(average_processing_time ** 2 / self.worker_variability,
+                                                           self.worker_variability / average_processing_time) for
+                                   _ in range(self.number_of_users)]
 \end{lstlisting}
 
 As previously mentioned, the Erlang distribution is a special case of the Gamma distribution where $k$ defines the shape of the curve. This distribution is better suited to model service rates since with an appropriate $k$ one can approximate a normal distribution without incurring in the aspect of having to manually reset negative values to one (thus loosing statistical generality). This is asserted by the formal definition of Erlang's support with $x \in [0,\infty)$.
@@ -398,20 +382,11 @@ As previously mentioned, the Erlang distribution is a special case of the Gamma 
 	f(x;k,\mu) = \frac{x^{k-1} e^{-\frac{x}{\mu}}}{\mu^k (k-1)!} \text{ for } x,\mu \geq 0
 \end{equation}
 
-Each user task object has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. On this top level, without stepping into the single policies implementations, the logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask to the designated policies to work the token assigned to them and finally, after a service interval timeout which corresponds to the user's specific service interval, they release the token. The logic can be seen in \lstref{lst:user_task}.
+Each user task object has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. On this top level, without stepping into the single policies implementations, the logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to work the token assigned to them and finally, after a service interval timeout which corresponds to the user's specific service interval, they release the token. The logic can be seen in \lstref{lst:user_task}.
 
-\begin{lstlisting}[caption=User task initialization,label=lst:user_task,language=Python]
-    class UserTask(object):
-    def __init__(self, env, policy, name, knowledge, service_interval, task_variability):
-        self.env = env
-        self.policy = policy
-        self.name = name
-        self.knowledge = knowledge
-        self.child = None
-        self.average_processing_time = round(RANDOM_STATE.gamma(service_interval / task_variability, task_variability),
-                                             1)
-
+\begin{lstlisting}[caption=User task claim method,label=lst:user_task,language=Python]
     def claim_token(self, token):
+        token.worked_by(self)
         policy_job = self.policy.request(self, token)
         service_time = yield policy_job.request_event
         yield self.env.timeout(service_time)
@@ -419,6 +394,16 @@ Each user task object has a claim token method, which takes tokens as input para
 \end{lstlisting}
 
 \subsubsection{Policy}
+
+Policies are a particular object that does not directly participate in the workflow processes, it merely serves a role as a general supervisor that has the whole overview of the process allowing it to operate on a more abstract level.
+
+The implementation of the policy objects can be seen in \figref{fig:policies_init}.
+
+\fig[0.33\textwidth]{policies_init}{Policies abstract implementation}{fig:policies_init}
+
+Each policy is a blueprint for the actual implementation of the policy itself. It holds minimal information such as a simulation environment, number of users and worker variability. The worker variability is a global parameter that is used for the service time generation as already explained in \subsecref{subsec:user_task}.
+
+\section{Optimization}
 
 Different types of policies have been implemented following the foundations laid by Zeng and Zhao as outlined in \subsecref{subsec:workflow}. In their work the authors investigate five ``role-resolution'' policies used for optimal task to user assignment \cite[p. 7]{Zeng2005}. Following a brief description of the five aforementioned policies:
 
@@ -442,7 +427,7 @@ All batching policies require the solution of an optimization problem. The autho
 
 All variables definition still hold without loss of generality as defined by the authors \cite[pp. 5-7]{Zeng2005}.
 
-The class inheritance structure of the policies implementation with the corresponding fields and methods can be seen in \figref{fig:policies}.
+The class inheritance structure of the policies implementation can be seen in \figref{fig:policies}.
 
 \fig[\textwidth]{policies}{Policies class structure}{fig:policies}
 
@@ -516,25 +501,13 @@ The formulation of the DMF problem by relaxing both the $z$ variables and $k$ in
 
 This formulation is colloquially called the ESDMF method (extremely simplified DMF).
 
-\todo{add explanation that by exploiting how the arrival order is implemented one can solve the same DMF problem without increasing the computability costs.}
+This extremely simplified version is however only possible by the nature of its implementation. Since the both the global as well as the local queues are implemented as FIFO queues, it is possible to relax the ordering constraint from the mathematical formulation since it is already implicitly defined by the implementation.
 
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\begin{table}[htb]
-\centering
-\begin{tabular}{@{}lc@{}}
-\toprule
-Solver & Computation Costs \\ \midrule
-MSA    & $O(mn)$           \\
-EDMF   & $O(mn^2)$         \\
-SDMF   & $O(mn^2)$         \\
-ESDMF  & $O(mn)$           \\ \bottomrule
-\end{tabular}
-\caption{Comparison of computational costs for different solvers}
-\label{tab:big_oh_solvers}
-\end{table}
-
-Sum of service times minimization with DMF as upper bound:
+Yet one last optimization of the method proposed by Zeng done in this thesis is a method that aims to optimally solve the assignment problem by changing its goal: minimize the service times by setting an upper bound on the maximum flowtime. This method uses a two step process in order to optimally solve the assignment problem:
+\begin{enumerate*}
+	\item optimally solve by means of using on of the DMF optimization methods previously outlined. This yields an upper bound for the maximum flowtime.
+	\item use this upper bound as a constraint for the actual optimization in order to effectively optimize the problem for the minimal service time amongst users, jobs and their corresponding service time.
+\end{enumerate*}
 
 \begin{align}
     \min_z \quad \sum_{i \in W} \sum_{k \in T} z_{ik}\\
@@ -549,6 +522,25 @@ Sum of service times minimization with DMF as upper bound:
     M &= \max_a a_i + \max_p \sum_{i \in W} \sum_{j \in T} p_{ij}\\
     \epsilon &= \num{1e-4}
 \end{align}
+
+\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The MSA method is the simplest solver and exhibits a linear complexity compared to the DMF method proposed by Zeng. As it can be seen the methods implemented in this thesis, specifically the ESDMF method, both solves the DMF method and does it by keeping the same linear complexity as the MSA method. The ST method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:results}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[htb]
+\centering
+\begin{tabular}{@{}lc@{}}
+\toprule
+Solver & Computation Costs \\ \midrule
+MSA    & $O(mn)$           \\
+EDMF   & $O(mn^2)$         \\
+SDMF   & $O(mn^2)$         \\
+ESDMF  & $O(mn)$           \\
+ST 	   & $O(m^2n^2)$ \\	\bottomrule
+\end{tabular}
+\caption{Comparison of computational costs for different solvers}
+\label{tab:big_oh_solvers}
+\end{table}
 
 \section{Reinforcement Learning Analysis Environment}
 
@@ -804,6 +796,7 @@ and this is now a fully online implementation that executes updated after each n
 
 
 \section{Results}
+\label{sec:results}
 \section{Discussion}
 \section{Research Contribution}
 
@@ -823,7 +816,7 @@ and this is now a fully online implementation that executes updated after each n
 
 \nocite{*}
 
-\bibliographystyle{alpha}
+\bibliographystyle{plain}
 \bibliography{sources}
 
 \end{document}

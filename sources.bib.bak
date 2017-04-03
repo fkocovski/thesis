@@ -110,7 +110,7 @@ Brief description of these 3 types of discrete event simulations.},
 }
 
 @Misc{Sutton1999,
-  author = {Sutton, Richard S. and McAllester, David A and Singh, Satinder and Mansour, Yishay},
+  author = {Sutton, Richard S. and McAllester, David A. and Singh, Satinder and Mansour, Yishay},
   title  = {Policy Gradient Methods for Reinforcement Learning with Function Approximation},
   year   = {1999},
   review = {Discussion on convergence of policy gradient methods with function approximation},
