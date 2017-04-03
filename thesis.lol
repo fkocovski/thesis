@@ -4,3 +4,5 @@
 \contentsline {lstlisting}{\numberline {3.4}Epsilon greedy approach}{27}{lstlisting.3.4}
 \contentsline {lstlisting}{\numberline {3.5}State-value function approximation}{28}{lstlisting.3.5}
 \contentsline {lstlisting}{\numberline {3.6}Features definition}{28}{lstlisting.3.6}
+\contentsline {lstlisting}{\numberline {3.7}Softmax distribution of preferences probabilities}{29}{lstlisting.3.7}
+\contentsline {lstlisting}{\numberline {3.8}Probabilistic user choice}{29}{lstlisting.3.8}

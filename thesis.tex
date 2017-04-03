@@ -336,7 +336,7 @@ Even though tokens are generated infinitely, this process is controlled from the
 
 This can be interpreted as that the whole simulation will persist for 100 time steps and it will then stop when the internal clock reaches 100. Please note that events that have been scheduled for time step 100 will not be processed. The logic is similar to a new environment where the clock is zero and no event have been processed yet.
 
-\begin{lstlisting}[caption=Starting the simulation with discrete time steps,label=lst:simulation_steps,language=Python]
+\begin{lstlisting}[caption=Starting the simulation with discrete time steps,label=lst:simulation_steps,style=CustomPython]
     # "global" variables
     SIM_TIME = 100
     ...
@@ -362,7 +362,7 @@ In order to sample a service rate $p_{ij}$ following the Erlang distribution for
 
 
 
-\begin{lstlisting}[caption=User service rate sampling following an Erlang distribution,label=lst:user_service_rate,language=Python]
+\begin{lstlisting}[caption=User service rate sampling following an Erlang distribution,label=lst:user_service_rate,style=CustomPython]
     def request(self, user_task,token):
         average_processing_time = token.random_state.gamma(
             user_task.service_interval ** 2 / user_task.task_variability,
@@ -384,7 +384,7 @@ As previously mentioned, the Erlang distribution is a special case of the Gamma 
 
 Each user task object has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. On this top level, without stepping into the single policies implementations, the logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to work the token assigned to them and finally, after a service interval timeout which corresponds to the user's specific service interval, they release the token. The logic can be seen in \lstref{lst:user_task}.
 
-\begin{lstlisting}[caption=User task claim method,label=lst:user_task,language=Python]
+\begin{lstlisting}[caption=User task claim method,label=lst:user_task,style=CustomPython]
     def claim_token(self, token):
         token.worked_by(self)
         policy_job = self.policy.request(self, token)
@@ -634,6 +634,7 @@ One of the drawbacks that MC methods bring along is the concept of maintaining s
 A MC simplified method can be formally defined as follows:
 
 \begin{equation}
+\label{eq:mc_update}
 	V(S_t) \leftarrow V(S_t) + \alpha [G_t - V(S_t)]
 \end{equation}
 
@@ -645,6 +646,7 @@ where $G_t$ is the discounted return function defined by \equref{eq:expected_dis
 Temporal-difference (TD) are yet another set of learning methods for reinforcement learning. Compared to the MC methods explained in \subsecref{subsec:mc}, TD methods do not need to wait all the way up to the end of an episode to actually learn, they only must wait until the next step \ie they can bootstrap \cite[p. 128]{Sutton2017}. When they reach time step $t+1$, they observe a reward $R_{t+1}$ which then use to estimate $V(S_{t+1})$ \cite[p. 128]{Sutton2017}. The simplest TD method, which is called $TD(0)$, is defined as follows:
 
 \begin{equation}
+\label{eq:td_update}
 	V(S_t) \leftarrow V(S_t) + \alpha [R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]
 \end{equation}
 
@@ -755,6 +757,7 @@ where $e \approx 2.71828$ \cite[p. 266]{Sutton2017}.
 Moreover, the preferences can be, as previously mentioned:
 
 \begin{equation}
+\label{eq:dot_preferences}
 	h(s,a,\theta) \doteq \theta^\top \phi (s,a)
 \end{equation}
 
@@ -838,12 +841,12 @@ As mentioned in \secref{sec:rl_policies}, it is crucial to correctly define the 
 \begin{equation}
 \label{eq:kbatch_sp}
 	S_{n,n+1} = 
-	\begin{pmatrix}
+	\begin{bmatrix}
 	a_1 & \cdots & a_1 \\
 	a_2 & \cdots & a_2 \\
 	\vdots & \ddots & \vdots \\
 	p_{1,j} & \cdots & p_{i,j} \\
-	\end{pmatrix}
+	\end{bmatrix}
 \end{equation}
 
 Since the possible actions are represented by the number of users, the state space is modeled such that for each possible actions a 1-D vector containing all busy times plus the service time of the user are present.
@@ -852,7 +855,7 @@ During the evaluation phase of a job the policy has to choose an action (\ie a u
 
 As an example, let us consider a snippet of how a K-Batch policy using a linear state-value function approximation performs its choices during its greedy phase: it iterates over all possible actions and performs the dot product between the state space and the corresponding $\theta$ vector and then maximizes the returned $Q$ value. This approach can be seen in \lstref{lst:e_greedy} 
 
-\begin{lstlisting}[caption=Epsilon greedy approach,label=lst:e_greedy,language=Python]
+\begin{lstlisting}[caption=Epsilon greedy approach,label=lst:e_greedy,style=CustomPython]
     if self.greedy:
         action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
     else:
@@ -865,7 +868,7 @@ As an example, let us consider a snippet of how a K-Batch policy using a linear 
 
 and its respective state-value function approximation in \lstref{lst:value_f_approx}.
 
-\begin{lstlisting}[caption=State-value function approximation,label=lst:value_f_approx,language=Python]
+\begin{lstlisting}[caption=State-value function approximation,label=lst:value_f_approx,style=CustomPython]
     def q(self, states, action):
         features = self.features(states, action)
         q = np.dot(features[action], self.theta[action])
@@ -876,7 +879,7 @@ and its respective state-value function approximation in \lstref{lst:value_f_app
 
  The last definition required in order to effectively apply the update on the policy's internal parameters $\theta$ is defining the SGD method as outlined by \equref{eq:sgd_linear}. This method will give us the direction in which we have to update our internal $\theta$ parameters during our chosen update method and it is nothing more than the features themselves. As an example, refer to \lstref{lst:features_definition} for the concrete implementation.
 
- \begin{lstlisting}[caption=Features definition,label=lst:features_definition,language=Python]
+ \begin{lstlisting}[caption=Features definition,label=lst:features_definition,style=CustomPython]
     def features(self, states, action):
         features = np.zeros((self.number_of_users, self.number_of_users + 1))
         features[action] = states[action]
@@ -888,11 +891,11 @@ The features method outputs a matrix which has its values populated only for the
 \begin{equation}
 \label{eq:kbatch_sp_ex}
 	S_{2,3} = 
-	\begin{pmatrix}
+	\begin{bmatrix}
 	a_1 & a_1 \\
 	a_2 & a_2 \\
 	p_{1,j} & p_{2,j} \\
-	\end{pmatrix}
+	\end{bmatrix}
 \end{equation}
 
 and its features vector looks as defined by \equref{eq:kbatch_features_ex}:
@@ -900,16 +903,43 @@ and its features vector looks as defined by \equref{eq:kbatch_features_ex}:
 \begin{equation}
 \label{eq:kbatch_features_ex}
 	F_{2,3} = 
-	\begin{pmatrix}
+	\begin{bmatrix}
 	a_1 & 0 \\
 	a_2 & 0 \\
 	p_{1,j} & 0 \\
-	\end{pmatrix}
+	\end{bmatrix}
 \end{equation}
 
 \subsubsection{Policy Gradient}
 
-With policy gradient methods the approach on how an action is chosen is shifted. Instead of maximizing a $Q$ value through internal $\theta$ parameters in order to choose the ``best greedy'' action, we now have probabilistic choices. As already outlined in \subsecref{subsec:polgrad_methods}, having a probabilistic policy $\pi$ means that the best action is now chosen according to the highest probability which follows a softmax distribution as defined in 
+With policy gradient methods the approach on how an action is chosen is shifted. Instead of maximizing a $Q$ value through internal $\theta$ parameters in order to choose the ``best greedy'' action, we now have probabilistic choices. As already outlined in \subsecref{subsec:polgrad_methods}, having a probabilistic policy $\pi$ means that the best action is now chosen according to the highest probability which follows a softmax distribution as defined in \equref{eq:probabilistic_preferences} and its implementation can be seen in \lstref{lst:softmax_probabilities}.
+
+\begin{lstlisting}[caption=Softmax distribution of preferences probabilities,label=lst:softmax_probabilities,style=CustomPython]
+    def policy_probabilities(self, busy_times):
+        probabilities = [None] * self.number_of_users
+        for action in range(self.number_of_users):
+            probabilities[action] = np.exp(np.dot(self.features(busy_times, action), self.theta)) / sum(
+                np.exp(np.dot(self.features(busy_times, a), self.theta)) for a in range(self.number_of_users))
+        return probabilities
+\end{lstlisting}
+
+The policy probabilities method takes as input parameter the current state space and computes for each user its probability according to the current internal $\theta$ parameter as defined in \equref{eq:dot_preferences}. The result of this method is a probabilities (or weights) 1-D vector corresponding to a preference to assign a job to a specific user, where the index of the vector corresponds to the user and the value to its preference. Based on this preferences vector, the policy then computes a weighted random choice among all users, as can be seen in \lstref{lst:prob_user_choice}.
+
+\begin{lstlisting}[caption=Probabilistic user choice,label=lst:prob_user_choice,style=CustomPython]
+	chosen_action = self.RANDOM_STATE_PROBABILITIES.choice(self.number_of_users, p=probabilities)
+\end{lstlisting}
+
+\subsection{Update Methods}
+
+As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there are mainly two different methods to update the policy's internal $\theta$ parameters \ie MC and TD. Let us take the example outlined by Sutton and Barto of leaving the office and getting home and the respective updates proposed by the two update methods \cite[p. 130]{Sutton2017}. \figref{fig:mc_td} shows the graphical updates proposed by the two update methods.
+
+\fig[\textwidth]{mc_td}{MC and TD proposed updates comparison (own plot based on Sutton and Barto)}{fig:mc_td}
+
+As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the MC method needs to reach the end of an entire episode (\ie here it consists of actually arriving home) in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, TD is much more flexible and robust since it executes its updates at each time step, hence its name: temporal difference.
+
+For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the MC update and to \equref{eq:td_update} for the TD update.
+
+
 
 \section{Hypothesis}
 \section{Data}

@@ -36,6 +36,7 @@
 \contentsline {subsection}{\numberline {3.4.1}Prediction and Control Methods}{27}{subsection.3.4.1}
 \contentsline {subsubsection}{Value Function Approximation}{27}{section*.13}
 \contentsline {subsubsection}{Policy Gradient}{29}{section*.14}
+\contentsline {subsection}{\numberline {3.4.2}Update Methods}{29}{subsection.3.4.2}
 \contentsline {section}{\numberline {3.5}Hypothesis}{29}{section.3.5}
 \contentsline {section}{\numberline {3.6}Data}{29}{section.3.6}
 \contentsline {chapter}{\numberline {4}Empirical Analysis}{31}{chapter.4}

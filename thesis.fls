@@ -64,8 +64,6 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listin
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/listings.cfg
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/tools/xspace.sty
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/tools/xspace.sty
-INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
-INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/fancyhdr/fancyhdr.sty
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/fancyhdr/fancyhdr.sty
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/url/url.sty
@@ -300,8 +298,11 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/courier/pcrr8t.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/courier/pcrro8t.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/courier/pcrb8t.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8t.tfm
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/courier/pcrro8t.vf
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/courier/pcrro8r.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/courier/pcrr8t.vf
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/courier/pcrr8r.tfm
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/policies_init.png
@@ -351,6 +352,10 @@ INPUT C:/Users/filip.kocovski/Desktop/thesis/img/rl_batch_policies.png
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/rl_batch_policies.png
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/rl_batch_policies.png
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/rl_batch_policies.png
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/mc_td.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/mc_td.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/mc_td.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/mc_td.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.bbl
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.bbl
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.aux
@@ -383,6 +388,8 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrro8a.pfb
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrro8a.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb
