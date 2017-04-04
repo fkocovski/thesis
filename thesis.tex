@@ -10,6 +10,9 @@
 \usepackage{bookmark}
 \usepackage{amsfonts}
 
+% see http://tex.stackexchange.com/questions/183149/cant-silence-a-pdftex-pdf-inclusion-multiple-pdfs-with-page-group-error for more information
+\pdfsuppresswarningpagegroup=1
+
 \thesisType{Master Thesis}
 \date{\today}
 \title{BPM}
@@ -1102,7 +1105,7 @@ The evolution plot shows the state change for the policy being analyzed by plott
 \section{Optimization}
 \label{sec:op_results}
 
-This section focuses on the results of the different types of policies using the optimization solvers outlined in \secref{sec:opt_policies}. All simulations have been tested with different combination of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, for the optimization results analysis the global variables have been set to the following parameters:
+This section focuses on the results of the different types of policies using the optimization solvers outlined in \secref{sec:opt_policies}. All simulations have been tested with different combination of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, the global variables have been set to the following parameters:
 
 \begin{itemize}
 	\item Number of users = 3
@@ -1128,7 +1131,13 @@ Both batch policies have been tested using all optimization solvers outlined in 
 
 \subsubsection{K-Batch}
 
-\figref{fig:3_BATCH_MSA_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch with MSA batch size comparison}{fig:1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch with ST batch size comparison}{fig:1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}
+
+\subsubsection{K-Batch-One}
+
+\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch-One with MSA batch size comparison}{fig:1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch-One with ST batch size comparison}{fig:1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}
 
 \subsection{LLQP}
 
@@ -1208,7 +1217,16 @@ Both batch policies have been tested using all optimization solvers outlined in 
 
 \fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_EVO}{LLQP evolution}{fig:LLQP_NU3_GI3_SIM50_EVO}
 
-\chapter{Second}
+\section{SQ}
+
+\subsection{KPIs}
+
+\fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_KPI}{SQ KPIs}{fig:SQ_NU3_GI3_SIM50_KPI}
+
+\subsection{Evolution}
+
+\fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_EVO}{SQ evolution}{fig:SQ_NU3_GI3_SIM50_EVO}
+
 
 \backmatter
 

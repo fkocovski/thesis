@@ -49,7 +49,8 @@
 \contentsline {subsection}{\numberline {4.1.4}KPIs for Asserting Policy's Efficacy and Data Visualization}{37}{subsection.4.1.4}
 \contentsline {section}{\numberline {4.2}Optimization}{38}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Batch}{38}{subsection.4.2.1}
-\contentsline {subsubsection}{K-Batch}{38}{section*.17}
+\contentsline {subsubsection}{K-Batch}{39}{section*.17}
+\contentsline {subsubsection}{K-Batch-One}{39}{section*.18}
 \contentsline {subsection}{\numberline {4.2.2}LLQP}{39}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Others}{39}{subsection.4.2.3}
 \contentsline {section}{\numberline {4.3}Reinforcement Learning}{39}{section.4.3}
@@ -72,4 +73,6 @@
 \contentsline {section}{\numberline {A.3}LLQP}{45}{section.A.3}
 \contentsline {subsection}{\numberline {A.3.1}KPIs}{45}{subsection.A.3.1}
 \contentsline {subsection}{\numberline {A.3.2}Evolution}{45}{subsection.A.3.2}
-\contentsline {chapter}{\numberline {B}Second}{57}{appendix.B}
+\contentsline {section}{\numberline {A.4}SQ}{45}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}KPIs}{45}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Evolution}{45}{subsection.A.4.2}

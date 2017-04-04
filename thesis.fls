@@ -234,10 +234,10 @@ OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lof
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lot
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lot
 OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lot
-INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lol
-INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lol
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb8t.vf
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
+INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lol
+INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lol
 OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lol
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/psnfss/t1pcr.fd
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/psnfss/t1pcr.fd
@@ -375,6 +375,22 @@ INPUT C:/Users/filip.kocovski/Desktop/thesis/img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.p
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf
@@ -463,6 +479,14 @@ INPUT C:/Users/filip.kocovski/Desktop/thesis/img/llqp_res/LLQP_NU3_GI3_SIM50_EVO
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/llqp_res/LLQP_NU3_GI3_SIM50_EVO.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/llqp_res/LLQP_NU3_GI3_SIM50_EVO.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/llqp_res/LLQP_NU3_GI3_SIM50_EVO.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.bbl
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.bbl
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/psnfss/omsppl.fd
