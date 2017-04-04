@@ -532,7 +532,7 @@ Yet one last optimization of the method proposed by Zeng done in this thesis is 
     \epsilon &= \num{1e-4}
 \end{align}
 
-\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The MSA method is the simplest solver and exhibits a linear complexity compared to the DMF method proposed by Zeng. As it can be seen the methods implemented in this thesis, specifically the ESDMF method, both solves the DMF method and does it by keeping the same linear complexity as the MSA method. The ST method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:results}.
+\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The MSA method is the simplest solver and exhibits a linear complexity compared to the DMF method proposed by Zeng. As it can be seen the methods implemented in this thesis, specifically the ESDMF method, both solves the DMF method and does it by keeping the same linear complexity as the MSA method. The ST method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:op_results}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -850,11 +850,7 @@ As previously outlined in \subsecref{subsec:onpol_pred}, \subsecref{subsec:onpol
 
 \subsubsection{Value Function Approximation}
 
-Both the K-Batch as well as the K-Batch-One (specifically the One-Batch-One) have been implemented with a multitude of approaches. For an overview of the implemented batch policies with reinforcement learning refer to \figref{fig:rl_batch_policies}.
-
-\fig[\textwidth]{rl_batch_policies}{Batch Policies with Reinforcement Learning}{fig:rl_batch_policies}
-
-As mentioned in \secref{sec:rl_policies}, it is crucial to correctly define the states and actions space for each problem. For the K-Batch policies, each request that the policy receives generates a policy job object which is then passed in the internal evaluate method of the policy. Inside this method, for each policy job the state space $S$ is defined as a $n \times n+1$ matrix which contains all busy times of the potential candidates (\ie users) concatenated to the user's current service time for the job. Formally the state space is defined as depicted in \equref{eq:kbatch_sp}:
+As mentioned in \secref{sec:rl_policies}, it is crucial to correctly define the states and actions space for each problem. Each request that the policy receives generates a policy job object which is then passed in the internal evaluate method of the policy. Inside this method, for each policy job the state space $S$ is defined as a $n \times n+1$ matrix which contains all busy times of the potential candidates (\ie users) concatenated to the user's current service time for the job. Formally the state space is defined as depicted in \equref{eq:kbatch_sp}:
 
 \begin{equation}
 \label{eq:kbatch_sp}
@@ -949,9 +945,34 @@ The policy probabilities method takes as input parameter the current state space
 
 \subsubsection{Neural Networks as Function Approximation}
 
-Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. In the field of reinforcement learning
+Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, ANN can be used for nonlinear function approximation. The assignment problem poses its very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a policy gradient approach, we can categorize the output layer of our ANN using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in Tensorflow: one hidden layer connects the state space (\ie input to the ANN) together with its weights and biases, creates an activation function and maps the prediction layer (\ie output) with a softmax classification.
+
+\begin{lstlisting}[caption=Modeling of a single perceptron in Tensorflow,label=lst:ann_1h,style=CustomPython]
+	with tf.name_scope("neural_network"):
+    	layer_1 = tf.add(tf.matmul(state_space_input, weights['h1']), biases['b1'])
+    	layer_1 = tf.nn.elu(layer_1)
+    	pred = [tf.add(tf.matmul(layer_1, weights['out'][b]), biases['out'][b]) for b in range(batch_input)]
+    	probabilities = [tf.nn.softmax(pred[b]) for b in range(batch_input)]
+\end{lstlisting}
+
+In order to update the ANN, a backpropagation has to take place. Such an update can both be made following a MC or TD approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a SGD approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an ANN following a MC update method is done.
+
+\begin{lstlisting}[caption=Backpropagation algorithm following a MC update approach,label=lst:mc_backpropagation,style=CustomPython]
+    def train(self):
+        for t, (state, output, choices) in enumerate(self.history):
+            disc_rewards = self.discount_rewards(t)
+            tmp_choices = [choice for choice in choices if choice is not None]
+            for job_index, chosen_user in enumerate(tmp_choices):
+                prob_value = output[job_index].flatten()[chosen_user]
+                reward = disc_rewards[job_index]
+                factor = reward / prob_value
+                grad_input = np.zeros((self.number_of_users, 1))
+                grad_input[chosen_user] = 1.0
+                self.sess.run(self.apply[job_index], {self.state_space_input: state, self.gradient_input: grad_input, self.factor_input: factor})
+\end{lstlisting}
 
 \subsection{Update Methods}
+\label{subsec:update_methods}
 
 As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there are mainly two different methods to update the policy's internal $\theta$ parameters \ie MC and TD. Let us take the example outlined by Sutton and Barto of leaving the office and getting home and the respective updates proposed by the two update methods \cite[p. 130]{Sutton2017}. \figref{fig:mc_td} shows the graphical updates proposed by the two update methods.
 
@@ -970,10 +991,163 @@ For the case at hand, this means that training the policies has to be done in a 
 \chapter{Empirical Analysis}
 \label{ch:empirical_analysis}
 
+\section{Methodology}
+
+In order to consistently and fairly evaluate all policies with the methods defined in the previous chapters, the following methodology was put in place:
+
+\begin{itemize}
+	\item Each policy has its own simulation script that initialized a process that uses the predefined policy as means to optimally assign jobs to tasks
+	\item Parameters are centrally defined.
+	\item Different KPIs have been defined which are used to assert the efficiency of one policy against one another.
+\end{itemize}
+
+\subsection{Simulation script}
+
+Each simulation script is the abstract element that import all required dependencies, initializes the SimPy simulation environment, the statistics file into which the policy dumps all data on runtime, the policy object itself to be used for the assignment and the workflow process to be used. 
+
+\begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the DMF solver,label=lst:simulation_script,style=CustomPython]
+	import simpy
+	from evaluation.statistics import calculate_statistics
+	from evaluation.subplot_evolution import evolution
+	from policies.optimization.batch.k_batch import K_BATCH
+	from simulations import *
+	from solvers.dmf_solver import dmf
+
+	policy_name = "{}_BATCH_DMF_NU{}_GI{}_SIM{}".format(BATCH_SIZE,NUMBER_OF_USERS, GENERATION_INTERVAL, SEED, SIM_TIME)
+
+	env = simpy.Environment()
+
+	file_policy = create_files("{}.csv".format(policy_name))
+
+	policy = K_BATCH(env, NUMBER_OF_USERS, WORKER_VARIABILITY, file_policy,BATCH_SIZE, dmf)
+
+	start_event = acquisition_process(env,policy,1,GENERATION_INTERVAL,False,None,None,None)
+
+	env.process(start_event.generate_tokens())
+
+	env.run(until=SIM_TIME)
+
+	file_policy.close()
+
+	calculate_statistics(file_policy.name, outfile=True)
+
+	evolution(file_policy.name, outfile=True)
+\end{lstlisting}
+
+The script initialized the chosen workflow process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling the run method of the SimPy environment.
+
+\subsection{Workflow Process Modeling}
+
+Two different types of processes have been defined:
+\begin{enumerate*}
+	\item Consisting of only one user task.
+	\item A complex workflow process that is modeled against an acquisition process used in the real estate field for the acquisition of real estate properties.
+\end{enumerate*}
+
+\figref{fig:simple_process} illustrates the simple process.
+
+\fig[0.5\textwidth]{simple_process}{Simple workflow process consisting of only one user task}{fig:simple_process}
+
+\figref{fig:acquisition_process} illustrates the complex acquisition process.
+
+\fig[\textwidth]{acquisition_process}{Acquisition workflow process consisting of multiple user tasks and decision nodes}{fig:acquisition_process}
+
+\subsection{Central Simulation and Process Parameters Definition}
+
+One key aspect in order to assert fairness across policies while simulated is to centrally define all parameters. \lstref{lst:central_parameters} shows the key central parameters defined as global variables.
+
+\begin{lstlisting}[caption=Central parameters definition that ensures fairness across simulation runs,label=lst:central_parameters,style=CustomPython]
+	NUMBER_OF_USERS = 2
+	SERVICE_INTERVAL = 1
+	GENERATION_INTERVAL = 3
+	SIM_TIME = 100
+	BATCH_SIZE = 1
+	TASK_VARIABILITY = 0.2 * SERVICE_INTERVAL
+	WORKER_VARIABILITY = 0.2 * SERVICE_INTERVAL
+	SEED = 2
+\end{lstlisting}
+
+\subsection{KPIs for Asserting Policy's Efficacy and Data Visualization}
+
+Based on Pinedo's and Zeng's definitions in their work, different KPIs have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load \cite{Pinedo2008},\cite{Zeng2005}. Following the formal definitions of the per token $j$ KPIs in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
+
+\begin{align}
+	L_j&=F_j-A_j \\
+	w_j&=S_j-A_j \\
+	p_{ij}&=F_j-S_j
+\end{align}
+
+Moreover, if we account for simulation time $T$, load $l_i$ of user $i$ is defined as the sum of all service times of tokens that have been assigned to him during the simulation divided by the total simulation time $T$, or formally:
+
+\begin{equation}
+	l_i=\frac{\sum_j p_{ij}}{T}
+\end{equation}
+
+and thus the average system load $\overline{l}$ over all users participating $n$ is defined as the average across all user's loads \ie
+
+\begin{equation}
+	\overline{l} = \frac{\sum_i l_i}{n}
+\end{equation}
+
+A summary plot with all KPIs is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
+
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{KPIs summary plot for a 3-Batch policy using the MSA solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
+
+Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \secref{sec:opt_policies}.
+
+The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example.
+
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the MSA solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
+
+\section{Optimization}
+\label{sec:op_results}
+
+This section focuses on the results of the different types of policies using the optimization solvers outlined in \secref{sec:opt_policies}. All simulations have been tested with different combination of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, for the optimization results analysis the global variables have been set to the following parameters:
+
+\begin{itemize}
+	\item Number of users = 3
+	\item Service interval = 1
+	\item Generation interval = 3
+	\item Simulation time = 50
+	\item Batch size = 3
+	\item Task variability = 20\% of service interval
+	\item Worker variability = 20\% of service interval
+	\item Random state seed = 2
+	\item Workflow process = acquisition process
+\end{itemize}
+
+\subsection{Batch}
+
+According to Zeng's work, two types of batch policies have been analyzed:
+\begin{enumerate*}
+	\item K-Batch.
+	\item K-Batch-One.
+\end{enumerate*}
+
+Both batch policies have been tested using all optimization solvers outlined in \secref{sec:opt_policies}.
+
+\subsubsection{K-Batch}
+
+\figref{fig:3_BATCH_MSA_NU3_GI3_SIM50_KPI}
+
+\subsection{LLQP}
 
 
-\section{Results}
-\label{sec:results}
+\subsection{Others}
+
+
+\section{Reinforcement Learning}
+\label{sec:rl_results}
+
+\subsection{Batch}
+
+
+\subsection{LLQP}
+
+
+\subsection{Others}
+
+
 \section{Discussion}
 \section{Research Contribution}
 
@@ -986,7 +1160,54 @@ For the case at hand, this means that training the policies has to be done in a 
 
 \appendix
 
-\chapter{First}
+\chapter{Optimization Results}
+
+\section{K-Batch}
+
+\subsection{KPIs}
+
+\fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI}{K-Batch with MSA KPIs}{fig:3_BATCH_MSA_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI}{K-Batch with DMF KPIs}{fig:3_BATCH_DMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI}{K-Batch with SDMF KPIs}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch with ESDMF KPIs}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI}{K-Batch with ST KPIs}{fig:3_BATCH_ST_NU3_GI3_SIM50_KPI}
+
+\subsection{Evolution}
+
+\fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO}{K-Batch with MSA evolution}{fig:3_BATCH_MSA_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO}{K-Batch with DMF evolution}{fig:3_BATCH_DMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO}{K-Batch with SDMF evolution}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch with ESDMF evolution}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO}{K-Batch with ST evolution}{fig:3_BATCH_ST_NU3_GI3_SIM50_EVO}
+
+\section{K-Batch-One}
+
+\subsection{KPIs}
+
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}{K-Batch-One with MSA KPIs}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}{K-Batch-One with DMF KPIs}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}{K-Batch-One with SDMF KPIs}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch-One with ESDMF KPIs}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI}{K-Batch-One with ST KPIs}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_KPI}
+
+\subsection{Evolution}
+
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}{K-Batch-One with MSA evolution}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}{K-Batch-One with DMF evolution}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}{K-Batch-One with SDMF evolution}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch-One with ESDMF evolution}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO}{K-Batch-One with ST evolution}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_EVO}
+
+\section{LLQP}
+
+\subsection{KPIs}
+
+\fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_KPI}{LLQP KPIs}{fig:LLQP_NU3_GI3_SIM50_KPI}
+
+\subsection{Evolution}
+
+\fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_EVO}{LLQP evolution}{fig:LLQP_NU3_GI3_SIM50_EVO}
+
 \chapter{Second}
 
 \backmatter

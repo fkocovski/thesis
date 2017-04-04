@@ -531,7 +531,7 @@ Data flow matrix (p. 7) is an interesting aspect to model data flows with write 
   url     = {http://jmlr.org/papers/v15/srivastava14a.html},
 }
 
-@Article{726791,
+@Article{Lecun1998,
   author   = {Y. Lecun and L. Bottou and Y. Bengio and P. Haffner},
   title    = {Gradient-based learning applied to document recognition},
   journal  = {Proceedings of the IEEE},

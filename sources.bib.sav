@@ -350,6 +350,7 @@ Brief description of these 3 types of discrete event simulations.},
   edition   = {3rd},
   isbn      = {0387789340, 9780387789347},
   review    = {Very good book about metrics to evaluate policies},
+  url       = {http://www.math.nsc.ru/LBRT/k5/Scheduling/Scheduling_Theory,%20Algorithms,%20and%20Systems(Pinedo,2008).pdf},
 }
 
 @Article{Racer1994,
