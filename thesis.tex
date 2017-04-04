@@ -696,6 +696,24 @@ This simplified case of linear function approximation for state-value functions 
 
 \equref{eq:sgd_linear} tells us that for the simple linear case the SGD is nothing more than the corresponding features value  \cite[p. 199]{Sutton2017}.
 
+\subsubsection{Artificial Neural Networks}
+
+Up to this point, we considered linear function approximation. Artificial neural networks (ANNs) can be used instead for nonlinear function approximation \cite[p. 199]{Sutton2017}. The simplest case of an ANN is a single feedforward perceptron, meaning that it has only one hidden layer (\ie a layer that is neither an input nor an output layer) and that the ANN at hand has no loops between its neurons, meaning that the output can not influence the input (compared to recurrent neural networks, in which the output indeed can influence the input) \cite[p. 216]{Sutton2017}. 
+
+The connections between neurons inside an ANN are called weights and the analogy to its human counterpart is how strong synaptic connections are \cite[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer ANN.
+
+The key about solving nonlinearity with ANN is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of the usually exhibits an ``S'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of rectified linear unit (ReLU), which have become extremely popular in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
+
+\fig[0.6\textwidth]{ann_1h}{Single layer ANN}{fig:ann_1h}
+
+Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development toward more complex ANN with multiple hidden layers (\ie multi-layer perceptrons) has been on the rise \cite[p. 217]{Sutton2017}. These complex ANN allow to solve many artificial intelligence tasks in a much more efficient way \cite{Bengio2009}. This area is called deep reinforcement learning and it has shed light on solutions that were never though possible before (for practical applications refer to Mnih's \cite{Mnih2015} and Silver's work \cite{Silver2016})\footnote{Note that the class of deep ANN used in these works is a particular one called deep convolutional networks, which are specialized networks used for processing high dimensional data arranged in spatial arrays like images \cite[p. 219]{Sutton2017},\cite{Lecun1998}.} \cite{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer ANN.
+
+\fig[0.6\textwidth]{ann_2h}{Multi layer ANN}{fig:ann_2h}
+
+Despite appearing more complex, ANN rely on a similar approach for learning (\ie updating their internal parameters, or in this case the whole network synaptic connections) based on the SGD method outlined in \subsecref{subsec:onpol_pred} \cite[p. 217]{Sutton2017}. This algorithm is called backpropagation and consists of doing a forward pass in which the activation function of each neuron is computed and then a backward pass computes the partial derivatives for each synaptic connection \cite[p. 218]{Sutton2017}.
+
+As any other function approximation method, overfitting can be a problem for ANN as well and it is particularly present for deep ANN \cite[p. 218]{Sutton2017}. There are different techniques that can be used in order to mitigate this effect, with the most prominent one being the dropout method outlined by Srivastava \cite{Srivastava2014}.
+
 \subsection{On-policy Control with Approximation}
 \label{subsec:onpol_control}
 
@@ -929,6 +947,10 @@ The policy probabilities method takes as input parameter the current state space
 	chosen_action = self.RANDOM_STATE_PROBABILITIES.choice(self.number_of_users, p=probabilities)
 \end{lstlisting}
 
+\subsubsection{Neural Networks as Function Approximation}
+
+Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. In the field of reinforcement learning
+
 \subsection{Update Methods}
 
 As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there are mainly two different methods to update the policy's internal $\theta$ parameters \ie MC and TD. Let us take the example outlined by Sutton and Barto of leaving the office and getting home and the respective updates proposed by the two update methods \cite[p. 130]{Sutton2017}. \figref{fig:mc_td} shows the graphical updates proposed by the two update methods.
@@ -939,6 +961,7 @@ As it can be clearly seen, the main deference lays in when the actual updating t
 
 For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the MC update and to \equref{eq:td_update} for the TD update.
 
+For the case at hand, this means that training the policies has to be done in a different fashion for the two update method: while TD based policies can be updated ``on-the-fly'', MC methods require batch training sessions (\ie episodes) at the end of which they can effectively learn and update their internal $\theta$ parameters to be used for the next episode. Not only the training approach is different, but the logic of the policy itself is also different: for TD based policies, the update method is being called internally since the policy knows its temporal steps, while for MC based policies the policy itself can not know a priori when an episode will finish and thus must relay on an ``artificial'' definition of such. The overall overhead is also different since MC based policies have to keep track of their whole episode history which usually is composed of the state space, chosen action and reward at time step $t$.
 
 
 \section{Hypothesis}

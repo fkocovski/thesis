@@ -11,6 +11,7 @@
 @Article{Zeng2005,
   author       = {Daniel D. Zeng and J. Leon Zhao},
   title        = {Effective Role Resolution in Workflow Management},
+  year         = {2005},
   volume       = {17},
   number       = {3},
   pages        = {374-387},
@@ -504,6 +505,44 @@ Data flow matrix (p. 7) is an interesting aspect to model data flows with write 
   numpages   = {28},
   publisher  = {Kluwer Academic Publishers},
   review     = {Monte Carlo based policy gradient method},
+}
+
+@Article{Bengio2009,
+  author  = {Yoshua Bengio},
+  title   = {Learning Deep Architectures for AI},
+  journal = {Foundations and Trends® in Machine Learning},
+  year    = {2009},
+  volume  = {2},
+  number  = {1},
+  pages   = {1-127},
+  issn    = {1935-8237},
+  doi     = {10.1561/2200000006},
+  review  = {Good review of ANN cited by Sutton and Barto},
+}
+
+@Article{Srivastava2014,
+  author  = {Nitish Srivastava and Geoffrey Hinton and Alex Krizhevsky and Ilya Sutskever and Ruslan Salakhutdinov},
+  title   = {Dropout: A Simple Way to Prevent Neural Networks from Overfitting},
+  journal = {Journal of Machine Learning Research},
+  year    = {2014},
+  volume  = {15},
+  pages   = {1929-1958},
+  review  = {Dropout method for preventing overfitting in ANN},
+  url     = {http://jmlr.org/papers/v15/srivastava14a.html},
+}
+
+@Article{726791,
+  author   = {Y. Lecun and L. Bottou and Y. Bengio and P. Haffner},
+  title    = {Gradient-based learning applied to document recognition},
+  journal  = {Proceedings of the IEEE},
+  year     = {1998},
+  volume   = {86},
+  number   = {11},
+  pages    = {2278-2324},
+  month    = {Nov},
+  issn     = {0018-9219},
+  doi      = {10.1109/5.726791},
+  keywords = {backpropagation;convolution;multilayer perceptrons;optical character recognition;2D shape variability;GTN;back-propagation;cheque reading;complex decision surface synthesis;convolutional neural network character recognizers;document recognition;document recognition systems;field extraction;gradient based learning technique;gradient-based learning;graph transformer networks;handwritten character recognition;handwritten digit recognition task;high-dimensional patterns;language modeling;multilayer neural networks;multimodule systems;performance measure minimization;segmentation recognition;Character recognition;Feature extraction;Hidden Markov models;Machine learning;Multi-layer neural network;Neural networks;Optical character recognition software;Optical computing;Pattern recognition;Principal component analysis},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
