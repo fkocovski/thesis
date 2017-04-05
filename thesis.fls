@@ -230,11 +230,11 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8t.tfm
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lof
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lof
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb8t.vf
+INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lof
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lot
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lot
-INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb8t.vf
-INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lot
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lol
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lol
@@ -383,6 +383,10 @@ INPUT C:/Users/filip.kocovski/Desktop/thesis/img/opt_st_kpis_comp.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/opt_st_kpis_comp.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/opt_st_kpis_comp.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/opt_st_kpis_comp.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/opt_kpis_comp_gain.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/opt_kpis_comp_gain.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/opt_kpis_comp_gain.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/opt_kpis_comp_gain.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf

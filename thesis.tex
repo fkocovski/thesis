@@ -1100,6 +1100,8 @@ The evolution plot shows the state change for the policy being analyzed by plott
 
 \fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the MSA solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
 
+\clearpage
+
 \section{Optimization}
 \label{sec:op_results}
 
@@ -1138,7 +1140,7 @@ In order to assert the validity of the interpretation of Zeng's works and all su
 
 In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results are obtained.
 
-\fig[\textwidth]{opt_kpis_comp}{KPIs comparison for different optimization policies using the MSA solver}{fig:opt_kpis_comp}  
+\fig[\textwidth]{opt_kpis_comp}{KPIs comparison for different optimization policies using the MSA solver for batch policies}{fig:opt_kpis_comp}  
 
 The simulation have been run with the parameters outlined in tab by using the same solver used by Zeng: MSA.
 
@@ -1165,7 +1167,31 @@ Workflow Process    & Acquisition       \\ \bottomrule
 
 By running the same simulations with the optimization solver implemented for this thesis (\ie ST, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized KPIs amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
 
-\fig[\textwidth]{opt_st_kpis_comp}{KPIs comparison for different optimization policies using the ST solver}{fig:opt_st_kpis_comp}  
+\fig[\textwidth]{opt_st_kpis_comp}{KPIs comparison for different optimization policies using the ST solver for batch policies}{fig:opt_st_kpis_comp}
+
+The percent reduction for both batch policies with a higher batch size is tiny, but when considering the reduction between the 1-Batch-1 policy with MSA and ST, a wealthy reduction is present for all KPIs. For a detailed overview of the overall reductions of the ST against the MSA solver refer to \figref{fig:opt_kpis_comp_gain}.
+
+\fig[\textwidth]{opt_kpis_comp_gain}{KPIs reduction comparison between the MSA and the ST solvers for different batch policies}{fig:opt_kpis_comp_gain}
+
+Astonishing reductions have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by Zeng (for a detailed comparison of how different batch sizes affect the policy's KPIs refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \cite[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[htb]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+KPI                 & Reduction (in \%) \\ \midrule
+Lateness            & 38.28             \\
+Wait Time           & 528.14             \\
+Service Time        & 19.75             \\
+Average System Load & 17.14             \\ \bottomrule
+\end{tabular}
+\caption{Reduction (in \%) across all KPIs of the ST against the MSA solver}
+\label{tab:opt_kpis_comp_gain}
+\end{table}
+
+\clearpage
 
 \section{Reinforcement Learning}
 \label{sec:rl_results}
