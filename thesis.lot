@@ -3,9 +3,13 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces Comparison of computational costs for different solvers}}{21}{table.3.1}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Qualitative comparison between MC and TD update methods \cite [p. 130]{Sutton2017}}}{33}{table.3.2}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Global Parameters for Simulation}}{40}{table.4.1}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Global Parameters for Optimization Policies KPIs Comparison}}{41}{table.4.2}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Reduction (in \%) across all KPIs of the ST against the MSA solver}}{42}{table.4.3}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Global Parameters for Simulation}}{39}{table.4.1}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Global Parameters for Optimization Policies KPIs Comparison}}{40}{table.4.2}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Reduction (in \%) across all KPIs of the ST against the MSA solver}}{40}{table.4.3}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Global RL parameters}}{42}{table.4.4}
+\contentsline {table}{\numberline {4.5}{\ignorespaces Overview of developed batch policies with RL}}{42}{table.4.5}
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

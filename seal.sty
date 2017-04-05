@@ -40,7 +40,7 @@
 %% General figure command
 % use: \fig[width]{file}{caption}{label}
 \newcommand\fig[4][0cm]{%
-  \begin{figure}[htb]
+  \begin{figure}[!ht]
     \ifdim #1=0cm
       \includegraphics{img/#2}
     \else

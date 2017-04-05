@@ -539,7 +539,7 @@ Yet one last optimization of the method proposed by Zeng done in this thesis is 
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
-\begin{table}[htb]
+\begin{table}[!ht]
 \centering
 \begin{tabular}{@{}lc@{}}
 \toprule
@@ -985,6 +985,24 @@ As it can be clearly seen, the main deference lays in when the actual updating t
 For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the MC update and to \equref{eq:td_update} for the TD update.
 For the case at hand, this means that training the policies has to be done in a different fashion for the two update method: while TD based policies can be updated ``on-the-fly'', MC methods require batch training sessions (\ie episodes) at the end of which they can effectively learn and update their internal $\theta$ parameters to be used for the next episode. Not only the training approach is different, but the logic of the policy itself is also different: for TD based policies, the update method is being called internally since the policy knows its temporal steps, while for MC based policies the policy itself can not know a priori when an episode will finish and thus must relay on an ``artificial'' definition of such. The overall overhead is also different since MC based policies have to keep track of their whole episode history which usually is composed of the state space, chosen action and reward at time step $t$.
 
+Sutton and Barto outline a qualitative comparison between both update methods which can be found summarized in table \tabref{tab:mc_td_comp}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Characteristic & MC                     & TD                               \\ \midrule
+Bootstrap      & No                     & Yes                              \\
+Update Time    & End of episode         & Each time step                   \\
+Discount       & Required               & Not required                     \\
+Convergance    & Good                   & Very Good                        \\
+Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \bottomrule
+\end{tabular}
+\caption{Qualitative comparison between MC and TD update methods \cite[p. 130]{Sutton2017}}
+\label{tab:mc_td_comp}
+\end{table}
 
 \section{Hypothesis}
 \section{Data}
@@ -1109,7 +1127,7 @@ This section focuses on the results of the different types of policies using the
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
-\begin{table}[htb]
+\begin{table}[!ht]
 \centering
 \begin{tabular}{@{}lll@{}}
 \toprule
@@ -1146,7 +1164,7 @@ The simulation have been run with the parameters outlined in tab by using the sa
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
-\begin{table}[htb]
+\begin{table}[!ht]
 \centering
 \begin{tabular}{@{}ll@{}}
 \toprule
@@ -1177,7 +1195,7 @@ Astonishing reductions have been observed for the 1-Batch-1 policy, which is ind
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
-\begin{table}[htb]
+\begin{table}[!ht]
 \centering
 \begin{tabular}{@{}ll@{}}
 \toprule
@@ -1196,13 +1214,62 @@ Average System Load & 17.14             \\ \bottomrule
 \section{Reinforcement Learning}
 \label{sec:rl_results}
 
-\subsection{Batch}
+This section focuses on the results obtained with the reinforcement learning methods outlined in \secref{sec:rl_policies}. A more in-depth review of the different policies is required, thus a finer subdivision has been made in different subsections per policy type: \subsecref{subsec:rl_batch} focuses on batch policies, \subsecref{subsec:rl_llqp} focuses on LLQP policies and \subsecref{subsec:rl_others} focuses on all remaining policies that do not fit in either of the previous categories.
 
+In order to maintain fairness amongst RL training methods, all required parameters are globally set and equal across all simulation scripts and can be found summarized in \tabref{tab:global_rl_params}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+Parameter        & Value  \\ \midrule
+$\gamma$            & 0.5    \\
+$\alpha$            & 0.0001 \\
+$\epsilon$          & 0.1    \\
+MC epochs        & 1000   \\
+TD training time & 1000   \\ \bottomrule
+\end{tabular}
+\caption{Global RL parameters}
+\label{tab:global_rl_params}
+\end{table}
+
+Comparisons will be made, where not otherwise stated, with the corresponding optimization policy simulated under the same conditions.
+
+\subsection{Batch}
+\label{subsec:rl_batch}
+
+Five different batch policies with RL have been developed. \tabref{tab:rl_batch_policies_overview} gives an overview.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+k\_batch\_mc\_vfa       & 1-Batch     & MC            & Value Function Approximation & None                      \\
+k\_batch\_mc\_vfa\_op   & 1-Batch     & MC            & Value Function Approximation & Off Policy                \\
+k\_batch\_mc\_vfa\_opep & 1-Batch     & MC            & Value Function Approximation & $\epsilon$-Greedy Off Policy \\
+k\_batch\_td\_vfa\_op   & 1-Batch     & TD            & Value Function Approximation & Off Policy                \\
+k\_batchone\_td\_vfa\_op   & 1-Batch-One     & TD            & Value Function Approximation & Off Policy                \\ \bottomrule
+\end{tabular}%
+}
+\caption{Overview of developed batch policies with RL}
+\label{tab:rl_batch_policies_overview}
+\end{table}
+
+tab shows the summarized results. For the detailed results refer to 
 
 \subsection{LLQP}
+\label{subsec:rl_llqp}
 
 
 \subsection{Others}
+\label{subsec:rl_others}
 
 
 \section{Discussion}
@@ -1314,6 +1381,38 @@ Average System Load & 17.14             \\ \bottomrule
 \fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_EVO}{SQ evolution}{fig:SQ_NU3_GI3_SIM50_EVO}
 
 \clearpage
+
+\chapter{Reinforcement Learning Results}
+
+\section{K-Batch}
+
+\subsection{KPIs}
+\label{subsec:kbatch_rl_kpi_app}
+
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}{K-Batch with MC and VFA KPIs}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{K-Batch with MC, VFA and OP KPIs}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}{K-Batch with MC, VFA, OP and EP KPIs}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{K-Batch with TD, VFA and OP KPIs}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+
+\clearpage
+
+\subsection{Evolution}
+\label{subsec:kbatch_rl_evo_app}
+
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}{K-Batch with MC and VFA evolution}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{K-Batch with MC, VFA and OP evolution}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}{K-Batch with MC, VFA, OP and EP evolution}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{K-Batch with TD, VFA and OP evolution}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+
+\clearpage
+
+\subsection{Comparison with MSA}
+\label{subsec:kbatch_rl_msa_comp_app}
+
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa}{K-Batch with MC and VFA MSA comparison}{fig:k_batch_mc_vfa}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_op}{K-Batch with MC, VFA and OP MSA comparison}{fig:k_batch_mc_vfa_op}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_opep}{K-Batch with MC, VFA, OP and EP MSA comparison}{fig:k_batch_mc_vfa_opep}
+\fig[\textwidth]{kbatch_rl_res/k_batch_td_vfa_op}{K-Batch with TD, VFA, OP and EP MSA comparison}{fig:k_batch_td_vfa_op}
 
 \backmatter
 
