@@ -244,7 +244,7 @@ As Markov Decision Processes grow in size, so does the required computational me
 	\item flying a helicopter or having a robot move in space all require a continuous state space.
 \end{enumerate*}
 
-This very large state space requirement is a clear limitation to lookup tables. Even if memory would not be a constraint, the actual learning from such tables would be infeasible. In order to pragmatically learn by reinforcement on such huge problems, value function approximation in the domain of reinforcement learning proves to be a viable solution. For different types of reinforcement learning approaches \ie Monte-Carlo (MC) or Temporal Difference (TD) methods exist different types of value function approximation, ranging from simple linear combinations of features for MC to neural networks for TD learning. All these different methodologies are outlined in the tutorial by Geramifard \cite{Geramifard2013}.
+This huge state space requirement is a clear limitation to lookup tables. Even if memory would not be a constraint, the actual learning from such tables would be infeasible. In order to pragmatically learn by reinforcement on such huge problems, value function approximation in the domain of reinforcement learning proves to be a viable solution. For different types of reinforcement learning approaches \ie Monte-Carlo (MC) or Temporal Difference (TD) methods exist different types of value function approximation, ranging from simple linear combinations of features for MC to neural networks for TD learning. All these different methodologies are outlined in the tutorial by Geramifard \cite{Geramifard2013}.
 
 When working with on-line algorithms such as TD(0) it is important to choose correct parameters for an effective learning process, otherwise the learning algorithm put in place might never converge towards an optimal solution. This aspect is being discussed by Korda in which he depicts different non-asymptotic bounds for the temporal difference learning algorithms \cite{Korda2014}.
 
@@ -272,7 +272,7 @@ According to Matloff, there exist different world views for discrete event progr
 	\item Process oriented
 \end{enumerate}
 
-Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities. Since very small subdivisions of time are possible in such types of simulations, it is clear that the program might prove extremely inefficient, since most of the time there won't be any change in state for the simulated entities \cite{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated. By filling these gaps, a dramatical increase in computation can be observed \cite{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks.
+Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove extremely inefficient, since most of the time there won't be any change in state for the simulated entities \cite{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated. By filling these gaps, a dramatical increase in computation can be observed \cite{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks.
 
 On another note, Bahouth focuses in work on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues \cite{Bahouth2007}. According to his findings, a significant speedup can be achieved if one addresses the afore mentioned facets.
 
@@ -619,7 +619,7 @@ Dynamic programming (DP) is a set of ideas and algorithms that can be used to so
 
 By combining these two approaches we obtain the two most notable DP methods \ie policy and value iteration \cite[p. 95]{Sutton2017}.
 
-One very interesting property of DP methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \cite[p. 96]{Sutton2017}.
+One captivating property of DP methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \cite[p. 96]{Sutton2017}.
 
 \subsection{Monte Carlo Methods}
 \label{subsec:mc}
@@ -664,7 +664,7 @@ TD methods, same as MC methods, are not  excluded from the sufficient exploratio
 
 Up until now, the different methods presented are not suited for arbitrarily large state spaces. However, there exist solution to tackle such large state spaces: approximate solution methods. Under the assumption that one must always account for finite and limited computational resources, it is not feasible to find an optimal policy or value function, instead we have to settle for a good approximation of the solution \cite[p. 189]{Sutton2017}.
 
-An essential characteristic for reinforcement learning algorithms venturing in the area of approximation is being able of generalization \ie using experience from a limited subset of the state space to effectively generalize and produce a valid approximation of a much larger subset  \cite[p. 189]{Sutton2017}. Reinforcement learning methods are capable of achieving this by relying on supervised-learning function approximation which essentially use backups as training example \cite[p. 222]{Sutton2017}. Specifically, one very efficient set of methods are those using parametrized function approximation \ie the policy is parametrized by a weight vector $\theta$.
+An essential characteristic for reinforcement learning algorithms venturing in the area of approximation is being able of generalization \ie using experience from a limited subset of the state space to effectively generalize and produce a valid approximation of a much larger subset  \cite[p. 189]{Sutton2017}. Reinforcement learning methods are capable of achieving this by relying on supervised-learning function approximation which essentially use backups as training example \cite[p. 222]{Sutton2017}. Specifically, one brilliant set of methods are those using parametrized function approximation \ie the policy is parametrized by a weight vector $\theta$.
 
 The parametrized functional form with weight vector $\theta$ can be used to write $\hat{v}(s,\theta) \approx v_\pi (s)$, which is the approximated value of state $s$ given weight vector $\theta$ \cite[p. 191]{Sutton2017}.
 
@@ -683,7 +683,7 @@ where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$ is the v
 
 \ncite{add book citation}
 
-A very special case (and also very simple) is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-value function approximation as the inner product between $\theta$ and $\phi (s)$:
+An exceptional case is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-value function approximation as the inner product between $\theta$ and $\phi (s)$:
 
 \begin{equation}
 \label{eq:function_approximation_dot}
@@ -728,7 +728,7 @@ For the special case of the so called one-step Sarsa method, its gradient-descen
 	\theta_{t+1} \doteq \theta_t + \alpha [ R_{t+1} + \gamma \hat{q} (S_{t+1}, A_{t+1}, \theta_t) - \hat{q} (S_t, A_t, \theta_t) ] \nabla \hat{q} (S_t, A_t, \theta_t)
 \end{equation}
 
-and this method has also very good convergence properties towards optimality \cite[p. 230]{Sutton2017}.
+and this method has excellent good convergence properties towards optimality \cite[p. 230]{Sutton2017}.
 
 \subsection{Off-policy Methods with Approximation}
 \label{subsec:offpol_methods}
@@ -982,9 +982,7 @@ As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there a
 \fig[\textwidth]{mc_td}{MC and TD proposed updates comparison (own plot based on Sutton and Barto)}{fig:mc_td}
 
 As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the MC method needs to reach the end of an entire episode (\ie here it consists of actually arriving home) in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, TD is much more flexible and robust since it executes its updates at each time step, hence its name: temporal difference.
-
 For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the MC update and to \equref{eq:td_update} for the TD update.
-
 For the case at hand, this means that training the policies has to be done in a different fashion for the two update method: while TD based policies can be updated ``on-the-fly'', MC methods require batch training sessions (\ie episodes) at the end of which they can effectively learn and update their internal $\theta$ parameters to be used for the next episode. Not only the training approach is different, but the logic of the policy itself is also different: for TD based policies, the update method is being called internally since the policy knows its temporal steps, while for MC based policies the policy itself can not know a priori when an episode will finish and thus must relay on an ``artificial'' definition of such. The overall overhead is also different since MC based policies have to keep track of their whole episode history which usually is composed of the state space, chosen action and reward at time step $t$.
 
 
@@ -1075,7 +1073,7 @@ One key aspect in order to assert fairness across policies while simulated is to
 Based on Pinedo's and Zeng's definitions in their work, different KPIs have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load \cite{Pinedo2008},\cite{Zeng2005}. Following the formal definitions of the per token $j$ KPIs in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
 
 \begin{align}
-	L_j&=F_j-A_j \\
+	L_j&=F_j-A_j \label{eq:lateness}\\
 	w_j&=S_j-A_j \\
 	p_{ij}&=F_j-S_j
 \end{align}
@@ -1105,45 +1103,69 @@ The evolution plot shows the state change for the policy being analyzed by plott
 \section{Optimization}
 \label{sec:op_results}
 
-This section focuses on the results of the different types of policies using the optimization solvers outlined in \secref{sec:opt_policies}. All simulations have been tested with different combination of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, the global variables have been set to the following parameters:
+This section focuses on the results of the different types of policies using the optimization solvers outlined in \secref{sec:opt_policies}. All simulations have been tested with different combination of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, the global variables have been set to the following parameters according to the default column in \tabref{tab:global_parameters_sim}.
 
-\begin{itemize}
-	\item Number of users = 3
-	\item Service interval = 1
-	\item Generation interval = 3
-	\item Simulation time = 50
-	\item Batch size = 3
-	\item Task variability = 20\% of service interval
-	\item Worker variability = 20\% of service interval
-	\item Random state seed = 2
-	\item Workflow process = acquisition process
-\end{itemize}
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[htb]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Variable            & Default     & Valid Range \\ \midrule
+Number of Users     & 3           & $1-\infty$      \\
+Service Interval    & 1           & $1-\infty$      \\
+Generation Interval & 3           & $1-\infty$      \\
+Simulation Time     & 50          & $1-\infty$      \\
+Batch Size          & 3           & $1-\infty$      \\
+Task Varaibility    & 20\%        & $0\%-100\%$      \\
+Worker Variability  & 20\%        & $0\%-100\%$      \\
+Random State Seed   & 2           & $\emptyset-\infty$      \\
+Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
+\end{tabular}
+\caption{Global Parameters for Simulation}
+\label{tab:global_parameters_sim}
+\end{table}
 
-\subsection{Batch}
+\subsection{Comparison with Existing Literature}
 
-According to Zeng's work, two types of batch policies have been analyzed:
+Zeng outlines in his work how different global parameters configurations and policy usage can affect KPIs \cite[pp. 18-22]{Zeng2005}. He summarizes his key findings as follows:
 \begin{enumerate*}
-	\item K-Batch.
-	\item K-Batch-One.
+	\item Usage of batch optimization should be done only with medium to high system load \cite[p. 24]{Zeng2005}.
+	\item Batch optimization policies without a fixed batch size, such as 1-Batch-1 yield best results \cite[p. 24]{Zeng2005}.
 \end{enumerate*}
 
-Both batch policies have been tested using all optimization solvers outlined in \secref{sec:opt_policies}.
+In order to assert the validity of the interpretation of Zeng's works and all subsequent derivative policies a comparison with similar configurations has been made for all five optimization policies. Zeng's main efficiency parameter is defined as the maximum flowtime or ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \cite[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}.
 
-\subsubsection{K-Batch}
+In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results are obtained.
 
-\fig[\textwidth]{kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch with MSA batch size comparison}{fig:1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}
-\fig[\textwidth]{kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch with ST batch size comparison}{fig:1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{opt_kpis_comp}{KPIs comparison for different optimization policies using the MSA solver}{fig:opt_kpis_comp}  
 
-\subsubsection{K-Batch-One}
+The simulation have been run with the parameters outlined in tab by using the same solver used by Zeng: MSA.
 
-\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch-One with MSA batch size comparison}{fig:1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}
-\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch-One with ST batch size comparison}{fig:1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[htb]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+Variable            & Value     \\ \midrule
+Number of Users     & 5                 \\
+Service Interval    & 1              \\
+Generation Interval & 2                 \\
+Simulation Time     & 50              \\
+Batch Size          & 5 (1 for 1-Batch-1)               \\
+Task Varaibility    & 20\%             \\
+Worker Variability  & 20\%              \\
+Random State Seed   & 2                 \\
+Workflow Process    & Acquisition       \\ \bottomrule
+\end{tabular}
+\caption{Global Parameters for Optimization Policies KPIs Comparison}
+\label{tab:global_parameters_kpis_comp}
+\end{table}
 
-\subsection{LLQP}
+By running the same simulations with the optimization solver implemented for this thesis (\ie ST, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized KPIs amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
 
-
-\subsection{Others}
-
+\fig[\textwidth]{opt_st_kpis_comp}{KPIs comparison for different optimization policies using the ST solver}{fig:opt_st_kpis_comp}  
 
 \section{Reinforcement Learning}
 \label{sec:rl_results}
@@ -1174,6 +1196,7 @@ Both batch policies have been tested using all optimization solvers outlined in 
 \section{K-Batch}
 
 \subsection{KPIs}
+\label{subsec:kbatch_kpi_app}
 
 \fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI}{K-Batch with MSA KPIs}{fig:3_BATCH_MSA_NU3_GI3_SIM50_KPI}
 \fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI}{K-Batch with DMF KPIs}{fig:3_BATCH_DMF_NU3_GI3_SIM50_KPI}
@@ -1181,7 +1204,10 @@ Both batch policies have been tested using all optimization solvers outlined in 
 \fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch with ESDMF KPIs}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}
 \fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI}{K-Batch with ST KPIs}{fig:3_BATCH_ST_NU3_GI3_SIM50_KPI}
 
+\clearpage
+
 \subsection{Evolution}
+\label{subsec:kbatch_evo_app}
 
 \fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO}{K-Batch with MSA evolution}{fig:3_BATCH_MSA_NU3_GI3_SIM50_EVO}
 \fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO}{K-Batch with DMF evolution}{fig:3_BATCH_DMF_NU3_GI3_SIM50_EVO}
@@ -1189,9 +1215,20 @@ Both batch policies have been tested using all optimization solvers outlined in 
 \fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch with ESDMF evolution}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}
 \fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO}{K-Batch with ST evolution}{fig:3_BATCH_ST_NU3_GI3_SIM50_EVO}
 
+\clearpage
+
+\subsection{Batch Sizes Comparison}
+\label{subsec:kbatch_bscomp_app}
+
+\fig[\textwidth]{kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch with MSA batch size comparison}{fig:1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch with ST batch size comparison}{fig:1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}
+
+\clearpage
+
 \section{K-Batch-One}
 
 \subsection{KPIs}
+\label{subsec:kbatchone_kpi_app}
 
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}{K-Batch-One with MSA KPIs}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}{K-Batch-One with DMF KPIs}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}
@@ -1199,7 +1236,10 @@ Both batch policies have been tested using all optimization solvers outlined in 
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch-One with ESDMF KPIs}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI}{K-Batch-One with ST KPIs}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_KPI}
 
+\clearpage
+
 \subsection{Evolution}
+\label{subsec:kbatchone_evo_app}
 
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}{K-Batch-One with MSA evolution}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}{K-Batch-One with DMF evolution}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}
@@ -1207,26 +1247,47 @@ Both batch policies have been tested using all optimization solvers outlined in 
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch-One with ESDMF evolution}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO}{K-Batch-One with ST evolution}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_EVO}
 
+\clearpage
+
+\subsection{Batch Sizes Comparison}
+\label{subsec:kbatchone_bscomp_app}
+
+\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch-One with MSA batch size comparison}{fig:1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch-One with ST batch size comparison}{fig:1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}
+
+\clearpage
+
 \section{LLQP}
 
 \subsection{KPIs}
+\label{subsec:llqp_kpi_app}
 
 \fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_KPI}{LLQP KPIs}{fig:LLQP_NU3_GI3_SIM50_KPI}
 
+\clearpage
+
 \subsection{Evolution}
+\label{subsec:llqp_evo_app}
 
 \fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_EVO}{LLQP evolution}{fig:LLQP_NU3_GI3_SIM50_EVO}
+
+\clearpage
 
 \section{SQ}
 
 \subsection{KPIs}
+\label{subsec:sq_kpi_app}
 
 \fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_KPI}{SQ KPIs}{fig:SQ_NU3_GI3_SIM50_KPI}
 
+\clearpage
+
 \subsection{Evolution}
+\label{subsec:sq_evo_app}
 
 \fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_EVO}{SQ evolution}{fig:SQ_NU3_GI3_SIM50_EVO}
 
+\clearpage
 
 \backmatter
 
