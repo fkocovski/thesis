@@ -203,6 +203,7 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/supert
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/glossaries/styles/glossary-tree.sty
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/glossaries/styles/glossary-tree.sty
 OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.glo
+OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.acn
 INPUT C:/Users/filip.kocovski/Desktop/thesis/glossaries.tex
 INPUT C:/Users/filip.kocovski/Desktop/thesis/glossaries.tex
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.aux
@@ -296,12 +297,12 @@ INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/h
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.toc
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.toc
-OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.toc
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8t.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb8t.vf
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvr8t.vf
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8r.tfm
+OUTPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.toc
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8t.tfm
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lof
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.lof
@@ -638,9 +639,20 @@ INPUT C:/Users/filip.kocovski/Desktop/thesis/img/llqp_rl_res/llqp_td_tf_op.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/llqp_rl_res/llqp_td_tf_op.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/llqp_rl_res/llqp_td_tf_op.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/img/llqp_rl_res/llqp_td_tf_op.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/others_rl_res/wz_td_vfa_op.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/others_rl_res/wz_td_vfa_op.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/others_rl_res/wz_td_vfa_op.pdf
+INPUT C:/Users/filip.kocovski/Desktop/thesis/img/others_rl_res/wz_td_vfa_op.pdf
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.gls
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.gls
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.gls
+INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.acr
+INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.acr
+INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.acr
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.bbl
 INPUT C:/Users/filip.kocovski/Desktop/thesis/thesis.bbl
 INPUT C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/tex/latex/psnfss/omsppl.fd

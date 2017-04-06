@@ -7,7 +7,7 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {4.1}{\ignorespaces Global Parameters for Simulation}}{39}{table.4.1}
 \contentsline {table}{\numberline {4.2}{\ignorespaces Global Parameters for Optimization Policies \glspl {kpi} Comparison}}{40}{table.4.2}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Reduction (in \%) across all \glspl {kpi} of the ST against the \gls {msa} solver}}{40}{table.4.3}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Reduction (in \%) across all \glspl {kpi} of the \gls {st} against the \gls {msa} solver}}{40}{table.4.3}
 \contentsline {table}{\numberline {4.4}{\ignorespaces Global \gls {rl} parameters}}{42}{table.4.4}
 \contentsline {table}{\numberline {4.5}{\ignorespaces Overview of developed batch policies with \gls {rl}}}{42}{table.4.5}
 \contentsline {table}{\numberline {4.6}{\ignorespaces Reduction (in \%) across all \glspl {kpi} of the batch policies with \gls {rl} against the \gls {msa} solver}}{42}{table.4.6}

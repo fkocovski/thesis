@@ -9,11 +9,11 @@
 % used to fix structure
 \usepackage{bookmark}
 \usepackage{amsfonts}
-\usepackage{glossaries}
+\usepackage[acronym]{glossaries}
 
 \makeglossaries
 
-\loadglsentries{glossaries.tex}
+\loadglsentries{glossaries}
 
 % see http://tex.stackexchange.com/questions/183149/cant-silence-a-pdftex-pdf-inclusion-multiple-pdfs-with-page-group-error for more information
 \pdfsuppresswarningpagegroup=1
@@ -249,7 +249,7 @@ As Markov Decision Processes grow in size, so does the required computational me
 	\item flying a helicopter or having a robot move in space all require a continuous state space.
 \end{enumerate*}
 
-This huge state space requirement is a clear limitation to lookup tables. Even if memory would not be a constraint, the actual learning from such tables would be infeasible. In order to pragmatically learn by reinforcement on such huge problems, \gls{vfa} in the domain of \gls{rl} proves to be a viable solution. For different types of \gls{rl} approaches \ie \gls{mc} or \gls{td} methods exist different types of \gls{vfa}, ranging from simple linear combinations of features for \gls{mc} to neural networks for \gls{td} learning. All these different methodologies are outlined in the tutorial by Geramifard \cite{Geramifard2013}.
+This huge state space requirement is a clear limitation to lookup tables. Even if memory would not be a constraint, the actual learning from such tables would be infeasible. In order to pragmatically learn by reinforcement on such huge problems, \gls{vfa} in the domain of \gls{rl} proves to be a viable solution. For different types of \gls{rl} approaches \ie \gls{mc} or \gls{td} methods exist different types of \gls{vfa}, ranging from simple linear combinations of features for \gls{mc} to \glspl{ann} for \gls{td} learning. All these different methodologies are outlined in the tutorial by Geramifard \cite{Geramifard2013}.
 
 When working with on-line algorithms such as \gls{td}(0) it is important to choose correct parameters for an effective learning process, otherwise the learning algorithm put in place might never converge towards an optimal solution. This aspect is being discussed by Korda in which he depicts different non-asymptotic bounds for the \gls{td} learning algorithms \cite{Korda2014}.
 
@@ -520,7 +520,7 @@ This formulation is colloquially called \gls{esdmf}.
 
 This version is however only possible by the nature of its implementation. Since the both the global as well as the local queues are implemented as FIFO queues, it is possible to relax the ordering constraint from the mathematical formulation since it is already implicitly defined by the implementation.
 
-Yet one last optimization of the method proposed by Zeng done in this thesis is a method that aims to optimally solve the assignment problem by changing its goal: minimize the service times by setting an upper bound on the maximum flowtime. This method uses a two step process in order to optimally solve the assignment problem:
+Yet one last optimization of the method proposed by Zeng done in this thesis is a method that aims to optimally solve the assignment problem by changing its goal: minimize the service times by setting an upper bound on the maximum flowtime and is called \gls{st}. This method uses a two step process in order to optimally solve the assignment problem:
 \begin{enumerate*}
 	\item optimally solve by means of using on of the \gls{dmf} optimization methods previously outlined. This yields an upper bound for the maximum flowtime.
 	\item use this upper bound as a constraint for the actual optimization in order to effectively optimize the problem for the minimal service time amongst users, jobs and their corresponding service time.
@@ -540,7 +540,7 @@ Yet one last optimization of the method proposed by Zeng done in this thesis is 
     \epsilon &= \num{1e-4}
 \end{align}
 
-\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The \gls{msa} method is the simplest solver and exhibits a linear complexity compared to the \gls{dmf} method proposed by Zeng. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, both solves the \gls{dmf} method and does it by keeping the same linear complexity as the \gls{msa} method. The ST method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:op_results}.
+\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The \gls{msa} method is the simplest solver and exhibits a linear complexity compared to the \gls{dmf} method proposed by Zeng. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, both solves the \gls{dmf} method and does it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:op_results}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -553,7 +553,7 @@ Solver & Computation Costs \\ \midrule
 \gls{dmf}   & $O(mn^2)$         \\
 \gls{sdmf}  & $O(mn^2)$         \\
 \gls{esdmf}  & $O(mn)$           \\
-ST 	   & $O(m^2n^2)$ \\	\bottomrule
+\gls{st} 	   & $O(m^2n^2)$ \\	\bottomrule
 \end{tabular}
 \caption{Comparison of computational costs for different solvers}
 \label{tab:big_oh_solvers}
@@ -660,7 +660,7 @@ where $G_t$ is the discounted return function defined by \equref{eq:expected_dis
 
 \gls{td} methods, same as \gls{mc} methods, are not  excluded from the sufficient exploration methods \cite[p. 147]{Sutton2017}. \gls{td} methods deal with this complication in two different ways:
 \begin{enumerate*}
-	\item \gls{onp} by using an algorithm called Sarsa and
+	\item \gls{onp} by using an algorithm called \gls{sarsa} and
 	\item \gls{op} by using an algorithm called Q-learning \cite[p. 128]{Sutton2017}.
 \end{enumerate*}
 
@@ -704,30 +704,30 @@ This simplified case of linear function approximation for state-value functions 
 
 \equref{eq:sgd_linear} tells us that for the simple linear case the SGD is nothing more than the corresponding features value  \cite[p. 199]{Sutton2017}.
 
-\subsubsection{Artificial Neural Networks}
+\subsubsection{\glsentrylongpl{ann}}
 
-Up to this point, we considered linear function approximation. Artificial neural networks (ANNs) can be used instead for nonlinear function approximation \cite[p. 199]{Sutton2017}. The simplest case of an ANN is a single feedforward perceptron, meaning that it has only one hidden layer (\ie a layer that is neither an input nor an output layer) and that the ANN at hand has no loops between its neurons, meaning that the output can not influence the input (compared to recurrent neural networks, in which the output indeed can influence the input) \cite[p. 216]{Sutton2017}. 
+Up to this point, we considered linear function approximation. \glspl{ann} can be used instead for nonlinear function approximation \cite[p. 199]{Sutton2017}. The simplest case of an \glspl{ann} is a single feedforward perceptron, meaning that it has only one hidden layer (\ie a layer that is neither an input nor an output layer) and that the \glspl{ann} at hand has no loops between its neurons, meaning that the output can not influence the input (compared to recurrent \glspl{ann}, in which the output indeed can influence the input) \cite[p. 216]{Sutton2017}. 
 
-The connections between neurons inside an ANN are called weights and the analogy to its human counterpart is how strong synaptic connections are \cite[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer ANN.
+The connections between neurons inside an \glspl{ann} are called weights and the analogy to its human counterpart is how strong synaptic connections are \cite[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer \glspl{ann}.
 
-The key about solving nonlinearity with ANN is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of the usually exhibits an ``S'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of rectified linear unit (ReLU), which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
+The key about solving nonlinearity with \glspl{ann} is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of the usually exhibits an ``S'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of rectified linear unit (ReLU), which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
 
-\fig[0.6\textwidth]{ann_1h}{Single layer ANN}{fig:ann_1h}
+\fig[0.6\textwidth]{ann_1h}{Single layer \glspl{ann}}{fig:ann_1h}
 
-Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development toward more complex ANN with multiple hidden layers (\ie multi-layer perceptrons) has been on the rise \cite[p. 217]{Sutton2017}. These complex ANN allow to solve many artificial intelligence tasks in a much more efficient way \cite{Bengio2009}. This area is called deep \gls{rl} and it has shed light on solutions that were never though possible before (for practical applications refer to Mnih's \cite{Mnih2015} and Silver's work \cite{Silver2016})\footnote{Note that the class of deep ANN used in these works is a particular one called deep convolutional networks, which are specialized networks used for processing high dimensional data arranged in spatial arrays like images \cite[p. 219]{Sutton2017},\cite{Lecun1998}.} \cite{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer ANN.
+Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development toward more complex \glspl{ann} with multiple hidden layers (\ie multi-layer perceptrons) has been on the rise \cite[p. 217]{Sutton2017}. These complex \glspl{ann} allow to solve many artificial intelligence tasks in a much more efficient way \cite{Bengio2009}. This area is called deep \gls{rl} and it has shed light on solutions that were never though possible before (for practical applications refer to Mnih's \cite{Mnih2015} and Silver's work \cite{Silver2016})\footnote{Note that the class of deep \glspl{ann} used in these works is a particular one called deep convolutional networks, which are specialized networks used for processing high dimensional data arranged in spatial arrays like images \cite[p. 219]{Sutton2017},\cite{Lecun1998}.} \cite{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer \glspl{ann}.
 
-\fig[0.6\textwidth]{ann_2h}{Multi layer ANN}{fig:ann_2h}
+\fig[0.6\textwidth]{ann_2h}{Multi layer \glspl{ann}}{fig:ann_2h}
 
-Despite appearing more complex, ANN rely on a similar approach for learning (\ie updating their internal parameters, or in this case the whole network synaptic connections) based on the SGD method outlined in \subsecref{subsec:onpol_pred} \cite[p. 217]{Sutton2017}. This algorithm is called backpropagation and consists of doing a forward pass in which the activation function of each neuron is computed and then a backward pass computes the partial derivatives for each synaptic connection \cite[p. 218]{Sutton2017}.
+Despite appearing more complex, \glspl{ann} rely on a similar approach for learning (\ie updating their internal parameters, or in this case the whole network synaptic connections) based on the SGD method outlined in \subsecref{subsec:onpol_pred} \cite[p. 217]{Sutton2017}. This algorithm is called backpropagation and consists of doing a forward pass in which the activation function of each neuron is computed and then a backward pass computes the partial derivatives for each synaptic connection \cite[p. 218]{Sutton2017}.
 
-As any other function approximation method, overfitting can be a problem for ANN as well and it is particularly present for deep ANN \cite[p. 218]{Sutton2017}. There are different techniques that can be used in order to mitigate this effect, with the most prominent one being the dropout method outlined by Srivastava \cite{Srivastava2014}.
+As any other function approximation method, overfitting can be a problem for \glspl{ann} as well and it is particularly present for deep \glspl{ann} \cite[p. 218]{Sutton2017}. There are different techniques that can be used in order to mitigate this effect, with the most prominent one being the dropout method outlined by Srivastava \cite{Srivastava2014}.
 
 \subsection{\glsentrylong{onp} Control with Approximation}
 \label{subsec:onpol_control}
 
 Moving towards control with \gls{vfa}, we now focus on the approximation of the action-value function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton2017}.
 
-For the special case of the so called one-step Sarsa method, its gradient-descent update for the action-value function is defined as follows:
+For the special case of the so called one-step \gls{sarsa} method, its gradient-descent update for the action-value function is defined as follows:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha [ R_{t+1} + \gamma \hat{q} (S_{t+1}, A_{t+1}, \theta_t) - \hat{q} (S_t, A_t, \theta_t) ] \nabla \hat{q} (S_t, A_t, \theta_t)
@@ -951,9 +951,9 @@ The policy probabilities method takes as input parameter the current state space
 	chosen_action = self.RANDOM_STATE_PROBABILITIES.choice(self.number_of_users, p=probabilities)
 \end{lstlisting}
 
-\subsubsection{Neural Networks as Function Approximation}
+\subsubsection{\glsentrylongpl{ann} as Function Approximation}
 
-Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, ANN can be used for nonlinear function approximation. The assignment problem poses its very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our ANN using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space (\ie input to the ANN) together with its weights and biases, creates an activation function and maps the prediction layer (\ie output) with a softmax classification.
+Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, \glspl{ann} can be used for nonlinear function approximation. The assignment problem poses its very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our \glspl{ann} using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space (\ie input to the \glspl{ann}) together with its weights and biases, creates an activation function and maps the prediction layer (\ie output) with a softmax classification.
 
 \begin{lstlisting}[caption=Modeling of a single perceptron in \gls{tf},label=lst:ann_1h,style=CustomPython]
 	with tf.name_scope("neural_network"):
@@ -963,7 +963,7 @@ Up to this point we have used linear functions for the approximation of the $Q$ 
     	probabilities = [tf.nn.softmax(pred[b]) for b in range(batch_input)]
 \end{lstlisting}
 
-In order to update the ANN, a backpropagation has to take place. Such an update can both be made following a \gls{mc} or \gls{td} approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a SGD approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an ANN following a \gls{mc} update method is done.
+In order to update the \glspl{ann}, a backpropagation has to take place. Such an update can both be made following a \gls{mc} or \gls{td} approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a SGD approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an \glspl{ann} following a \gls{mc} update method is done.
 
 \begin{lstlisting}[caption=Backpropagation algorithm following a \gls{mc} update approach,label=lst:mc_backpropagation,style=CustomPython]
     def train(self):
@@ -1188,13 +1188,13 @@ Workflow Process    & Acquisition       \\ \bottomrule
 \label{tab:global_parameters_kpis_comp}
 \end{table}
 
-By running the same simulations with the optimization solver implemented for this thesis (\ie ST, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized \glspl{kpi} amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
+By running the same simulations with the optimization solver implemented for this thesis (\ie \gls{st}, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized \glspl{kpi} amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
 
-\fig[\textwidth]{opt_st_kpis_comp}{\glspl{kpi}  comparison for different optimization policies using the ST solver for batch policies}{fig:opt_st_kpis_comp}
+\fig[\textwidth]{opt_st_kpis_comp}{\glspl{kpi}  comparison for different optimization policies using the \gls{st} solver for batch policies}{fig:opt_st_kpis_comp}
 
-The percent reduction for both batch policies with a higher batch size is tiny, but when considering the reduction between the 1-Batch-1 policy with \gls{msa} and ST, a wealthy reduction is present for all \glspl{kpi}. For a detailed overview of the overall reductions of the ST against the \gls{msa} solver refer to \figref{fig:opt_kpis_comp_gain}.
+The percent reduction for both batch policies with a higher batch size is tiny, but when considering the reduction between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy reduction is present for all \glspl{kpi}. For a detailed overview of the overall reductions of the \gls{st} against the \gls{msa} solver refer to \figref{fig:opt_kpis_comp_gain}.
 
-\fig[\textwidth]{opt_kpis_comp_gain}{\glspl{kpi}  reduction comparison between the \gls{msa} and the ST solvers for different batch policies}{fig:opt_kpis_comp_gain}
+\fig[\textwidth]{opt_kpis_comp_gain}{\glspl{kpi}  reduction comparison between the \gls{msa} and the \gls{st} solvers for different batch policies}{fig:opt_kpis_comp_gain}
 
 Astonishing reductions have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by Zeng (for a detailed comparison of how different batch sizes affect the policy's \glspl{kpi} refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \cite[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
 
@@ -1210,7 +1210,7 @@ Wait Time           & 528.14             \\
 Service Time        & 19.75             \\
 Average System Load & 17.14             \\ \bottomrule
 \end{tabular}
-\caption{Reduction (in \%) across all \glspl{kpi} of the ST against the \gls{msa} solver}
+\caption{Reduction (in \%) across all \glspl{kpi} of the \gls{st} against the \gls{msa} solver}
 \label{tab:opt_kpis_comp_gain}
 \end{table}
 
@@ -1304,7 +1304,7 @@ Three different \gls{llqp} policies with \gls{rl} have been developed. \tabref{t
 Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
 llqp\_mc\_vfa\_op       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & \gls{op}                      \\
 llqp\_td\_vfa\_op   & \gls{llqp}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
-llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & Artificial Neural Network & \gls{op}                \\ \bottomrule
+llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{op}                \\ \bottomrule
 \end{tabular}%
 }
 \caption{Overview of developed \gls{llqp} policies with \gls{rl}}
@@ -1355,7 +1355,7 @@ Average System Load & -0.15                  & 0.19                  & -0.3     
 \fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI}{K-Batch with \gls{dmf} \glspl{kpi}}{fig:3_BATCH_DMF_NU3_GI3_SIM50_KPI}
 \fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI}{K-Batch with \gls{sdmf} \glspl{kpi}}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_KPI}
 \fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch with \gls{esdmf} \glspl{kpi}}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI}{K-Batch with ST \glspl{kpi}}{fig:3_BATCH_ST_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI}{K-Batch with \gls{st} \glspl{kpi}}{fig:3_BATCH_ST_NU3_GI3_SIM50_KPI}
 
 \clearpage
 
@@ -1366,7 +1366,7 @@ Average System Load & -0.15                  & 0.19                  & -0.3     
 \fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO}{K-Batch with \gls{dmf} evolution}{fig:3_BATCH_DMF_NU3_GI3_SIM50_EVO}
 \fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO}{K-Batch with \gls{sdmf} evolution}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_EVO}
 \fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch with \gls{esdmf} evolution}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO}{K-Batch with ST evolution}{fig:3_BATCH_ST_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO}{K-Batch with \gls{st} evolution}{fig:3_BATCH_ST_NU3_GI3_SIM50_EVO}
 
 \clearpage
 
@@ -1374,7 +1374,7 @@ Average System Load & -0.15                  & 0.19                  & -0.3     
 \label{subsec:kbatch_bscomp_app}
 
 \fig[\textwidth]{kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch with \gls{msa} batch size comparison}{fig:1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}
-\fig[\textwidth]{kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch with ST batch size comparison}{fig:1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch with \gls{st} batch size comparison}{fig:1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}
 
 \clearpage
 
@@ -1387,7 +1387,7 @@ Average System Load & -0.15                  & 0.19                  & -0.3     
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{dmf} \glspl{kpi}}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{sdmf} \glspl{kpi}}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{esdmf} \glspl{kpi}}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI}{K-Batch-1 with ST \glspl{kpi}}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{st} \glspl{kpi}}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_KPI}
 
 \clearpage
 
@@ -1398,7 +1398,7 @@ Average System Load & -0.15                  & 0.19                  & -0.3     
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{dmf} evolution}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{sdmf} evolution}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}
 \fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{esdmf} evolution}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO}{K-Batch-1 with ST evolution}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{st} evolution}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_EVO}
 
 \clearpage
 
@@ -1406,7 +1406,7 @@ Average System Load & -0.15                  & 0.19                  & -0.3     
 \label{subsec:kbatchone_bscomp_app}
 
 \fig[\textwidth]{kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch-1 with \gls{msa} batch size comparison}{fig:1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}
-\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch-1 with ST batch size comparison}{fig:1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch-1 with \gls{st} batch size comparison}{fig:1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}
 
 \clearpage
 
@@ -1550,6 +1550,30 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & Action 
 \label{tab:rl_llqp_add_policies_overview}
 \end{table}
 
+\clearpage
+
+\section{Others}
+
+\subsection{\glsentryshortpl{kpi}}
+\label{subsec:others_rl_kpi_app}
+
+\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\gls{wz} with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+
+\clearpage
+
+\subsection{Evolution}
+\label{subsec:others_rl_evo_app}
+
+%\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\gls{wz} with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+
+\clearpage
+
+\subsection{Comparison with \glsentryshort{msa}}
+\label{subsec:others_rl_msa_comp_app}
+
+\fig[\textwidth]{others_rl_res/wz_td_vfa_op}{\gls{wz} with \gls{td}, \gls{vfa} and \gls{op} \glspl{msa} comparison}{fig:wz_td_vfa_op}
+
+\clearpage
 
 \backmatter
 

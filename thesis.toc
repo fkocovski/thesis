@@ -37,7 +37,7 @@
 \contentsline {subsection}{\numberline {3.4.1}Prediction and Control Methods}{29}{subsection.3.4.1}
 \contentsline {subsubsection}{Value Function Approximation}{29}{section*.14}
 \contentsline {subsubsection}{Policy Gradient}{30}{section*.15}
-\contentsline {subsubsection}{Neural Networks as Function Approximation}{31}{section*.16}
+\contentsline {subsubsection}{Artificial Neural Networks as Function Approximation}{31}{section*.16}
 \contentsline {subsection}{\numberline {3.4.2}Update Methods}{32}{subsection.3.4.2}
 \contentsline {section}{\numberline {3.5}Hypothesis}{33}{section.3.5}
 \contentsline {section}{\numberline {3.6}Data}{33}{section.3.6}
@@ -88,3 +88,7 @@
 \contentsline {subsection}{\numberline {B.3.2}Evolution}{75}{subsection.B.3.2}
 \contentsline {subsection}{\numberline {B.3.3}Comparison with MSA}{76}{subsection.B.3.3}
 \contentsline {subsection}{\numberline {B.3.4}Additional Least Loaded Qualified Person Policies}{77}{subsection.B.3.4}
+\contentsline {section}{\numberline {B.4}Others}{78}{section.B.4}
+\contentsline {subsection}{\numberline {B.4.1}KPIs}{78}{subsection.B.4.1}
+\contentsline {subsection}{\numberline {B.4.2}Evolution}{79}{subsection.B.4.2}
+\contentsline {subsection}{\numberline {B.4.3}Comparison with MSA}{80}{subsection.B.4.3}
