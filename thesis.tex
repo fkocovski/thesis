@@ -9,6 +9,11 @@
 % used to fix structure
 \usepackage{bookmark}
 \usepackage{amsfonts}
+\usepackage{glossaries}
+
+\makeglossaries
+
+\loadglsentries{glossaries.tex}
 
 % see http://tex.stackexchange.com/questions/183149/cant-silence-a-pdftex-pdf-inclusion-multiple-pdfs-with-page-group-error for more information
 \pdfsuppresswarningpagegroup=1
@@ -77,7 +82,7 @@ Currently many different workflow engines exist, ranging from complete fully fun
 The objectives of these thesis build upon the work of Zeng and Zhao \cite{Zeng2005}, in which they depicted preliminary policies for optimal role resolution, and extends these capabilities from a threefold perspective:
 \begin{enumerate*}
 	\item further develops the mathematical premises and extends the capabilities of the batching policies proposed by Zeng and Zhao
-	\item explores the capabilities offered by reinforcement learning as addition and improvement for even precises, faster and better task assignment
+	\item explores the capabilities offered by \gls{rl} as addition and improvement for even precises, faster and better task assignment
 	\item deployment of the aforementioned optimization techniques in an operative environment of a real estate company using a workflow engine.
 \end{enumerate*}
 
@@ -178,14 +183,14 @@ He moreover defines three roles a workflow can fulfill:
 Considering capacities of resources restrictions under the assignment problem is an NP-hard computational problem and in his work Zeng focuses on how to solve the assignment problem and scheduling decisions with consideration of worker's preferences \cite{Zeng2005}. For this purpose he defines five workflow resolution policies:
 
 \begin{enumerate}
-	\item Load balanced approach (LLQP)
-	\item Shared queue (SQ)
+	\item \gls{llqp}
+	\item \gls{sq}
 	\item K-Batch
 	\item K-Batch-1
 	\item 1-Batch-1
 \end{enumerate}
 
-For all batching policies a simplified version of the dynamic minimization of the maximum flowtime (DMF) has to be solved \cite{Zeng2005}.
+For all batching policies a simplified version of \gls{dmf} has to be solved \cite{Zeng2005}.
 
 Zeng's key findings are outlined as follows:
 \begin{enumerate*}
@@ -227,13 +232,13 @@ In companies different types of workflow models can exist and Fan focuses on two
 
 Conceptual models serve as documentation for generic process requirements whereas logical models are used as definitions for technology oriented requirements \cite{Fan2012}. One difficult aspect is the transition from the former to the latter and Fan proposes a formal approach to efficiently support such transitions \cite{Fan2012}.
 
-\subsection{Reinforcement Learning}
+\subsection{\glsentrylong{rl}}
 
-Reinforcement learning is a branch of machine learning that promises to overcome the drawbacks posed by the latter by not requiring a training set for efficient machine decisions.
+\gls{rl} is a branch of machine learning that promises to overcome the drawbacks posed by the latter by not requiring a training set for efficient machine decisions.
 
-One of the first Monte Carlo based policy gradient methods is the algorithm proposed by Williams called REINFORCE \cite{Williams1992}.
+One of the first \gls{mc} based \gls{pg} methods is the algorithm proposed by Williams called REINFORCE \cite{Williams1992}.
 
-Policy gradient methods with value function approximation and their convergence is of vital importance and this can be achieved by representing the policy by an own function approximation which is independent of the value function and it is updated according to gradient of the expected rewards with respect to the afore mentioned policy \cite{Sutton1999}.
+\gls{pg} methods with \gls{vfa} and their convergence is of vital importance and this can be achieved by representing the policy by an own function approximation which is independent of the value function and it is updated according to gradient of the expected rewards with respect to the afore mentioned policy \cite{Sutton1999}.
 
 Discretization of the state action space is not always feasible and different techniques have to be used for tractability. Smith proposes such an approach which he calls ``self-organizing map'' \cite{Smith2002}.
 
@@ -244,15 +249,15 @@ As Markov Decision Processes grow in size, so does the required computational me
 	\item flying a helicopter or having a robot move in space all require a continuous state space.
 \end{enumerate*}
 
-This huge state space requirement is a clear limitation to lookup tables. Even if memory would not be a constraint, the actual learning from such tables would be infeasible. In order to pragmatically learn by reinforcement on such huge problems, value function approximation in the domain of reinforcement learning proves to be a viable solution. For different types of reinforcement learning approaches \ie Monte-Carlo (MC) or Temporal Difference (TD) methods exist different types of value function approximation, ranging from simple linear combinations of features for MC to neural networks for TD learning. All these different methodologies are outlined in the tutorial by Geramifard \cite{Geramifard2013}.
+This huge state space requirement is a clear limitation to lookup tables. Even if memory would not be a constraint, the actual learning from such tables would be infeasible. In order to pragmatically learn by reinforcement on such huge problems, \gls{vfa} in the domain of \gls{rl} proves to be a viable solution. For different types of \gls{rl} approaches \ie \gls{mc} or \gls{td} methods exist different types of \gls{vfa}, ranging from simple linear combinations of features for \gls{mc} to neural networks for \gls{td} learning. All these different methodologies are outlined in the tutorial by Geramifard \cite{Geramifard2013}.
 
-When working with on-line algorithms such as TD(0) it is important to choose correct parameters for an effective learning process, otherwise the learning algorithm put in place might never converge towards an optimal solution. This aspect is being discussed by Korda in which he depicts different non-asymptotic bounds for the temporal difference learning algorithms \cite{Korda2014}.
+When working with on-line algorithms such as \gls{td}(0) it is important to choose correct parameters for an effective learning process, otherwise the learning algorithm put in place might never converge towards an optimal solution. This aspect is being discussed by Korda in which he depicts different non-asymptotic bounds for the \gls{td} learning algorithms \cite{Korda2014}.
 
-There are two main fields in reinforcement learning, one is using value function approximation for either the state value function or for using control mechanisms with the state action value function, while the other one is using policy gradient methods for policy optimization. The latter offers different methods such as the naive finite difference methods, monte carlo based policy gradient methods and finally actor critic policy gradient methods \cite{Silver2014}.
+There are two main fields in \gls{rl}, one is using \gls{vfa} for either the state value function or for using control mechanisms with the state action value function, while the other one is using \gls{pg} methods for policy optimization. The latter offers different methods such as the naive finite difference methods, \gls{mc} based \gls{pg} methods and finally actor critic \gls{pg} methods \cite{Silver2014}.
 
-Notable works in the field of reinforcement learning and its application include Google DeepMind work on novel algorithms for tackling fields previously barely scratched, as mentioned by Mnih \etal and Silver \etal \cite{Mnih2015,Silver2016}.
+Notable works in the field of \gls{rl} and its application include Google DeepMind work on novel algorithms for tackling fields previously barely scratched, as mentioned by Mnih \etal and Silver \etal \cite{Mnih2015,Silver2016}.
 
-Sutton started working on the reinforcement learning topic in the early nineties and is now planning his third edition of his famous book on machine learning, which is due in 2017 \cite{Sutton2017}. In our case reinforcement learning is used in order for the policies to be able to alone get better by continuously analyzing their own decision models and optimize upon them.
+Sutton started working on the \gls{rl} topic in the early nineties and is now planning his third edition of his famous book on machine learning, which is due in 2017 \cite{Sutton2017}. In our case \gls{rl} is used in order for the policies to be able to alone get better by continuously analyzing their own decision models and optimize upon them.
 
 \subsection{Optimization}
 
@@ -262,7 +267,7 @@ Last but not least, according to the AIMMS guidelines, there are different linea
 
 \subsection{Simulation}
 
-Simulating queues can prove to be extremely difficult. The main differentiation needed here is that between continuous and step functions: the former is the result when the events being simulated yield values that if plotted against the simulation time give a continuous function. On the other hand, if we simulate events that yield discrete values, such as inventory changes in a storage facility and plot the results against the simulation time we would get so called step functions \cite{Matloff2008}.
+Simulating queues can prove to be arduous. The main differentiation needed here is that between continuous and step functions: the former is the result when the events being simulated yield values that if plotted against the simulation time give a continuous function. On the other hand, if we simulate events that yield discrete values, such as inventory changes in a storage facility and plot the results against the simulation time we would get so called step functions \cite{Matloff2008}.
 
 According to Matloff, there exist different world views for discrete event programing, as he calls them paradigms \cite{Matloff2008}:
 
@@ -272,7 +277,7 @@ According to Matloff, there exist different world views for discrete event progr
 	\item Process oriented
 \end{enumerate}
 
-Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove extremely inefficient, since most of the time there won't be any change in state for the simulated entities \cite{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated. By filling these gaps, a dramatical increase in computation can be observed \cite{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks.
+Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there won't be any change in state for the simulated entities \cite{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated. By filling these gaps, a dramatical increase in computation can be observed \cite{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks.
 
 On another note, Bahouth focuses in work on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues \cite{Bahouth2007}. According to his findings, a significant speedup can be achieved if one addresses the afore mentioned facets.
 
@@ -420,14 +425,14 @@ In its request method, each policy generates a policy job object, which is again
 Different types of policies have been implemented following the foundations laid by Zeng and Zhao as outlined in \subsecref{subsec:workflow}. In their work the authors investigate five ``role-resolution'' policies used for optimal task to user assignment \cite[p. 7]{Zeng2005}. Following a brief description of the five aforementioned policies:
 
 \begin{enumerate}
-	\item A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a FIFO fashion. The authors call this policy the ``least loaded qualified person'' or LLQP.
-	\item A policy that maintains a single queue being shared among all users is referred to the authors as ``shared queue'' or SQ policy.
-	\item Another policy that maintains both a shared queue among all users and each user having an own queue and transfers tasks from the former to the latter is called ``K-Batch'' policy. Transfer of tasks from the shared queue to users is done using an optimal task assignment procedure as soon as the shared queue reaches a critical batch size $K$.
-	\item The following policies takes the ``K-Batch'' policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the shared queue reaches the critical size $K$, however actual movement of tasks from the shared queue to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$. This policy is called according to the authors as ``K-Batch-1''
+	\item A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a FIFO fashion. The authors call this policy the ``\gls{llqp}''.
+	\item A policy that maintains a single queue being shared among all users is referred to the authors as ``\gls{sq}''.
+	\item Another policy that maintains both a \gls{sq} among all users and each user having an own queue and transfers tasks from the former to the latter is called ``K-Batch'' policy. Transfer of tasks from the \gls{sq} to users is done using an optimal task assignment procedure as soon as the \gls{sq} reaches a critical batch size $K$.
+	\item The following policies takes the ``K-Batch'' policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the \gls{sq} reaches the critical size $K$, however actual movement of tasks from the \gls{sq} to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$. This policy is called according to the authors as ``K-Batch-1''
 	\item The last policy further simplifies the fourth by weakening the batch size constraint and reduces it to one. This means that the optimal task assignment procedure is executed immediately. This policy is referred by the authors as ``1-Batch-1''.
 \end{enumerate}
 
-All batching policies require the solution of an optimization problem. The authors define this problem as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``minimizing sequential assignment (MSA)''\cite[p. 7]{Zeng2005}. The authors define the task flowtime as the elapsed simulation time between task generation and its completion \cite{Zeng2005,Baker1974}. Formally MSA is formulated as follows:
+All batching policies require the solution of an optimization problem. The authors define this problem as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``\gls{msa}''\cite[p. 7]{Zeng2005}. The authors define the task flowtime as the elapsed simulation time between task generation and its completion \cite{Zeng2005,Baker1974}. Formally \gls{msa} is formulated as follows:
 
 \begin{align}
     \min_z \quad z\\
@@ -443,7 +448,7 @@ The class inheritance structure of the policies implementation can be seen in \f
 
 \fig[\textwidth]{policies}{Policies class structure}{fig:policies}
 
-The authors definition of the MSA problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' (MF) as defined by Baker \cite{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the DMF problem \cite{Zeng2005}. The DMF problem is formally defined by Zeng as follows:
+The authors definition of the \gls{msa} problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' (MF) as defined by Baker \cite{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the \gls{dmf} problem \cite{Zeng2005}. The \gls{dmf} problem is formally defined by Zeng as follows:
 
 \begin{align}
     \min_z \quad z\\
@@ -456,7 +461,7 @@ The authors definition of the MSA problem is however a simplified version of the
     s_j &\geq 0
 \end{align}
 
-Again, all variables definition still hold without loss of generality as described by the authors \cite[p. 6]{Zeng2005}. As Zeng notes in his work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints but mentions that by adding auxiliary variables the aforementioned DMF formulation can be effectively converted into a mixed integer program and thus solve it \cite[p. 6]{Zeng2005}. On this note Zeng argues that the application of the DMF problem in practice poses some problems \cite{Zeng2005}. In this thesis however a conversion of the DMF formulation proposed by Zeng is formulated in order to adequately solve the optimization problem. The formal definition of such optimization problem is called EDMF (which stands for extended DMF) and is devised as follows:
+Again, all variables definition still hold without loss of generality as described by the authors \cite[p. 6]{Zeng2005}. As Zeng notes in his work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints but mentions that by adding auxiliary variables the aforementioned \gls{dmf} formulation can be effectively converted into a mixed integer program and thus solve it \cite[p. 6]{Zeng2005}. On this note Zeng argues that the application of the \gls{dmf} problem in practice poses some problems \cite{Zeng2005}. In this thesis however a conversion of the \gls{dmf} formulation proposed by Zeng is formulated in order to adequately solve the optimization problem. The formal definition of such optimization problem is called EDMF (which stands for extended \gls{dmf}) and is devised as follows:
 
 \begin{align}
     \min_{z_{\text{max}}} \quad z_{\text{max}}\\
@@ -470,7 +475,7 @@ Again, all variables definition still hold without loss of generality as describ
     z_{i*k} &\geq 0 \quad \forall i \in W, \forall k \in T
 \end{align}
 
-This formulation clearly gets rid of the nonlinear constraints while still accounting for dynamical arrival of tasks, making thus the DMF problem as defined by Zeng effectively solvable.
+This formulation clearly gets rid of the nonlinear constraints while still accounting for dynamical arrival of tasks, making thus the \gls{dmf} problem as defined by Zeng effectively solvable.
 
 When considering the minimization of the maximum flowtime of a task inside a process, the EDMF formulation can be further simplified by adopting some assumptions about the order and sequence of tasks. Based on how the batching policies are implemented, the policy job objects to be worked by users are implicitly stored in a sorted fashion. This means that the $z$ helper variables defined for EDMF are not strictly necessary and thus can be compressed by \equref{eq:simplified_z_with_k}:
 
@@ -487,7 +492,7 @@ In order to calculate $z_{ijk}$, one has to consider also when user $i$ will act
 
 \fig[0.75\textwidth]{dmf_problem}{EDMF Task Assignment}{fig:edmf_task_assignment}
 
-Without further ado, the simplified formulation of the extended DMF variant (called SDMF, which stands for simplified DMF) is the following:
+Without further ado, the simplified formulation of the extended \gls{dmf} variant (called \gls{sdmf}) is the following:
 
 \begin{align}
     \min_{z_{\text{max}}} \quad z_{\text{max}}\\
@@ -498,11 +503,11 @@ Without further ado, the simplified formulation of the extended DMF variant (cal
     \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0
 \end{align}
 
-By comparing both formulation it is clear that SDMF manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness. Please note, however, that this simplification is only possible because of the nature of the implementation.
+By comparing both formulation it is clear that \gls{sdmf} manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness. Please note, however, that this simplification is only possible because of the nature of the implementation.
 
 Based on this approach and by further exploiting the implicit order implementation of task arrival in the global queues for both batching policies, it is possible to argue that the $k$ sequence indexing can be relaxed as well, thus even further simplifying the mathematical formulation and respectively the optimization problem size and computation costs.
 
-The formulation of the DMF problem by relaxing both the $z$ variables and $k$ indexes, it is possible to formulate the same DMF problem as follows:
+The formulation of the \gls{dmf} problem by relaxing both the $z$ variables and $k$ indexes, it is possible to formulate the same \gls{dmf} problem as follows:
 
 \begin{align}
     \min_{z_{\text{max}}} \quad z_{\text{max}}\\
@@ -511,13 +516,13 @@ The formulation of the DMF problem by relaxing both the $z$ variables and $k$ in
     a_i + \sum_{k=1}^j (p_{ik} + w_k I(k=j))x_{ik} &\leq z_{\text{max}}
 \end{align}
 
-This formulation is colloquially called the ESDMF method (extremely simplified DMF).
+This formulation is colloquially called \gls{esdmf}.
 
-This extremely simplified version is however only possible by the nature of its implementation. Since the both the global as well as the local queues are implemented as FIFO queues, it is possible to relax the ordering constraint from the mathematical formulation since it is already implicitly defined by the implementation.
+This version is however only possible by the nature of its implementation. Since the both the global as well as the local queues are implemented as FIFO queues, it is possible to relax the ordering constraint from the mathematical formulation since it is already implicitly defined by the implementation.
 
 Yet one last optimization of the method proposed by Zeng done in this thesis is a method that aims to optimally solve the assignment problem by changing its goal: minimize the service times by setting an upper bound on the maximum flowtime. This method uses a two step process in order to optimally solve the assignment problem:
 \begin{enumerate*}
-	\item optimally solve by means of using on of the DMF optimization methods previously outlined. This yields an upper bound for the maximum flowtime.
+	\item optimally solve by means of using on of the \gls{dmf} optimization methods previously outlined. This yields an upper bound for the maximum flowtime.
 	\item use this upper bound as a constraint for the actual optimization in order to effectively optimize the problem for the minimal service time amongst users, jobs and their corresponding service time.
 \end{enumerate*}
 
@@ -535,7 +540,7 @@ Yet one last optimization of the method proposed by Zeng done in this thesis is 
     \epsilon &= \num{1e-4}
 \end{align}
 
-\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The MSA method is the simplest solver and exhibits a linear complexity compared to the DMF method proposed by Zeng. As it can be seen the methods implemented in this thesis, specifically the ESDMF method, both solves the DMF method and does it by keeping the same linear complexity as the MSA method. The ST method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:op_results}.
+\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The \gls{msa} method is the simplest solver and exhibits a linear complexity compared to the \gls{dmf} method proposed by Zeng. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, both solves the \gls{dmf} method and does it by keeping the same linear complexity as the \gls{msa} method. The ST method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:op_results}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -544,31 +549,31 @@ Yet one last optimization of the method proposed by Zeng done in this thesis is 
 \begin{tabular}{@{}lc@{}}
 \toprule
 Solver & Computation Costs \\ \midrule
-MSA    & $O(mn)$           \\
-EDMF   & $O(mn^2)$         \\
-SDMF   & $O(mn^2)$         \\
-ESDMF  & $O(mn)$           \\
+\gls{msa}    & $O(mn)$           \\
+\gls{dmf}   & $O(mn^2)$         \\
+\gls{sdmf}  & $O(mn^2)$         \\
+\gls{esdmf}  & $O(mn)$           \\
 ST 	   & $O(m^2n^2)$ \\	\bottomrule
 \end{tabular}
 \caption{Comparison of computational costs for different solvers}
 \label{tab:big_oh_solvers}
 \end{table}
 
-\section{Reinforcement Learning Theory}
+\section{\glsentrylong{rl} Theory}
 
-In this section the reinforcement learning approach used to solve the different role resolution problems is depicted. Initially a foundation basis in the required knowledge is depicted and afterwards the description of the analysis environment implementation is presented.
+In this section the \gls{rl} approach used to solve the different role resolution problems is depicted. Initially a foundation basis in the required knowledge is depicted and afterwards the description of the analysis environment implementation is presented.
 
-\subsection{Reinforcement Learning Definition}
+\subsection{\glsentrylong{rl} Definition}
 
-Reinforcement learning is a novel approach originated as a branch from the broader field of machine learning. It is an automated approach to understanding and automating learning and decision-making \cite[p. 15]{Sutton2017}. It distinguishes itself from other approaches by its novel focus on learning thanks to an agent which directly interacts with its environment, without the necessity of relying on training sets \cite[p. 15]{Sutton2017}.
+\gls{rl} is a novel approach originated as a branch from the broader field of machine learning. It is an automated approach to understanding and automating learning and decision-making \cite[p. 15]{Sutton2017}. It distinguishes itself from other approaches by its novel focus on learning thanks to an agent which directly interacts with its environment, without the necessity of relying on training sets \cite[p. 15]{Sutton2017}.
 
-The formal framework used by reinforcement learning defines the interaction between the so called learning agent and its environment by means of states, actions and rewards \cite[p. 15]{Sutton2017}.
+The formal framework used by \gls{rl} defines the interaction between the so called learning agent and its environment by means of states, actions and rewards \cite[p. 15]{Sutton2017}.
 
-Key concepts in the field of reinforcement learning are those of values and value functions which helps distinguish reinforcement learning methods from evolutionary methods which have to undergo scalar evaluations of entire policies \cite[p. 15]{Sutton2017}.
+Key concepts in the field of \gls{rl} are those of values and value functions which helps distinguish \gls{rl} methods from evolutionary methods which have to undergo scalar evaluations of entire policies \cite[p. 15]{Sutton2017}.
 
 \subsection{Finite Markov Decision Processes}
 
-Reinforcement learning approaches learn by interacting with the environment in order to achieve a goal. The agent interacting with the environment does this in a sequence of discrete time steps, it performs actions (choices made by the agent), reaches then states (basis for making decisions) and eventually receives rewards (basis for evaluating the choices) \cite[p. 73]{Sutton2017}. Moreover, a policy is a stochastic rule that the agent relies upon to choose actions as a function of states \cite[p. 73]{Sutton2017}. Ultimately, the sole goal of the agent is to maximize the reward that it receives over time \cite[p. 73]{Sutton2017}.
+\gls{rl} approaches learn by interacting with the environment in order to achieve a goal. The agent interacting with the environment does this in a sequence of discrete time steps, it performs actions (choices made by the agent), reaches then states (basis for making decisions) and eventually receives rewards (basis for evaluating the choices) \cite[p. 73]{Sutton2017}. Moreover, a policy is a stochastic rule that the agent relies upon to choose actions as a function of states \cite[p. 73]{Sutton2017}. Ultimately, the sole goal of the agent is to maximize the reward that it receives over time \cite[p. 73]{Sutton2017}.
 
 Returns are modeled as functions of future rewards that an agents must maximize \cite[p. 73]{Sutton2017}. There exist two types of return functions which depend on the nature of the tasks and a discounting preference:
 \begin{enumerate*}
@@ -621,50 +626,50 @@ By combining these two approaches we obtain the two most notable DP methods \ie 
 
 One captivating property of DP methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \cite[p. 96]{Sutton2017}.
 
-\subsection{Monte Carlo Methods}
+\subsection{\glsentrylong{mc} Methods}
 \label{subsec:mc}
 
-Monte Carlo (MC) methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton2017}. This approach yields different advantages over the DP methods seen in \subsecref{subsec:dp}:
+\gls{mc} methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton2017}. This approach yields different advantages over the DP methods seen in \subsecref{subsec:dp}:
 \begin{enumerate*}
 	\item they do not need a model of the environment's dynamics as they learn the optimal solutions by merely interacting with the environment,
 	\item since the learn from sample episodes, they are very well suited for simulation environments,
-	\item it is efficient and surprisingly easy to use MC methods to focus on smaller regions or subsets of a problem and
-	\item MC methods are more robust when it comes to violations of the Markov property since they do not bootstrap for updating their values \cite[p. 123]{Sutton2017}.
+	\item it is efficient and surprisingly easy to use \gls{mc} methods to focus on smaller regions or subsets of a problem and
+	\item \gls{mc} methods are more robust when it comes to violations of the Markov property since they do not bootstrap for updating their values \cite[p. 123]{Sutton2017}.
 \end{enumerate*}
 
-One of the drawbacks that MC methods bring along is the concept of maintaining sufficient exploration: by always acting greedily, alternative states will never yield their returns thus potentially never learning that they might prove to be better \cite[p. 123]{Sutton2017}.
+One of the drawbacks that \gls{mc} methods bring along is the concept of maintaining sufficient exploration: by always acting greedily, alternative states will never yield their returns thus potentially never learning that they might prove to be better \cite[p. 123]{Sutton2017}.
 
-A MC simplified method can be formally defined as follows:
+A \gls{mc} simplified method can be formally defined as follows:
 
 \begin{equation}
 \label{eq:mc_update}
 	V(S_t) \leftarrow V(S_t) + \alpha [G_t - V(S_t)]
 \end{equation}
 
-where $G_t$ is the discounted return function defined by \equref{eq:expected_discounted_return} and $\alpha$ is a constant step-size parameter \cite[p. 127]{Sutton2017}. MC methods must wait until the end of one episode in order to evaluate the incremental value of $V(S_t)$ since only at that point in time $G_t$ is known \cite[p. 128]{Sutton2017}.
+where $G_t$ is the discounted return function defined by \equref{eq:expected_discounted_return} and $\alpha$ is a constant step-size parameter \cite[p. 127]{Sutton2017}. \gls{mc} methods must wait until the end of one episode in order to evaluate the incremental value of $V(S_t)$ since only at that point in time $G_t$ is known \cite[p. 128]{Sutton2017}.
 
-\subsection{Temporal-Difference Learning}
+\subsection{\glsentrylong{td} Learning}
 \label{subsec:td_learning}
 
-Temporal-difference (TD) are yet another set of learning methods for reinforcement learning. Compared to the MC methods explained in \subsecref{subsec:mc}, TD methods do not need to wait all the way up to the end of an episode to actually learn, they only must wait until the next step \ie they can bootstrap \cite[p. 128]{Sutton2017}. When they reach time step $t+1$, they observe a reward $R_{t+1}$ which then use to estimate $V(S_{t+1})$ \cite[p. 128]{Sutton2017}. The simplest TD method, which is called $TD(0)$, is defined as follows:
+\gls{td} are yet another set of learning methods for \gls{rl}. Compared to the \gls{mc} methods explained in \subsecref{subsec:mc}, \gls{td} methods do not need to wait all the way up to the end of an episode to actually learn, they only must wait until the next step \ie they can bootstrap \cite[p. 128]{Sutton2017}. When they reach time step $t+1$, they observe a reward $R_{t+1}$ which then use to estimate $V(S_{t+1})$ \cite[p. 128]{Sutton2017}. The simplest \gls{td} method, which is called $\gls{td}(0)$, is defined as follows:
 
 \begin{equation}
 \label{eq:td_update}
 	V(S_t) \leftarrow V(S_t) + \alpha [R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]
 \end{equation}
 
-TD methods, same as MC methods, are not  excluded from the sufficient exploration methods \cite[p. 147]{Sutton2017}. TD methods deal with this complication in two different ways:
+\gls{td} methods, same as \gls{mc} methods, are not  excluded from the sufficient exploration methods \cite[p. 147]{Sutton2017}. \gls{td} methods deal with this complication in two different ways:
 \begin{enumerate*}
-	\item on policy by using an algorithm called Sarsa and
-	\item off policy by using an algorithm called Q-learning \cite[p. 128]{Sutton2017}.
+	\item \gls{onp} by using an algorithm called Sarsa and
+	\item \gls{op} by using an algorithm called Q-learning \cite[p. 128]{Sutton2017}.
 \end{enumerate*}
 
-\subsection{On-policy Prediction with Approximation}
+\subsection{\glsentrylong{onp} Prediction with Approximation}
 \label{subsec:onpol_pred}
 
 Up until now, the different methods presented are not suited for arbitrarily large state spaces. However, there exist solution to tackle such large state spaces: approximate solution methods. Under the assumption that one must always account for finite and limited computational resources, it is not feasible to find an optimal policy or value function, instead we have to settle for a good approximation of the solution \cite[p. 189]{Sutton2017}.
 
-An essential characteristic for reinforcement learning algorithms venturing in the area of approximation is being able of generalization \ie using experience from a limited subset of the state space to effectively generalize and produce a valid approximation of a much larger subset  \cite[p. 189]{Sutton2017}. Reinforcement learning methods are capable of achieving this by relying on supervised-learning function approximation which essentially use backups as training example \cite[p. 222]{Sutton2017}. Specifically, one brilliant set of methods are those using parametrized function approximation \ie the policy is parametrized by a weight vector $\theta$.
+An essential characteristic for \gls{rl} algorithms venturing in the area of approximation is being able of generalization \ie using experience from a limited subset of the state space to effectively generalize and produce a valid approximation of a much larger subset  \cite[p. 189]{Sutton2017}. \gls{rl} methods are capable of achieving this by relying on supervised-learning function approximation which essentially use backups as training example \cite[p. 222]{Sutton2017}. Specifically, one brilliant set of methods are those using parametrized function approximation \ie the policy is parametrized by a weight vector $\theta$.
 
 The parametrized functional form with weight vector $\theta$ can be used to write $\hat{v}(s,\theta) \approx v_\pi (s)$, which is the approximated value of state $s$ given weight vector $\theta$ \cite[p. 191]{Sutton2017}.
 
@@ -683,7 +688,7 @@ where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$ is the v
 
 \ncite{add book citation}
 
-An exceptional case is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-value function approximation as the inner product between $\theta$ and $\phi (s)$:
+An exceptional case is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-\gls{vfa} as the inner product between $\theta$ and $\phi (s)$:
 
 \begin{equation}
 \label{eq:function_approximation_dot}
@@ -705,11 +710,11 @@ Up to this point, we considered linear function approximation. Artificial neural
 
 The connections between neurons inside an ANN are called weights and the analogy to its human counterpart is how strong synaptic connections are \cite[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer ANN.
 
-The key about solving nonlinearity with ANN is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of the usually exhibits an ``S'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of rectified linear unit (ReLU), which have become extremely popular in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
+The key about solving nonlinearity with ANN is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of the usually exhibits an ``S'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of rectified linear unit (ReLU), which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
 
 \fig[0.6\textwidth]{ann_1h}{Single layer ANN}{fig:ann_1h}
 
-Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development toward more complex ANN with multiple hidden layers (\ie multi-layer perceptrons) has been on the rise \cite[p. 217]{Sutton2017}. These complex ANN allow to solve many artificial intelligence tasks in a much more efficient way \cite{Bengio2009}. This area is called deep reinforcement learning and it has shed light on solutions that were never though possible before (for practical applications refer to Mnih's \cite{Mnih2015} and Silver's work \cite{Silver2016})\footnote{Note that the class of deep ANN used in these works is a particular one called deep convolutional networks, which are specialized networks used for processing high dimensional data arranged in spatial arrays like images \cite[p. 219]{Sutton2017},\cite{Lecun1998}.} \cite{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer ANN.
+Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development toward more complex ANN with multiple hidden layers (\ie multi-layer perceptrons) has been on the rise \cite[p. 217]{Sutton2017}. These complex ANN allow to solve many artificial intelligence tasks in a much more efficient way \cite{Bengio2009}. This area is called deep \gls{rl} and it has shed light on solutions that were never though possible before (for practical applications refer to Mnih's \cite{Mnih2015} and Silver's work \cite{Silver2016})\footnote{Note that the class of deep ANN used in these works is a particular one called deep convolutional networks, which are specialized networks used for processing high dimensional data arranged in spatial arrays like images \cite[p. 219]{Sutton2017},\cite{Lecun1998}.} \cite{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer ANN.
 
 \fig[0.6\textwidth]{ann_2h}{Multi layer ANN}{fig:ann_2h}
 
@@ -717,10 +722,10 @@ Despite appearing more complex, ANN rely on a similar approach for learning (\ie
 
 As any other function approximation method, overfitting can be a problem for ANN as well and it is particularly present for deep ANN \cite[p. 218]{Sutton2017}. There are different techniques that can be used in order to mitigate this effect, with the most prominent one being the dropout method outlined by Srivastava \cite{Srivastava2014}.
 
-\subsection{On-policy Control with Approximation}
+\subsection{\glsentrylong{onp} Control with Approximation}
 \label{subsec:onpol_control}
 
-Moving towards control with value function approximation, we now focus on the approximation of the action-value function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton2017}.
+Moving towards control with \gls{vfa}, we now focus on the approximation of the action-value function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton2017}.
 
 For the special case of the so called one-step Sarsa method, its gradient-descent update for the action-value function is defined as follows:
 
@@ -730,21 +735,21 @@ For the special case of the so called one-step Sarsa method, its gradient-descen
 
 and this method has excellent good convergence properties towards optimality \cite[p. 230]{Sutton2017}.
 
-\subsection{Off-policy Methods with Approximation}
+\subsection{\glsentrylong{op} Methods with Approximation}
 \label{subsec:offpol_methods}
 
-When moving towards the field of off-policy learning, one of the biggest problems that one might incur in is the convergence problem: off-policy learning with approximation is considerably harder compared to its tabular counterpart \cite[p. 243]{Sutton2017}. Off-policy learning defines two policies, $\pi$ and $\mu$, where the former is the value function we seek to learn based on the latter \cite[p. 243]{Sutton2017}.
+When moving towards the field of \gls{op} learning, one of the biggest problems that one might incur in is the convergence problem: \gls{op} learning with approximation is considerably harder compared to its tabular counterpart \cite[p. 243]{Sutton2017}. \gls{op} learning defines two policies, $\pi$ and $\mu$, where the former is the value function we seek to learn based on the latter \cite[p. 243]{Sutton2017}.
 
-A new aspect being introduced in off-policy learning is the importance sampling concept, formally defined as follow:
+A new aspect being introduced in \gls{op} learning is the importance sampling concept, formally defined as follow:
 
 \begin{equation}
 \label{eq:importance_sampling}
 	\rho_t \doteq \frac{\pi(A_t|S_t)}{\mu(A_t|S_t)}
 \end{equation}
 
-which can be used to ``warp the update distribution back to the on-policy distribution, so that semi-gradient methods are guaranteed to converge.'' \cite[p. 243]{Sutton2017}.
+which can be used to ``warp the update distribution back to the \gls{onp} distribution, so that semi-gradient methods are guaranteed to converge.'' \cite[p. 243]{Sutton2017}.
 
-During off-policy learning, both policies $\pi$ and $\mu$ are usually defined as full greedy and somewhat more exploratory $\epsilon$-greedy \cite[p. 243]{Sutton2017}.
+During \gls{op} learning, both policies $\pi$ and $\mu$ are usually defined as full greedy and somewhat more exploratory $\epsilon$-greedy \cite[p. 243]{Sutton2017}.
 
 For the purpose of this thesis, the focus has been put upon the episodic action value update algorithms, defined as follows:
 
@@ -753,12 +758,12 @@ For the purpose of this thesis, the focus has been put upon the episodic action 
 	\delta_t &\doteq R_{t+1} + \gamma \underbrace{\sum_a \pi (a|S_{t+1}) \hat{q} (S_{t+1},a,\theta_t)}_{\max_a \hat{q} (S_{t+1},a,\theta_t)} - \hat{q} (S_t,A_t,\theta_t)
 \end{align}
 
-what is important to note here, is that the episodic off-policy algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \cite[p. 244]{Sutton2017}. The authors state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed \cite[p. 244]{Sutton2017}.
+what is important to note here, is that the episodic \gls{op} algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \cite[p. 244]{Sutton2017}. The authors state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed \cite[p. 244]{Sutton2017}.
 
-\subsection{Policy Gradient Methods}
+\subsection{\glsentrylong{pg} Methods}
 \label{subsec:polgrad_methods}
 
-Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{Actor-critic methods are an exception, where a learned value function is used in combination with policy gradient as a baseline in order to lower variance.}  \cite[p. 265]{Sutton2017}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton2017}. For policy gradient methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
+Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{Actor-critic methods are an exception, where a learned value function is used in combination with \gls{pg} as a baseline in order to lower variance.}  \cite[p. 265]{Sutton2017}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton2017}. For \gls{pg} methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha \widehat{\nabla \eta (\theta_t)}
@@ -784,7 +789,7 @@ Moreover, the preferences can be, as previously mentioned:
 
 \ie simply linear in features \cite[p. 266]{Sutton2017}.
 
-With these definitions in mind, one can formally define one of the very first Monte Carlo based policy gradient methods: REINFORCE \cite{Williams1992}.
+With these definitions in mind, one can formally define one of the very first \gls{mc} based \gls{pg} methods: REINFORCE \cite{Williams1992}.
 
 Williams defines his REINFORCE algorithm by the following update function:
 
@@ -802,9 +807,9 @@ For the REINFORCE algorithm, its eligibility vector is defined as follows:
 
 and this method has solid convergence properties \cite[p. 271]{Sutton2017}.
 
-\subsubsection{Policy Gradient with Baseline}
+\subsubsection{\glsentrylong{pg} with Baseline}
 
-REINFORCE, however, being a method based on Monte Carlo it might exhibit high variance and prove relatively slow in its learning rate \cite[p. 271]{Sutton2017}. By introducing a baseline $b(s)$ to compare the action value:
+REINFORCE, however, being a method based on \gls{mc} it might exhibit high variance and prove relatively slow in its learning rate \cite[p. 271]{Sutton2017}. By introducing a baseline $b(s)$ to compare the action value:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha (G_t - \overbrace{b(S_t)}^{\text{baseline}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
@@ -812,33 +817,33 @@ REINFORCE, however, being a method based on Monte Carlo it might exhibit high va
 
 one can achieve a positive effect towards diminishing variance of the update rule \cite[p. 271]{Sutton2017}.
 
-\subsubsection{Actor-Critic Policy Gradient}
+\subsubsection{Actor-Critic \glsentrylong{pg}}
 
 By introducing a base line, we have seen that variance can be lowered, however, the REINFORCE algorithm with a baseline is not a proper actor-critic method as its state-value function is only used as baseline and not as a critic \ie it is not used for bootstrapping \cite[p. 273]{Sutton2017}. By introducing bootstrapping we introduce bias and dependence of the quality of the approximated function, which in turn help to reduce variance and learn faster \cite[p. 273]{Sutton2017}. 
 
-The only negative aspect still remaining is that policy gradient methods are still based on a full Monte Carlo update trajectory: this can be also mitigated by replacing the update function by temporal difference learning approaches, such as those defined in \subsecref{subsec:td_learning} \cite[p. 273]{Sutton2017}.
+The only negative aspect still remaining is that \gls{pg} methods are still based on a full \gls{mc} update trajectory: this can be also mitigated by replacing the update function by \gls{td} learning approaches, such as those defined in \subsecref{subsec:td_learning} \cite[p. 273]{Sutton2017}.
 
 The formal definition of a one-step actor-critic update method is depicted as follows:
 
 \begin{equation}
-	\theta_{t+1} \doteq \theta_t + \alpha(R_{t+1} + \overbrace{\gamma \hat{v}(S_{t+1},w)-\hat{v}(S_t,w)}^{\text{TD update}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
+	\theta_{t+1} \doteq \theta_t + \alpha(R_{t+1} + \overbrace{\gamma \hat{v}(S_{t+1},w)-\hat{v}(S_t,w)}^{\text{\gls{td} update}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
 \end{equation}
 
 and this is now a fully online implementation that executes updated after each newly visited state \cite[p. 274]{Sutton2017}. 
 
-\section{Reinforcement Learning Policies}
+\section{\glsentrylong{rl} Policies}
 \label{sec:rl_policies}
 
-Analog to \secref{sec:opt_policies}, the same policies are considered where now different reinforcement learning methods and techniques are used to solve the assignment problem.
+Analog to \secref{sec:opt_policies}, the same policies are considered where now different \gls{rl} methods and techniques are used to solve the assignment problem.
 
 Different subsections are used in order to separate better the different approaches used for each type of policy:
 \begin{enumerate*}
 	\item Batch policy methods.
-	\item LLQP policy methods.
+	\item \gls{llqp} policy methods.
 	\item other policy methods that do not fit in any of the previous categories.
 \end{enumerate*}
 
-The two key concepts required in order to effectively apply reinforcement learning techniques in the domain of workflow processes and the optimal assignment of jobs to users are:
+The two key concepts required in order to effectively apply \gls{rl} techniques in the domain of workflow processes and the optimal assignment of jobs to users are:
 \begin{enumerate}
 	\item correctly defined states and actions spaces.
 	\item precise rewards definition.
@@ -851,7 +856,7 @@ In the next subsections a distinction between prediction and update methods is o
 
 As previously outlined in \subsecref{subsec:onpol_pred}, \subsecref{subsec:onpol_control}, \subsecref{subsec:offpol_methods} and \subsecref{subsec:polgrad_methods} there are different prediction and control methods that can be applied.
 
-\subsubsection{Value Function Approximation}
+\subsubsection{\glsentrylong{vfa}}
 
 As mentioned in \secref{sec:rl_policies}, it is crucial to correctly define the states and actions space for each problem. Each request that the policy receives generates a policy job object which is then passed in the internal evaluate method of the policy. Inside this method, for each policy job the state space $S$ is defined as a $n \times n+1$ matrix which contains all busy times of the potential candidates (\ie users) concatenated to the user's current service time for the job. Formally the state space is defined as depicted in \equref{eq:kbatch_sp}:
 
@@ -868,11 +873,11 @@ As mentioned in \secref{sec:rl_policies}, it is crucial to correctly define the 
 
 Since the possible actions are represented by the number of users, the state space is modeled such that for each possible actions a 1-D vector containing all busy times plus the service time of the user are present.
 
-During the evaluation phase of a job the policy has to choose an action (\ie a user) by taking into account the current state space and its internal $\theta$ parameters. By using a state-value function approximation as defined in \equref{eq:function_approximation_dot}, the policy evaluates the highest score for each possible user.
+During the evaluation phase of a job the policy has to choose an action (\ie a user) by taking into account the current state space and its internal $\theta$ parameters. By using a state-\gls{vfa} as defined in \equref{eq:function_approximation_dot}, the policy evaluates the highest score for each possible user.
 
-As an example, let us consider a snippet of how a K-Batch policy using a linear state-value function approximation performs its choices during its greedy phase: it iterates over all possible actions and performs the dot product between the state space and the corresponding $\theta$ vector and then maximizes the returned $Q$ value. This approach can be seen in \lstref{lst:e_greedy} 
+As an example, let us consider a snippet of how a K-Batch policy using a linear state-\gls{vfa} performs its choices during its greedy phase: it iterates over all possible actions and performs the dot product between the state space and the corresponding $\theta$ vector and then maximizes the returned $Q$ value. This approach can be seen in \lstref{lst:e_greedy} 
 
-\begin{lstlisting}[caption=Epsilon greedy approach,label=lst:e_greedy,style=CustomPython]
+\begin{lstlisting}[caption=$\epsilon$-Greedy approach,label=lst:e_greedy,style=CustomPython]
     if self.greedy:
         action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
     else:
@@ -883,16 +888,16 @@ As an example, let us consider a snippet of how a K-Batch policy using a linear 
             action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
 \end{lstlisting}
 
-and its respective state-value function approximation in \lstref{lst:value_f_approx}.
+and its respective state-\gls{vfa} in \lstref{lst:value_f_approx}.
 
-\begin{lstlisting}[caption=State-value function approximation,label=lst:value_f_approx,style=CustomPython]
+\begin{lstlisting}[caption=State-\gls{vfa},label=lst:value_f_approx,style=CustomPython]
     def q(self, states, action):
         features = self.features(states, action)
         q = np.dot(features[action], self.theta[action])
         return q
 \end{lstlisting}
  
- $Q$ values are however only one part of the requirements set by reinforcement learning methods, the next crucial aspect is defining the reward function. Since reinforcement learning agents are able to back-propagate what they have learned from one episode and thus update their internal factors, correctly defining a reward is a must. Since the goal for our domain is minimizing the maximum flowtime (from now on this metric will be referred to as lateness) of a job, the reward itself corresponds to the lateness of a job during a specific task. This can be evaluated a priori since for each policy job we know its internal parameters required to calculate the lateness \ie busy time of user $i$ plus the service time of user $i$ for job $j$, or formally $a_i+p_{ij}$.
+ $Q$ values are however only one part of the requirements set by \gls{rl} methods, the next crucial aspect is defining the reward function. Since \gls{rl} agents are able to back-propagate what they have learned from one episode and thus update their internal factors, correctly defining a reward is a must. Since the goal for our domain is minimizing the maximum flowtime (from now on this metric will be referred to as lateness) of a job, the reward itself corresponds to the lateness of a job during a specific task. This can be evaluated a priori since for each policy job we know its internal parameters required to calculate the lateness \ie busy time of user $i$ plus the service time of user $i$ for job $j$, or formally $a_i+p_{ij}$.
 
  The last definition required in order to effectively apply the update on the policy's internal parameters $\theta$ is defining the SGD method as outlined by \equref{eq:sgd_linear}. This method will give us the direction in which we have to update our internal $\theta$ parameters during our chosen update method and it is nothing more than the features themselves. As an example, refer to \lstref{lst:features_definition} for the concrete implementation.
 
@@ -927,9 +932,9 @@ and its features vector looks as defined by \equref{eq:kbatch_features_ex}:
 	\end{bmatrix}
 \end{equation}
 
-\subsubsection{Policy Gradient}
+\subsubsection{\glsentrylong{pg}}
 
-With policy gradient methods the approach on how an action is chosen is shifted. Instead of maximizing a $Q$ value through internal $\theta$ parameters in order to choose the ``best greedy'' action, we now have probabilistic choices. As already outlined in \subsecref{subsec:polgrad_methods}, having a probabilistic policy $\pi$ means that the best action is now chosen according to the highest probability which follows a softmax distribution as defined in \equref{eq:probabilistic_preferences} and its implementation can be seen in \lstref{lst:softmax_probabilities}.
+With \gls{pg} methods the approach on how an action is chosen is shifted. Instead of maximizing a $Q$ value through internal $\theta$ parameters in order to choose the ``best greedy'' action, we now have probabilistic choices. As already outlined in \subsecref{subsec:polgrad_methods}, having a probabilistic policy $\pi$ means that the best action is now chosen according to the highest probability which follows a softmax distribution as defined in \equref{eq:probabilistic_preferences} and its implementation can be seen in \lstref{lst:softmax_probabilities}.
 
 \begin{lstlisting}[caption=Softmax distribution of preferences probabilities,label=lst:softmax_probabilities,style=CustomPython]
     def policy_probabilities(self, busy_times):
@@ -948,9 +953,9 @@ The policy probabilities method takes as input parameter the current state space
 
 \subsubsection{Neural Networks as Function Approximation}
 
-Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, ANN can be used for nonlinear function approximation. The assignment problem poses its very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a policy gradient approach, we can categorize the output layer of our ANN using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in Tensorflow: one hidden layer connects the state space (\ie input to the ANN) together with its weights and biases, creates an activation function and maps the prediction layer (\ie output) with a softmax classification.
+Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, ANN can be used for nonlinear function approximation. The assignment problem poses its very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our ANN using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space (\ie input to the ANN) together with its weights and biases, creates an activation function and maps the prediction layer (\ie output) with a softmax classification.
 
-\begin{lstlisting}[caption=Modeling of a single perceptron in Tensorflow,label=lst:ann_1h,style=CustomPython]
+\begin{lstlisting}[caption=Modeling of a single perceptron in \gls{tf},label=lst:ann_1h,style=CustomPython]
 	with tf.name_scope("neural_network"):
     	layer_1 = tf.add(tf.matmul(state_space_input, weights['h1']), biases['b1'])
     	layer_1 = tf.nn.elu(layer_1)
@@ -958,9 +963,9 @@ Up to this point we have used linear functions for the approximation of the $Q$ 
     	probabilities = [tf.nn.softmax(pred[b]) for b in range(batch_input)]
 \end{lstlisting}
 
-In order to update the ANN, a backpropagation has to take place. Such an update can both be made following a MC or TD approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a SGD approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an ANN following a MC update method is done.
+In order to update the ANN, a backpropagation has to take place. Such an update can both be made following a \gls{mc} or \gls{td} approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a SGD approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an ANN following a \gls{mc} update method is done.
 
-\begin{lstlisting}[caption=Backpropagation algorithm following a MC update approach,label=lst:mc_backpropagation,style=CustomPython]
+\begin{lstlisting}[caption=Backpropagation algorithm following a \gls{mc} update approach,label=lst:mc_backpropagation,style=CustomPython]
     def train(self):
         for t, (state, output, choices) in enumerate(self.history):
             disc_rewards = self.discount_rewards(t)
@@ -977,13 +982,13 @@ In order to update the ANN, a backpropagation has to take place. Such an update 
 \subsection{Update Methods}
 \label{subsec:update_methods}
 
-As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there are mainly two different methods to update the policy's internal $\theta$ parameters \ie MC and TD. Let us take the example outlined by Sutton and Barto of leaving the office and getting home and the respective updates proposed by the two update methods \cite[p. 130]{Sutton2017}. \figref{fig:mc_td} shows the graphical updates proposed by the two update methods.
+As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there are mainly two different methods to update the policy's internal $\theta$ parameters \ie \gls{mc} and \gls{td}. Let us take the example outlined by Sutton and Barto of leaving the office and getting home and the respective updates proposed by the two update methods \cite[p. 130]{Sutton2017}. \figref{fig:mc_td} shows the graphical updates proposed by the two update methods.
 
-\fig[\textwidth]{mc_td}{MC and TD proposed updates comparison (own plot based on Sutton and Barto)}{fig:mc_td}
+\fig[\textwidth]{mc_td}{\gls{mc} and \gls{td} proposed updates comparison (own plot based on Sutton and Barto)}{fig:mc_td}
 
-As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the MC method needs to reach the end of an entire episode (\ie here it consists of actually arriving home) in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, TD is much more flexible and robust since it executes its updates at each time step, hence its name: temporal difference.
-For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the MC update and to \equref{eq:td_update} for the TD update.
-For the case at hand, this means that training the policies has to be done in a different fashion for the two update method: while TD based policies can be updated ``on-the-fly'', MC methods require batch training sessions (\ie episodes) at the end of which they can effectively learn and update their internal $\theta$ parameters to be used for the next episode. Not only the training approach is different, but the logic of the policy itself is also different: for TD based policies, the update method is being called internally since the policy knows its temporal steps, while for MC based policies the policy itself can not know a priori when an episode will finish and thus must relay on an ``artificial'' definition of such. The overall overhead is also different since MC based policies have to keep track of their whole episode history which usually is composed of the state space, chosen action and reward at time step $t$.
+As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the \gls{mc} method needs to reach the end of an entire episode (\ie here it consists of actually arriving home) in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, \gls{td} is much more flexible and robust since it executes its updates at each time step, hence its name: \gls{td}.
+For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the \gls{mc} update and to \equref{eq:td_update} for the \gls{td} update.
+For the case at hand, this means that training the policies has to be done in a different fashion for the two update method: while \gls{td} based policies can be updated ``on-the-fly'', \gls{mc} methods require batch training sessions (\ie episodes) at the end of which they can effectively learn and update their internal $\theta$ parameters to be used for the next episode. Not only the training approach is different, but the logic of the policy itself is also different: for \gls{td} based policies, the update method is being called internally since the policy knows its temporal steps, while for \gls{mc} based policies the policy itself can not know a priori when an episode will finish and thus must relay on an ``artificial'' definition of such. The overall overhead is also different since \gls{mc} based policies have to keep track of their whole episode history which usually is composed of the state space, chosen action and reward at time step $t$.
 
 Sutton and Barto outline a qualitative comparison between both update methods which can be found summarized in table \tabref{tab:mc_td_comp}.
 
@@ -993,14 +998,14 @@ Sutton and Barto outline a qualitative comparison between both update methods wh
 \centering
 \begin{tabular}{@{}lll@{}}
 \toprule
-Characteristic & MC                     & TD                               \\ \midrule
+Characteristic & \gls{mc}                     & \gls{td}                               \\ \midrule
 Bootstrap      & No                     & Yes                              \\
 Update Time    & End of episode         & Each time step                   \\
 Discount       & Required               & Not required                     \\
 Convergance    & Good                   & Very Good                        \\
 Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \bottomrule
 \end{tabular}
-\caption{Qualitative comparison between MC and TD update methods \cite[p. 130]{Sutton2017}}
+\caption{Qualitative comparison between \gls{mc} and \gls{td} update methods \cite[p. 130]{Sutton2017}}
 \label{tab:mc_td_comp}
 \end{table}
 
@@ -1017,14 +1022,14 @@ In order to consistently and fairly evaluate all policies with the methods defin
 \begin{itemize}
 	\item Each policy has its own simulation script that initialized a process that uses the predefined policy as means to optimally assign jobs to tasks
 	\item Parameters are centrally defined.
-	\item Different KPIs have been defined which are used to assert the efficiency of one policy against one another.
+	\item Different \glspl{kpi} have been defined which are used to assert the efficiency of one policy against one another.
 \end{itemize}
 
 \subsection{Simulation script}
 
 Each simulation script is the abstract element that import all required dependencies, initializes the SimPy simulation environment, the statistics file into which the policy dumps all data on runtime, the policy object itself to be used for the assignment and the workflow process to be used. 
 
-\begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the DMF solver,label=lst:simulation_script,style=CustomPython]
+\begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the \gls{dmf} solver,label=lst:simulation_script,style=CustomPython]
 	import simpy
 	from evaluation.statistics import calculate_statistics
 	from evaluation.subplot_evolution import evolution
@@ -1086,9 +1091,9 @@ One key aspect in order to assert fairness across policies while simulated is to
 	SEED = 2
 \end{lstlisting}
 
-\subsection{KPIs for Asserting Policy's Efficacy and Data Visualization}
+\subsection{\glsentryshortpl{kpi} for Asserting Policy's Efficacy and Data Visualization}
 
-Based on Pinedo's and Zeng's definitions in their work, different KPIs have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load \cite{Pinedo2008},\cite{Zeng2005}. Following the formal definitions of the per token $j$ KPIs in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
+Based on Pinedo's and Zeng's definitions in their work, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load \cite{Pinedo2008},\cite{Zeng2005}. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
 
 \begin{align}
 	L_j&=F_j-A_j \label{eq:lateness}\\
@@ -1108,15 +1113,15 @@ and thus the average system load $\overline{l}$ over all users participating $n$
 	\overline{l} = \frac{\sum_i l_i}{n}
 \end{equation}
 
-A summary plot with all KPIs is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
+A summary plot with all \glspl{kpi} is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{KPIs summary plot for a 3-Batch policy using the MSA solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glspl{kpi}  summary plot for a 3-Batch policy using the \gls{msa} solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
 
 Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \secref{sec:opt_policies}.
 
 The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the MSA solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the \gls{msa} solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
 
 \clearpage
 
@@ -1148,7 +1153,7 @@ Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
 
 \subsection{Comparison with Existing Literature}
 
-Zeng outlines in his work how different global parameters configurations and policy usage can affect KPIs \cite[pp. 18-22]{Zeng2005}. He summarizes his key findings as follows:
+Zeng outlines in his work how different global parameters configurations and policy usage can affect \glspl{kpi} \cite[pp. 18-22]{Zeng2005}. He summarizes his key findings as follows:
 \begin{enumerate*}
 	\item Usage of batch optimization should be done only with medium to high system load \cite[p. 24]{Zeng2005}.
 	\item Batch optimization policies without a fixed batch size, such as 1-Batch-1 yield best results \cite[p. 24]{Zeng2005}.
@@ -1158,9 +1163,9 @@ In order to assert the validity of the interpretation of Zeng's works and all su
 
 In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results are obtained.
 
-\fig[\textwidth]{opt_kpis_comp}{KPIs comparison for different optimization policies using the MSA solver for batch policies}{fig:opt_kpis_comp}  
+\fig[\textwidth]{opt_kpis_comp}{\glspl{kpi}  comparison for different optimization policies using the \gls{msa} solver for batch policies}{fig:opt_kpis_comp}  
 
-The simulation have been run with the parameters outlined in tab by using the same solver used by Zeng: MSA.
+The simulation have been run with the parameters outlined in tab by using the same solver used by Zeng: \gls{msa}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1179,19 +1184,19 @@ Worker Variability  & 20\%              \\
 Random State Seed   & 2                 \\
 Workflow Process    & Acquisition       \\ \bottomrule
 \end{tabular}
-\caption{Global Parameters for Optimization Policies KPIs Comparison}
+\caption{Global Parameters for Optimization Policies \glspl{kpi} Comparison}
 \label{tab:global_parameters_kpis_comp}
 \end{table}
 
-By running the same simulations with the optimization solver implemented for this thesis (\ie ST, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized KPIs amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
+By running the same simulations with the optimization solver implemented for this thesis (\ie ST, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized \glspl{kpi} amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
 
-\fig[\textwidth]{opt_st_kpis_comp}{KPIs comparison for different optimization policies using the ST solver for batch policies}{fig:opt_st_kpis_comp}
+\fig[\textwidth]{opt_st_kpis_comp}{\glspl{kpi}  comparison for different optimization policies using the ST solver for batch policies}{fig:opt_st_kpis_comp}
 
-The percent reduction for both batch policies with a higher batch size is tiny, but when considering the reduction between the 1-Batch-1 policy with MSA and ST, a wealthy reduction is present for all KPIs. For a detailed overview of the overall reductions of the ST against the MSA solver refer to \figref{fig:opt_kpis_comp_gain}.
+The percent reduction for both batch policies with a higher batch size is tiny, but when considering the reduction between the 1-Batch-1 policy with \gls{msa} and ST, a wealthy reduction is present for all \glspl{kpi}. For a detailed overview of the overall reductions of the ST against the \gls{msa} solver refer to \figref{fig:opt_kpis_comp_gain}.
 
-\fig[\textwidth]{opt_kpis_comp_gain}{KPIs reduction comparison between the MSA and the ST solvers for different batch policies}{fig:opt_kpis_comp_gain}
+\fig[\textwidth]{opt_kpis_comp_gain}{\glspl{kpi}  reduction comparison between the \gls{msa} and the ST solvers for different batch policies}{fig:opt_kpis_comp_gain}
 
-Astonishing reductions have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by Zeng (for a detailed comparison of how different batch sizes affect the policy's KPIs refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \cite[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
+Astonishing reductions have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by Zeng (for a detailed comparison of how different batch sizes affect the policy's \glspl{kpi} refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \cite[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1199,24 +1204,24 @@ Astonishing reductions have been observed for the 1-Batch-1 policy, which is ind
 \centering
 \begin{tabular}{@{}ll@{}}
 \toprule
-KPI                 & Reduction (in \%) \\ \midrule
+\gls{kpi}                 & Reduction (in \%) \\ \midrule
 Lateness            & 38.28             \\
 Wait Time           & 528.14             \\
 Service Time        & 19.75             \\
 Average System Load & 17.14             \\ \bottomrule
 \end{tabular}
-\caption{Reduction (in \%) across all KPIs of the ST against the MSA solver}
+\caption{Reduction (in \%) across all \glspl{kpi} of the ST against the \gls{msa} solver}
 \label{tab:opt_kpis_comp_gain}
 \end{table}
 
 \clearpage
 
-\section{Reinforcement Learning}
+\section{\glsentrylong{rl}}
 \label{sec:rl_results}
 
-This section focuses on the results obtained with the reinforcement learning methods outlined in \secref{sec:rl_policies}. A more in-depth review of the different policies is required, thus a finer subdivision has been made in different subsections per policy type: \subsecref{subsec:rl_batch} focuses on batch policies, \subsecref{subsec:rl_llqp} focuses on LLQP policies and \subsecref{subsec:rl_others} focuses on all remaining policies that do not fit in either of the previous categories.
+This section focuses on the results obtained with the \gls{rl} methods outlined in \secref{sec:rl_policies}. A more in-depth review of the different policies is required, thus a finer subdivision has been made in different subsections per policy type: \subsecref{subsec:rl_batch} focuses on batch policies, \subsecref{subsec:rl_llqp} focuses on \gls{llqp} policies and \subsecref{subsec:rl_others} focuses on all remaining policies that do not fit in either of the previous categories.
 
-In order to maintain fairness amongst RL training methods, all required parameters are globally set and equal across all simulation scripts and can be found summarized in \tabref{tab:global_rl_params}.
+In order to maintain fairness amongst \gls{rl} training methods, all required parameters are globally set and equal across all simulation scripts and can be found summarized in \tabref{tab:global_rl_params}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1228,10 +1233,10 @@ Parameter        & Value  \\ \midrule
 $\gamma$            & 0.5    \\
 $\alpha$            & 0.0001 \\
 $\epsilon$          & 0.1    \\
-MC epochs        & 1000   \\
-TD training time & 1000   \\ \bottomrule
+\gls{mc} epochs        & 1000   \\
+\gls{td} training time & 1000   \\ \bottomrule
 \end{tabular}
-\caption{Global RL parameters}
+\caption{Global \gls{rl} parameters}
 \label{tab:global_rl_params}
 \end{table}
 
@@ -1240,7 +1245,7 @@ Comparisons will be made, where not otherwise stated, with the corresponding opt
 \subsection{Batch}
 \label{subsec:rl_batch}
 
-Five different batch policies with RL have been developed. \tabref{tab:rl_batch_policies_overview} gives an overview.
+Five different batch policies with \gls{rl} have been developed. \tabref{tab:rl_batch_policies_overview} gives an overview.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1251,18 +1256,18 @@ Five different batch policies with RL have been developed. \tabref{tab:rl_batch_
 \begin{tabular}{@{}lllll@{}}
 \toprule
 Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
-k\_batch\_mc\_vfa       & 1-Batch     & MC            & Value Function Approximation & None                      \\
-k\_batch\_mc\_vfa\_op   & 1-Batch     & MC            & Value Function Approximation & Off Policy                \\
-k\_batch\_mc\_vfa\_opep & 1-Batch     & MC            & Value Function Approximation & $\epsilon$-Greedy Off Policy \\
-k\_batch\_td\_vfa\_op   & 1-Batch     & TD            & Value Function Approximation & Off Policy                \\
-k\_batchone\_td\_vfa\_op   & 1-Batch-One     & TD            & Value Function Approximation & Off Policy                \\ \bottomrule
+k\_batch\_mc\_vfa       & 1-Batch     & \gls{mc}            & \gls{vfa} & None                      \\
+k\_batch\_mc\_vfa\_op   & 1-Batch     & \gls{mc}            & \gls{vfa} & \gls{op}                \\
+k\_batch\_mc\_vfa\_opep & 1-Batch     & \gls{mc}            & \gls{vfa} & $\epsilon$-Greedy \gls{op} \\
+k\_batch\_td\_vfa\_op   & 1-Batch     & \gls{td}            & \gls{vfa} & \gls{op}                \\
+k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \gls{op}                \\ \bottomrule
 \end{tabular}%
 }
-\caption{Overview of developed batch policies with RL}
+\caption{Overview of developed batch policies with \gls{rl}}
 \label{tab:rl_batch_policies_overview}
 \end{table}
 
-\tabref{tab:rl_batch_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:kbatch_rl_msa_comp_app} for K-Batch respectively to \subsecref{subsec:kbatchone_rl_msa_comp_app} for K-Batch-One.
+\tabref{tab:rl_batch_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:kbatch_rl_msa_comp_app} for K-Batch respectively to \subsecref{subsec:kbatchone_rl_msa_comp_app} for K-Batch-1.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1272,24 +1277,60 @@ k\_batchone\_td\_vfa\_op   & 1-Batch-One     & TD            & Value Function Ap
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}llllll@{}}
 \toprule
-KPI                 & k\_batch\_mc\_vfa & k\_batch\_mc\_vfa\_op & k\_batch\_mc\_vfa\_opep & k\_batch\_td\_vfa\_op & k\_batchone\_td\_vfa\_op \\ \midrule
+gls{kpi}                 & k\_batch\_mc\_vfa & k\_batch\_mc\_vfa\_op & k\_batch\_mc\_vfa\_opep & k\_batch\_td\_vfa\_op & k\_batchone\_td\_vfa\_op \\ \midrule
 Lateness            & 32.96                  & 33.88                      & 32.75                        & 33.71                      & 20.33                         \\
 Wait Time           & 230.3                  & 226.58                      & 167.28                        & 248.98                      & 44.4                         \\
 Service Time        & 12.07                  & 13.06                      & 14.71                        & 12.11                      & 14.14                         \\
 Average System Load & 11.74                  & 12.75                      & 14.4                        & 11.8                      & 13.81                         \\ \bottomrule
 \end{tabular}%
 }
-\caption{Reduction (in \%) across all KPIs of the batch policies with RL against the MSA solver}
+\caption{Reduction (in \%) across all \glspl{kpi} of the batch policies with \gls{rl} against the \gls{msa} solver}
 \label{tab:rl_batch_kpis_comp_gain}
 \end{table}
 
-\subsection{LLQP}
+\subsection{\glsentrylong{llqp}}
 \label{subsec:rl_llqp}
 
+Three different \gls{llqp} policies with \gls{rl} have been developed. \tabref{tab:rl_llqp_policies_overview} gives an overview. Other policies have been implemented for evaluating different \gls{rl} methods, however they are not considered for the final evaluation. These policies can be seen in \tabref{tab:rl_llqp_add_policies_overview}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+llqp\_mc\_vfa\_op       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & \gls{op}                      \\
+llqp\_td\_vfa\_op   & \gls{llqp}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
+llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & Artificial Neural Network & \gls{op}                \\ \bottomrule
+\end{tabular}%
+}
+\caption{Overview of developed \gls{llqp} policies with \gls{rl}}
+\label{tab:rl_llqp_policies_overview}
+\end{table}
+
+\tabref{tab:rl_llqp_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:llqp_rl_msa_comp_app}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_td\_vfa\_op & llqp\_td\_tf\_op \\ \midrule
+Lateness            & 0.18                  & 0.21                  & 0.81                 \\
+Wait Time           & 2.98                  & 0.81                  & 10.8                 \\
+Service Time        & -0.14                  & 0.14                  & -0.3                 \\
+Average System Load & -0.15                  & 0.19                  & -0.3                 \\ \bottomrule
+\end{tabular}
+\caption{Reduction (in \%) across all \glspl{kpi} of the \gls{llqp} policies with \gls{rl} against the \gls{msa} solver}
+\label{tab:rl_llqp_kpis_comp_gain}
+\end{table}
 
 \subsection{Others}
 \label{subsec:rl_others}
-
 
 \section{Discussion}
 \section{Research Contribution}
@@ -1307,24 +1348,24 @@ Average System Load & 11.74                  & 12.75                      & 14.4
 
 \section{K-Batch}
 
-\subsection{KPIs}
+\subsection{\glsentryshortpl{kpi}}
 \label{subsec:kbatch_kpi_app}
 
-\fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI}{K-Batch with MSA KPIs}{fig:3_BATCH_MSA_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI}{K-Batch with DMF KPIs}{fig:3_BATCH_DMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI}{K-Batch with SDMF KPIs}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch with ESDMF KPIs}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI}{K-Batch with ST KPIs}{fig:3_BATCH_ST_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI}{K-Batch with \gls{msa} \glspl{kpi}}{fig:3_BATCH_MSA_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI}{K-Batch with \gls{dmf} \glspl{kpi}}{fig:3_BATCH_DMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI}{K-Batch with \gls{sdmf} \glspl{kpi}}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch with \gls{esdmf} \glspl{kpi}}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI}{K-Batch with ST \glspl{kpi}}{fig:3_BATCH_ST_NU3_GI3_SIM50_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:kbatch_evo_app}
 
-\fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO}{K-Batch with MSA evolution}{fig:3_BATCH_MSA_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO}{K-Batch with DMF evolution}{fig:3_BATCH_DMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO}{K-Batch with SDMF evolution}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch with ESDMF evolution}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO}{K-Batch with \gls{msa} evolution}{fig:3_BATCH_MSA_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO}{K-Batch with \gls{dmf} evolution}{fig:3_BATCH_DMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO}{K-Batch with \gls{sdmf} evolution}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch with \gls{esdmf} evolution}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}
 \fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO}{K-Batch with ST evolution}{fig:3_BATCH_ST_NU3_GI3_SIM50_EVO}
 
 \clearpage
@@ -1332,129 +1373,187 @@ Average System Load & 11.74                  & 12.75                      & 14.4
 \subsection{Batch Sizes Comparison}
 \label{subsec:kbatch_bscomp_app}
 
-\fig[\textwidth]{kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch with MSA batch size comparison}{fig:1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch with \gls{msa} batch size comparison}{fig:1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}
 \fig[\textwidth]{kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch with ST batch size comparison}{fig:1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}
 
 \clearpage
 
-\section{K-Batch-One}
+\section{K-Batch-1}
 
-\subsection{KPIs}
+\subsection{\glsentryshortpl{kpi}}
 \label{subsec:kbatchone_kpi_app}
 
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}{K-Batch-One with MSA KPIs}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}{K-Batch-One with DMF KPIs}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}{K-Batch-One with SDMF KPIs}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch-One with ESDMF KPIs}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI}{K-Batch-One with ST KPIs}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{msa} \glspl{kpi}}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{dmf} \glspl{kpi}}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{sdmf} \glspl{kpi}}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{esdmf} \glspl{kpi}}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI}{K-Batch-1 with ST \glspl{kpi}}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:kbatchone_evo_app}
 
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}{K-Batch-One with MSA evolution}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}{K-Batch-One with DMF evolution}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}{K-Batch-One with SDMF evolution}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch-One with ESDMF evolution}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO}{K-Batch-One with ST evolution}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{msa} evolution}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{dmf} evolution}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{sdmf} evolution}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{esdmf} evolution}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO}{K-Batch-1 with ST evolution}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_EVO}
 
 \clearpage
 
 \subsection{Batch Sizes Comparison}
 \label{subsec:kbatchone_bscomp_app}
 
-\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch-One with MSA batch size comparison}{fig:1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}
-\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch-One with ST batch size comparison}{fig:1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch-1 with \gls{msa} batch size comparison}{fig:1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}
+\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch-1 with ST batch size comparison}{fig:1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}
 
 \clearpage
 
-\section{LLQP}
+\section{\glsentrylong{llqp}}
 
-\subsection{KPIs}
+\subsection{\glsentryshortpl{kpi}}
 \label{subsec:llqp_kpi_app}
 
-\fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_KPI}{LLQP KPIs}{fig:LLQP_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_KPI}{\gls{llqp} \glspl{kpi}}{fig:LLQP_NU3_GI3_SIM50_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:llqp_evo_app}
 
-\fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_EVO}{LLQP evolution}{fig:LLQP_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_EVO}{\gls{llqp} evolution}{fig:LLQP_NU3_GI3_SIM50_EVO}
 
 \clearpage
 
-\section{SQ}
+\section{\glsentrylong{sq}}
 
-\subsection{KPIs}
+\subsection{\glsentryshortpl{kpi}}
 \label{subsec:sq_kpi_app}
 
-\fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_KPI}{SQ KPIs}{fig:SQ_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_KPI}{\gls{sq} \glspl{kpi}}{fig:SQ_NU3_GI3_SIM50_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:sq_evo_app}
 
-\fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_EVO}{SQ evolution}{fig:SQ_NU3_GI3_SIM50_EVO}
+\fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_EVO}{\gls{sq} evolution}{fig:SQ_NU3_GI3_SIM50_EVO}
 
 \clearpage
 
-\chapter{Reinforcement Learning Results}
+\chapter{\glsentrylong{rl} Results}
 
 \section{K-Batch}
 
-\subsection{KPIs}
+\subsection{\glsentryshortpl{kpi}}
 \label{subsec:kbatch_rl_kpi_app}
 
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}{K-Batch with MC and VFA KPIs}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{K-Batch with MC, VFA and OP KPIs}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}{K-Batch with MC, VFA, OP and EP KPIs}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{K-Batch with TD, VFA and OP KPIs}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}{K-Batch with \gls{mc} and \gls{vfa} \glspl{kpi}}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{K-Batch with \gls{mc}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}{K-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} \glspl{kpi}}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{K-Batch with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:kbatch_rl_evo_app}
 
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}{K-Batch with MC and VFA evolution}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{K-Batch with MC, VFA and OP evolution}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}{K-Batch with MC, VFA, OP and EP evolution}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{K-Batch with TD, VFA and OP evolution}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}{K-Batch with \gls{mc} and \gls{vfa} evolution}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{K-Batch with \gls{mc}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}{K-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} evolution}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{K-Batch with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
 
 \clearpage
 
-\subsection{Comparison with MSA}
+\subsection{Comparison with \glsentryshort{msa}}
 \label{subsec:kbatch_rl_msa_comp_app}
 
-\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa}{K-Batch with MC and VFA MSA comparison}{fig:k_batch_mc_vfa}
-\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_op}{K-Batch with MC, VFA and OP MSA comparison}{fig:k_batch_mc_vfa_op}
-\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_opep}{K-Batch with MC, VFA, OP and EP MSA comparison}{fig:k_batch_mc_vfa_opep}
-\fig[\textwidth]{kbatch_rl_res/k_batch_td_vfa_op}{K-Batch with TD, VFA, OP and EP MSA comparison}{fig:k_batch_td_vfa_op}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa}{K-Batch with \gls{mc} and \gls{vfa} \gls{msa} comparison}{fig:k_batch_mc_vfa}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_op}{K-Batch with \gls{mc}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:k_batch_mc_vfa_op}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_opep}{K-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} \gls{msa} comparison}{fig:k_batch_mc_vfa_opep}
+\fig[\textwidth]{kbatch_rl_res/k_batch_td_vfa_op}{K-Batch with \gls{td}, \gls{vfa}, \gls{op} and \gls{ep} \gls{msa} comparison}{fig:k_batch_td_vfa_op}
 
-\section{K-Batch-One}
+\section{K-Batch-1}
 
-\subsection{KPIs}
+\subsection{\glsentryshortpl{kpi}}
 \label{subsec:kbatchone_rl_kpi_app}
 
-\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{K-Batch-One with TD, VFA and OP KPIs}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{K-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:kbatchone_rl_evo_app}
 
-%\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{K-Batch-One with TD, VFA and OP evolution}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{K-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
 
 \clearpage
 
-\subsection{Comparison with MSA}
+\subsection{Comparison with \glsentryshort{msa}}
 \label{subsec:kbatchone_rl_msa_comp_app}
 
-\fig[\textwidth]{kbatchone_rl_res/k_batchone_td_vfa_op}{K-Batch-One with TD, VFA and OP MSA comparison}{fig:k_batchone_td_vfa_op}
+\fig[\textwidth]{kbatchone_rl_res/k_batchone_td_vfa_op}{K-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:k_batchone_td_vfa_op}
+
+\clearpage
+
+\section{\glsentrylong{llqp}}
+
+\subsection{\glsentryshortpl{kpi}}
+\label{subsec:llqp_rl_kpi_app}
+
+\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{\gls{llqp} with \gls{mc}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\gls{llqp} with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\gls{llqp} with \gls{td}, \gls{tf} and \gls{op} \glspl{kpi}}{fig:LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+
+\clearpage
+
+\subsection{Evolution}
+\label{subsec:llqp_rl_evo_app}
+
+%\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{\gls{llqp} with \gls{mc}, \gls{vfa} and \gls{op} evolution}{fig:LLQP_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\gls{llqp} with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\gls{llqp} with \gls{td}, \gls{tf} and \gls{op} evolution}{fig:LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+
+\clearpage
+
+\subsection{Comparison with \glsentryshort{msa}}
+\label{subsec:llqp_rl_msa_comp_app}
+
+\fig[\textwidth]{llqp_rl_res/llqp_mc_vfa_op}{\gls{llqp} with \gls{mc}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:llqp_mc_vfa_op}
+\fig[\textwidth]{llqp_rl_res/llqp_td_vfa_op}{\gls{llqp} with \gls{td}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:llqp_td_vfa_op}
+\fig[\textwidth]{llqp_rl_res/llqp_td_tf_op}{\gls{llqp} with \gls{td}, \gls{tf} and \gls{op} \gls{msa} comparison}{fig:llqp_td_tf_op}
+
+\clearpage
+
+\subsection{Additional \glsentrylong{llqp} Policies}
+\label{subsec:llqp_rl_more_policies_app}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+llqp\_mc\_vfa       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & None                      \\
+llqp\_td\_vfa   & \gls{llqp}     & \gls{td}            & \gls{vfa} & None                \\
+llqp\_mc\_pg   & \gls{llqp}     & \gls{mc}            & \gls{pg} & None                \\
+llqp\_mc\_pg\_wb   & \gls{llqp}     & \gls{mc}            & \gls{pg} & With Baseline                \\
+llqp\_td\_pg\_ac   & \gls{llqp}     & \gls{td}            & \gls{pg} & Actor Critic                \\
+llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & Action Value Actor Critic                \\ \bottomrule
+\end{tabular}%
+}
+\caption{Overview of additional \gls{llqp} policies with \gls{rl}}
+\label{tab:rl_llqp_add_policies_overview}
+\end{table}
+
 
 \backmatter
+
+\printglossaries
 
 \nocite{*}
 

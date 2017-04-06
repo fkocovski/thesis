@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.31)  6 APR 2017 09:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.31)  6 APR 2017 16:13
 entering extended mode
 **C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
 (C:/Users/filip.kocovski/Desktop/thesis/thesis.tex
@@ -1046,24 +1046,240 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-) (C:\Users\filip.kocovski\Desktop\thesis\thesis.aux)
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\glossarie
+s\base\glossaries.sty"
+Package: glossaries 2017/01/19 v4.29 (NLCT)
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifth
+en.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xkeyval\x
+keyval.sty"
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\xkeyval
+\xkeyval.tex"
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\xkeyval
+\xkvutils.tex"
+\XKV@toks=\toks25
+\XKV@tempa@toks=\toks26
+)
+\XKV@depth=\count173
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\mfirstuc\
+mfirstuc.sty"
+Package: mfirstuc 2016/07/31 v2.04 (NLCT)
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\etoolbox\
+etoolbox.sty"
+Package: etoolbox 2017/01/02 v2.4 e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count174
+)
+\@glsmfirst=\toks27
+\@glsmrest=\toks28
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\textcase\
+textcase.sty"
+Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xfor\xfor
+.sty"
+Package: xfor 2009/02/05 v1.05 (NLCT)
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\datatool\
+datatool-base.sty"
+Package: datatool-base 2016/07/28 v2.27 (NLCT)
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\substr\su
+bstr.sty"
+Package: substr 2009/10/20 v1.2 Handle substrings
+\c@su@anzahl=\count175
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\datatool\
+datatool-fp.sty"
+Package: datatool-fp 2016/07/28 v2.27 (NLCT)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp.sty
+"
+Package: fp 1995/04/02
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\defpat
+tern.sty"
+Package: defpattern 1994/10/12
+\actioncount=\count176
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-bas
+ic.sty"
+Package: fp-basic 1996/05/13
+\FP@xs=\count177
+\FP@xia=\count178
+\FP@xib=\count179
+\FP@xfa=\count180
+\FP@xfb=\count181
+\FP@rega=\count182
+\FP@regb=\count183
+\FP@regs=\count184
+\FP@times=\count185
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-add
+ons.sty"
+Package: fp-addons 1995/03/15
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-sna
+p.sty"
+Package: fp-snap 1995/04/05
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-exp
+.sty"
+Package: fp-exp 1995/04/03
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-tri
+go.sty"
+Package: fp-trigo 1995/04/14
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-pas
+.sty"
+Package: fp-pas 1994/08/29
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-ran
+dom.sty"
+Package: fp-random 1995/02/23
+\FPseed=\count186
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-eqn
+.sty"
+Package: fp-eqn 1995/04/03
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-upn
+.sty"
+Package: fp-upn 1996/10/21
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fp\fp-eva
+l.sty"
+Package: fp-eval 1995/04/03
+)))
+\@dtl@toks=\toks29
+\@dtl@tmpcount=\count187
+\dtl@tmplength=\skip70
+\dtl@sortresult=\count188
+\@dtl@numgrpsepcount=\count189
+\@dtl@datatype=\count190
+\dtl@codeA=\count191
+\dtl@codeB=\count192
+\@dtl@foreach@level=\count193
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\glossarie
+s\base\glossaries-compatible-307.sty"
+Package: glossaries-compatible-307 2017/01/19 v4.29 (NLCT)
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tracklang
+\tracklang.sty"
+Package: tracklang 2017/03/25 v1.3.4 (NLCT) Track Languages
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\generic\trackla
+ng\tracklang.tex"))
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\glossarie
+s-english\glossaries-english.ldf"
+File: glossaries-english.ldf 2014/11/23 v1.0
+)
+\gls@level=\count194
+\@gls@tmpb=\toks30
+\gls@tmplen=\skip71
+\glskeylisttok=\toks31
+\glslabeltok=\toks32
+\glsshorttok=\toks33
+\glslongtok=\toks34
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\glossarie
+s\styles\glossary-hypernav.sty"
+Package: glossary-hypernav 2017/01/19 v4.29 (NLCT)
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\glossarie
+s\styles\glossary-list.sty"
+Package: glossary-list 2017/01/19 v4.29 (NLCT)
+\glslistdottedwidth=\skip72
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\glossarie
+s\styles\glossary-long.sty"
+Package: glossary-long 2017/01/19 v4.29 (NLCT)
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\lon
+gtable.sty"
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip73
+\LTright=\skip74
+\LTpre=\skip75
+\LTpost=\skip76
+\LTchunksize=\count195
+\LTcapwidth=\dimen183
+\LT@head=\box54
+\LT@firsthead=\box55
+\LT@foot=\box56
+\LT@lastfoot=\box57
+\LT@cols=\count196
+\LT@rows=\count197
+\c@LT@tables=\count198
+\c@LT@chunks=\count199
+\LT@p@ftn=\toks35
+)
+\glsdescwidth=\skip77
+\glspagelistwidth=\skip78
+)
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\glossarie
+s\styles\glossary-super.sty"
+Package: glossary-super 2017/01/19 v4.29 (NLCT)
+
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\supertabu
+lar\supertabular.sty"
+Package: supertabular 2004/02/20 v4.1e the supertabular environment
+\c@tracingst=\count266
+\ST@wd=\dimen184
+\ST@rightskip=\skip79
+\ST@leftskip=\skip80
+\ST@parfillskip=\skip81
+\ST@pageleft=\dimen185
+\ST@headht=\dimen186
+\ST@tailht=\dimen187
+\ST@pagesofar=\dimen188
+\ST@pboxht=\dimen189
+\ST@lineht=\dimen190
+\ST@stretchht=\dimen191
+\ST@prevht=\dimen192
+\ST@toadd=\dimen193
+\ST@dimen=\dimen194
+\ST@pbox=\box58
+))
+("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\glossarie
+s\styles\glossary-tree.sty"
+Package: glossary-tree 2017/01/19 v4.29 (NLCT)
+\glstreeindent=\skip82
+))
+\glswrite=\write3
+\glo@main@file=\write4
+\openout4 = `thesis.glo'.
+
+Package glossaries Info: Writing glossary file thesis.glo on input line 14.
+(C:\Users\filip.kocovski\Desktop\thesis\glossaries.tex) (C:\Users\filip.kocovsk
+i\Desktop\thesis\thesis.aux)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Try loading font information for T1+ppl on input line 30.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 35.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 ppl.fd"
@@ -1072,17 +1288,17 @@ File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\su
 pp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count173
-\scratchdimen=\dimen183
-\scratchbox=\box54
-\nofMPsegments=\count174
-\nofMParguments=\count175
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count176
-\MPscratchDim=\dimen184
-\MPnumerator=\count177
-\makeMPintoPDFobject=\count178
-\everyMPtoPDFconversion=\toks26
+\scratchcounter=\count267
+\scratchdimen=\dimen195
+\scratchbox=\box59
+\nofMPsegments=\count268
+\nofMParguments=\count269
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count270
+\MPscratchDim=\dimen196
+\MPnumerator=\count271
+\makeMPintoPDFobject=\count272
+\everyMPtoPDFconversion=\toks37
 )
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\
 epstopdf-base.sty"
@@ -1099,7 +1315,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\c@lstlisting=\count179
+\c@lstlisting=\count273
 Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
 
@@ -1185,8 +1401,8 @@ Dictionary: translator-basic-dictionary, Language: English
 iunitx-abbreviations.cfg"
 File: siunitx-abbreviations.cfg 2017/01/28 v2.7b siunitx: Abbreviated units
 )
-\AtBeginShipoutBox=\box55
-Package hyperref Info: Link coloring ON on input line 30.
+\AtBeginShipoutBox=\box60
+Package hyperref Info: Link coloring ON on input line 35.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\
 nameref.sty"
@@ -1196,48 +1412,50 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 k\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count180
+\c@section@level=\count274
 )
-LaTeX Info: Redefining \ref on input line 30.
-LaTeX Info: Redefining \pageref on input line 30.
-LaTeX Info: Redefining \nameref on input line 30.
-\c__siunitx_mathsf_int=\count181
-LaTeX Font Info:    Try loading font information for U+msa on input line 30.
+LaTeX Info: Redefining \ref on input line 35.
+LaTeX Info: Redefining \pageref on input line 35.
+LaTeX Info: Redefining \nameref on input line 35.
+\c__siunitx_mathsf_int=\count275
+LaTeX Font Info:    Try loading font information for U+msa on input line 35.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\
 umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 30.
+LaTeX Font Info:    Try loading font information for U+msb on input line 35.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\
 umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-\c__siunitx_mathtt_int=\count182
-LaTeX Font Info:    Try loading font information for T1+phv on input line 32.
+\c__siunitx_mathtt_int=\count276
+LaTeX Font Info:    Try loading font information for T1+phv on input line 37.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 phv.fd"
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <40> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 32.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 37.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 32.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 37.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 32.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 37.
 <logo_uzh.pdf, id=3, 154.5775pt x 49.18375pt>
 File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
-Package pdftex.def Info: logo_uzh.pdf used on input line 32.
+Package pdftex.def Info: logo_uzh.pdf used on input line 37.
 (pdftex.def)             Requested size: 128.0374pt x 40.74292pt.
 <ifi_logo.pdf, id=4, 117.95413pt x 135.26477pt>
 File: ifi_logo.pdf Graphic file (type pdf)
 <use ifi_logo.pdf>
-Package pdftex.def Info: ifi_logo.pdf used on input line 32.
+Package pdftex.def Info: ifi_logo.pdf used on input line 37.
 (pdftex.def)             Requested size: 42.67912pt x 48.94089pt.
 [1
+
+\openout3 = `thesis.ist'.
 
 {C:/Users/filip.kocovski/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:
 /Users/filip.kocovski/Desktop/thesis/logo_uzh.pdf> <C:/Users/filip.kocovski/Des
@@ -1247,20 +1465,20 @@ ktop/thesis/ifi_logo.pdf>] [2
 ]
 File: logo_uzh.pdf Graphic file (type pdf)
 <use logo_uzh.pdf>
-Package pdftex.def Info: logo_uzh.pdf used on input line 32.
+Package pdftex.def Info: logo_uzh.pdf used on input line 37.
 (pdftex.def)             Requested size: 128.0374pt x 40.74292pt.
 File: ifi_logo.pdf Graphic file (type pdf)
 <use ifi_logo.pdf>
-Package pdftex.def Info: ifi_logo.pdf used on input line 32.
+Package pdftex.def Info: ifi_logo.pdf used on input line 37.
 (pdftex.def)             Requested size: 42.67912pt x 48.94089pt.
 [3]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 32.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 37.
 [4
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <32> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 35.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 40.
 [1
 
 
@@ -1275,34 +1493,39 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <32> not available
 
 
 ] (C:\Users\filip.kocovski\Desktop\thesis\thesis.toc [7])
-\tf@toc=\write3
-\openout3 = `thesis.toc'.
+\tf@toc=\write5
+\openout5 = `thesis.toc'.
 
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 48.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 53.
 [8]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 48.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 53.
 (C:\Users\filip.kocovski\Desktop\thesis\thesis.lof [9])
-\tf@lof=\write4
-\openout4 = `thesis.lof'.
+\tf@lof=\write6
+\openout6 = `thesis.lof'.
 
 (C:\Users\filip.kocovski\Desktop\thesis\thesis.lot)
-\tf@lot=\write5
-\openout5 = `thesis.lot'.
+\tf@lot=\write7
+\openout7 = `thesis.lot'.
 
-(C:\Users\filip.kocovski\Desktop\thesis\thesis.lol)
-\tf@lol=\write6
-\openout6 = `thesis.lol'.
+(C:\Users\filip.kocovski\Desktop\thesis\thesis.lol [10])
+\tf@lol=\write8
+\openout8 = `thesis.lol'.
 
-[10]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 56.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[11] [12
+
+]
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 61.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1
 pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Overfull \hbox (25.84691pt too wide) in paragraph at lines 56--57
+Overfull \hbox (25.84691pt too wide) in paragraph at lines 61--62
 []\T1/ppl/m/n/10 Structure for the the-sis adapted from [][]$\T1/pcr/m/n/10 htt
 ps : / / wwz . unibas . ch / fileadmin / wwz / redaktion /
  []
@@ -1311,40 +1534,38 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.58 \chapter
-             {Introduction} [1
-
-]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
- been already used, duplicate ignored
+l.63 \chapter
+             {Introduction} [1]pdfTeX warning (ext4): destination with the same
+ identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.58 \chapter
+l.63 \chapter
              {Introduction} [2
 
 
 ]
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <18> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 58.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 63.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 58.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 63.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.97 	\item \chpref
-                   {ch:intro} gives an overview of why the chosen topic is r...
+l.102 	\item \chpref
+                    {ch:intro} gives an overview of why the chosen topic is ...
 [3]pdfTeX warning (ext4): destination with the same identifier (name{page.4}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.104 \chapter
+l.109 \chapter
               {Theoretical Foundations} [4]
 Chapter 2.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 112.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 117.
 
-Overfull \hbox (1.60321pt too wide) in paragraph at lines 127--128
+Overfull \hbox (1.60321pt too wide) in paragraph at lines 132--133
 \T1/ppl/m/n/10 A good start-ing point in the work-flow the-matic is Mac-in-tosh
 's work in which he gives an overview
  []
@@ -1358,26 +1579,26 @@ Overfull \hbox (1.60321pt too wide) in paragraph at lines 127--128
 ]
 Chapter 3.
 
-Overfull \hbox (30.70436pt too wide) in paragraph at lines 291--292
+Overfull \hbox (30.70436pt too wide) in paragraph at lines 296--297
 []\T1/ppl/m/n/10 The re-sult-ing data are in-ter-preted and an-a-lyzed us-ing P
 ython and its plot-ting li-brary: \T1/pcr/m/n/10 Matplotlib
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--303
+Underfull \hbox (badness 10000) in paragraph at lines 308--308
 [][][][][]$\T1/pcr/m/n/8 https : / / docs . python . org / 3 . 5 / reference / 
 simple _ stmts . html # the-[]yield-[]statement$[][] \T1/ppl/m/n/8 (ac-cessed:
  []
 
-[11] <img/workflow_elements.png, id=619, 1461.46pt x 307.1475pt>
+[11] <img/workflow_elements.png, id=841, 1461.46pt x 307.1475pt>
 File: img/workflow_elements.png Graphic file (type png)
 <use img/workflow_elements.png>
-Package pdftex.def Info: img/workflow_elements.png used on input line 311.
+Package pdftex.def Info: img/workflow_elements.png used on input line 316.
 (pdftex.def)             Requested size: 426.79134pt x 89.69382pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 315.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 320.
 
-Underfull \hbox (badness 3460) in paragraph at lines 320--320
+Underfull \hbox (badness 3460) in paragraph at lines 325--325
 [][][][][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / referen
 ce / generated / numpy . random . exponential . html$[][] \T1/ppl/m/n/8 (ac-
  []
@@ -1389,78 +1610,82 @@ lstlang1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 343.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 348.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 369.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 374.
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 381--381
+Underfull \hbox (badness 10000) in paragraph at lines 386--386
 [][][][][]$\T1/pcr/m/n/8 https : / / docs . scipy . org / doc / numpy / referen
 ce / generated / numpy . random . gamma . html$[][] \T1/ppl/m/n/8 (ac-cessed:
  []
 
-<img/policies_init.png, id=666, 293.095pt x 227.85126pt>
+<img/policies_init.png, id=888, 293.095pt x 227.85126pt>
 File: img/policies_init.png Graphic file (type png)
 <use img/policies_init.png>
-Package pdftex.def Info: img/policies_init.png used on input line 405.
+Package pdftex.def Info: img/policies_init.png used on input line 410.
 (pdftex.def)             Requested size: 140.84192pt x 109.48904pt.
-[14] <img/policy_met_att.png, id=694, 559.08875pt x 224.84pt>
+[14] <img/policy_met_att.png, id=916, 559.08875pt x 224.84pt>
 File: img/policy_met_att.png Graphic file (type png)
 <use img/policy_met_att.png>
-Package pdftex.def Info: img/policy_met_att.png used on input line 411.
+Package pdftex.def Info: img/policy_met_att.png used on input line 416.
 (pdftex.def)             Requested size: 213.39566pt x 85.81746pt.
-<img/policyjob_met_att.png, id=696, 527.9725pt x 401.5pt>
+<img/policyjob_met_att.png, id=918, 527.9725pt x 401.5pt>
 File: img/policyjob_met_att.png Graphic file (type png)
 <use img/policyjob_met_att.png>
-Package pdftex.def Info: img/policyjob_met_att.png used on input line 415.
+Package pdftex.def Info: img/policyjob_met_att.png used on input line 420.
 (pdftex.def)             Requested size: 213.39566pt x 162.27577pt.
 [15 <C:/Users/filip.kocovski/Desktop/thesis/img/policies_init.png (PNG copy)> <
-C:/Users/filip.kocovski/Desktop/thesis/img/policy_met_att.png (PNG copy)>]
-Underfull \vbox (badness 7667) has occurred while \output is active []
-
-[16 <C:/Users/filip.kocovski/Desktop/thesis/img/policyjob_met_att.png (PNG copy
-)>] <img/policies.png, id=718, 1124.2pt x 307.1475pt>
+C:/Users/filip.kocovski/Desktop/thesis/img/policy_met_att.png (PNG copy)>] [16 
+<C:/Users/filip.kocovski/Desktop/thesis/img/policyjob_met_att.png (PNG copy)>] 
+<img/policies.png, id=955, 1124.2pt x 307.1475pt>
 File: img/policies.png Graphic file (type png)
 <use img/policies.png>
-Package pdftex.def Info: img/policies.png used on input line 444.
+Package pdftex.def Info: img/policies.png used on input line 449.
 (pdftex.def)             Requested size: 426.79134pt x 116.60477pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 [17 <C:/Users/filip.kocovski/Desktop/thesis/img/policies.png (PNG copy)>] <img/
-dmf_problem.pdf, id=746, 359.09157pt x 191.9672pt>
+dmf_problem.pdf, id=985, 359.09157pt x 191.9672pt>
 File: img/dmf_problem.pdf Graphic file (type pdf)
 <use img/dmf_problem.pdf>
-Package pdftex.def Info: img/dmf_problem.pdf used on input line 488.
+Package pdftex.def Info: img/dmf_problem.pdf used on input line 493.
 (pdftex.def)             Requested size: 320.09349pt x 171.13145pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 [18]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [19 <C:/Users/filip.kocovski/Desktop/thesis/img/dmf_problem.pdf>] [20] [21] [22
 ] [23]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 684.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 689.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 684.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 689.
 
-Overfull \hbox (15.06076pt too wide) in paragraph at lines 686--687
+Overfull \hbox (15.06076pt too wide) in paragraph at lines 691--692
 \T1/ppl/m/n/10 means that for each state $\OML/cmm/m/it/10 s$ \T1/ppl/m/n/10 th
 ere is a cor-re-spond-ing vec-tor of fea-tures $\OML/cmm/m/it/10 \OT1/cmr/m/n/
 10 (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 ) [] [][]$
  []
 
-<img/ann_1h.pdf, id=878, 327.47343pt x 341.77687pt>
+<img/ann_1h.pdf, id=1159, 327.47343pt x 341.77687pt>
 File: img/ann_1h.pdf Graphic file (type pdf)
 <use img/ann_1h.pdf>
-Package pdftex.def Info: img/ann_1h.pdf used on input line 710.
+Package pdftex.def Info: img/ann_1h.pdf used on input line 715.
 (pdftex.def)             Requested size: 256.0774pt x 267.26285pt.
-[24] <img/ann_2h.pdf, id=903, 420.06938pt x 342.5297pt>
+[24] <img/ann_2h.pdf, id=1185, 420.06938pt x 342.5297pt>
 File: img/ann_2h.pdf Graphic file (type pdf)
 <use img/ann_2h.pdf>
-Package pdftex.def Info: img/ann_2h.pdf used on input line 714.
+Package pdftex.def Info: img/ann_2h.pdf used on input line 719.
 (pdftex.def)             Requested size: 256.0774pt x 208.80692pt.
 [25 <C:/Users/filip.kocovski/Desktop/thesis/img/ann_1h.pdf>] [26 <C:/Users/fili
 p.kocovski/Desktop/thesis/img/ann_2h.pdf>] [27] [28] [29] [30] [31] <img/mc_td.
-pdf, id=1120, 693.792pt x 346.89601pt>
+pdf, id=1448, 693.792pt x 346.89601pt>
 File: img/mc_td.pdf Graphic file (type pdf)
 <use img/mc_td.pdf>
-Package pdftex.def Info: img/mc_td.pdf used on input line 982.
+Package pdftex.def Info: img/mc_td.pdf used on input line 987.
 (pdftex.def)             Requested size: 426.79134pt x 213.39536pt.
 [32 <C:/Users/filip.kocovski/Desktop/thesis/img/mc_td.pdf>] [33] [34
 
@@ -1468,51 +1693,51 @@ Package pdftex.def Info: img/mc_td.pdf used on input line 982.
 ]
 Chapter 4.
 [35]
-Overfull \hbox (0.31386pt too wide) in paragraph at lines 1056--1057
+Overfull \hbox (0.31386pt too wide) in paragraph at lines 1061--1062
 []\T1/ppl/m/n/10 The script ini-tial-ized the cho-sen work-flow pro-cess and th
 en calls the to-kens gen-er-a-tion method
  []
 
-<img/simple_process.pdf, id=1205, 344.03531pt x 158.84344pt>
+<img/simple_process.pdf, id=1546, 344.03531pt x 158.84344pt>
 File: img/simple_process.pdf Graphic file (type pdf)
 <use img/simple_process.pdf>
-Package pdftex.def Info: img/simple_process.pdf used on input line 1068.
+Package pdftex.def Info: img/simple_process.pdf used on input line 1073.
 (pdftex.def)             Requested size: 213.39566pt x 98.52553pt.
-<img/acquisition_process.pdf, id=1207, 1851.91875pt x 457.71pt>
+<img/acquisition_process.pdf, id=1548, 1851.91875pt x 457.71pt>
 File: img/acquisition_process.pdf Graphic file (type pdf)
 <use img/acquisition_process.pdf>
-Package pdftex.def Info: img/acquisition_process.pdf used on input line 1072.
+Package pdftex.def Info: img/acquisition_process.pdf used on input line 1077.
 (pdftex.def)             Requested size: 426.79134pt x 105.4806pt.
 [36 <C:/Users/filip.kocovski/Desktop/thesis/img/simple_process.pdf>] <img/3_BAT
-CH_MSA_NU2_GI3_SIM50_KPI.pdf, id=1242, 1156.32pt x 289.08pt>
+CH_MSA_NU2_GI3_SIM50_KPI.pdf, id=1586, 1156.32pt x 289.08pt>
 File: img/3_BATCH_MSA_NU2_GI3_SIM50_KPI.pdf Graphic file (type pdf)
 <use img/3_BATCH_MSA_NU2_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/3_BATCH_MSA_NU2_GI3_SIM50_KPI.pdf used on input li
-ne 1113.
+ne 1118.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
-<img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.pdf, id=1245, 1830.3309pt x 1138.2525pt>
+<img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.pdf, id=1593, 1830.3309pt x 1138.2525pt>
 File: img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.pdf Graphic file (type pdf)
 <use img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.pdf used on input li
-ne 1119.
+ne 1124.
 (pdftex.def)             Requested size: 426.79134pt x 265.40518pt.
 [37 <C:/Users/filip.kocovski/Desktop/thesis/img/acquisition_process.pdf>] [38 <
 C:/Users/filip.kocovski/Desktop/thesis/img/3_BATCH_MSA_NU2_GI3_SIM50_KPI.pdf> <
 C:/Users/filip.kocovski/Desktop/thesis/img/3_BATCH_MSA_NU2_GI3_SIM50_EVO.pdf>] 
-<img/opt_kpis_comp.pdf, id=1368, 693.792pt x 346.89601pt>
+<img/opt_kpis_comp.pdf, id=1719, 693.792pt x 346.89601pt>
 File: img/opt_kpis_comp.pdf Graphic file (type pdf)
 <use img/opt_kpis_comp.pdf>
-Package pdftex.def Info: img/opt_kpis_comp.pdf used on input line 1161.
+Package pdftex.def Info: img/opt_kpis_comp.pdf used on input line 1166.
 (pdftex.def)             Requested size: 426.79134pt x 213.39536pt.
-<img/opt_st_kpis_comp.pdf, id=1371, 693.792pt x 346.89601pt>
+<img/opt_st_kpis_comp.pdf, id=1727, 693.792pt x 346.89601pt>
 File: img/opt_st_kpis_comp.pdf Graphic file (type pdf)
 <use img/opt_st_kpis_comp.pdf>
-Package pdftex.def Info: img/opt_st_kpis_comp.pdf used on input line 1188.
+Package pdftex.def Info: img/opt_st_kpis_comp.pdf used on input line 1193.
 (pdftex.def)             Requested size: 426.79134pt x 213.39536pt.
-<img/opt_kpis_comp_gain.pdf, id=1373, 1806.75pt x 361.35pt>
+<img/opt_kpis_comp_gain.pdf, id=1733, 1806.75pt x 361.35pt>
 File: img/opt_kpis_comp_gain.pdf Graphic file (type pdf)
 <use img/opt_kpis_comp_gain.pdf>
-Package pdftex.def Info: img/opt_kpis_comp_gain.pdf used on input line 1192.
+Package pdftex.def Info: img/opt_kpis_comp_gain.pdf used on input line 1197.
 (pdftex.def)             Requested size: 426.79134pt x 85.35835pt.
 [39
 
@@ -1531,46 +1756,46 @@ Chapter 5.
 ]
 Appendix A.
 
-<img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf, id=1563, 1156.32pt x 289.08p
+<img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf, id=1979, 1156.32pt x 289.08p
 t>
 File: img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf Graphic file (type pdf)
 <use img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI.pdf used 
-on input line 1313.
+on input line 1354.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI.pdf, id=1564, 1156.32pt x 289.08p
+<img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI.pdf, id=1982, 1156.32pt x 289.08p
 t>
 File: img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI.pdf Graphic file (type pdf)
 <use img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI.pdf used 
-on input line 1314.
+on input line 1355.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI.pdf, id=1565, 1156.32pt x 289.08
+<img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI.pdf, id=1985, 1156.32pt x 289.08
 pt>
 File: img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI.pdf Graphic file (type pdf)
 
 <use img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI.pdf used
- on input line 1315.
+ on input line 1356.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI.pdf, id=1566, 1156.32pt x 289.0
+<img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI.pdf, id=1988, 1156.32pt x 289.0
 8pt>
 File: img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI.pdf Graphic file (type pdf
 )
 <use img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI.pdf use
-d on input line 1316.
+d on input line 1357.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI.pdf, id=1567, 1156.32pt x 289.08pt
+<img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI.pdf, id=1991, 1156.32pt x 289.08pt
 >
 File: img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI.pdf Graphic file (type pdf)
 <use img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI.pdf used o
-n input line 1317.
+n input line 1358.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 [47 <C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/3_BATCH_MSA_NU3_GI3_
 SIM50_KPI.pdf> <C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/3_BATCH_D
@@ -1578,46 +1803,46 @@ MF_NU3_GI3_SIM50_KPI.pdf>] [48 <C:/Users/filip.kocovski/Desktop/thesis/img/kbat
 ch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI.pdf> <C:/Users/filip.kocovski/Desktop/the
 sis/img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI.pdf> <C:/Users/filip.kocovsk
 i/Desktop/thesis/img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI.pdf>]
-<img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO.pdf, id=1795, 1860.47978pt x 1214
+<img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO.pdf, id=2219, 1860.47978pt x 1214
 .13597pt>
 File: img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO.pdf Graphic file (type pdf)
 <use img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO.pdf used 
-on input line 1324.
+on input line 1365.
 (pdftex.def)             Requested size: 426.79134pt x 278.50435pt.
 
-<img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO.pdf, id=1796, 1862.73149pt x 1517
+<img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO.pdf, id=2221, 1862.73149pt x 1517
 .67pt>
 File: img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO.pdf Graphic file (type pdf)
 <use img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO.pdf used 
-on input line 1325.
+on input line 1366.
 (pdftex.def)             Requested size: 426.79134pt x 347.71361pt.
 
-<img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO.pdf, id=1797, 1869.67479pt x 121
+<img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO.pdf, id=2223, 1869.67479pt x 121
 4.13597pt>
 File: img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO.pdf Graphic file (type pdf)
 
 <use img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO.pdf used
- on input line 1326.
+ on input line 1367.
 (pdftex.def)             Requested size: 426.79134pt x 277.15193pt.
 
-<img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO.pdf, id=1798, 1849.47836pt x 12
+<img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO.pdf, id=2225, 1849.47836pt x 12
 14.13597pt>
 File: img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO.pdf Graphic file (type pdf
 )
 <use img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO.pdf use
-d on input line 1327.
+d on input line 1368.
 (pdftex.def)             Requested size: 426.79134pt x 280.1717pt.
 
-<img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO.pdf, id=1799, 1878.39487pt x 1214.
+<img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO.pdf, id=2227, 1878.39487pt x 1214.
 13597pt>
 File: img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO.pdf Graphic file (type pdf)
 <use img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO.pdf used o
-n input line 1328.
+n input line 1369.
 (pdftex.def)             Requested size: 426.79134pt x 275.8551pt.
 [49
 
@@ -1627,71 +1852,71 @@ _DMF_NU3_GI3_SIM50_EVO.pdf>] [51 <C:/Users/filip.kocovski/Desktop/thesis/img/kb
 atch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO.pdf>] [52 <C:/Users/filip.kocovski/Desk
 top/thesis/img/kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO.pdf>] [53 <C:/Users/f
 ilip.kocovski/Desktop/thesis/img/kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO.pdf>]
-<img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL.pdf, id=2071, 1156.32pt x 28
+<img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL.pdf, id=2499, 1156.32pt x 28
 9.08pt>
 File: img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL.pdf Graphic file (type 
 pdf)
 <use img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL.pdf>
 Package pdftex.def Info: img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL.pdf 
-used on input line 1335.
+used on input line 1376.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL.pdf, id=2072, 1156.32pt x 289
+<img/kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL.pdf, id=2501, 1156.32pt x 289
 .08pt>
 File: img/kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL.pdf Graphic file (type p
 df)
 <use img/kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL.pdf>
 Package pdftex.def Info: img/kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL.pdf u
-sed on input line 1336.
+sed on input line 1377.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 [54
 
  <C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BATCH_MSA_NU3_GI3_S
 IM50_BSEVAL.pdf> <C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_res/1-9_BAT
 CH_ST_NU3_GI3_SIM50_BSEVAL.pdf>]
-<img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI.pdf, id=2147, 1156.32pt x 2
+<img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI.pdf, id=2576, 1156.32pt x 2
 89.08pt>
 File: img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI.pdf Graphic file (type
  pdf)
 <use img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI.pdf
- used on input line 1345.
+ used on input line 1386.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI.pdf, id=2148, 1156.32pt x 2
+<img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI.pdf, id=2579, 1156.32pt x 2
 89.08pt>
 File: img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI.pdf Graphic file (type
  pdf)
 <use img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI.pdf
- used on input line 1346.
+ used on input line 1387.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI.pdf, id=2149, 1156.32pt x 
+<img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI.pdf, id=2582, 1156.32pt x 
 289.08pt>
 File: img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI.pdf Graphic file (typ
 e pdf)
 <use img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI.pd
-f used on input line 1347.
+f used on input line 1388.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI.pdf, id=2150, 1156.32pt x
+<img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI.pdf, id=2585, 1156.32pt x
  289.08pt>
 File: img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI.pdf Graphic file (ty
 pe pdf)
 <use img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI.p
-df used on input line 1348.
+df used on input line 1389.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI.pdf, id=2151, 1156.32pt x 28
+<img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI.pdf, id=2588, 1156.32pt x 28
 9.08pt>
 File: img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI.pdf Graphic file (type 
 pdf)
 <use img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI.pdf 
-used on input line 1349.
+used on input line 1390.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 [55
 
@@ -1702,49 +1927,49 @@ kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI.pdf>] [56 <C:/Users/filip.kocov
 ski/Desktop/thesis/img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI.pdf> <C
 :/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_S
 IM50_KPI.pdf>]
-<img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO.pdf, id=2376, 1861.85982pt 
+<img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO.pdf, id=2814, 1861.85982pt 
 x 1214.13597pt>
 File: img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO.pdf Graphic file (type
  pdf)
 <use img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO.pdf
- used on input line 1356.
+ used on input line 1397.
 (pdftex.def)             Requested size: 426.79134pt x 278.30057pt.
 
-<img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO.pdf, id=2377, 1882.81041pt 
+<img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO.pdf, id=2816, 1882.81041pt 
 x 1517.67pt>
 File: img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO.pdf Graphic file (type
  pdf)
 <use img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO.pdf
- used on input line 1357.
+ used on input line 1398.
 (pdftex.def)             Requested size: 426.79134pt x 344.00836pt.
 
-<img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO.pdf, id=2378, 1883.83339pt
+<img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO.pdf, id=2818, 1883.83339pt
  x 1517.67pt>
 File: img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO.pdf Graphic file (typ
 e pdf)
 <use img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO.pd
-f used on input line 1358.
+f used on input line 1399.
 (pdftex.def)             Requested size: 426.79134pt x 343.8231pt.
 
-<img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO.pdf, id=2379, 1872.59303p
+<img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO.pdf, id=2820, 1872.59303p
 t x 1517.67pt>
 File: img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO.pdf Graphic file (ty
 pe pdf)
 <use img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO.p
-df used on input line 1359.
+df used on input line 1400.
 (pdftex.def)             Requested size: 426.79134pt x 345.88414pt.
 
-<img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO.pdf, id=2380, 1885.72707pt x
+<img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO.pdf, id=2822, 1885.72707pt x
  1517.67pt>
 File: img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO.pdf Graphic file (type 
 pdf)
 <use img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO.pdf 
-used on input line 1360.
+used on input line 1401.
 (pdftex.def)             Requested size: 426.79134pt x 343.47574pt.
 [57
 
@@ -1755,101 +1980,101 @@ hesis/img/kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO.pdf>] [60 <C:/Users/f
 ilip.kocovski/Desktop/thesis/img/kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_E
 VO.pdf>] [61 <C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/3_BATCHO
 NE_ST_NU3_GI3_SIM50_EVO.pdf>]
-<img/kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL.pdf, id=2652, 1156.32p
+<img/kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL.pdf, id=3094, 1156.32p
 t x 289.08pt>
 File: img/kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL.pdf Graphic file 
 (type pdf)
 <use img/kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL.pdf>
 Package pdftex.def Info: img/kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVA
-L.pdf used on input line 1367.
+L.pdf used on input line 1408.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL.pdf, id=2653, 1156.32pt
+<img/kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL.pdf, id=3096, 1156.32pt
  x 289.08pt>
 File: img/kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL.pdf Graphic file (
 type pdf)
 <use img/kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL.pdf>
 Package pdftex.def Info: img/kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL
-.pdf used on input line 1368.
+.pdf used on input line 1409.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 [62
 
  <C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_res/1-9_BATCHONE_MSA_NU3
 _GI3_SIM50_BSEVAL.pdf> <C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_re
 s/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL.pdf>] <img/llqp_res/LLQP_NU3_GI3_SIM50_K
-PI.pdf, id=2733, 1156.32pt x 289.08pt>
+PI.pdf, id=3176, 1156.32pt x 289.08pt>
 File: img/llqp_res/LLQP_NU3_GI3_SIM50_KPI.pdf Graphic file (type pdf)
 <use img/llqp_res/LLQP_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/llqp_res/LLQP_NU3_GI3_SIM50_KPI.pdf used on input 
-line 1377.
+line 1418.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 [63
 
  <C:/Users/filip.kocovski/Desktop/thesis/img/llqp_res/LLQP_NU3_GI3_SIM50_KPI.pd
 f>]
-<img/llqp_res/LLQP_NU3_GI3_SIM50_EVO.pdf, id=2783, 1860.62326pt x 1214.13597pt>
+<img/llqp_res/LLQP_NU3_GI3_SIM50_EVO.pdf, id=3229, 1860.62326pt x 1214.13597pt>
 File: img/llqp_res/LLQP_NU3_GI3_SIM50_EVO.pdf Graphic file (type pdf)
 <use img/llqp_res/LLQP_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/llqp_res/LLQP_NU3_GI3_SIM50_EVO.pdf used on input 
-line 1384.
+line 1425.
 (pdftex.def)             Requested size: 426.79134pt x 278.48582pt.
 [64
 
  <C:/Users/filip.kocovski/Desktop/thesis/img/llqp_res/LLQP_NU3_GI3_SIM50_EVO.pd
-f>] <img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf, id=2838, 1156.32pt x 289.08pt>
+f>] <img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf, id=3285, 1156.32pt x 289.08pt>
 File: img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf Graphic file (type pdf)
 <use img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf>
 Package pdftex.def Info: img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf used on input line
- 1393.
+ 1434.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 [65
 
  <C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_KPI.pdf>] 
-<img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf, id=2889, 1860.62326pt x 910.602pt>
+<img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf, id=3337, 1860.62326pt x 910.602pt>
 File: img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf Graphic file (type pdf)
 <use img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf>
 Package pdftex.def Info: img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf used on input line
- 1400.
+ 1441.
 (pdftex.def)             Requested size: 426.79134pt x 208.86436pt.
 [66
 
  <C:/Users/filip.kocovski/Desktop/thesis/img/sq_res/SQ_NU3_GI3_SIM50_EVO.pdf>]
 Appendix B.
 
-<img/kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI.pdf, id=2944, 1156.32pt x
+<img/kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI.pdf, id=3393, 1156.32pt x
  289.08pt>
 File: img/kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI.pdf Graphic file (ty
 pe pdf)
 <use img/kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI.pdf>
 Package pdftex.def Info: img/kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI.p
-df used on input line 1411.
+df used on input line 1452.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI.pdf, id=2945, 1156.32p
+<img/kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI.pdf, id=3397, 1156.32p
 t x 289.08pt>
 File: img/kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI.pdf Graphic file 
 (type pdf)
 <use img/kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI.pdf>
 Package pdftex.def Info: img/kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KP
-I.pdf used on input line 1412.
+I.pdf used on input line 1453.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI.pdf, id=2946, 1156.3
+<img/kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI.pdf, id=3402, 1156.3
 2pt x 289.08pt>
 File: img/kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI.pdf Graphic fil
 e (type pdf)
 <use img/kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI.pdf>
 Package pdftex.def Info: img/kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_
-KPI.pdf used on input line 1413.
+KPI.pdf used on input line 1454.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-<img/kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf, id=2947, 11
+<img/kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf, id=3408, 11
 56.32pt x 289.08pt>
 File: img/kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf Graphic
  file (type pdf)
 <use img/kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf>
 Package pdftex.def Info: img/kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1
-000_KPI.pdf used on input line 1414.
+000_KPI.pdf used on input line 1455.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 [67
 
@@ -1862,29 +2087,29 @@ _BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI.pdf>] [68 <C:/Users/filip.kocovski/Desktop
 s/filip.kocovski/Desktop/thesis/img/kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRS
 D2_SIM1000_KPI.pdf>] [69
 
-] <img/kbatch_rl_res/k_batch_mc_vfa.pdf, id=3136, 1806.75pt x 361.35pt>
+] <img/kbatch_rl_res/k_batch_mc_vfa.pdf, id=3602, 1806.75pt x 361.35pt>
 File: img/kbatch_rl_res/k_batch_mc_vfa.pdf Graphic file (type pdf)
 <use img/kbatch_rl_res/k_batch_mc_vfa.pdf>
 Package pdftex.def Info: img/kbatch_rl_res/k_batch_mc_vfa.pdf used on input lin
-e 1431.
+e 1472.
 (pdftex.def)             Requested size: 426.79134pt x 85.35835pt.
-<img/kbatch_rl_res/k_batch_mc_vfa_op.pdf, id=3137, 1806.75pt x 361.35pt>
+<img/kbatch_rl_res/k_batch_mc_vfa_op.pdf, id=3606, 1806.75pt x 361.35pt>
 File: img/kbatch_rl_res/k_batch_mc_vfa_op.pdf Graphic file (type pdf)
 <use img/kbatch_rl_res/k_batch_mc_vfa_op.pdf>
 Package pdftex.def Info: img/kbatch_rl_res/k_batch_mc_vfa_op.pdf used on input 
-line 1432.
+line 1473.
 (pdftex.def)             Requested size: 426.79134pt x 85.35835pt.
-<img/kbatch_rl_res/k_batch_mc_vfa_opep.pdf, id=3138, 1806.75pt x 361.35pt>
+<img/kbatch_rl_res/k_batch_mc_vfa_opep.pdf, id=3611, 1806.75pt x 361.35pt>
 File: img/kbatch_rl_res/k_batch_mc_vfa_opep.pdf Graphic file (type pdf)
 <use img/kbatch_rl_res/k_batch_mc_vfa_opep.pdf>
 Package pdftex.def Info: img/kbatch_rl_res/k_batch_mc_vfa_opep.pdf used on inpu
-t line 1433.
+t line 1474.
 (pdftex.def)             Requested size: 426.79134pt x 85.35835pt.
-<img/kbatch_rl_res/k_batch_td_vfa_op.pdf, id=3139, 1806.75pt x 361.35pt>
+<img/kbatch_rl_res/k_batch_td_vfa_op.pdf, id=3617, 1806.75pt x 361.35pt>
 File: img/kbatch_rl_res/k_batch_td_vfa_op.pdf Graphic file (type pdf)
 <use img/kbatch_rl_res/k_batch_td_vfa_op.pdf>
 Package pdftex.def Info: img/kbatch_rl_res/k_batch_td_vfa_op.pdf used on input 
-line 1434.
+line 1475.
 (pdftex.def)             Requested size: 426.79134pt x 85.35835pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1896,30 +2121,96 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 > <C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_rl_res/k_batch_mc_vfa_opep
 .pdf> <C:/Users/filip.kocovski/Desktop/thesis/img/kbatch_rl_res/k_batch_td_vfa_
 op.pdf>]
-<img/kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf, id=33
-35, 1156.32pt x 289.08pt>
+<img/kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf, id=38
+18, 1156.32pt x 289.08pt>
 File: img/kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf G
 raphic file (type pdf)
 <use img/kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf>
 Package pdftex.def Info: img/kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD
-2_SIM1000_KPI.pdf used on input line 1441.
+2_SIM1000_KPI.pdf used on input line 1482.
 (pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 [71 <C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_rl_res/1_BATCHONE_TD_
 VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf>] [72
 
 ]
-<img/kbatchone_rl_res/k_batchone_td_vfa_op.pdf, id=3390, 1806.75pt x 361.35pt>
+<img/kbatchone_rl_res/k_batchone_td_vfa_op.pdf, id=3876, 1806.75pt x 361.35pt>
 File: img/kbatchone_rl_res/k_batchone_td_vfa_op.pdf Graphic file (type pdf)
 <use img/kbatchone_rl_res/k_batchone_td_vfa_op.pdf>
 Package pdftex.def Info: img/kbatchone_rl_res/k_batchone_td_vfa_op.pdf used on 
-input line 1455.
+input line 1496.
 (pdftex.def)             Requested size: 426.79134pt x 85.35835pt.
 [73
 
  <C:/Users/filip.kocovski/Desktop/thesis/img/kbatchone_rl_res/k_batchone_td_vfa
-_op.pdf>] [74
+_op.pdf>]
+<img/llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI.pdf, id=3931, 1156.32pt x 2
+89.08pt>
+File: img/llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI.pdf Graphic file (type
+ pdf)
+<use img/llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI.pdf>
+Package pdftex.def Info: img/llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI.pdf
+ used on input line 1505.
+(pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
 
-] (C:\Users\filip.kocovski\Desktop\thesis\thesis.bbl
+<img/llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf, id=3937, 1156.32
+pt x 289.08pt>
+File: img/llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf Graphic file
+ (type pdf)
+<use img/llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf>
+Package pdftex.def Info: img/llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_K
+PI.pdf used on input line 1506.
+(pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
+
+<img/llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf, id=3943, 1156.32p
+t x 289.08pt>
+File: img/llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf Graphic file 
+(type pdf)
+<use img/llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf>
+Package pdftex.def Info: img/llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KP
+I.pdf used on input line 1507.
+(pdftex.def)             Requested size: 426.79134pt x 106.69766pt.
+[74
+
+ <C:/Users/filip.kocovski/Desktop/thesis/img/llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2
+_SIM1000_KPI.pdf> <C:/Users/filip.kocovski/Desktop/thesis/img/llqp_rl_res/LLQP_
+TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf> <C:/Users/filip.kocovski/Desktop/thesi
+s/img/llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI.pdf>] [75
+
+] <img/llqp_rl_res/llqp_mc_vfa_op.pdf, id=4088, 1806.75pt x 361.35pt>
+File: img/llqp_rl_res/llqp_mc_vfa_op.pdf Graphic file (type pdf)
+<use img/llqp_rl_res/llqp_mc_vfa_op.pdf>
+Package pdftex.def Info: img/llqp_rl_res/llqp_mc_vfa_op.pdf used on input line 
+1523.
+(pdftex.def)             Requested size: 426.79134pt x 85.35835pt.
+<img/llqp_rl_res/llqp_td_vfa_op.pdf, id=4094, 1806.75pt x 361.35pt>
+File: img/llqp_rl_res/llqp_td_vfa_op.pdf Graphic file (type pdf)
+<use img/llqp_rl_res/llqp_td_vfa_op.pdf>
+Package pdftex.def Info: img/llqp_rl_res/llqp_td_vfa_op.pdf used on input line 
+1524.
+(pdftex.def)             Requested size: 426.79134pt x 85.35835pt.
+<img/llqp_rl_res/llqp_td_tf_op.pdf, id=4100, 1806.75pt x 361.35pt>
+File: img/llqp_rl_res/llqp_td_tf_op.pdf Graphic file (type pdf)
+<use img/llqp_rl_res/llqp_td_tf_op.pdf>
+Package pdftex.def Info: img/llqp_rl_res/llqp_td_tf_op.pdf used on input line 1
+525.
+(pdftex.def)             Requested size: 426.79134pt x 85.35835pt.
+[76
+
+ <C:/Users/filip.kocovski/Desktop/thesis/img/llqp_rl_res/llqp_mc_vfa_op.pdf> <C
+:/Users/filip.kocovski/Desktop/thesis/img/llqp_rl_res/llqp_td_vfa_op.pdf> <C:/U
+sers/filip.kocovski/Desktop/thesis/img/llqp_rl_res/llqp_td_tf_op.pdf>] [77
+
+] [78
+
+] (C:\Users\filip.kocovski\Desktop\thesis\thesis.gls) (C:\Users\filip.kocovski\
+Desktop\thesis\thesis.bbl [79
+
+
+
+] [80
+
+
+]
 LaTeX Font Info:    Try loading font information for OMS+ppl on input line 29.
 
 ("C:\Users\filip.kocovski\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\om
@@ -1930,26 +2221,23 @@ LaTeX Font Info:    Font shape `OMS/ppl/m/it' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 29.
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 29.
-[75
-
-
-] [76])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1464.
-[77]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1464.
+[81] [82])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1563.
+[83]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1563.
 (C:\Users\filip.kocovski\Desktop\thesis\thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1464.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1464.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1464.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1563.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1563.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1563.
  ) 
 Here is how much of TeX's memory you used:
- 20221 strings out of 493342
- 372686 string characters out of 3126575
- 488117 words of memory out of 3000000
- 22877 multiletter control sequences out of 15000+200000
+ 26605 strings out of 493342
+ 492664 string characters out of 3126575
+ 644900 words of memory out of 3000000
+ 29089 multiletter control sequences out of 15000+200000
  83189 words of font info for 116 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,16n,49p,10417b,2360s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 45i,16n,97p,10417b,2410s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/ba
 se/8r.enc}<C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmex10.pfb><C:/Users/filip.kocovski/AppData/Local/Programs
@@ -1978,10 +2266,10 @@ a/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/filip
 .kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb
 ><C:/Users/filip.kocovski/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/pal
 atino/uplri8a.pfb>
-Output written on C:/Users/filip.kocovski/Desktop/thesis/thesis.pdf (91 pages, 
-2169400 bytes).
+Output written on C:/Users/filip.kocovski/Desktop/thesis/thesis.pdf (99 pages, 
+2399522 bytes).
 PDF statistics:
- 3872 PDF objects out of 4296 (max. 8388607)
- 557 named destinations out of 1000 (max. 500000)
- 881 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 4905 PDF objects out of 5155 (max. 8388607)
+ 597 named destinations out of 1000 (max. 500000)
+ 951 words of extra memory for PDF output out of 10000 (max. 10000000)
 

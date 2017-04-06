@@ -25,11 +25,11 @@
 \contentsline {subsection}{\numberline {3.3.2}Finite Markov Decision Processes}{21}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}Dynamic Programming}{22}{subsection.3.3.3}
 \contentsline {subsection}{\numberline {3.3.4}Monte Carlo Methods}{22}{subsection.3.3.4}
-\contentsline {subsection}{\numberline {3.3.5}Temporal-Difference Learning}{23}{subsection.3.3.5}
-\contentsline {subsection}{\numberline {3.3.6}On-policy Prediction with Approximation}{23}{subsection.3.3.6}
+\contentsline {subsection}{\numberline {3.3.5}Temporal Difference Learning}{23}{subsection.3.3.5}
+\contentsline {subsection}{\numberline {3.3.6}On Policy Prediction with Approximation}{23}{subsection.3.3.6}
 \contentsline {subsubsection}{Artificial Neural Networks}{24}{section*.11}
-\contentsline {subsection}{\numberline {3.3.7}On-policy Control with Approximation}{25}{subsection.3.3.7}
-\contentsline {subsection}{\numberline {3.3.8}Off-policy Methods with Approximation}{26}{subsection.3.3.8}
+\contentsline {subsection}{\numberline {3.3.7}On Policy Control with Approximation}{25}{subsection.3.3.7}
+\contentsline {subsection}{\numberline {3.3.8}Off Policy Methods with Approximation}{26}{subsection.3.3.8}
 \contentsline {subsection}{\numberline {3.3.9}Policy Gradient Methods}{27}{subsection.3.3.9}
 \contentsline {subsubsection}{Policy Gradient with Baseline}{28}{section*.12}
 \contentsline {subsubsection}{Actor-Critic Policy Gradient}{28}{section*.13}
@@ -51,7 +51,7 @@
 \contentsline {subsection}{\numberline {4.2.1}Comparison with Existing Literature}{39}{subsection.4.2.1}
 \contentsline {section}{\numberline {4.3}Reinforcement Learning}{42}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Batch}{42}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}LLQP}{43}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.2}Least Loaded Qualified Person}{43}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Others}{43}{subsection.4.3.3}
 \contentsline {section}{\numberline {4.4}Discussion}{43}{section.4.4}
 \contentsline {section}{\numberline {4.5}Research Contribution}{43}{section.4.5}
@@ -64,14 +64,14 @@
 \contentsline {subsection}{\numberline {A.1.1}KPIs}{47}{subsection.A.1.1}
 \contentsline {subsection}{\numberline {A.1.2}Evolution}{49}{subsection.A.1.2}
 \contentsline {subsection}{\numberline {A.1.3}Batch Sizes Comparison}{54}{subsection.A.1.3}
-\contentsline {section}{\numberline {A.2}K-Batch-One}{55}{section.A.2}
+\contentsline {section}{\numberline {A.2}K-Batch-1}{55}{section.A.2}
 \contentsline {subsection}{\numberline {A.2.1}KPIs}{55}{subsection.A.2.1}
 \contentsline {subsection}{\numberline {A.2.2}Evolution}{57}{subsection.A.2.2}
 \contentsline {subsection}{\numberline {A.2.3}Batch Sizes Comparison}{62}{subsection.A.2.3}
-\contentsline {section}{\numberline {A.3}LLQP}{63}{section.A.3}
+\contentsline {section}{\numberline {A.3}Least Loaded Qualified Person}{63}{section.A.3}
 \contentsline {subsection}{\numberline {A.3.1}KPIs}{63}{subsection.A.3.1}
 \contentsline {subsection}{\numberline {A.3.2}Evolution}{64}{subsection.A.3.2}
-\contentsline {section}{\numberline {A.4}SQ}{65}{section.A.4}
+\contentsline {section}{\numberline {A.4}Shared Queue}{65}{section.A.4}
 \contentsline {subsection}{\numberline {A.4.1}KPIs}{65}{subsection.A.4.1}
 \contentsline {subsection}{\numberline {A.4.2}Evolution}{66}{subsection.A.4.2}
 \contentsline {chapter}{\numberline {B}Reinforcement Learning Results}{67}{appendix.B}
@@ -79,7 +79,12 @@
 \contentsline {subsection}{\numberline {B.1.1}KPIs}{67}{subsection.B.1.1}
 \contentsline {subsection}{\numberline {B.1.2}Evolution}{69}{subsection.B.1.2}
 \contentsline {subsection}{\numberline {B.1.3}Comparison with MSA}{70}{subsection.B.1.3}
-\contentsline {section}{\numberline {B.2}K-Batch-One}{71}{section.B.2}
+\contentsline {section}{\numberline {B.2}K-Batch-1}{71}{section.B.2}
 \contentsline {subsection}{\numberline {B.2.1}KPIs}{71}{subsection.B.2.1}
 \contentsline {subsection}{\numberline {B.2.2}Evolution}{72}{subsection.B.2.2}
 \contentsline {subsection}{\numberline {B.2.3}Comparison with MSA}{73}{subsection.B.2.3}
+\contentsline {section}{\numberline {B.3}Least Loaded Qualified Person}{74}{section.B.3}
+\contentsline {subsection}{\numberline {B.3.1}KPIs}{74}{subsection.B.3.1}
+\contentsline {subsection}{\numberline {B.3.2}Evolution}{75}{subsection.B.3.2}
+\contentsline {subsection}{\numberline {B.3.3}Comparison with MSA}{76}{subsection.B.3.3}
+\contentsline {subsection}{\numberline {B.3.4}Additional Least Loaded Qualified Person Policies}{77}{subsection.B.3.4}
