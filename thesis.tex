@@ -1262,7 +1262,26 @@ k\_batchone\_td\_vfa\_op   & 1-Batch-One     & TD            & Value Function Ap
 \label{tab:rl_batch_policies_overview}
 \end{table}
 
-tab shows the summarized results. For the detailed results refer to 
+\tabref{tab:rl_batch_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:kbatch_rl_msa_comp_app} for K-Batch respectively to \subsecref{subsec:kbatchone_rl_msa_comp_app} for K-Batch-One.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llllll@{}}
+\toprule
+KPI                 & k\_batch\_mc\_vfa & k\_batch\_mc\_vfa\_op & k\_batch\_mc\_vfa\_opep & k\_batch\_td\_vfa\_op & k\_batchone\_td\_vfa\_op \\ \midrule
+Lateness            & 32.96                  & 33.88                      & 32.75                        & 33.71                      & 20.33                         \\
+Wait Time           & 230.3                  & 226.58                      & 167.28                        & 248.98                      & 44.4                         \\
+Service Time        & 12.07                  & 13.06                      & 14.71                        & 12.11                      & 14.14                         \\
+Average System Load & 11.74                  & 12.75                      & 14.4                        & 11.8                      & 13.81                         \\ \bottomrule
+\end{tabular}%
+}
+\caption{Reduction (in \%) across all KPIs of the batch policies with RL against the MSA solver}
+\label{tab:rl_batch_kpis_comp_gain}
+\end{table}
 
 \subsection{LLQP}
 \label{subsec:rl_llqp}
@@ -1414,11 +1433,32 @@ tab shows the summarized results. For the detailed results refer to
 \fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_opep}{K-Batch with MC, VFA, OP and EP MSA comparison}{fig:k_batch_mc_vfa_opep}
 \fig[\textwidth]{kbatch_rl_res/k_batch_td_vfa_op}{K-Batch with TD, VFA, OP and EP MSA comparison}{fig:k_batch_td_vfa_op}
 
+\section{K-Batch-One}
+
+\subsection{KPIs}
+\label{subsec:kbatchone_rl_kpi_app}
+
+\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{K-Batch-One with TD, VFA and OP KPIs}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+
+\clearpage
+
+\subsection{Evolution}
+\label{subsec:kbatchone_rl_evo_app}
+
+%\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{K-Batch-One with TD, VFA and OP evolution}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+
+\clearpage
+
+\subsection{Comparison with MSA}
+\label{subsec:kbatchone_rl_msa_comp_app}
+
+\fig[\textwidth]{kbatchone_rl_res/k_batchone_td_vfa_op}{K-Batch-One with TD, VFA and OP MSA comparison}{fig:k_batchone_td_vfa_op}
+
 \backmatter
 
 \nocite{*}
 
-\bibliographystyle{plain}
+\bibliographystyle{apalike}
 \bibliography{sources}
 
 \end{document}
