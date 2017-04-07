@@ -39,6 +39,17 @@
 
 \begin{acknowledgements}
 
+\begin{itemize}
+	\item Prof. Dr. Daning Hu $\rightarrow$ for letting me do this thesis at his chair
+	\item Dr. Markus Uhr $\rightarrow$ for basically everything...and more
+	\item Dr. Robert H\"ohener $\rightarrow$ for giving me the opportunity to do the thesis at work plus consulting me during the initial phase
+	\item Dr. Thomas H\"ohener $\rightarrow$ for giving me the opportunity to do the thesis at work
+	\item Dr. Andreas Horni $\rightarrow$ for proof reading the thesis and technical inputs for \LaTeX 
+	\item Mom and Dad $\rightarrow$ for supporting me and my decisions in life
+	\item Martina $\rightarrow$ for proofreading
+	\item Rest of immopac ag staff $\rightarrow$ for continuous support and interest in the thesis
+\end{itemize}
+
 \end{acknowledgements}
 
 \begin{abstract}
@@ -60,8 +71,6 @@
 \listoftables
 
 \mainmatter
-
-Structure for the thesis adapted from \url{https://wwz.unibas.ch/fileadmin/wwz/redaktion/fmgt/Images/FinanzmanagementLeitfadenfuerArbeiten.pdf}
 
 \chapter{Introduction}
 \label{ch:intro}
@@ -133,14 +142,13 @@ Sun and Zhao in their work cover the aspect of formal analysis for workflow mode
 \label{subsec:workflow}
 
 A good starting point in the workflow thematic is Macintosh's work in which he gives an overview of the five levels of process maturity \cite{Macintosh1993}:
-
-\begin{enumerate}
+\begin{enumerate*}
 	\item Initial, the process has to be set up
 	\item Repeatable, the process has to be repeatable
 	\item Defined, documentation standardization of processes
 	\item Managed, measurement and control of processes
 	\item Optimizing, continuous process improvement
-\end{enumerate}
+\end{enumerate*}
 
 Even though Georgakopoulos' work dates back to 1995, he still gives a comprehensive business oriented overview of the different workflow technologies present on the market \cite{Georgakopoulos1995}.
 
@@ -184,14 +192,13 @@ He moreover defines three roles a workflow can fulfill:
 \end{enumerate*}
 
 Considering capacities of resources restrictions under the assignment problem is an NP-hard computational problem and in his work Zeng focuses on how to solve the assignment problem and scheduling decisions with consideration of worker's preferences \cite{Zeng2005}. For this purpose he defines five workflow resolution policies:
-
-\begin{enumerate}
+\begin{enumerate*}
 	\item \gls{llqp}
 	\item \gls{sq}
 	\item K-Batch
 	\item K-Batch-1
 	\item 1-Batch-1
-\end{enumerate}
+\end{enumerate*}
 
 For all batching policies a simplified version of \gls{dmf} has to be solved \cite{Zeng2005}.
 
@@ -273,12 +280,11 @@ Last but not least, according to the AIMMS guidelines, there are different linea
 Simulating queues can prove to be arduous. The main differentiation needed here is that between continuous and step functions: the former is the result when the events being simulated yield values that if plotted against the simulation time give a continuous function. On the other hand, if we simulate events that yield discrete values, such as inventory changes in a storage facility and plot the results against the simulation time we would get so called step functions \cite{Matloff2008}.
 
 According to Matloff, there exist different world views for discrete event programing, as he calls them paradigms \cite{Matloff2008}:
-
-\begin{enumerate}
+\begin{enumerate*}
 	\item Activity oriented
 	\item Event oriented
 	\item Process oriented
-\end{enumerate}
+\end{enumerate*}
 
 Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there won't be any change in state for the simulated entities \cite{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated. By filling these gaps, a dramatical increase in computation can be observed \cite{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks.
 
@@ -294,13 +300,13 @@ On another note, Bahouth focuses in work on algorithmic analysis of discrete eve
 Different tools were used in the analysis environment in order to efficiently simulate and analyze the work of this thesis.
 
 The whole architecture is subdivided as follows:
-\begin{enumerate}
+\begin{enumerate*}
 	\item The simulation environment is based on \texttt{Python 3.5.2}\foot{https://www.python.org}{06.01.2017} using the \texttt{Anaconda}\foot{https://www.continuum.io/anaconda-overview}{03.04.2017} platform and as a discrete event simulation the \texttt{SimPy 3.0.10}\foot{https://simpy.readthedocs.io/en/latest/}{06.01.2017} package is used.
 	\item The resulting data are interpreted and analyzed using Python and its plotting library: \texttt{Matplotlib 2.0.0}\foot{http://matplotlib.org/}{03.04.2017}.
 	\item \texttt{Tensorflow 1.0}\foot{https://www.tensorflow.org/}{03.04.2017} is the library used for the neural networks modeling.
 	\item Coding was done using \texttt{PyCharm 2017.1}\foot{https://www.jetbrains.com/pycharm/}{03.04.2017} as IDE for Python.
 	\item For solving the mixed integer problems for batching policies \texttt{Gurobi 7.0.1}\foot{http://www.gurobi.com}{06.01.2017} was used.
-\end{enumerate}
+\end{enumerate*}
 
 \subsection{Discrete event simulation using SimPy}
 
@@ -350,7 +356,6 @@ This can be interpreted as that the whole simulation will persist for 100 time s
 \begin{lstlisting}[caption=Starting the simulation with discrete time steps,label=lst:simulation_steps,style=CustomPython]
     # "global" variables
     SIM_TIME = 100
-    ...
     # runs simulation
     env.run(until=SIM_TIME)
 \end{lstlisting}
@@ -426,14 +431,13 @@ In its request method, each policy generates a policy job object, which is again
 \label{sec:opt_policies}
 
 Different types of policies have been implemented following the foundations laid by Zeng and Zhao as outlined in \subsecref{subsec:workflow}. In their work the authors investigate five ``role-resolution'' policies used for optimal task to user assignment \cite[p. 7]{Zeng2005}. Following a brief description of the five aforementioned policies:
-
-\begin{enumerate}
+\begin{enumerate*}
 	\item A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a FIFO fashion. The authors call this policy the ``\gls{llqp}''.
 	\item A policy that maintains a single queue being shared among all users is referred to the authors as ``\gls{sq}''.
 	\item Another policy that maintains both a \gls{sq} among all users and each user having an own queue and transfers tasks from the former to the latter is called ``K-Batch'' policy. Transfer of tasks from the \gls{sq} to users is done using an optimal task assignment procedure as soon as the \gls{sq} reaches a critical batch size $K$.
 	\item The following policies takes the ``K-Batch'' policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the \gls{sq} reaches the critical size $K$, however actual movement of tasks from the \gls{sq} to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$. This policy is called according to the authors as ``K-Batch-1''
 	\item The last policy further simplifies the fourth by weakening the batch size constraint and reduces it to one. This means that the optimal task assignment procedure is executed immediately. This policy is referred by the authors as ``1-Batch-1''.
-\end{enumerate}
+\end{enumerate*}
 
 All batching policies require the solution of an optimization problem. The authors define this problem as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``\gls{msa}''\cite[p. 7]{Zeng2005}. The authors define the task flowtime as the elapsed simulation time between task generation and its completion \cite{Zeng2005,Baker1974}. Formally \gls{msa} is formulated as follows:
 
@@ -715,11 +719,11 @@ The connections between neurons inside an \glspl{ann} are called weights and the
 
 The key about solving nonlinearity with \glspl{ann} is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of the usually exhibits an ``S'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of rectified linear unit (ReLU), which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
 
-\fig[0.6\textwidth]{ann_1h}{Single layer \glspl{ann}}{fig:ann_1h}
+\fig[0.5\textwidth]{ann_1h}{Single layer \glspl{ann}}{fig:ann_1h}
 
 Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development toward more complex \glspl{ann} with multiple hidden layers (\ie multi-layer perceptrons) has been on the rise \cite[p. 217]{Sutton2017}. These complex \glspl{ann} allow to solve many artificial intelligence tasks in a much more efficient way \cite{Bengio2009}. This area is called deep \gls{rl} and it has shed light on solutions that were never though possible before (for practical applications refer to Mnih's \cite{Mnih2015} and Silver's work \cite{Silver2016})\footnote{Note that the class of deep \glspl{ann} used in these works is a particular one called deep convolutional networks, which are specialized networks used for processing high dimensional data arranged in spatial arrays like images \cite[p. 219]{Sutton2017},\cite{Lecun1998}.} \cite{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer \glspl{ann}.
 
-\fig[0.6\textwidth]{ann_2h}{Multi layer \glspl{ann}}{fig:ann_2h}
+\fig[0.75\textwidth]{ann_2h}{Multi layer \glspl{ann}}{fig:ann_2h}
 
 Despite appearing more complex, \glspl{ann} rely on a similar approach for learning (\ie updating their internal parameters, or in this case the whole network synaptic connections) based on the \gls{sgd} method outlined in \subsecref{subsec:onpol_pred} \cite[p. 217]{Sutton2017}. This algorithm is called backpropagation and consists of doing a forward pass in which the activation function of each neuron is computed and then a backward pass computes the partial derivatives for each synaptic connection \cite[p. 218]{Sutton2017}.
 
@@ -847,11 +851,11 @@ Different subsections are used in order to separate better the different approac
 \end{enumerate*}
 
 The two key concepts required in order to effectively apply \gls{rl} techniques in the domain of workflow processes and the optimal assignment of jobs to users are:
-\begin{enumerate}
+\begin{enumerate*}
 	\item correctly defined states and actions spaces.
 	\item precise rewards definition.
 	\item effective update method for the policy's internal parameters. 
-\end{enumerate}
+\end{enumerate*}
 
 In the next subsections a distinction between prediction and update methods is outlined.
 
@@ -1069,12 +1073,11 @@ This approach effectively simulates batch policies with batch sizes $K>1$.
 \section{Methodology}
 
 In order to consistently and fairly evaluate all policies with the methods defined in the previous chapters, the following methodology was put in place:
-
-\begin{itemize}
+\begin{enumerate*}
 	\item Each policy has its own simulation script that initialized a process that uses the predefined policy as means to optimally assign jobs to tasks
 	\item Parameters are centrally defined.
 	\item Different \glspl{kpi} have been defined which are used to assert the efficiency of one policy against one another.
-\end{itemize}
+\end{enumerate*}
 
 \subsection{Simulation script}
 
