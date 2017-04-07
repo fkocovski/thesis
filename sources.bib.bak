@@ -350,6 +350,7 @@ Brief description of these 3 types of discrete event simulations.},
   edition   = {3rd},
   isbn      = {0387789340, 9780387789347},
   review    = {Very good book about metrics to evaluate policies},
+  url       = {http://www.math.nsc.ru/LBRT/k5/Scheduling/Scheduling_Theory,%20Algorithms,%20and%20Systems(Pinedo,2008).pdf},
 }
 
 @Article{Racer1994,
@@ -543,6 +544,43 @@ Data flow matrix (p. 7) is an interesting aspect to model data flows with write 
   issn     = {0018-9219},
   doi      = {10.1109/5.726791},
   keywords = {backpropagation;convolution;multilayer perceptrons;optical character recognition;2D shape variability;GTN;back-propagation;cheque reading;complex decision surface synthesis;convolutional neural network character recognizers;document recognition;document recognition systems;field extraction;gradient based learning technique;gradient-based learning;graph transformer networks;handwritten character recognition;handwritten digit recognition task;high-dimensional patterns;language modeling;multilayer neural networks;multimodule systems;performance measure minimization;segmentation recognition;Character recognition;Feature extraction;Hidden Markov models;Machine learning;Multi-layer neural network;Neural networks;Optical character recognition software;Optical computing;Pattern recognition;Principal component analysis},
+}
+
+@Book{Garey1990,
+  title     = {Computers and Intractability; A Guide to the Theory of NP-Completeness},
+  publisher = {W. H. Freeman \& Co.},
+  year      = {1990},
+  author    = {Garey, Michael R. and Johnson, David S.},
+  address   = {New York, NY, USA},
+  isbn      = {0716710455},
+  review    = {Cited by Zeng about how difficult and complex is the DMF problem to solve},
+}
+
+@Article{Bengio1994,
+  author     = {Bengio, Y. and Simard, P. and Frasconi, P.},
+  title      = {Learning Long-term Dependencies with Gradient Descent is Difficult},
+  journal    = {Trans. Neur. Netw.},
+  year       = {1994},
+  volume     = {5},
+  number     = {2},
+  pages      = {157--166},
+  month      = mar,
+  issn       = {1045-9227},
+  acmid      = {2328340},
+  address    = {Piscataway, NJ, USA},
+  doi        = {10.1109/72.279181},
+  issue_date = {March 1994},
+  numpages   = {10},
+  publisher  = {IEEE Press},
+  review     = {Explains the vanishing and exploding gradient problem},
+}
+
+@Article{Pascanu2012,
+  author  = {Razvan Pascanu and Tomas Mikolov and Yoshua Bengio},
+  title   = {Understanding the exploding gradient problem},
+  journal = {CoRR},
+  year    = {2012},
+  volume  = {abs/1211.5063},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

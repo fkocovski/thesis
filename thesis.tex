@@ -676,20 +676,20 @@ An essential characteristic for \gls{rl} algorithms venturing in the area of app
 
 The parametrized functional form with weight vector $\theta$ can be used to write $\hat{v}(s,\theta) \approx v_\pi (s)$, which is the approximated value of state $s$ given weight vector $\theta$ \cite[p. 191]{Sutton2017}.
 
-It is then clear that the weight vector $\theta$ has to be chosen wisely: this can be done by using variations of stochastic gradient descent (SGD) methods \cite[p. 223]{Sutton2017}. SGD methods adjust the weight vector after each step by a tiny amount following the direction that would reduce the error the most:
+It is then clear that the weight vector $\theta$ has to be chosen wisely: this can be done by using variations of \gls{sgd} methods \cite[p. 223]{Sutton2017}. \gls{sgd} methods adjust the weight vector after each step by a tiny amount following the direction that would reduce the error the most:
 
 \begin{align}
 	\theta_{t+1} &\doteq \theta_t - \frac{1}{2} \alpha \nabla [v_\pi (S_t) - \hat{v} (S_t,\theta_t)]^2\\
 	&= \theta_t + \alpha  [v_\pi (S_t) - \hat{v} (S_t,\theta_t)] \nabla \hat{v} (S_t,\theta_t)
 \end{align}
 
-where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$ is the vector of partial derivatives with respect to $\theta$:
+where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$:
 
 \begin{equation}
 	\nabla f(\theta) \doteq \left( \frac{\partial f(\theta)}{\partial \theta_1}, \frac{\partial f(\theta)}{\partial \theta_2}, \ldots, \frac{\partial f(\theta)}{\partial \theta_n} \right)^\top
 \end{equation}
 
-\ncite{add book citation}
+is the vector of partial derivatives with respect to $\theta$ \cite[p. 195]{Sutton2017}.
 
 An exceptional case is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-\gls{vfa} as the inner product between $\theta$ and $\phi (s)$:
 
@@ -698,14 +698,14 @@ An exceptional case is linear methods for function approximation, where the appr
 	\hat{v} (s,\theta) \doteq \theta^\top \phi (s) \doteq \sum_{i=1}^n \theta_i \phi_i (s)
 \end{equation}
 
-This simplified case of linear function approximation for state-value functions finally brings us to how we can use the SGD:
+This simplified case of linear function approximation for state-value functions finally brings us to how we can use the \gls{sgd}:
 
 \begin{equation}
 \label{eq:sgd_linear}
 	\nabla \hat{v} (s,\theta) = \phi (s)
 \end{equation}
 
-\equref{eq:sgd_linear} tells us that for the simple linear case the SGD is nothing more than the corresponding features value  \cite[p. 199]{Sutton2017}.
+\equref{eq:sgd_linear} tells us that for the simple linear case the \gls{sgd} is nothing more than the corresponding features value  \cite[p. 199]{Sutton2017}.
 
 \subsubsection{\glsentrylongpl{ann}}
 
@@ -721,7 +721,7 @@ Even though single layer perceptrons are powerful enough to approximate nonlinea
 
 \fig[0.6\textwidth]{ann_2h}{Multi layer \glspl{ann}}{fig:ann_2h}
 
-Despite appearing more complex, \glspl{ann} rely on a similar approach for learning (\ie updating their internal parameters, or in this case the whole network synaptic connections) based on the SGD method outlined in \subsecref{subsec:onpol_pred} \cite[p. 217]{Sutton2017}. This algorithm is called backpropagation and consists of doing a forward pass in which the activation function of each neuron is computed and then a backward pass computes the partial derivatives for each synaptic connection \cite[p. 218]{Sutton2017}.
+Despite appearing more complex, \glspl{ann} rely on a similar approach for learning (\ie updating their internal parameters, or in this case the whole network synaptic connections) based on the \gls{sgd} method outlined in \subsecref{subsec:onpol_pred} \cite[p. 217]{Sutton2017}. This algorithm is called backpropagation and consists of doing a forward pass in which the activation function of each neuron is computed and then a backward pass computes the partial derivatives for each synaptic connection \cite[p. 218]{Sutton2017}.
 
 As any other function approximation method, overfitting can be a problem for \glspl{ann} as well and it is particularly present for deep \glspl{ann} \cite[p. 218]{Sutton2017}. There are different techniques that can be used in order to mitigate this effect, with the most prominent one being the dropout method outlined by Srivastava \cite{Srivastava2014}.
 
@@ -902,7 +902,7 @@ and its respective state-\gls{vfa} in \lstref{lst:value_f_approx}.
  
  $Q$ values are however only one part of the requirements set by \gls{rl} methods, the next crucial aspect is defining the reward function. Since \gls{rl} agents are able to back-propagate what they have learned from one episode and thus update their internal factors, correctly defining a reward is a must. Since the goal for our domain is minimizing the maximum flowtime (from now on this metric will be referred to as lateness) of a job, the reward itself corresponds to the lateness of a job during a specific task. This can be evaluated a priori since for each policy job we know its internal parameters required to calculate the lateness \ie busy time of user $i$ plus the service time of user $i$ for job $j$, or formally $a_i+p_{ij}$.
 
- The last definition required in order to effectively apply the update on the policy's internal parameters $\theta$ is defining the SGD method as outlined by \equref{eq:sgd_linear}. This method will give us the direction in which we have to update our internal $\theta$ parameters during our chosen update method and it is nothing more than the features themselves. As an example, refer to \lstref{lst:features_definition} for the concrete implementation.
+ The last definition required in order to effectively apply the update on the policy's internal parameters $\theta$ is defining the \gls{sgd} method as outlined by \equref{eq:sgd_linear}. This method will give us the direction in which we have to update our internal $\theta$ parameters during our chosen update method and it is nothing more than the features themselves. As an example, refer to \lstref{lst:features_definition} for the concrete implementation.
 
  \begin{lstlisting}[caption=Features definition,label=lst:features_definition,style=CustomPython]
     def features(self, states, action):
@@ -966,7 +966,7 @@ Up to this point we have used linear functions for the approximation of the $Q$ 
     	probabilities = [tf.nn.softmax(pred[b]) for b in range(batch_input)]
 \end{lstlisting}
 
-In order to update the \glspl{ann}, a backpropagation has to take place. Such an update can both be made following a \gls{mc} or \gls{td} approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a SGD approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an \glspl{ann} following a \gls{mc} update method is done.
+In order to update the \glspl{ann}, a backpropagation has to take place. Such an update can both be made following a \gls{mc} or \gls{td} approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a \gls{sgd} approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an \glspl{ann} following a \gls{mc} update method is done.
 
 \begin{lstlisting}[caption=Backpropagation algorithm following a \gls{mc} update approach,label=lst:mc_backpropagation,style=CustomPython]
     def train(self):
@@ -1015,7 +1015,7 @@ Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \b
 \subsection{Batch Size Emulation}
 \label{subsec:batch_size_emulation}
 
-Correctly defined state spaces is a crucial requirement for effective \gls{rl} methods. \gls{llqp} policies are relatively easy to be modeled, on the other hand policies with batch sizes require a more meticulous consideration. By introducing a batch size that retains jobs in its global queue (\ie all batch sizes $K>1$), not only the job-to-user assignment plays a role, be the ordering of the assignment influences greatly the final outcome. Let us consider a simple case with users $i=2$ and jobs $j=3$ at time step $t$. \tabref{tab:users_service_times_example} summarizes the service times $p_{ij}$ in time units $t$ of both users for all three jobs.
+Correctly defined state spaces is a crucial requirement for effective \gls{rl} methods. \gls{llqp} policies are relatively easy to be modeled, on the other hand policies with batch sizes require a more meticulous consideration. By introducing a batch size that retains jobs in its global queue (\ie all batch sizes $K>1$), not only the job-to-user assignment plays a role, be the ordering of the assignment influences greatly the final outcome as well. Let us consider a simple case with users $i=2$ and jobs $j=3$ at time step $t$. \tabref{tab:users_service_times_example} summarizes the service times $p_{ij}$ in time units $t$ of both users for all three jobs.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1033,11 +1033,22 @@ User 2 & $4$     & $5$     & $6$     \\ \bottomrule
 
 It is clear that the ordering of the jobs assigned has an impact on the final outcome. \figref{fig:user_job_assignment_order} outlines a possible conformation where user 1 receives job 1 while user 2 gets assigned to jobs 2 and 3 respectively. In this case, job 1 is started at $t$ and is finished at $t+1$, job 2 is started at $t$ and is finished at $t+5$ and job 3 is started at $t+5$ and is finished at $t+11$. The respective lateness per job is: $1$ for job 1, $5$ for job 2 and $6$ for job $3$.
 
-\fig[0.5\textwidth]{user_job_assignment_order}{User 1 receives job 1 while user 2 receives jobs 2 and 3}{fig:user_job_assignment_order}
-
 By changing the assignment order (refer to \figref{fig:user_job_assignment_order2} for a graphical representation), the final outcome changes as well: In this case, job 1 is started at $t+2$ and is finished at $t+3$, job 2 is started at $t$ and is finished at $t+2$ and job 3 is started at $t$ and is finished at $t+6$. The respective lateness per job is: $1$ for job 1, $2$ for job 2 and $6$ for job $3$. By merely changing the assignment order a reduction of $40\%$ in lateness is observed by job 2.
 
-\fig[0.5\textwidth]{user_job_assignment_order2}{User 1 receives jobs 2 and 1 while user 2 receives only job 3}{fig:user_job_assignment_order2}
+\begin{figure}[!ht]
+	\centering
+	\begin{minipage}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{img/user_job_assignment_order}
+		\caption{User 1 receives job 1 while user 2 receives jobs 2 and 3}
+		\label{fig:user_job_assignment_order}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{img/user_job_assignment_order2}
+		\caption{User 1 receives jobs 2 and 1 while user 2 receives job 3}
+		\label{fig:user_job_assignment_order2}
+	\end{minipage}
+\end{figure}
 
 \subsecref{subsec:rl_others} outlines three different types of policies (refer to \tabref{tab:rl_others_policies_overview} for a detailed explanation of the policies) that take into account the previously outlined job assignment ordering principle and exploit it in their state space modeling. This is done by means of integrating an additional parameter $B$ that defines how many jobs have to be considered when trying to optimally assign jobs lying in the global queue to users. This is done by listing all possible combinations by accounting for the job order as well. Refer to \lstref{lst:wz_combinations} for the actual implementation.
 
@@ -1307,7 +1318,7 @@ k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \
 \label{tab:rl_batch_policies_overview}
 \end{table}
 
-\tabref{tab:rl_batch_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:kbatch_rl_msa_comp_app} for K-Batch respectively to \subsecref{subsec:kbatchone_rl_msa_comp_app} for K-Batch-1.
+\tabref{tab:rl_batch_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:onebatch_rl_msa_comp_app} for 1-Batch respectively to \subsecref{subsec:onebatchone_rl_msa_comp_app} for 1-Batch-1.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1372,7 +1383,7 @@ Average System Load & $-0.15$                  & $0.19$                  & $-0.3
 \subsection{Others}
 \label{subsec:rl_others}
 
-Three different additional policies with \gls{rl} have been developed which have been used to fully emulate the behavior of K-Batch and K-Batch-1 (as explained in \subsecref{subsec:batch_size_emulation}). \tabref{tab:rl_others_policies_overview} gives an overview.
+Three different additional policies with \gls{rl} have been developed which have been used to fully emulate the behavior of K-Batch and 1-Batch-1 (as explained in \subsecref{subsec:batch_size_emulation}). \tabref{tab:rl_others_policies_overview} gives an overview.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1385,7 +1396,7 @@ Three different additional policies with \gls{rl} have been developed which have
 Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
 wz\_td\_vfa\_op       & \gls{wz}     & \gls{td}            & \gls{vfa} & \gls{op}                      \\
 wz\_one\_td\_vfa\_op   & \gls{wzo}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
-bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & None                \\ \bottomrule
+bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & \gls{pg}                \\ \bottomrule
 \end{tabular}%
 }
 \caption{Overview of additional developed policies with \gls{rl}}
@@ -1414,6 +1425,56 @@ Average System Load & $20.58$                & $12.76$                     & $-7
 \end{table}
 
 \section{Discussion}
+
+\subsection{Optimization}
+
+Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different solvers yield different solutions and computational complexities. Zeng mentions that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered \cite[p. 15]{Zeng2005}. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \cite[p. 13]{Zeng2005},\cite{Garey1990}. Zeng proposes however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it \cite[p. 13]{Zeng2005}. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of solvers. The \gls{st} ``flagship'' solver significantly outperforms the \gls{msa} solver (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher computational complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_solvers}) questions the practical use of this solver over the other methods. A $20\%$ gain in respect to lateness requiring a quadratic higher computational complexity poses a dubious trade-off from a business perspective.
+
+\fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glspl{kpi} comparison between \gls{msa} and \gls{st} under 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
+
+Yet another aspect mentioned by Zeng is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment \cite[pp. 17-18]{Zeng2005}. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two solvers.
+
+\begin{figure}[!ht]
+	\centering
+	\begin{minipage}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{img/1_BATCHONE_MSA_NU5_GI3_SIM1000_FAIR}
+		\caption{User loads distribution for 1-Batch-1 using \gls{msa}}
+		\label{fig:msa_fairness}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{img/1_BATCHONE_ST_NU5_GI3_SIM1000_FAIR}
+		\caption{User loads distribution for 1-Batch-1 using \gls{st}}
+		\label{fig:st_fairness}
+	\end{minipage}
+\end{figure}
+
+It is clear that \gls{st} is ``fairer'' at balancing loads across users compared to \gls{msa}. 
+
+\subsection{\glsentrylong{rl}}
+
+Let us first focus on \gls{llqp}, which, as explained in \secref{sec:opt_policies}, focuses on assigning a job to the least loaded qualified person. By comparing the results obtained with \gls{rl} against the optimization method, we clearly see that gains across all \glspl{kpi} are imperceptible (refer to \subsecref{subsec:llqp_rl_msa_comp_app} for more details). This sheds light on two key aspects:
+\begin{enumerate*}
+	\item \gls{llqp} policies are intrinsically optimized by their nature of implementation.
+	\item \gls{rl} methods converge really well (for a $1000$ time steps \gls{llqp} simulation, \gls{llqp} with \gls{td} and \gls{tf} only needs 20 times the simulation time as training in order to perfectly converge to actual \gls{llqp}) and, even if only slightly, exploit internal mechanisms of \gls{llqp} policies to extract better results.
+\end{enumerate*}
+
+On the other hand, batch policies exhibit a much bigger optimization potential for which \gls{rl} methods do really adapt well. Lateness improvements in the range of $30\%$ for 1-Batch (see \subsecref{subsec:onebatch_rl_msa_comp_app}) respectively $20\%$ for 1-Batch-1 (see \subsecref{subsec:onebatchone_rl_msa_comp_app}) confirm the previous claim.
+
+Lastly, when accounting for job order during assignment (refer to \subsecref{subsec:batch_size_emulation} for the detailed explanation), improvements are observed only under specific conditions:
+\begin{enumerate*}
+	\item by using \gls{wzo} (see \figref{fig:wz_one_td_vfa_op}) and 
+	\item \glspl{ann} with \gls{1l} (see \figref{fig:bi_one_mc_tf_1l}).
+\end{enumerate*}
+
+Having said that, deep \glspl{ann} exhibits worse results compared to their equivalent emulated optimization methods. This can be explained from a twofold perspective:
+\begin{enumerate*}
+	\item \gls{vgp} and
+	\item \gls{egp}.
+\end{enumerate*}
+
+In brief, \gls{vgp} states that even very large change in partial derivatives on initial layers have imperceptible effects on subsequent layers \cite{Bengio1994} and \gls{egp} states that huge spikes in the norm of changes in partial derivatives which could potentially grow exponentially can happen under training, thus influencing internal parameters \cite{Bengio1994,Pascanu2012}.
+
 \section{Research Contribution}
 
 \chapter{Conclusion}
@@ -1525,56 +1586,56 @@ Average System Load & $20.58$                & $12.76$                     & $-7
 
 \chapter{\glsentrylong{rl} Results}
 
-\section{K-Batch}
+\section{1-Batch}
 
 \subsection{\glsentryshortpl{kpi}}
-\label{subsec:kbatch_rl_kpi_app}
+\label{subsec:onebatch_rl_kpi_app}
 
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}{K-Batch with \gls{mc} and \gls{vfa} \glspl{kpi}}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{K-Batch with \gls{mc}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}{K-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} \glspl{kpi}}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{K-Batch with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}{1-Batch with \gls{mc} and \gls{vfa} \glspl{kpi}}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{1-Batch with \gls{mc}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}{1-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} \glspl{kpi}}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{1-Batch with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
-\label{subsec:kbatch_rl_evo_app}
+\label{subsec:onebatch_rl_evo_app}
 
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}{K-Batch with \gls{mc} and \gls{vfa} evolution}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{K-Batch with \gls{mc}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}{K-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} evolution}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{K-Batch with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}{1-Batch with \gls{mc} and \gls{vfa} evolution}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{1-Batch with \gls{mc}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}{1-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} evolution}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{1-Batch with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
 
 \clearpage
 
 \subsection{Comparison with \glsentryshort{msa}}
-\label{subsec:kbatch_rl_msa_comp_app}
+\label{subsec:onebatch_rl_msa_comp_app}
 
-\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa}{K-Batch with \gls{mc} and \gls{vfa} \gls{msa} comparison}{fig:k_batch_mc_vfa}
-\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_op}{K-Batch with \gls{mc}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:k_batch_mc_vfa_op}
-\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_opep}{K-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} \gls{msa} comparison}{fig:k_batch_mc_vfa_opep}
-\fig[\textwidth]{kbatch_rl_res/k_batch_td_vfa_op}{K-Batch with \gls{td}, \gls{vfa}, \gls{op} and \gls{ep} \gls{msa} comparison}{fig:k_batch_td_vfa_op}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa}{1-Batch with \gls{mc} and \gls{vfa} \gls{msa} comparison}{fig:k_batch_mc_vfa}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_op}{1-Batch with \gls{mc}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:k_batch_mc_vfa_op}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_opep}{1-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} \gls{msa} comparison}{fig:k_batch_mc_vfa_opep}
+\fig[\textwidth]{kbatch_rl_res/k_batch_td_vfa_op}{1-Batch with \gls{td}, \gls{vfa}, \gls{op} and \gls{ep} \gls{msa} comparison}{fig:k_batch_td_vfa_op}
 
-\section{K-Batch-1}
+\section{1-Batch-1}
 
 \subsection{\glsentryshortpl{kpi}}
-\label{subsec:kbatchone_rl_kpi_app}
+\label{subsec:onebatchone_rl_kpi_app}
 
-\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{K-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{1-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
-\label{subsec:kbatchone_rl_evo_app}
+\label{subsec:onebatchone_rl_evo_app}
 
-%\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{K-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{1-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
 
 \clearpage
 
 \subsection{Comparison with \glsentryshort{msa}}
-\label{subsec:kbatchone_rl_msa_comp_app}
+\label{subsec:onebatchone_rl_msa_comp_app}
 
-\fig[\textwidth]{kbatchone_rl_res/k_batchone_td_vfa_op}{K-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:k_batchone_td_vfa_op}
+\fig[\textwidth]{kbatchone_rl_res/k_batchone_td_vfa_op}{1-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:k_batchone_td_vfa_op}
 
 \clearpage
 
