@@ -59,12 +59,6 @@
 
 \listoftables
 
-\clearpage
-
-\lstlistoflistings
-
-\pagebreak
-
 \mainmatter
 
 Structure for the thesis adapted from \url{https://wwz.unibas.ch/fileadmin/wwz/redaktion/fmgt/Images/FinanzmanagementLeitfadenfuerArbeiten.pdf}
@@ -1018,6 +1012,43 @@ Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \b
 \label{tab:mc_td_comp}
 \end{table}
 
+\subsection{Batch Size Emulation}
+\label{subsec:batch_size_emulation}
+
+Correctly defined state spaces is a crucial requirement for effective \gls{rl} methods. \gls{llqp} policies are relatively easy to be modeled, on the other hand policies with batch sizes require a more meticulous consideration. By introducing a batch size that retains jobs in its global queue (\ie all batch sizes $K>1$), not only the job-to-user assignment plays a role, be the ordering of the assignment influences greatly the final outcome. Let us consider a simple case with users $i=2$ and jobs $j=3$ at time step $t$. \tabref{tab:users_service_times_example} summarizes the service times $p_{ij}$ in time units $t$ of both users for all three jobs.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+User   & Job 1 & Job 2 & Job 3 \\ \midrule
+User 1 & $1$     & $2$     & $3$     \\
+User 2 & $4$     & $5$     & $6$     \\ \bottomrule
+\end{tabular}
+\caption{Service times of both users for all three jobs}
+\label{tab:users_service_times_example}
+\end{table}
+
+It is clear that the ordering of the jobs assigned has an impact on the final outcome. \figref{fig:user_job_assignment_order} outlines a possible conformation where user 1 receives job 1 while user 2 gets assigned to jobs 2 and 3 respectively. In this case, job 1 is started at $t$ and is finished at $t+1$, job 2 is started at $t$ and is finished at $t+5$ and job 3 is started at $t+5$ and is finished at $t+11$. The respective lateness per job is: $1$ for job 1, $5$ for job 2 and $6$ for job $3$.
+
+\fig[0.5\textwidth]{user_job_assignment_order}{User 1 receives job 1 while user 2 receives jobs 2 and 3}{fig:user_job_assignment_order}
+
+By changing the assignment order (refer to \figref{fig:user_job_assignment_order2} for a graphical representation), the final outcome changes as well: In this case, job 1 is started at $t+2$ and is finished at $t+3$, job 2 is started at $t$ and is finished at $t+2$ and job 3 is started at $t$ and is finished at $t+6$. The respective lateness per job is: $1$ for job 1, $2$ for job 2 and $6$ for job $3$. By merely changing the assignment order a reduction of $40\%$ in lateness is observed by job 2.
+
+\fig[0.5\textwidth]{user_job_assignment_order2}{User 1 receives jobs 2 and 1 while user 2 receives only job 3}{fig:user_job_assignment_order2}
+
+\subsecref{subsec:rl_others} outlines three different types of policies (refer to \tabref{tab:rl_others_policies_overview} for a detailed explanation of the policies) that take into account the previously outlined job assignment ordering principle and exploit it in their state space modeling. This is done by means of integrating an additional parameter $B$ that defines how many jobs have to be considered when trying to optimally assign jobs lying in the global queue to users. This is done by listing all possible combinations by accounting for the job order as well. Refer to \lstref{lst:wz_combinations} for the actual implementation.
+
+\begin{lstlisting}[caption=State space modeling by considering $B$ jobs from the global queue and integrating all possible combinations,label=lst:wz_combinations,style=CustomPython]
+	combinations = list(itertools.product(range(self.number_of_users), repeat=self.wait_size))
+    for i, combination in enumerate(combinations):
+        state_space[i] = a + [p[user_index][job_index] for job_index, user_index in enumerate(combination)]
+\end{lstlisting}
+
+This approach effectively simulates batch policies with batch sizes $K>1$.
+
 \section{Hypothesis}
 \section{Data}
 
@@ -1146,14 +1177,14 @@ This section focuses on the results of the different types of policies using the
 \begin{tabular}{@{}lll@{}}
 \toprule
 Variable            & Default     & Valid Range \\ \midrule
-Number of Users     & 3           & $1-\infty$      \\
-Service Interval    & 1           & $1-\infty$      \\
-Generation Interval & 3           & $1-\infty$      \\
-Simulation Time     & 50          & $1-\infty$      \\
-Batch Size          & 3           & $1-\infty$      \\
-Task Varaibility    & 20\%        & $0\%-100\%$      \\
-Worker Variability  & 20\%        & $0\%-100\%$      \\
-Random State Seed   & 2           & $\emptyset-\infty$      \\
+Number of Users     & $3$           & $1-\infty$      \\
+Service Interval    & $1$           & $1-\infty$      \\
+Generation Interval & $3$           & $1-\infty$      \\
+Simulation Time     & $50$          & $1-\infty$      \\
+Batch Size          & $3$           & $1-\infty$      \\
+Task Varaibility    & $20\%$        & $0\%-100\%$      \\
+Worker Variability  & $20\%$        & $0\%-100\%$      \\
+Random State Seed   & $2$           & $\emptyset-\infty$      \\
 Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
 \end{tabular}
 \caption{Global Parameters for Simulation}
@@ -1183,14 +1214,14 @@ The simulation have been run with the parameters outlined in tab by using the sa
 \begin{tabular}{@{}ll@{}}
 \toprule
 Variable            & Value     \\ \midrule
-Number of Users     & 5                 \\
-Service Interval    & 1              \\
-Generation Interval & 2                 \\
-Simulation Time     & 50              \\
+Number of Users     & $5$                 \\
+Service Interval    & $1$              \\
+Generation Interval & $2$                 \\
+Simulation Time     & $50$              \\
 Batch Size          & 5 (1 for 1-Batch-1)               \\
-Task Varaibility    & 20\%             \\
-Worker Variability  & 20\%              \\
-Random State Seed   & 2                 \\
+Task Varaibility    & $20\%$             \\
+Worker Variability  & $20\%$              \\
+Random State Seed   & $2$                 \\
 Workflow Process    & Acquisition       \\ \bottomrule
 \end{tabular}
 \caption{Global Parameters for Optimization Policies \glspl{kpi} Comparison}
@@ -1214,10 +1245,10 @@ Astonishing reductions have been observed for the 1-Batch-1 policy, which is ind
 \begin{tabular}{@{}ll@{}}
 \toprule
 \gls{kpi}                 & Reduction (in \%) \\ \midrule
-Lateness            & 38.28             \\
-Wait Time           & 528.14             \\
-Service Time        & 19.75             \\
-Average System Load & 17.14             \\ \bottomrule
+Lateness            & $38.28$             \\
+Wait Time           & $528.14$             \\
+Service Time        & $19.75$             \\
+Average System Load & $17.14$             \\ \bottomrule
 \end{tabular}
 \caption{Reduction (in \%) across all \glspl{kpi} of the \gls{st} against the \gls{msa} solver}
 \label{tab:opt_kpis_comp_gain}
@@ -1287,10 +1318,10 @@ k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \
 \begin{tabular}{@{}llllll@{}}
 \toprule
 gls{kpi}                 & k\_batch\_mc\_vfa & k\_batch\_mc\_vfa\_op & k\_batch\_mc\_vfa\_opep & k\_batch\_td\_vfa\_op & k\_batchone\_td\_vfa\_op \\ \midrule
-Lateness            & 32.96                  & 33.88                      & 32.75                        & 33.71                      & 20.33                         \\
-Wait Time           & 230.3                  & 226.58                      & 167.28                        & 248.98                      & 44.4                         \\
-Service Time        & 12.07                  & 13.06                      & 14.71                        & 12.11                      & 14.14                         \\
-Average System Load & 11.74                  & 12.75                      & 14.4                        & 11.8                      & 13.81                         \\ \bottomrule
+Lateness            & $32.96$                  & $33.88$                      & $32.75$                        & $33.71$                      & $20.33$                         \\
+Wait Time           & $230.3$                  & $226.58$                      & $167.28$                        & $248.98$                      & $44.4$                         \\
+Service Time        & $12.07$                  & $13.06$                      & $14.71$                        & $12.11$                      & $14.14$                         \\
+Average System Load & $11.74$                  & $12.75$                      & $14.4$                        & $11.8$                      & $13.81$                         \\ \bottomrule
 \end{tabular}%
 }
 \caption{Reduction (in \%) across all \glspl{kpi} of the batch policies with \gls{rl} against the \gls{msa} solver}
@@ -1329,10 +1360,10 @@ llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{o
 \begin{tabular}{@{}llll@{}}
 \toprule
 gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_td\_vfa\_op & llqp\_td\_tf\_op \\ \midrule
-Lateness            & 0.18                  & 0.21                  & 0.81                 \\
-Wait Time           & 2.98                  & 0.81                  & 10.8                 \\
-Service Time        & -0.14                  & 0.14                  & -0.3                 \\
-Average System Load & -0.15                  & 0.19                  & -0.3                 \\ \bottomrule
+Lateness            & $0.18$                  & $0.21$                  & $0.81$                 \\
+Wait Time           & $2.98$                  & $0.81$                  & $10.8$                 \\
+Service Time        & $-0.14$                  & $0.14$                  & $-0.3$                 \\
+Average System Load & $-0.15$                  & $0.19$                  & $-0.3$                 \\ \bottomrule
 \end{tabular}
 \caption{Reduction (in \%) across all \glspl{kpi} of the \gls{llqp} policies with \gls{rl} against the \gls{msa} solver}
 \label{tab:rl_llqp_kpis_comp_gain}
@@ -1340,6 +1371,47 @@ Average System Load & -0.15                  & 0.19                  & -0.3     
 
 \subsection{Others}
 \label{subsec:rl_others}
+
+Three different additional policies with \gls{rl} have been developed which have been used to fully emulate the behavior of K-Batch and K-Batch-1 (as explained in \subsecref{subsec:batch_size_emulation}). \tabref{tab:rl_others_policies_overview} gives an overview.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+wz\_td\_vfa\_op       & \gls{wz}     & \gls{td}            & \gls{vfa} & \gls{op}                      \\
+wz\_one\_td\_vfa\_op   & \gls{wzo}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
+bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & None                \\ \bottomrule
+\end{tabular}%
+}
+\caption{Overview of additional developed policies with \gls{rl}}
+\label{tab:rl_others_policies_overview}
+\end{table}
+
+\tabref{tab:rl_others_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:others_rl_msa_comp_app}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+KPI                 & wz\_td\_vfa\_op & wz\_one\_td\_vfa\_op & bi\_one\_mc\_tf\_1l & bi\_one\_mc\_tf\_2l & bi\_one\_mc\_tf\_3l & bi\_one\_mc\_tf\_4l \\ \midrule
+Lateness            & $-6.02$                & $24.16$                     & $8.98$                    & $-12.12$                    & $-21.37$                    & $-18.8$                    \\
+Wait Time           & $-17.52$                & $77.88$                     & $134.96$                    & $1.88$                    & $-28.06$                    & $-19.39$                    \\
+Service Time        & $20.76$                & $13.08$                     & $-7.18$                    & $-15.87$                    & $-18.92$                    & $-18.6$                    \\
+Average System Load & $20.58$                & $12.76$                     & $-7.45$                    & $-15.95$                    & $-18.99$                    & $-18.68$                    \\ \bottomrule
+\end{tabular}%
+}
+\caption{Reduction (in \%) across all \glspl{kpi} of the additional policies with \gls{rl} against the \gls{msa} solver}
+\label{tab:rl_others_kpis_comp_gain}
+\end{table}
 
 \section{Discussion}
 \section{Research Contribution}
@@ -1567,6 +1639,11 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & Action 
 \label{subsec:others_rl_kpi_app}
 
 \fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\gls{wz} with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\gls{wzo} with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_KPI}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{1l} \glspl{kpi}}{fig:1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_KPI}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{2l} \glspl{kpi}}{fig:1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_KPI}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{3l} \glspl{kpi}}{fig:1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_KPI}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{4l} \glspl{kpi}}{fig:1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_KPI}
 
 \clearpage
 
@@ -1574,6 +1651,11 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & Action 
 \label{subsec:others_rl_evo_app}
 
 %\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\gls{wz} with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\gls{wzo} with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_EVO}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{1l} evolution}{fig:1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_EVO}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{2l} evolution}{fig:1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_EVO}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{3l} evolution}{fig:1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_EVO}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{4l} evolution}{fig:1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_EVO}
 
 \clearpage
 
@@ -1581,6 +1663,11 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & Action 
 \label{subsec:others_rl_msa_comp_app}
 
 \fig[\textwidth]{others_rl_res/wz_td_vfa_op}{\gls{wz} with \gls{td}, \gls{vfa} and \gls{op} \glspl{msa} comparison}{fig:wz_td_vfa_op}
+\fig[\textwidth]{others_rl_res/wz_one_td_vfa_op}{\gls{wzo} with \gls{td}, \gls{vfa} and \gls{op} \glspl{msa} comparison}{fig:wz_one_td_vfa_op}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_1l}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{1l} \glspl{msa} comparison}{fig:bi_one_mc_tf_1l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_2l}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{2l} \glspl{msa} comparison}{fig:bi_one_mc_tf_2l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{3l} \glspl{msa} comparison}{fig:bi_one_mc_tf_3l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{4l} \glspl{msa} comparison}{fig:bi_one_mc_tf_4l}
 
 \clearpage
 
