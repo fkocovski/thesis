@@ -94,16 +94,15 @@ Currently many different workflow engines exist, ranging from complete fully fun
 The objectives of these thesis build upon the work of Zeng and Zhao \cite{Zeng2005}, in which they depicted preliminary policies for optimal role resolution, and extends these capabilities from a threefold perspective:
 \begin{enumerate*}
 	\item further develops the mathematical premises and extends the capabilities of the batching policies proposed by Zeng and Zhao
-	\item explores the capabilities offered by \gls{rl} as addition and improvement for even precises, faster and better task assignment
+	\item explores the capabilities offered by \gls{rl} as addition and improvement for even preciser, faster and better task assignment
 	\item deployment of the aforementioned optimization techniques in an operative environment of a real estate company using a workflow engine.
 \end{enumerate*}
 
 Formally, this thesis tries to answer the following research questions:
 
-\begin{enumerate}
-	\item Are there better optimization techniques for optimal role resolution techniques inside workflow processes?
-	\item Is the deployment of optimization policies in a working environment for a workflow engine a critical success factor?
-	\item How is optimization in the field of task assignment perceived by the workflow users (actors)?
+\begin{enumerate}[label=\textbf{RQ. \arabic*},ref=Research Question \arabic*]
+\item Can current optimization methods for job assignment in workflow processes be further developed? \label{rq:one}
+\item Are there state of the art approaches that can complement job assignment with mathematical optimization methods? \label{rq:two}
 \end{enumerate}
 
 \section{Thesis Structure}
@@ -290,7 +289,6 @@ Activity oriented can be summarized as simulation events where time is being sub
 
 On another note, Bahouth focuses in work on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues \cite{Bahouth2007}. According to his findings, a significant speedup can be achieved if one addresses the afore mentioned facets.
 
-\section{Research Deficit}
 
 \chapter{Methodology}
 \label{ch:methodology}
@@ -1064,8 +1062,6 @@ By changing the assignment order (refer to \figref{fig:user_job_assignment_order
 
 This approach effectively simulates batch policies with batch sizes $K>1$.
 
-\section{Hypothesis}
-\section{Data}
 
 \chapter{Empirical Analysis}
 \label{ch:empirical_analysis}
@@ -1373,7 +1369,7 @@ llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{o
 \centering
 \begin{tabular}{@{}llll@{}}
 \toprule
-gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_td\_vfa\_op & llqp\_td\_tf\_op \\ \midrule
+\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_td\_vfa\_op & llqp\_td\_tf\_op \\ \midrule
 Lateness            & $0.18$                  & $0.21$                  & $0.81$                 \\
 Wait Time           & $2.98$                  & $0.81$                  & $10.8$                 \\
 Service Time        & $-0.14$                  & $0.14$                  & $-0.3$                 \\
@@ -1381,6 +1377,24 @@ Average System Load & $-0.15$                  & $0.19$                  & $-0.3
 \end{tabular}
 \caption{Reduction (in \%) across all \glspl{kpi} of the \gls{llqp} policies with \gls{rl} against the \gls{msa} solver}
 \label{tab:rl_llqp_kpis_comp_gain}
+\end{table}
+
+\tabref{tab:llqp_mc_vfa_op_vs_on} shows the comparison between \gls{op} and \gls{onp} approaches.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_mc\_vfa & difference (in \%) \\ \midrule
+Lateness            & $1.3138$                  & $1.3422$              & $-2.12$                   \\
+Wait Time           & $0.0874$                  & $0.1408$              & $-37.93$                   \\
+Service Time        & $1.2264$                  & $1.2014$              & $2.08$                   \\
+Average System Load & $39.24\%$                  & $38.49\%$              & $2.19$                   \\ \bottomrule
+\end{tabular}
+\caption{\glspl{kpi} comparison between \gls{op} and \gls{onp} approaches}
+\label{tab:llqp_mc_vfa_op_vs_on}
 \end{table}
 
 \subsection{Others}
@@ -1478,14 +1492,59 @@ Having said that, deep \glspl{ann} exhibits worse results compared to their equi
 
 In brief, \gls{vgp} states that even very large change in partial derivatives on initial layers have imperceptible effects on subsequent layers \cite{Bengio1994} and \gls{egp} states that huge spikes in the norm of changes in partial derivatives which could potentially grow exponentially can happen under training, thus influencing internal parameters \cite{Bengio1994,Pascanu2012}.
 
-\section{Research Contribution}
+Yet another crucial aspect to consider when undergoing \gls{rl} methods is usage between \gls{onp} or \gls{op} learning (refer to \subsecref{subsec:onpol_pred} and \subsecref{subsec:onpol_control} for \gls{onp} respectively \subsecref{subsec:offpol_methods} for \gls{op}). As shown in \tabref{tab:llqp_mc_vfa_op_vs_on} (and \figref{fig:llqp_mc_vfa_on_vs_off}), \gls{op} methods converge slightly better compared to \gls{onp}, however the change is imperceptible and can be found in different factors (\eg random state seed choice or length of simulation). Having said that, it is important to note that these different approaches are being currently heavily studied by pioneers and the debate is still open, as Sutton and Barto explain in their book \cite[pp. 245-249]{Sutton2017}. The current key takeaways from this outgoing debate can be summarized as follows:
+\begin{enumerate*}
+	\item Learning \gls{op}
+	\item Usage of scalable function approximation methods like linear semi-gradient 
+	\item Usage of bootstrapping which is used in \gls{td} methods.
+\end{enumerate*}
+
+\ncite{book citation needed?}
+
+The combination of all these three factors is referred as ``the deadly triad'' \cite[p. 249]{Sutton2017}. Sutton and Barto argue that dangers can arise only when all three aspects are present, if used singularly convergence properties are safe \cite[p. 249]{Sutton2017}.
+
+On a more general note, different comparisons have shown huge spikes in reduction of waiting time (\eg \subsecref{subsec:onebatch_rl_msa_comp_app}). Even though compelling, the practical usage is limited: when considering workflow processes with fixed available resources (\ie users participating), huge reduction in job waiting times does not always correlate with better system performance, since it might be the case that even if a job is ready to be assigned there are no available resources to complete such job.
+
+\fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glspl{kpi} comparison between \gls{op} and \gls{onp} approaches}{fig:llqp_mc_vfa_on_vs_off}
+
 
 \chapter{Conclusion}
 \label{ch:conclusion}
 
 \section{Summary}
+
+\begin{enumerate}
+	\item analyzed current mathematical optimization
+	\item made new mathematical methods to further develop existing ones
+	\item researched new field of \gls{rl}
+	\item implemented state of the art abstract \gls{rl} to practical business case of workflow processes
+	\item compared new optimization methods to existing ones
+	\item compared new \gls{rl} methods to existing optimization methods
+\end{enumerate}
+
+The focus of this thesis was analyzing different approaches for optimally allocating resources inside workflow processes by means of different methods.
+
+Initially a found literature review has been made in order to establish the existing optimization solution (\ie foundations set by Zeng and Zhao \cite{Zeng2005}), then a roadmap on how to further develop such methods has been laid out. The roadmap encloses a two fold approach:
+\begin{enumerate}
+ 	\item Further develop mathematical optimizations
+ 	\item Use \gls{rl} methods as novel solution for optimal job assignment.
+ \end{enumerate} 
+
 \section{Resulting Conclusions}
+
+\begin{enumerate}
+	\item there is optimization potential even for existing methods, however business application might prove limited since it requires more computational resources and one is maybe better off with simplified version
+	\item \gls{rl} methods prove to be very good and interesting, however being novel methods one should proceed with caution and further analyze these methods
+\end{enumerate}
+
 \section{Outlook}
+
+\begin{enumerate}
+	\item \gls{rl} methods also usually require long training sessions in order to outperform optimization methods, one should always account into this
+	\item \gls{rl} methods with \glspl{ann} can also overfit to specific domains and prove to be pretty static. See solutions for more ``dynamic'' approaches
+	\item \gls{rl} methods with \glspl{ann} (especially deeps ones) can also incur in \gls{vgp} and \gls{egp} so it is important to look for solid solutions
+	\item in general it is important to test in practice job assignment optimization with \gls{rl} methods in order to assert efficiency
+\end{enumerate}
 
 \appendix
 
