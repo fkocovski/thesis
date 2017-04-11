@@ -5,7 +5,7 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks=True]{hyperref}
 % used to fix structure
 \usepackage{bookmark}
 \usepackage{amsfonts}
@@ -20,7 +20,7 @@
 
 \thesisType{Master Thesis}
 \date{\today}
-\title{\glsentryshort{bpm}}
+\title{Workflow Optimization}
 \subtitle{Reinforcement Learning Based Optimization in a Discrete Event Simulation Environment for Optimal Job Assignment in Workflow Processes}
 \author{Filip Ko\v{c}ovski}
 \home{Lugano} % Geburtsort
@@ -38,22 +38,35 @@
 \frontmatter
 
 \begin{acknowledgements}
-\todo{WRITE ME!}
-\begin{itemize}
-	\item Prof. Dr. Daning Hu $\rightarrow$ for letting me do this thesis at his chair
-	\item Dr. Markus Uhr $\rightarrow$ for basically everything...and more
-	\item Dr. Robert H\"ohener $\rightarrow$ for giving me the opportunity to do the thesis at work plus consulting me during the initial phase
-	\item Dr. Thomas H\"ohener $\rightarrow$ for giving me the opportunity to do the thesis at work
-	\item Dr. Andreas Horni $\rightarrow$ for proof reading the thesis and technical inputs for \LaTeX 
-	\item Mom and Dad $\rightarrow$ for supporting me and my decisions in life
-	\item Martina $\rightarrow$ for proofreading
-	\item Rest of immopac ag staff $\rightarrow$ for continuous support and interest in the thesis
-\end{itemize}
+
+I would like to thank Prof. Dr. Daning Hu for giving me the marvelous opportunity of pursuing this topic in collaboration with immopac ag and supporting me all along the path with his invaluable flexibility.
+
+I am deeply grateful and eternally indebted to Dr. Markus Uhr for his terrific knowledge, availability, patience, comprehension and guidance during the course of this thesis. His keen eye for details, both technical and not are the foundations on which this thesis is based. His tremendous patience and capability to convey difficult concepts in a pragmatic fashion were key factors for the successful completion of this work. Lastly, I am also grateful to Dr. Markus Uhr for proofreading this thesis.
+
+I am enormously grateful to both Dr. Robert H\"ohener and Dr. Thomas H\"ohener for advocating for this collaborative project and for allowing me to conduct this research at immopac ag. Moreover I want to thank Dr. Robert H\"ohener for his invaluable feedback during the initial phase of this thesis and administrative consultation.
+
+I am grateful to Dr. Andreas Horni for his technical suggestions and feedback on the \latex structure and for proofreading this thesis.
+
+My deepest gratitude goes towards my parents, Dr. med. Tatjana Zafirovska and Ljupco Ko\v{c}ovski for believing in me as a person and for always motivating me to pursue my dreams and push my boundaries.
+
+My warmest thankfulness goes to Martina Lardi for her invaluable academic feedback and for proofreading this thesis.
+
+Ultimately I want to thank the whole staff of immopac ag for their continuous support during the course of my work and for their interest in this thesis.
 
 \end{acknowledgements}
 
 \begin{abstract}
-\todo{WRITE ME!}
+
+Efficiently assigning resources, specifically human resources \ie users, in workflow processes in order to maximize the efficiency is a vital aspect when implementing workflow engines in corporate environments. By what means this optimal assignment is done, or more generally the resolvability of the assignment problem in combinatorial optimization, has been widely researched. Usual methods consider mathematical optimization with numerical optimizers and has lead to promising results. However computational complexity is a key limiting factor when approaching the assignment problem from a mathematical optimizer perspective.
+
+This thesis expands the already prominent work in the field of optimal task assignment in workflow processes by extending the already researched mathematical optimization and proposes a novel approach by introducing \gls{rl} based optimization approaches.
+
+By means of a discrete event simulation environment, in which existing policies for optimal job assignment in workflow processes, such as \gls{sq}, \gls{llqp}, K-Batch and 1-Batch-1, are extended and tested using both mathematical and \gls{rl} based optimization approaches. The discrete event simulation environment proposed in this thesis allows to control key variables that influence the efficiency of a policy, such as number of users, generation interval, service interval and length of the simulation.
+
+Both the extended mathematical optimization methods as well as the \gls{rl} based methods outperform the already existing approaches by a magnitude of $100\%-300\%$ under different circumstances. Even though promising results have been obtained, precautions have to be taken when interpreting the results: on one hand the mathematical optimizations obtained are coupled with higher computational complexity which arises business trade-offs, on the other hand the \gls{rl} based optimization overcome the computational complexity problem of the former by require lengthy training sessions in order to assert optimal convergence.
+
+\gls{rl} based optimization methods lay the foundations for possible extensions by using alternative methods such as \gls{irl} and \gls{al} which promise to overcome the limitations of \gls{rl} methods by eliminating the requirement of internal reward functions and merely ``observing'' experts executing tasks and learning optimal behaviors from them.
+
 \end{abstract}
 
 \begin{zusammenfassung}
@@ -81,9 +94,9 @@ Workflows are IT solutions that can help increase efficiency and get tasks done 
 
 This field is relevant since an optimal role resolution can bring optimization from many sides:
 \begin{enumerate*}
-	\item cost savings,
-	\item fairness in workload assignment
-	\item optimal resources usage.
+	\item Cost savings
+	\item Fairness in workload assignment
+	\item Optimal resources usage.
 \end{enumerate*}
 
 Currently many different workflow engines exist, ranging from complete fully functional suites and down to extensible frameworks that allow the implementer to adapt it to its own needs. However all these solutions lack optimality in the task assignment sector.
@@ -91,11 +104,11 @@ Currently many different workflow engines exist, ranging from complete fully fun
 \section{Objectives}
 \label{sec:objectives}
 
-The objectives of these thesis build upon the work of Zeng and Zhao \cite{Zeng2005}, in which they depicted preliminary policies for optimal role resolution, and extends these capabilities from a threefold perspective:
+The objectives of this thesis builds upon the work of Zeng and Zhao, in which they depicted preliminary policies for optimal role resolution \cite{Zeng2005} and extends these capabilities from a threefold perspective:
 \begin{enumerate*}
-	\item further develops the mathematical premises and extends the capabilities of the batching policies proposed by Zeng and Zhao
-	\item explores the capabilities offered by \gls{rl} as addition and improvement for even preciser, faster and better task assignment
-	\item deployment of the aforementioned optimization techniques in an operative environment of a real estate company using a workflow engine.
+	\item Further develops the mathematical premises and extends the capabilities of the batching policies proposed by Zeng and Zhao
+	\item Explores the capabilities offered by \gls{rl} as addition and improvement for even preciser, faster and better task assignment
+	\item Deployment of the aforementioned optimization techniques in an operative environment of a real estate company using a workflow engine.
 \end{enumerate*}
 
 Formally, this thesis tries to answer the following research questions:
@@ -110,10 +123,10 @@ Formally, this thesis tries to answer the following research questions:
 This thesis is subdivided in five main chapters:
 
 \begin{itemize}
-	\item \chpref{ch:intro} gives an overview of why the chosen topic is relevant, what is the current context of the work and how this work fits in. It moreover articulates the central research questions that permeate this thesis and gives an overview of this essay
-	\item \chpref{ch:foundations} gives an overview of the most important conceptual definitions and the state of the art literature review in the touched thematic topics of this work. Conclusively this chapter critically reflects upon the existing literature and exposes the deficits that this thesis aims filling
-	\item \chpref{ch:methodology} gives an overview of the approach used for the research \eg the analysis environment and the used tools, states the hypothesis that wants to be proved and eventually describes statistically and qualitatively the data sets upon which the methodology is applied
-	\item \chpref{ch:empirical_analysis} builds upon \chpref{ch:methodology} and makes its way into the hypothesis test field and the respective analysis results. Furthermore looks introspectively on the data correlation and gives an interpretation of the latter. Eventually in this section a statement about the contribution that the results bring into this field is given
+	\item \chpref{ch:intro} gives an overview of why the chosen topic is relevant, what is the current context of the work and how this work fits in. It moreover articulates the central research questions that permeate this thesis and gives an overview of this essay.
+	\item \chpref{ch:foundations} gives an overview of the most important conceptual definitions and the state of the art literature review in the touched thematic topics of this work. Conclusively this chapter critically reflects upon the existing literature and exposes the deficits that this thesis aims filling.
+	\item \chpref{ch:methodology} gives an overview of the approach used for the research \eg the analysis environment and the used tools, states the hypothesis that wants to be proved and eventually describes statistically and qualitatively the data sets upon which the methodology is applied.
+	\item \chpref{ch:empirical_analysis} builds upon \chpref{ch:methodology} and makes its way into the hypothesis test field and the respective analysis results. Furthermore looks introspectively on the data correlation and gives an interpretation of the latter. Eventually in this section a statement about the contribution that the results bring into this field is given.
 	\item \chpref{ch:conclusion} is the culminating chapter in which a summary of the key findings of the thesis are outlined, the research questions posed in \secref{sec:objectives} are answered by looking at the actual usability, limitations and to whom the results are most applicable. Finally outlooks about the future trends and how the empirical results of this thesis can be extended by prospective researchers.
 \end{itemize}
 
@@ -127,7 +140,7 @@ This section servers as an overview of the state of the art literature that exis
 
 \subsection{Queueing}
 
-Queuing is a topic that talks about how people or more general agents are to be served while waiting (\ie queueing) inside a system.
+Queuing is a topic that talks about how people or more general agents are to be served while waiting (\ie queueing) inside a system \cite{Kendall1953}.
 
 Starting with one of the most notable contributions to this field done by Kendall and his work on the Markov chains in queuing theory, where he formally defines different types of queues \cite{Kendall1953}.
 
@@ -146,12 +159,12 @@ Another good starting point in the workflow thematic is Macintosh's work in whic
 	\item Repeatable, the process has to be repeatable
 	\item Defined, documentation standardization of processes
 	\item Managed, measurement and control of processes
-	\item Optimizing, continuous process improvement
+	\item Optimizing, continuous process improvement.
 \end{enumerate*}
 
 Georgakopoulos \etal give a comprehensive business oriented overview of the different workflow technologies present on the market used as a sound foundation for analyzing the present technologies \cite{Georgakopoulos1995}.
 
-On this note, Giaglis lays out four different process perspectives:
+On this note, Giaglis lays out four different process perspectives \cite{Giaglis2001}:
 \begin{enumerate*}
 	\item Functional
 	\item Behavioral
@@ -159,7 +172,7 @@ On this note, Giaglis lays out four different process perspectives:
 	\item Informational.
 \end{enumerate*}
 
-His framework focuses on three dimensions:
+His framework focuses on three dimensions \cite{Giaglis2001}:
 \begin{enumerate*}
 	\item Breadth, where modeling goals are typically addressed by technique
 	\item Depth, where modeling perspectives are covered
@@ -168,7 +181,7 @@ His framework focuses on three dimensions:
 
 The presented framework is used to combine the three different dimensions in order to assert a possible best fit of a specific modeling technique based on which approach to be used under the constraints of a modeling perspective to cover \cite{Giaglis2001}.
 
-Mentzas \etal focus on a qualitative level on how workflow technologies can facilitate implementation of business processes by focusing on the pros and cons of adopting alternative workflow modeling techniques \cite{Mentzas2001}. Moreover they formally define what a workflow management system is and subdivide it in three main categories:
+Mentzas \etal focus on a qualitative level on how workflow technologies can facilitate implementation of business processes by focusing on the pros and cons of adopting alternative workflow modeling techniques \cite{Mentzas2001}. Moreover they formally define what a workflow management system is and subdivide it in three main categories \cite{Mentzas2001}:
 \begin{enumerate*}
 	\item Process modeling
 	\item Process re-engineering
@@ -179,11 +192,11 @@ Each level of maturity as defined by Macintosh requires a different model, such 
 
 Aguilar-Sav\'{e}n describes the main modeling techniques existing with workflow being one of them \cite{Aguilar-Saven2004}.
 
-Interestingly enough, workflow implementation in real world cases is not always only coupled with directly measurable effects, sometimes even unexpected results happen. What is called the ``workflow paradox'' according to Reijers and van der Aalst is the fact that the very fact of companies accepting requests for workflow introduction might actually be the most promising way that leads to potentially better and more suitable alternatives \cite{Reijers2005}.
+Interestingly enough, workflow implementation in real world cases is not always only coupled with directly measurable effects, sometimes even unexpected results happen \cite{Reijers2005}. What is called the ``workflow paradox'' according to Reijers and van der Aalst is the fact that the very fact of companies accepting requests for workflow introduction might actually be the most promising way that leads to potentially better and more suitable alternatives \cite{Reijers2005}.
 
 The key core topics on which this thesis lays its foundations upon is the work done by Zeng and Zhao: effective role resolution \ie the mechanism of assigning tasks to individual workers at runtime according to the role qualification defined in the workflow model \cite{Zeng2005}, is the core aspect that is being extended during this thesis work.
 
-Zeng and Zhao differentiate between staffing decisions and role resolution, with the former being the assignment one or more role to each user and the latter being the assignment of a specific task to an appropriate worker at runtime \cite{Zeng2005}. Staffing decisions are usually made off-line and periodically, thus being more of a strategic nature \cite{Zeng2005}. If role resolution were to be made on-line it could translate to a major operational level decision \ie the differentiation between strategic vs. operational playing role \cite{Zeng2005}.
+Zeng and Zhao differentiate between staffing decisions and role resolution, with the former being the assignment of one or more roles to each user and the latter being the assignment of a specific task to an appropriate worker at runtime \cite{Zeng2005}. Staffing decisions are usually made off-line and periodically, thus being more of a strategic nature \cite{Zeng2005}. If role resolution were to be made on-line it could translate to a major operational level decision \ie the differentiation between strategic vs. operational playing role \cite{Zeng2005}.
 
 They moreover define three roles a workflow can fulfill \cite{Zeng2005}:
 \begin{enumerate*}
@@ -211,7 +224,7 @@ Zeng and Zhao's key findings are outlined as follows \cite{Zeng2005}:
 	\item 1-Batch-1 online optimization policy yields best results in operational conditions.
 \end{enumerate*}
 
-On a detailed note, data flow inside workflow processes has to consider possible anomalies that might happens and this aspect has been extensively studies by Sun \etal where they formally define data flow methodologies for detecting such anomalies \cite{Sun2006}. Their framework is divided in two components:
+On a detailed note, data flow inside workflow processes has to consider possible anomalies that might happen and this aspect has been extensively studies by Sun \etal where they formally define data flow methodologies for detecting such anomalies \cite{Sun2006}. Their framework is divided in two components \cite{Sun2006}:
 \begin{enumerate*}
 	\item Data flow specification
 	\item Data flow analysis.
@@ -221,7 +234,7 @@ Mentions that simulations for workflow management systems is usually inefficient
 
 A more recent taxonomy of different \gls{bpm} application is given by a collaboration between SAP and accenture \cite{EvolvedTechnologist2009}.
 
-An analysis of the \glspl{csf} for \gls{bpm} is required in order to assert a product validity and this has been done by Trkman where he defines \glspl{csf} from three perspectives \cite{Trkman2010}:
+An analysis of the \glspl{csf} for \gls{bpm} is required in order to assert product validity and this has been done by Trkman where he defines \glspl{csf} from three perspectives \cite{Trkman2010}:
 \begin{enumerate*}
 	\item Contingency theory
 	\item Dynamic capabilities
@@ -248,11 +261,11 @@ Sun and Zhao cover the aspect of formal analysis for workflow models and they cl
 
 One of the first \gls{mc} based \gls{pg} methods is the algorithm proposed by Williams called \texttt{REINFORCE} \cite{Williams1992}.
 
-\gls{vgp} states that even very large change in partial derivatives on initial layers have imperceptible effects on subsequent layers, as outlined by Bengio \etal, which is a problem that affects deep \glspl{ann} \cite{Bengio1994}.
+\gls{vgp} states that even very large changes in partial derivatives on initial layers have imperceptible effects on subsequent layers, as outlined by Bengio \etal, which is a problem that affects deep \glspl{ann} \cite{Bengio1994}.
 
 Haykin's comprehensive work on \glspl{ann} is an excellent theoretical foundation which serves as basis for critical concepts regarding the matter \cite{Haykin1998}.
 
-Theoretical definition on deep \glspl{ann} is also given by Lecun \etal which was used to better understand more recent developments in this domain \cite{Lecun1998}.
+Theoretical definitions on deep \glspl{ann} are also given by Lecun \etal which was used to better understand more recent developments in this domain \cite{Lecun1998}.
 
 \gls{pg} methods with \gls{vfa} and their convergence is of vital importance and according to Sutton \etal this can be achieved by representing the policy by an own function approximation which is independent of the value function and it is updated according to gradient of the expected rewards with respect to the afore mentioned policy \cite{Sutton1999}.
 
@@ -264,19 +277,19 @@ Abbeel and Ng collaboration lays the basis from a bleeding edge branch of \gls{i
 
 Bengio further develops the foundations laid by Lecun and expands the theoretical basis of deep \glspl{ann} \cite{Bengio2009}.
 
-Statistical identifiability in \gls{rl} is a crucial aspect that has to be ensured for effective learning, as were it not the case \gls{rl} update methods might remain stuck in suboptimal solutions and never converge, as explained by \cite{Zhang2011}.
+Statistical identifiability in \gls{rl} is a crucial aspect that has to be ensured for effective learning, as were it not the case \gls{rl} update methods might remain stuck in suboptimal solutions and never converge \cite{Zhang2011}.
 
 Yet another problem in which deep \glspl{ann} might incur in addition to \gls{vgp} is the so called \gls{egp} as defined by Pascanu \etal \cite{Pascanu2012}.
 
-This huge state space requirement is a clear limitation to lookup tables \cite{Sutton2017}. Even if memory would not be a constraint, the actual learning from such tables would be infeasible \cite{Sutton2017}. In order to pragmatically learn by reinforcement on such huge problems, \gls{vfa} in the domain of \gls{rl} proves to be a viable solution \cite{Sutton2017}. For different types of \gls{rl} approaches \ie \gls{mc} or \gls{td} methods exist different types of \gls{vfa}, ranging from simple linear combinations of features for \gls{mc} to \glspl{ann} for \gls{td} learning \cite{Sutton2017}. All these different methodologies are outlined in the tutorial by Geramifard \etal \cite{Geramifard2013} and complement the theoretical foundations laid by Sutton and Barto.
+Huge state space requirement is a clear limitation to lookup tables \cite{Sutton2017}. Even if memory would not be a constraint, the actual learning from such tables would be infeasible \cite{Sutton2017}. In order to pragmatically learn by reinforcement on such huge problems, \gls{vfa} in the domain of \gls{rl} proves to be a viable solution \cite{Sutton2017}. For different types of \gls{rl} approaches \ie \gls{mc} or \gls{td} methods exist different types of \gls{vfa}, ranging from simple linear combinations of features for \gls{mc} to \glspl{ann} for \gls{td} learning \cite{Sutton2017}. All these different methodologies are outlined in the tutorial by Geramifard \etal \cite{Geramifard2013} and complement the theoretical foundations laid by Sutton and Barto.
 
 Overfitting for deep \glspl{ann} is a common problem \cite[p. 218]{Sutton2017}. Srivastava \etal propose the dropout method which proves to be a domain standard in regards to this problem \cite{Srivastava2014}.
 
 As \glspl{mdp} grow in size, so does the required computational memory to solve possible discrete lookup tables modeling the state-actions spaces that characterizes them \cite{Sutton2017}. Notable examples that show how large some of the most common problems can be \cite{Sutton2017}:
 \begin{enumerate*}
-	\item the game of backgammon has a total of $10^{20}$ states
-	\item the traditional Chinese abstract board game Go has an estimated total of $10^{170}$ states
-	\item flying a helicopter or having a robot move in space all require a continuous state space.
+	\item The game of backgammon has a total of $10^{20}$ states
+	\item The traditional Chinese abstract board game Go has an estimated total of $10^{170}$ states
+	\item Flying a helicopter or having a robot move in space all require a continuous state space.
 \end{enumerate*}
 
 When working with on-line algorithms such as \gls{td} it is important to choose correct parameters for an effective learning process, otherwise the learning algorithm put in place might never converge towards an optimal solution \cite{Sutton2017}. This aspect is being discussed by Korda and Prashanth in which they depict different non-asymptotic bounds for the \gls{td} learning algorithms \cite{Korda2014}.
@@ -287,9 +300,9 @@ Clevert \etal discuss a special class of activation functions for \glspl{ann} ca
 
 Gershman proposes further advancements to Zhang's work on statistical identifiability \cite{Zhang2011} by analyzing prior distributions of the parameters \cite{Gershman2016}. He argues that his approach helps to some extent to overcome the identifiability problem \cite{Gershman2016}.
 
-Notable works in the field of \gls{rl} and its application include Google DeepMind work on novel algorithms for tackling fields previously barely scratched, as mentioned by Mnih \etal and Silver \etal \cite{Mnih2015,Silver2016}.
+Notable works in the field of \gls{rl} and its application include DeepMind Technologies Limited's work on novel algorithms for tackling fields previously barely scratched, as mentioned by Mnih \etal and Silver \etal \cite{Mnih2015,Silver2016}.
 
-Sutton and Barto started working on the \gls{rl} topic in the early nineties and are now planning their third edition of the famous book on machine learning, which is due in 2017 \cite{Sutton2017}. In our case \gls{rl} is used in order for the policies to be able to improve themselves by continuously analyzing their own decision models and optimize upon them. Their work is the backbone used for this thesis for the \gls{rl} domain.
+Sutton and Barto started working on the \gls{rl} topic in the early nineties and are now planning their third edition of the famous book on machine learning, which is due in 2017 \cite{Sutton2017}. For this thesis, \gls{rl} is used in order for the policies to be able to improve themselves by continuously analyzing their own decision models and optimize upon them. Their work is the backbone used for this thesis for the \gls{rl} domain.
 
 \subsection{Optimization}
 
@@ -323,23 +336,23 @@ Different tools were used in the analysis environment in order to efficiently si
 
 The whole architecture is subdivided as follows:
 \begin{enumerate*}
-	\item The simulation environment is based on \texttt{Python 3.5.2}\foot{https://www.python.org}{06.01.2017} using the \texttt{Anaconda}\foot{https://www.continuum.io/anaconda-overview}{03.04.2017} platform and as a discrete event simulation the \texttt{SimPy 3.0.10}\foot{https://simpy.readthedocs.io/en/latest/}{06.01.2017} package is used.
-	\item The resulting data are interpreted and analyzed using Python and its plotting library: \texttt{Matplotlib 2.0.0}\foot{http://matplotlib.org/}{03.04.2017}.
-	\item \texttt{Tensorflow 1.0}\foot{https://www.tensorflow.org/}{03.04.2017} is the library used for the neural networks modeling.
-	\item Coding was done using \texttt{PyCharm 2017.1}\foot{https://www.jetbrains.com/pycharm/}{03.04.2017} as IDE for Python.
+	\item The simulation environment is based on \texttt{Python 3.5.2}\foot{https://www.python.org}{06.01.2017} using the \texttt{Anaconda}\foot{https://www.continuum.io/anaconda-overview}{03.04.2017} platform and as a discrete event simulation the \texttt{SimPy 3.0.10}\foot{https://simpy.readthedocs.io/en/latest/}{06.01.2017} package is used
+	\item The resulting data are interpreted and analyzed using Python and its plotting library: \texttt{Matplotlib 2.0.0}\foot{http://matplotlib.org/}{03.04.2017}
+	\item \texttt{Tensorflow 1.0}\foot{https://www.tensorflow.org/}{03.04.2017} is the library used for the \glspl{ann} modeling
+	\item Coding was done using \texttt{PyCharm 2017.1}\foot{https://www.jetbrains.com/pycharm/}{03.04.2017} as IDE for Python
 	\item For solving the mixed integer problems for batching policies \texttt{Gurobi 7.0.1}\foot{http://www.gurobi.com}{06.01.2017} was used.
 \end{enumerate*}
 
-\subsection{Discrete event simulation using SimPy}
+\subsection{Discrete Event Simulation Using SimPy}
 \label{subsec:discrete_event_sim}
 
-SimPy is a Python process-based discrete-event simulation framework. It exploits Python generators according to which it models its processes.
+SimPy is a Python process-based discrete-event simulation framework. It exploits Python's generators according to which it models its processes.
 
 Active components such as agents in a workflow are modeled as processes which live inside an environment and the interaction between them happens via events.
 
-As previously mentioned, processes in SimPy are described by Python generators. During their lifetime they create events yield (Note that with the term \texttt{yield} here it is to be understood as Python's yield statements)\foot{https://docs.python.org/3.5/reference/simple_stmts.html\#the-yield-statement}{06.01.2017} them to the environment, which then wait until they are triggered. The important logic to understand here is how SimPy treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in SimPy's notation when it gets triggered).
+As previously mentioned, processes in SimPy are described by Python generators. During their lifetime they create events, yield (note that with the term \texttt{yield} here it is to be understood as Python's yield statements)\foot{https://docs.python.org/3.5/reference/simple_stmts.html\#the-yield-statement}{06.01.2017} them to the environment, which then wait until they are triggered. The important logic to understand here is how SimPy treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in SimPy's notation when it gets triggered).
 
-SimPy offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since a timeout event are created and called by called the appropriate method of the passed \texttt{Environment}.
+SimPy offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since a timeout event are created and called by the appropriate method of the passed \texttt{Environment}.
 
 \subsection{Analysis Environment}
 
@@ -349,12 +362,12 @@ The analysis environment consists in an object-oriented implementations of workf
 
 The core elements of a workflow process (relevant for the simulation environment) are start nodes, user tasks, decision nodes and end nodes. Start events are used to indicate where and how a process starts and usually each process has only one such event \cite[p. 42]{Silver2011}. No distinction between trigger types is being made.
 
-\subsubsection{Start event}
+\subsubsection{Start Event}
 
 Start event objects require a simulation environment, a generation interval, an actions to follow array and its corresponding weights. The generation interval is generated in a three step process:
 \begin{enumerate*}
- 	\item before the simulation starts, a fixed service interval time unit $s$, number of users $n$ and an average system load $l$ are set. In contrast to Zeng and Zhao's work, where the generation $\lambda$ interval follows a Poisson distribution \cite{Zeng2005} and is defined as shown in \equref{eq:generation_interval}, here the generation interval is a plain scalar value.
- 	\item for a Poisson random exponential sampling of the generation rate, \texttt{NumPy}'s implementation of its exponential distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.exponential.html}{06.01.2017}.
+ 	\item Before the simulation starts, a fixed service interval time unit $s$, number of users $n$ and an average system load $l$ are set. In contrast to Zeng and Zhao's work, where the generation $\lambda$ interval follows a Poisson distribution \cite{Zeng2005} and is defined as shown in \equref{eq:generation_interval}, here the generation interval is a plain scalar value
+ 	\item For a Poisson random exponential sampling of the generation rate, \texttt{NumPy}'s implementation of its exponential distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.exponential.html}{06.01.2017}.
  \end{enumerate*}
 
 \begin{equation}
@@ -364,8 +377,8 @@ Start event objects require a simulation environment, a generation interval, an 
 
 The actions to be followed are also defined in a two step process:
 \begin{enumerate*}
-	\item a per workflow process action pool is defined a priori in order to assert that tokens navigate the process in a ``semantically correct'' fashion
-	\item then a weights vector is defined which assigns a weight to each possible action path to the actions pool.
+	\item A per workflow process action pool is defined a priori in order to assert that tokens navigate the process in a ``semantically correct'' fashion
+	\item Then a weights vector is defined which assigns a probability to each possible action path to the actions pool.
 \end{enumerate*}
 
 Such an approach allows to fine tune how often tokens will follow a predefined path along the process in order to efficiently simulate and put under stress specific paths of the process.
@@ -374,7 +387,7 @@ In order to assert fairness among all simulation runs a master random state is a
 
 Even though tokens are generated infinitely, this process is controlled from the simulation environment where a discrete simulation time steps have to be set, as it can be seen from \lstref{lst:simulation_steps}.
 
-This can be interpreted as that the whole simulation will persist for 100 time steps and it will then stop when the internal clock reaches 100. Please note that events that have been scheduled for time step 100 will not be processed. The logic is similar to a new environment where the clock is zero and no event have been processed yet.
+This can be interpreted as that the whole simulation will persist for $100$ time steps and it will then stop when the internal clock reaches $100$. Please note that events that have been scheduled for time step $100$ will not be processed. The logic is similar to a new environment where the clock is zero and no event have been processed yet.
 
 \begin{lstlisting}[caption=Starting the simulation with discrete time steps,label=lst:simulation_steps,style=CustomPython]
     # "global" variables
@@ -383,16 +396,16 @@ This can be interpreted as that the whole simulation will persist for 100 time s
     env.run(until=SIM_TIME)
 \end{lstlisting}
 
-\subsubsection{User task}
+\subsubsection{User Task}
 \label{subsec:user_task}
 
 User task objects also require a simulation environment, a policy, a descriptive name, a service interval and task variability. Each user task has a unique \texttt{child} field which is being set prior to starting the simulation.
 
 In regards to parameters service interval and task variability a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. Zeng and Zhao in their work follow a two way process to generate such intervals \cite[p. 8]{Zeng2005}. However in this thesis' implementation a refined version of this process is used:
 \begin{enumerate*}
-	\item at initialization time, each user task receives a service rate $s$ and a task variability $t$ value
-	\item inside the policy request method, for each user task a sample of an average processing time following an Erlang distribution (a special case of the gamma distribution) which takes as input parameters a shape $k$ and a scale $\theta$ is made. The shape value $k$, as the name suggests, defines the curve shape that the Erlang distribution will follow. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_task}
-	\item the average processing time becomes a unique value of each user task object and is used by each policy to sample each user's service time, again from an Erlang sampled pool as depicted in \lstref{lst:user_service_rate} and we shall call this value $p_j$
+	\item At initialization time, each user task receives a service rate $s$ and a task variability $t$ value
+	\item Inside the policy request method, for each user task a sample of an average processing time following an Erlang distribution (a special case of the gamma distribution) which takes as input parameters a shape $k$ and a scale $\theta$ is made. The shape value $k$, as the name suggests, defines the curve shape that the Erlang distribution will follow. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_task}
+	\item The average processing time becomes a unique value of each user task object and is used by each policy to sample each user's service time, again from an Erlang sampled pool as depicted in \lstref{lst:user_service_rate} and we shall call this value $p_j$.
 \end{enumerate*}
 
 \lstref{lst:user_service_rate} gives a glimpse of the inner logic of how policies work. It is however out of scope for this section to cover this aspect and it is provided ``as is''. For each user eligible to work the assigned token, its service rate is sampled following the Erlang distribution. This time, the Erlang distribution takes as parameters the unique average processing time $p_j$ of user task $j$ and a value worker variability, which is a unique property of each policy, which we shall call $w$.
@@ -446,7 +459,7 @@ As a blueprint, each policy object defines two abstract method for requesting an
 
 \fig[0.5\textwidth]{policy_met_att}{Policy methods and attributes}{fig:policy_met_att}
 
-In its request method, each policy generates a policy job object, which is again an abstract implementation of a job that the policy will work in order to return an optimizes assignment to a user task. Each policy job requires a user task and a token object as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job object serves as a bookkeeping agent by storing and dumping useful information every time it status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users. Refer to \figref{fig:policyjob_met_att} for its implementation overview.
+In its request method, each policy generates a policy job object, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token object as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job object serves as a bookkeeping agent by storing and dumping useful information every time it status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users. Refer to \figref{fig:policyjob_met_att} for its implementation overview.
 
 \fig[0.5\textwidth]{policyjob_met_att}{Policy job methods and attributes}{fig:policyjob_met_att}
 
@@ -455,14 +468,14 @@ In its request method, each policy generates a policy job object, which is again
 
 Different types of policies have been implemented following the foundations laid by Zeng and Zhao as outlined in \subsecref{subsec:workflow}. In their work the authors investigate five ``role-resolution'' policies used for optimal task to user assignment \cite[p. 7]{Zeng2005}. Following a brief description of the five aforementioned policies:
 \begin{enumerate*}
-	\item A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a FIFO fashion. The authors call this policy the ``\gls{llqp}''.
-	\item A policy that maintains a single queue being shared among all users is referred to the authors as ``\gls{sq}''.
-	\item Another policy that maintains both a \gls{sq} among all users and each user having an own queue and transfers tasks from the former to the latter is called ``K-Batch'' policy. Transfer of tasks from the \gls{sq} to users is done using an optimal task assignment procedure as soon as the \gls{sq} reaches a critical batch size $K$.
-	\item The following policies takes the ``K-Batch'' policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the \gls{sq} reaches the critical size $K$, however actual movement of tasks from the \gls{sq} to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$. This policy is called according to the authors as ``K-Batch-1''
+	\item A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a \gls{fifo} fashion. The authors call this policy the ``\gls{llqp}''
+	\item A policy that maintains a single queue being shared among all users is referred to the authors as ``\gls{sq}''
+	\item Another policy that maintains both a \gls{sq} among all users and each user having an own queue and transfers tasks from the former to the latter is called ``K-Batch'' policy. Transfer of tasks from the \gls{sq} to users is done using an optimal task assignment procedure as soon as the \gls{sq} reaches a critical batch size $K$
+	\item The following policies take the ``K-Batch'' policy but reduce the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the \gls{sq} reaches the critical size $K$, however actual movement of tasks from the \gls{sq} to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$. This policy is called according to the authors as ``K-Batch-1''
 	\item The last policy further simplifies the fourth by weakening the batch size constraint and reduces it to one. This means that the optimal task assignment procedure is executed immediately. This policy is referred by the authors as ``1-Batch-1''.
 \end{enumerate*}
 
-All batching policies require the solution of an optimization problem. The authors define this problem as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``\gls{msa}''\cite[p. 7]{Zeng2005}. The authors define the task flowtime as the elapsed simulation time between task generation and its completion \cite{Zeng2005,Baker1974}. Formally \gls{msa} is formulated as follows:
+All batch policies require the solution of an optimization problem. The authors define this problem as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``\gls{msa}''\cite[p. 7]{Zeng2005}. The authors define the task flowtime as the elapsed simulation time between task generation and its completion \cite{Zeng2005,Baker1974}. Formally \gls{msa} is formulated as follows:
 
 \begin{align}
     \min_z \quad z\\
@@ -478,7 +491,7 @@ The class inheritance structure of the policies implementation can be seen in \f
 
 \fig[\textwidth]{policies}{Policies class structure}{fig:policies}
 
-The authors definition of the \gls{msa} problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' (MF) as defined by Baker \cite{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the \gls{dmf} problem \cite{Zeng2005}. The \gls{dmf} problem is formally defined by Zeng and Zhao as follows:
+The authors definition of the \gls{msa} problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' as defined by Baker \cite{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the \gls{dmf} problem \cite{Zeng2005}. The \gls{dmf} problem is formally defined by Zeng and Zhao as follows:
 
 \begin{align}
     \min_z \quad z\\
@@ -491,7 +504,7 @@ The authors definition of the \gls{msa} problem is however a simplified version 
     s_j &\geq 0
 \end{align}
 
-Again, all variables definition still hold without loss of generality as described by the authors \cite[p. 6]{Zeng2005}. As Zeng and Zhao note in their work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints but mention that by adding auxiliary variables the aforementioned \gls{dmf} formulation can be effectively converted into a mixed integer program and thus solve it \cite[p. 6]{Zeng2005}. On this note they argue that the application of the \gls{dmf} problem in practice poses some problems \cite{Zeng2005}. In this thesis however a conversion of the \gls{dmf} formulation proposed by Zeng and Zhao is formulated in order to adequately solve the optimization problem. The formal definition of such optimization problem is called \gls{edmf} and is devised as follows:
+Again, all variables definition still hold without loss of generality as described by the authors \cite[p. 6]{Zeng2005}. As Zeng and Zhao note in their work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints but mention that by adding auxiliary variables the aforementioned \gls{dmf} formulation can be effectively converted into a mixed integer program and thus solve it \cite[p. 6]{Zeng2005}. On this note they argue that the application of the \gls{dmf} problem in practice poses some problems \cite{Zeng2005}. In this thesis however a conversion of the \gls{dmf} formulation proposed by Zeng and Zhao is introduced in order to adequately solve the optimization problem. The formal definition of such optimization problem is called \gls{edmf} and is devised as follows:
 
 \begin{align}
     \min_{z_{\text{max}}} \quad z_{\text{max}}\\
@@ -507,7 +520,7 @@ Again, all variables definition still hold without loss of generality as describ
 
 This formulation clearly gets rid of the nonlinear constraints while still accounting for dynamical arrival of tasks, making thus the \gls{dmf} problem as defined by Zeng and Zhao effectively solvable.
 
-When considering the minimization of the maximum flowtime of a task inside a process, the \gls{edmf} formulation can be further simplified by adopting some assumptions about the order and sequence of tasks. Based on how the batching policies are implemented, the policy job objects to be worked by users are implicitly stored in a sorted fashion. This means that the $z$ helper variables defined for \gls{edmf} are not strictly necessary and thus can be compressed by \equref{eq:simplified_z_with_k}:
+When considering the minimization of the maximum flowtime of a task inside a process, the \gls{edmf} formulation can be further simplified by adopting some assumptions about the order and sequence of tasks. Based on how batch policies are implemented, the policy job objects to be worked by users are implicitly stored in a sorted fashion. This means that the $z$ helper variables defined for \gls{edmf} are not strictly necessary and thus can be compressed by \equref{eq:simplified_z_with_k}:
 
 \begin{equation}
 \label{eq:simplified_z_with_k}
@@ -535,7 +548,7 @@ Without further ado, the simplified formulation of \gls{edmf} (called \gls{sdmf}
 
 By comparing both formulation it is clear that \gls{sdmf} manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness. Please note, however, that this simplification is only possible because of the nature of the implementation.
 
-Based on this approach and by further exploiting the implicit order implementation of task arrival in the global queues for both batching policies, it is possible to argue that the $k$ sequence indexing can be relaxed as well, thus even further simplifying the mathematical formulation and respectively the optimization problem size and computation costs.
+Based on this approach and by further exploiting the implicit order implementation of task arrival in the global queues for both batch policies, it is possible to argue that the $k$ sequence indexing can be relaxed as well, thus even further simplifying the mathematical formulation and respectively the optimization problem size and computation costs.
 
 The formulation of the \gls{dmf} problem by relaxing both the $z$ variables and $k$ indexes, it is possible to formulate the same \gls{dmf} problem as follows:
 
@@ -548,12 +561,12 @@ The formulation of the \gls{dmf} problem by relaxing both the $z$ variables and 
 
 This formulation is colloquially called \gls{esdmf}.
 
-This version is however only possible by the nature of its implementation. Since the both the global as well as the local queues are implemented as FIFO queues, it is possible to relax the ordering constraint from the mathematical formulation since it is already implicitly defined by the implementation.
+This version is however only possible by the nature of its implementation. Since the both the global as well as the local queues are implemented as \gls{fifo} queues, it is possible to relax the ordering constraint from the mathematical formulation since it is already implicitly defined by the implementation.
 
 Yet one last optimization of the method proposed by Zeng and Zhao done in this thesis is a method that aims to optimally solve the assignment problem by changing its goal: minimize the service times by setting an upper bound on the maximum flowtime and is called \gls{st}. This method uses a two step process in order to optimally solve the assignment problem:
 \begin{enumerate*}
-	\item optimally solve by means of using on of the \gls{dmf} optimization methods previously outlined. This yields an upper bound for the maximum flowtime.
-	\item use this upper bound as a constraint for the actual optimization in order to effectively optimize the problem for the minimal service time amongst users, jobs and their corresponding service time.
+	\item Optimally solve by means of using one of the \gls{dmf} optimization methods previously outlined. This yields an upper bound for the maximum flowtime
+	\item Use this upper bound as a constraint for the actual optimization in order to effectively optimize the problem for the minimal service time amongst users, jobs and their corresponding service time.
 \end{enumerate*}
 
 \begin{align}
@@ -570,7 +583,7 @@ Yet one last optimization of the method proposed by Zeng and Zhao done in this t
     \epsilon &= \num{1e-4}
 \end{align}
 
-\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The \gls{msa} method is the simplest solver and exhibits a linear complexity compared to the \gls{dmf} method proposed by Zeng and Zhao. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, both solves the \gls{dmf} method and does it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:op_results}.
+\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The \gls{msa} method is the simplest solver and exhibits a linear complexity compared to the \gls{dmf} method proposed by Zeng and Zhao. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, both solves the \gls{dmf} method and does it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \subsecref{subsec:optimization_discussion}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}

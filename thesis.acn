@@ -1,3 +1,14 @@
+\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{SQ?\glossentry{sq}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{LLQP?\glossentry{llqp}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{IRL?\glossentry{irl}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{AL?\glossentry{al}|setentrycounter[]{page}\glsnumberformat}{iii}
+\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{iii}
 \glossaryentry{EDMF?\glossentry{edmf}|setentrycounter[]{page}\glsnumberformat}{x}
 \glossaryentry{DMF?\glossentry{dmf}|setentrycounter[]{page}\glsnumberformat}{x}
 \glossaryentry{ANN?\glossentry{ann}|setentrycounter[]{page}\glsnumberformat}{x}
@@ -245,7 +256,6 @@
 \glossaryentry{VFA?\glossentry{vfa}|setentrycounter[]{page}\glsnumberformat}{5}
 \glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{5}
 \glossaryentry{IRL?\glossentry{irl}|setentrycounter[]{page}\glsnumberformat}{5}
-\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{5}
 \glossaryentry{IRL?\glossentry{irl}|setentrycounter[]{page}\glsnumberformat}{5}
 \glossaryentry{AL?\glossentry{al}|setentrycounter[]{page}\glsnumberformat}{5}
 \glossaryentry{ANN?\glossentry{ann}|setentrycounter[]{page}\glsnumberformat}{6}
@@ -285,6 +295,8 @@
 \glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{6}
 \glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{6}
 \glossaryentry{DMF?\glossentry{dmf}|setentrycounter[]{page}\glsnumberformat}{7}
+\glossaryentry{ANN?\glossentry{ann}|setentrycounter[]{page}\glsnumberformat}{9}
+\glossaryentry{FIFO?\glossentry{fifo}|setentrycounter[]{page}\glsnumberformat}{14}
 \glossaryentry{LLQP?\glossentry{llqp}|setentrycounter[]{page}\glsnumberformat}{14}
 \glossaryentry{SQ?\glossentry{sq}|setentrycounter[]{page}\glsnumberformat}{14}
 \glossaryentry{SQ?\glossentry{sq}|setentrycounter[]{page}\glsnumberformat}{14}
@@ -311,6 +323,7 @@
 \glossaryentry{DMF?\glossentry{dmf}|setentrycounter[]{page}\glsnumberformat}{17}
 \glossaryentry{DMF?\glossentry{dmf}|setentrycounter[]{page}\glsnumberformat}{17}
 \glossaryentry{ESDMF?\glossentry{esdmf}|setentrycounter[]{page}\glsnumberformat}{18}
+\glossaryentry{FIFO?\glossentry{fifo}|setentrycounter[]{page}\glsnumberformat}{18}
 \glossaryentry{ST?\glossentry{st}|setentrycounter[]{page}\glsnumberformat}{18}
 \glossaryentry{DMF?\glossentry{dmf}|setentrycounter[]{page}\glsnumberformat}{18}
 \glossaryentry{MSA?\glossentry{msa}|setentrycounter[]{page}\glsnumberformat}{18}
