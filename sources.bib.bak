@@ -581,6 +581,38 @@ Data flow matrix (p. 7) is an interesting aspect to model data flows with write 
   journal = {CoRR},
   year    = {2012},
   volume  = {abs/1211.5063},
+  review  = {explanation of the exploding gradient problem},
+}
+
+@InProceedings{Abbeel2004,
+  author    = {Abbeel, Pieter and Ng, Andrew Y.},
+  title     = {Apprenticeship Learning via Inverse Reinforcement Learning},
+  booktitle = {Proceedings of the Twenty-first International Conference on Machine Learning},
+  year      = {2004},
+  series    = {ICML '04},
+  pages     = {1--},
+  address   = {New York, NY, USA},
+  publisher = {ACM},
+  acmid     = {1015430},
+  doi       = {10.1145/1015330.1015430},
+  isbn      = {1-58113-838-5},
+  location  = {Banff, Alberta, Canada},
+  review    = {Idea to learn reward function by observing an expert doing something},
+}
+
+@InProceedings{Ng2000,
+  author    = {Ng, Andrew Y. and Russell, Stuart J.},
+  title     = {Algorithms for Inverse Reinforcement Learning},
+  booktitle = {Proceedings of the Seventeenth International Conference on Machine Learning},
+  year      = {2000},
+  series    = {ICML '00},
+  pages     = {663--670},
+  address   = {San Francisco, CA, USA},
+  publisher = {Morgan Kaufmann Publishers Inc.},
+  acmid     = {657801},
+  isbn      = {1-55860-707-2},
+  numpages  = {8},
+  url       = {http://dl.acm.org/citation.cfm?id=645529.657801},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

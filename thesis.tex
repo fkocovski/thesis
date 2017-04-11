@@ -123,24 +123,24 @@ This thesis is subdivided in five main chapters:
 \section{Literature Overview}
 \label{sec:literature_overview}
 
-This section servers as an overview of the state of the art literature that exists and has been used as a foundation basis for this work. \secref{sec:literature_overview} is divided in different thematic subsections.
+This section servers as an overview of the state of the art literature that exists and has been used as a foundation basis for this work and is divided in different thematic subsections. For a graphical representation of the literature overview mindmap refer to \figref{fig:literature_brainstorm}.
 
 \subsection{Queueing}
 
-Queuing is a topic that talks about how people or more general agents are to be server while waiting.
+Queuing is a topic that talks about how people or more general agents are to be served while waiting (\ie queueing) inside a system.
 
-Starting with one of the most notable contributions to this field done by Kendall in 1953 and his work on the Markov chains in queuing theory, where he formally defines different types of queues \cite{Kendall1953}.
+Starting with one of the most notable contributions to this field done by Kendall and his work on the Markov chains in queuing theory, where he formally defines different types of queues \cite{Kendall1953}.
 
-In 2016, Adan describes the necessary basic concepts for queuing theory and an important topic here is the statistical foundation outlined in his work about different modeling techniques for randomized generation rates, such as the Erlang's distributions \cite{Adan2016}.
+Pinedo outlines in his work the most prominent key metrics that can be used in order to assert and measure queues performance \cite{Pinedo2008}.
 
-Pinedo outlines in his work in 2008 the most prominent key metrics that can be used in order to assert and measure queues performance \cite{Pinedo2008}.
-
-Sun and Zhao in their work cover the aspect of formal analysis for workflow models and they claim that it should help ``...alleviating the intellectual challenge faced by business analysts when creating workflow models'' \cite{Sun2013}.
+Adan and Reising describe the necessary basic concepts for queuing theory: statistical foundations outlined in their work about different modeling techniques for randomized generation rates, such as the Erlang's distributions which serves as backbone for this thesis \cite{Adan2016}.
 
 \subsection{Workflow}
 \label{subsec:workflow}
 
-A good starting point in the workflow thematic is Macintosh's work in which he gives an overview of the five levels of process maturity \cite{Macintosh1993}:
+Baker formally defines the \gls{kpi} used by Zeng and Zhao in their work for evaluating their policy efficacy, called task flowtime \cite{Baker1974}.
+
+Another good starting point in the workflow thematic is Macintosh's work in which he gives an overview of the five levels of process maturity \cite{Macintosh1993}:
 \begin{enumerate*}
 	\item Initial, the process has to be set up
 	\item Repeatable, the process has to be repeatable
@@ -149,48 +149,50 @@ A good starting point in the workflow thematic is Macintosh's work in which he g
 	\item Optimizing, continuous process improvement
 \end{enumerate*}
 
-Even though Georgakopoulos' work dates back to 1995, he still gives a comprehensive business oriented overview of the different workflow technologies present on the market \cite{Georgakopoulos1995}.
+Georgakopoulos \etal give a comprehensive business oriented overview of the different workflow technologies present on the market used as a sound foundation for analyzing the present technologies \cite{Georgakopoulos1995}.
 
 On this note, Giaglis lays out four different process perspectives:
 \begin{enumerate*}
 	\item Functional
 	\item Behavioral
 	\item Organizational
-	\item Informational
+	\item Informational.
 \end{enumerate*}
 
 His framework focuses on three dimensions:
 \begin{enumerate*}
 	\item Breadth, where modeling goals are typically addressed by technique
 	\item Depth, where modeling perspectives are covered
-	\item Fit, where typical project to which techniques can be fit
+	\item Fit, where typical project to which techniques can be fit.
 \end{enumerate*}
 
 The presented framework is used to combine the three different dimensions in order to assert a possible best fit of a specific modeling technique based on which approach to be used under the constraints of a modeling perspective to cover \cite{Giaglis2001}.
 
-Mentzas focuses on a qualitative level on how workflow technologies can facilitate implementation of business processes by focusing on the pros and cons of adopting alternative workflow modeling techniques \cite{Mentzas2001}. Moreover he formally defines what a workflow management system is and subdivides it in three main categories:
+Mentzas \etal focus on a qualitative level on how workflow technologies can facilitate implementation of business processes by focusing on the pros and cons of adopting alternative workflow modeling techniques \cite{Mentzas2001}. Moreover they formally define what a workflow management system is and subdivide it in three main categories:
 \begin{enumerate*}
 	\item Process modeling
 	\item Process re-engineering
-	\item Workflow implementation and automation
+	\item Workflow implementation and automation.
 \end{enumerate*}
 
 Each level of maturity as defined by Macintosh requires a different model, such as the first three levels might require more descriptive models whereas levels four and five require decision support keen models in order to monitor and control processes \cite{Mentzas2001}.
 
-Aguilar describes the main modeling techniques existing with workflow being one of them \cite{Aguilar-Saven2004}.
+Aguilar-Sav\'{e}n describes the main modeling techniques existing with workflow being one of them \cite{Aguilar-Saven2004}.
 
-The key core topics on which this thesis lays its foundations upon is the work done by Zeng in 2005. Effective role resolution \ie the mechanism of assigning tasks to individual workers at runtime according to the role qualification defined in the workflow model \cite{Zeng2005}, is the core aspect that is being extended during this thesis work.
+Interestingly enough, workflow implementation in real world cases is not always only coupled with directly measurable effects, sometimes even unexpected results happen. What is called the ``workflow paradox'' according to Reijers and van der Aalst is the fact that the very fact of companies accepting requests for workflow introduction might actually be the most promising way that leads to potentially better and more suitable alternatives \cite{Reijers2005}.
 
-Zeng differentiates between staffing decisions and role resolution, with the former being the assignment one or more role to each user and the latter being the assignment of a specific task to an appropriate worker at runtime \cite{Zeng2005}. Staffing decisions are usually made off-line and periodically, thus being more of a strategic nature \cite{Zeng2005}. If role resolution were to be made on-line it could translate to a major operational level decision \ie the differentiation between strategic vs. operational playing role \cite{Zeng2005}.
+The key core topics on which this thesis lays its foundations upon is the work done by Zeng and Zhao: effective role resolution \ie the mechanism of assigning tasks to individual workers at runtime according to the role qualification defined in the workflow model \cite{Zeng2005}, is the core aspect that is being extended during this thesis work.
 
-He moreover defines three roles a workflow can fulfill:
+Zeng and Zhao differentiate between staffing decisions and role resolution, with the former being the assignment one or more role to each user and the latter being the assignment of a specific task to an appropriate worker at runtime \cite{Zeng2005}. Staffing decisions are usually made off-line and periodically, thus being more of a strategic nature \cite{Zeng2005}. If role resolution were to be made on-line it could translate to a major operational level decision \ie the differentiation between strategic vs. operational playing role \cite{Zeng2005}.
+
+They moreover define three roles a workflow can fulfill \cite{Zeng2005}:
 \begin{enumerate*}
 	\item System built-in policies
 	\item User customizable policies
-	\item Rule based policies
+	\item Rule based policies.
 \end{enumerate*}
 
-Considering capacities of resources restrictions under the assignment problem is an NP-hard computational problem and in his work Zeng focuses on how to solve the assignment problem and scheduling decisions with consideration of worker's preferences \cite{Zeng2005}. For this purpose he defines five workflow resolution policies:
+Considering capacities of resources restrictions under the assignment problem is an NP-hard computational problem and Zeng and Zhao focus on how to solve the assignment problem and scheduling decisions with consideration of worker's preferences \cite{Zeng2005}. For this purpose they define five workflow resolution policies:
 \begin{enumerate*}
 	\item \gls{llqp}
 	\item \gls{sq}
@@ -199,96 +201,118 @@ Considering capacities of resources restrictions under the assignment problem is
 	\item 1-Batch-1
 \end{enumerate*}
 
-For all batching policies a simplified version of \gls{dmf} has to be solved \cite{Zeng2005}.
+For all batch policies a simplified version of \gls{dmf} has to be solved \cite{Zeng2005}.
 
-Zeng's key findings are outlined as follows:
+Zeng and Zhao's key findings are outlined as follows \cite{Zeng2005}:
 \begin{enumerate*}
-	\item Batching policies to be used when system load is medium to high
+	\item Batch policies are to be used when system load is medium to high
 	\item Processing time variation has major impact on system performance \ie higher variation favors optimization based policies
 	\item Average workload and workload variation can be significantly reduced by online optimization
-	\item 1-Batch-1 online optimization policy yields best results in operational conditions
+	\item 1-Batch-1 online optimization policy yields best results in operational conditions.
 \end{enumerate*}
 
-Interestingly enough, workflow implementation in real world cases is not always only coupled with directly measurable effects, sometimes even unexpected results happen. What is called the ``workflow paradox'' according to Reijers is the fact that the very fact of companies accepting requests for workflow introduction might actually be the most promising way that leads to potentially better and more suitable alternatives \cite{Reijers2005}.
-
-Specifically speaking on the data flow inside workflow processes, one has to consider possible anomalies that might happens. This has been extensively studies by Sun \etal where they formally define data flow methodologies for detecting such anomalies \cite{Sun2006}. Their framework is divided in two components:
+On a detailed note, data flow inside workflow processes has to consider possible anomalies that might happens and this aspect has been extensively studies by Sun \etal where they formally define data flow methodologies for detecting such anomalies \cite{Sun2006}. Their framework is divided in two components:
 \begin{enumerate*}
 	\item Data flow specification
-	\item Data flow analysis
+	\item Data flow analysis.
 \end{enumerate*}
 
-Yet again we stumble upon mentioning that simulation for workflow management systems is usually inefficient and inaccurate \cite{Sun2006}. They moreover discuss aspects that data requirements have been analyzed but the required methodologies on discovering data flow errors have not been extensively researched \cite{Sun2006}.
+Mentions that simulations for workflow management systems is usually inefficient and inaccurate arises yet again \cite{Sun2006}. They moreover discuss aspects that data requirements have been analyzed but the required methodologies on discovering data flow errors have not been extensively researched \cite{Sun2006}.
 
-A more recent taxonomy of different BPM application is given by a collaboration between SAP and accenture in 2009 \cite{EvolvedTechnologist2009}.
+A more recent taxonomy of different \gls{bpm} application is given by a collaboration between SAP and accenture \cite{EvolvedTechnologist2009}.
 
-In the realm of workflow processes and engines BPMN's notation permeates the field and the work of Silver summarizes these foundations very well \cite{Silver2011}.
-
-An analysis of the critical success factors (CSF) for BPM is required in order to assert a product validity and this has been done by Trkman where he defines CSF from three perspectives \cite{Trkman2010}:
+An analysis of the \glspl{csf} for \gls{bpm} is required in order to assert a product validity and this has been done by Trkman where he defines \glspl{csf} from three perspectives \cite{Trkman2010}:
 \begin{enumerate*}
 	\item Contingency theory
 	\item Dynamic capabilities
-	\item Task-technology fit theory
+	\item Task-technology fit theory.
 \end{enumerate*}
 
+The domain of workflow processes and engines is permeated by \gls{bpmn} and Silver's guidelines are excellent formal foundations \cite{Silver2011}.
 
-Change management in workflow is yet another interesting aspect that should be considered and this has been broadly studied by Wang where he developed an analytical framework for workflow change management through formal modeling of workflow constraints \cite{Wang2011}.
+Change management in workflow is yet another interesting aspect that should be considered and this has been broadly studied by Wang and Zhao where they developed an analytical framework for workflow change management through formal modeling of workflow constraints \cite{Wang2011}.
 
-In companies different types of workflow models can exist and Fan focuses on two of these, namely:
+In companies different types of workflow models can exist and Fan \etal focus on two of these \cite{Fan2012}, namely:
 \begin{enumerate*}
 	\item Conceptual
-	\item Logical
+	\item Logical.
 \end{enumerate*}
 
-Conceptual models serve as documentation for generic process requirements whereas logical models are used as definitions for technology oriented requirements \cite{Fan2012}. One difficult aspect is the transition from the former to the latter and Fan proposes a formal approach to efficiently support such transitions \cite{Fan2012}.
+Conceptual models serve as documentation for generic process requirements whereas logical models are used as definitions for technology oriented requirements \cite{Fan2012}. One difficult aspect is the transition from the former to the latter and Fan \etal propose a formal approach to efficiently support such transitions \cite{Fan2012}.
+
+Sun and Zhao cover the aspect of formal analysis for workflow models and they claim that it should help ``alleviating the intellectual challenge faced by business analysts when creating workflow models'' \cite{Sun2013}.
 
 \subsection{\glsentrylong{rl}}
 
-\gls{rl} is a branch of machine learning that promises to overcome the drawbacks posed by the latter by not requiring a training set for efficient machine decisions.
+\gls{rl} is a branch of machine learning that promises to overcome the drawbacks posed by the latter by not requiring a training set for efficient machine decisions. \ncite{citation needed?}
 
-One of the first \gls{mc} based \gls{pg} methods is the algorithm proposed by Williams called REINFORCE \cite{Williams1992}.
+One of the first \gls{mc} based \gls{pg} methods is the algorithm proposed by Williams called \texttt{REINFORCE} \cite{Williams1992}.
 
-\gls{pg} methods with \gls{vfa} and their convergence is of vital importance and this can be achieved by representing the policy by an own function approximation which is independent of the value function and it is updated according to gradient of the expected rewards with respect to the afore mentioned policy \cite{Sutton1999}.
+\gls{vgp} states that even very large change in partial derivatives on initial layers have imperceptible effects on subsequent layers, as outlined by Bengio \etal, which is a problem that affects deep \glspl{ann} \cite{Bengio1994}.
 
-Discretization of the state action space is not always feasible and different techniques have to be used for tractability. Smith proposes such an approach which he calls ``self-organizing map'' \cite{Smith2002}.
+Haykin's comprehensive work on \glspl{ann} is an excellent theoretical foundation which serves as basis for critical concepts regarding the matter \cite{Haykin1998}.
 
-As Markov Decision Processes grow in size, so does the required computational memory to solve possible discrete lookup tables modeling the state-actions spaces that characterizes them. Notable examples that show how large some of the most common problems can be:
+Theoretical definition on deep \glspl{ann} is also given by Lecun \etal which was used to better understand more recent developments in this domain \cite{Lecun1998}.
+
+\gls{pg} methods with \gls{vfa} and their convergence is of vital importance and according to Sutton \etal this can be achieved by representing the policy by an own function approximation which is independent of the value function and it is updated according to gradient of the expected rewards with respect to the afore mentioned policy \cite{Sutton1999}.
+
+Another branch originated from \gls{rl} is \gls{irl}: Ng and Russell outline the required algorithms for this domain \cite{Ng2000}.
+
+Discretization of the state action space is not always feasible and different techniques have to be used for tractability \cite{Smith2002}. Smith proposes such an approach which he calls ``self-organizing map'' \cite{Smith2002}.
+
+Abbeel and Ng collaboration lays the basis from a bleeding edge branch of \gls{irl} called \gls{al}, which trains policies without rewards function by merely observing ``expert'' agents performing a task in a specific domain \cite{Abbeel2004}.
+
+Bengio further develops the foundations laid by Lecun and expands the theoretical basis of deep \glspl{ann} \cite{Bengio2009}.
+
+Statistical identifiability in \gls{rl} is a crucial aspect that has to be ensured for effective learning, as were it not the case \gls{rl} update methods might remain stuck in suboptimal solutions and never converge, as explained by \cite{Zhang2011}.
+
+Yet another problem in which deep \glspl{ann} might incur in addition to \gls{vgp} is the so called \gls{egp} as defined by Pascanu \etal \cite{Pascanu2012}.
+
+This huge state space requirement is a clear limitation to lookup tables \cite{Sutton2017}. Even if memory would not be a constraint, the actual learning from such tables would be infeasible \cite{Sutton2017}. In order to pragmatically learn by reinforcement on such huge problems, \gls{vfa} in the domain of \gls{rl} proves to be a viable solution \cite{Sutton2017}. For different types of \gls{rl} approaches \ie \gls{mc} or \gls{td} methods exist different types of \gls{vfa}, ranging from simple linear combinations of features for \gls{mc} to \glspl{ann} for \gls{td} learning \cite{Sutton2017}. All these different methodologies are outlined in the tutorial by Geramifard \etal \cite{Geramifard2013} and complement the theoretical foundations laid by Sutton and Barto.
+
+Overfitting for deep \glspl{ann} is a common problem \cite[p. 218]{Sutton2017}. Srivastava \etal propose the dropout method which proves to be a domain standard in regards to this problem \cite{Srivastava2014}.
+
+As \glspl{mdp} grow in size, so does the required computational memory to solve possible discrete lookup tables modeling the state-actions spaces that characterizes them \cite{Sutton2017}. Notable examples that show how large some of the most common problems can be \cite{Sutton2017}:
 \begin{enumerate*}
 	\item the game of backgammon has a total of $10^{20}$ states
 	\item the traditional Chinese abstract board game Go has an estimated total of $10^{170}$ states
 	\item flying a helicopter or having a robot move in space all require a continuous state space.
 \end{enumerate*}
 
-This huge state space requirement is a clear limitation to lookup tables. Even if memory would not be a constraint, the actual learning from such tables would be infeasible. In order to pragmatically learn by reinforcement on such huge problems, \gls{vfa} in the domain of \gls{rl} proves to be a viable solution. For different types of \gls{rl} approaches \ie \gls{mc} or \gls{td} methods exist different types of \gls{vfa}, ranging from simple linear combinations of features for \gls{mc} to \glspl{ann} for \gls{td} learning. All these different methodologies are outlined in the tutorial by Geramifard \cite{Geramifard2013}.
+When working with on-line algorithms such as \gls{td} it is important to choose correct parameters for an effective learning process, otherwise the learning algorithm put in place might never converge towards an optimal solution \cite{Sutton2017}. This aspect is being discussed by Korda and Prashanth in which they depict different non-asymptotic bounds for the \gls{td} learning algorithms \cite{Korda2014}.
 
-When working with on-line algorithms such as \gls{td}(0) it is important to choose correct parameters for an effective learning process, otherwise the learning algorithm put in place might never converge towards an optimal solution. This aspect is being discussed by Korda in which he depicts different non-asymptotic bounds for the \gls{td} learning algorithms \cite{Korda2014}.
+There are two main fields in \gls{rl}, one is using \gls{vfa} for either the state value function or for using control mechanisms with the state action value function, while the other one is using \gls{pg} methods for policy optimization \cite{Sutton2017}. The latter offers different methods such as the naive finite difference methods, \gls{mc} based \gls{pg} methods and finally actor critic \gls{pg} methods as defined by Silver \etal \cite{Silver2014}.
 
-There are two main fields in \gls{rl}, one is using \gls{vfa} for either the state value function or for using control mechanisms with the state action value function, while the other one is using \gls{pg} methods for policy optimization. The latter offers different methods such as the naive finite difference methods, \gls{mc} based \gls{pg} methods and finally actor critic \gls{pg} methods \cite{Silver2014}.
+Clevert \etal discuss a special class of activation functions for \glspl{ann} called \glspl{elu} which are improvements over classical \glspl{relu} \cite{Clevert2015}. \glspl{elu} activation functions are used for the modeling of the \glspl{ann} layers in this thesis.
+
+Gershman proposes further advancements to Zhang's work on statistical identifiability \cite{Zhang2011} by analyzing prior distributions of the parameters \cite{Gershman2016}. He argues that his approach helps to some extent to overcome the identifiability problem \cite{Gershman2016}.
 
 Notable works in the field of \gls{rl} and its application include Google DeepMind work on novel algorithms for tackling fields previously barely scratched, as mentioned by Mnih \etal and Silver \etal \cite{Mnih2015,Silver2016}.
 
-Sutton started working on the \gls{rl} topic in the early nineties and is now planning his third edition of his famous book on machine learning, which is due in 2017 \cite{Sutton2017}. In our case \gls{rl} is used in order for the policies to be able to alone get better by continuously analyzing their own decision models and optimize upon them.
+Sutton and Barto started working on the \gls{rl} topic in the early nineties and are now planning their third edition of the famous book on machine learning, which is due in 2017 \cite{Sutton2017}. In our case \gls{rl} is used in order for the policies to be able to improve themselves by continuously analyzing their own decision models and optimize upon them. Their work is the backbone used for this thesis for the \gls{rl} domain.
 
 \subsection{Optimization}
 
-For all batching policies implemented in this work, a mixed integer optimization was solved in order to optimally assign jobs to users in the workflow processes. The generalized assignment problem is a very well known problem in combinatorial mathematics. Cattrysse gives an overview of different algorithms for solving the generalized assignment problem \cite{Cattrysse1992}. Heuristics are also a viable solution for solving such adaptation of the generalized assignment problem, as Racer states \cite{Racer1994}. Moreover a global perspective of optimization from a mathematical perspective is given in Boyd's work on convex optimization \cite{Boyd2004}.
+Dynamic allocation of jobs to users, or how Zeng and Zhao define it \ie \gls{dmf} \cite{Zeng2005}, is a problem that is NP-Hard, as demonstrated by Garey and Johnson \cite{Garey1990}.
+
+Under mathematical optimization or specifically to the domain of the thesis, a mixed integer optimization problem must be solved in order to optimally assign jobs to users in the workflow processes. The generalized assignment problem is a very well known problem in combinatorial mathematics and Cattrysse and Wassenhove give an overview of different algorithms for solving the generalized assignment problem \cite{Cattrysse1992}. Heuristics are also a viable solution for solving such adaptation of the generalized assignment problem, as Racer and Amini state \cite{Racer1994}. Moreover a global perspective of optimization from a mathematical perspective is given in Boyd and Vandenberghe's work on convex optimization \cite{Boyd2004}.
 
 Last but not least, according to the AIMMS guidelines, there are different linear programming tricks that can be used to shape such problems in solvable outlines \cite{Bisschop2016}. In this thesis, a specific linear programming trick, called either-or constraints, was used by adding so called auxiliary variables to the evaluation method presented in order to efficiently solve an otherwise non solvable equation \cite[p. 77]{Bisschop2016}.
 
 \subsection{Simulation}
 
-Simulating queues can prove to be arduous. The main differentiation needed here is that between continuous and step functions: the former is the result when the events being simulated yield values that if plotted against the simulation time give a continuous function. On the other hand, if we simulate events that yield discrete values, such as inventory changes in a storage facility and plot the results against the simulation time we would get so called step functions \cite{Matloff2008}.
+Bahouth \etal focuse on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues \cite{Bahouth2007}. According to their findings, a significant speedup can be achieved if one addresses the afore mentioned facets \cite{Bahouth2007}.
 
-According to Matloff, there exist different world views for discrete event programing, as he calls them paradigms \cite{Matloff2008}:
+Simulating queues can prove to be arduous \cite{Matloff2008}. The main differentiation needed here is that between continuous and step functions: the former is the result when the events being simulated yield values that if plotted against the simulation time give a continuous function \cite{Matloff2008}. On the other hand, if we simulate events that yield discrete values, such as inventory changes in a storage facility and plot the results against the simulation time we would get so called step functions \cite{Matloff2008}.
+
+According to Matloff, different world views for discrete event programing \cite{Matloff2008}, as he calls them paradigms \cite{Matloff2008}:
 \begin{enumerate*}
 	\item Activity oriented
 	\item Event oriented
-	\item Process oriented
+	\item Process oriented.
 \end{enumerate*}
 
-Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there won't be any change in state for the simulated entities \cite{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated. By filling these gaps, a dramatical increase in computation can be observed \cite{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks.
-
-On another note, Bahouth focuses in work on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues \cite{Bahouth2007}. According to his findings, a significant speedup can be achieved if one addresses the afore mentioned facets.
-
+Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities \cite{Matloff2008}. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there won't be any change in state for the simulated entities \cite{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated \cite{Matloff2008}. By filling these gaps, a dramatical increase in computation can be observed \cite{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread \cite{Matloff2008}. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks exist \cite{Matloff2008}.
 
 \chapter{Methodology}
 \label{ch:methodology}
@@ -307,6 +331,7 @@ The whole architecture is subdivided as follows:
 \end{enumerate*}
 
 \subsection{Discrete event simulation using SimPy}
+\label{subsec:discrete_event_sim}
 
 SimPy is a Python process-based discrete-event simulation framework. It exploits Python generators according to which it models its processes.
 
@@ -565,6 +590,7 @@ Solver & Computation Costs \\ \midrule
 \end{table}
 
 \section{\glsentrylong{rl} Theory}
+\label{sec:rl_theory}
 
 In this section the \gls{rl} approach used to solve the different role resolution problems is depicted. Initially a foundation basis in the required knowledge is depicted and afterwards the description of the analysis environment implementation is presented.
 
@@ -576,7 +602,7 @@ The formal framework used by \gls{rl} defines the interaction between the so cal
 
 Key concepts in the field of \gls{rl} are those of values and value functions which helps distinguish \gls{rl} methods from evolutionary methods which have to undergo scalar evaluations of entire policies \cite[p. 15]{Sutton2017}.
 
-\subsection{Finite Markov Decision Processes}
+\subsection{Finite \glsentrylongpl{mdp}}
 
 \gls{rl} approaches learn by interacting with the environment in order to achieve a goal. The agent interacting with the environment does this in a sequence of discrete time steps, it performs actions (choices made by the agent), reaches then states (basis for making decisions) and eventually receives rewards (basis for evaluating the choices) \cite[p. 73]{Sutton2017}. Moreover, a policy is a stochastic rule that the agent relies upon to choose actions as a function of states \cite[p. 73]{Sutton2017}. Ultimately, the sole goal of the agent is to maximize the reward that it receives over time \cite[p. 73]{Sutton2017}.
 
@@ -602,7 +628,7 @@ If we account for discounting, \equref{eq:expected_return} has to be slightly ad
 
 where $0 \leq \gamma \leq 1$.
 
-An environment  with which one agent interacts, can satisfy a Markov property if the information contained at present effectively summarizes the past without affecting the capability of effectively predicting the future \cite[p. 73]{Sutton2017}. If the Markov property is satisfied, then this environment is called a Markov decision process (MDP) \cite[p. 73]{Sutton2017}.
+An environment  with which one agent interacts, can satisfy a Markov property if the information contained at present effectively summarizes the past without affecting the capability of effectively predicting the future \cite[p. 73]{Sutton2017}. If the Markov property is satisfied, then this environment is called a \gls{mdp} \cite[p. 73]{Sutton2017}.
 
 Last but not least, value functions are used to assign each state or state-action pair an expected return based on the policy used by the agent \cite[p. 74]{Sutton2017}. Optimal value functions assign the highest achievable return by any policy to a state or state-action pair  and such policies, whose values are optimal, are called optimal policies \cite[p. 74]{Sutton2017}.
 
@@ -621,7 +647,7 @@ whereas optimal action-value functions $q_*$ are formally defined as follows:
 \subsection{Dynamic Programming}
 \label{subsec:dp}
 
-Dynamic programming (DP) is a set of ideas and algorithms that can be used to solve MDPs \cite[p. 95]{Sutton2017}. There are two approaches in dynamic programming for solving MDPs:
+Dynamic programming (DP) is a set of ideas and algorithms that can be used to solve \glspl{mdp} \cite[p. 95]{Sutton2017}. There are two approaches in dynamic programming for solving \glspl{mdp}:
 \begin{enumerate*}
 	\item policy evaluations is the iterative computation of value functions of a given policy and
 	\item policy improvement is the idea of computing an improved policy under the conditions of its given value functions \cite[p. 95]{Sutton2017}.
@@ -710,12 +736,13 @@ This simplified case of linear function approximation for state-value functions 
 \equref{eq:sgd_linear} tells us that for the simple linear case the \gls{sgd} is nothing more than the corresponding features value  \cite[p. 199]{Sutton2017}.
 
 \subsubsection{\glsentrylongpl{ann}}
+\label{subsubsec:ann_theory}
 
 Up to this point, we considered linear function approximation. \glspl{ann} can be used instead for nonlinear function approximation \cite[p. 199]{Sutton2017}. The simplest case of an \glspl{ann} is a single feedforward perceptron, meaning that it has only one hidden layer (\ie a layer that is neither an input nor an output layer) and that the \glspl{ann} at hand has no loops between its neurons, meaning that the output can not influence the input (compared to recurrent \glspl{ann}, in which the output indeed can influence the input) \cite[p. 216]{Sutton2017}. 
 
 The connections between neurons inside an \glspl{ann} are called weights and the analogy to its human counterpart is how strong synaptic connections are \cite[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer \glspl{ann}.
 
-The key about solving nonlinearity with \glspl{ann} is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of the usually exhibits an ``S'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of rectified linear unit (ReLU), which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
+The key about solving nonlinearity with \glspl{ann} is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of the usually exhibits an ``S'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of \glspl{relu}, which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
 
 \fig[0.5\textwidth]{ann_1h}{Single layer \glspl{ann}}{fig:ann_1h}
 
@@ -989,7 +1016,7 @@ In order to update the \glspl{ann}, a backpropagation has to take place. Such an
 
 As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there are mainly two different methods to update the policy's internal $\theta$ parameters \ie \gls{mc} and \gls{td}. Let us take the example outlined by Sutton and Barto of leaving the office and getting home and the respective updates proposed by the two update methods \cite[p. 130]{Sutton2017}. \figref{fig:mc_td} shows the graphical updates proposed by the two update methods.
 
-\fig[\textwidth]{mc_td}{\gls{mc} and \gls{td} proposed updates comparison (own plot based on Sutton and Barto)}{fig:mc_td}
+\fig[\textwidth]{mc_td}{\gls{mc} and \gls{td} proposed updates comparison (own plot based on \cite[p. 130]{Sutton2017})}{fig:mc_td}
 
 As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the \gls{mc} method needs to reach the end of an entire episode (\ie here it consists of actually arriving home) in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, \gls{td} is much more flexible and robust since it executes its updates at each time step, hence its name: \gls{td}.
 For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the \gls{mc} update and to \equref{eq:td_update} for the \gls{td} update.
@@ -1190,8 +1217,8 @@ Variable            & Default     & Valid Range \\ \midrule
 Number of Users     & $3$           & $1-\infty$      \\
 Service Interval    & $1$           & $1-\infty$      \\
 Generation Interval & $3$           & $1-\infty$      \\
-Simulation Time     & $50$          & $1-\infty$      \\
-Batch Size          & $3$           & $1-\infty$      \\
+Simulation Time     & $1000$          & $1-\infty$      \\
+Batch Size          & $5$ ($1$ for 1-Batch-1)           & $1-\infty$      \\
 Task Varaibility    & $20\%$        & $0\%-100\%$      \\
 Worker Variability  & $20\%$        & $0\%-100\%$      \\
 Random State Seed   & $2$           & $\emptyset-\infty$      \\
@@ -1202,6 +1229,7 @@ Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
 \end{table}
 
 \subsection{Comparison with Existing Literature}
+\label{subsec:opt_comparison}
 
 Zeng outlines in his work how different global parameters configurations and policy usage can affect \glspl{kpi} \cite[pp. 18-22]{Zeng2005}. He summarizes his key findings as follows:
 \begin{enumerate*}
@@ -1209,34 +1237,11 @@ Zeng outlines in his work how different global parameters configurations and pol
 	\item Batch optimization policies without a fixed batch size, such as 1-Batch-1 yield best results \cite[p. 24]{Zeng2005}.
 \end{enumerate*}
 
-In order to assert the validity of the interpretation of Zeng's works and all subsequent derivative policies a comparison with similar configurations has been made for all five optimization policies. Zeng's main efficiency parameter is defined as the maximum flowtime or ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \cite[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}.
-
-In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results are obtained.
+In order to assert the validity of the interpretation of Zeng's works and all subsequent derivative policies a comparison with similar configurations has been made for all five optimization policies. Zeng's main efficiency parameter is defined as the maximum flowtime or in his own words: ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \cite[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}. In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results to Zeng and Zhao's are obtained.
 
 \fig[\textwidth]{opt_kpis_comp}{\glspl{kpi}  comparison for different optimization policies using the \gls{msa} solver for batch policies}{fig:opt_kpis_comp}  
 
-The simulation have been run with the parameters outlined in tab by using the same solver used by Zeng: \gls{msa}.
-
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\begin{table}[!ht]
-\centering
-\begin{tabular}{@{}ll@{}}
-\toprule
-Variable            & Value     \\ \midrule
-Number of Users     & $5$                 \\
-Service Interval    & $1$              \\
-Generation Interval & $2$                 \\
-Simulation Time     & $50$              \\
-Batch Size          & 5 (1 for 1-Batch-1)               \\
-Task Varaibility    & $20\%$             \\
-Worker Variability  & $20\%$              \\
-Random State Seed   & $2$                 \\
-Workflow Process    & Acquisition       \\ \bottomrule
-\end{tabular}
-\caption{Global Parameters for Optimization Policies \glspl{kpi} Comparison}
-\label{tab:global_parameters_kpis_comp}
-\end{table}
+The simulations have been run with the parameters outlined in \tabref{tab:global_parameters_sim} by using the same solver used by Zeng and Zhao: \gls{msa}.
 
 By running the same simulations with the optimization solver implemented for this thesis (\ie \gls{st}, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized \glspl{kpi} amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
 
@@ -1246,7 +1251,7 @@ The percent reduction for both batch policies with a higher batch size is tiny, 
 
 \fig[\textwidth]{opt_kpis_comp_gain}{\glspl{kpi}  reduction comparison between the \gls{msa} and the \gls{st} solvers for different batch policies}{fig:opt_kpis_comp_gain}
 
-Astonishing reductions have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by Zeng (for a detailed comparison of how different batch sizes affect the policy's \glspl{kpi} refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \cite[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
+Astonishing reductions have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by Zeng and Zhao (for a detailed comparison of how different batch sizes affect the policy's \glspl{kpi} refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \cite[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1255,10 +1260,10 @@ Astonishing reductions have been observed for the 1-Batch-1 policy, which is ind
 \begin{tabular}{@{}ll@{}}
 \toprule
 \gls{kpi}                 & Reduction (in \%) \\ \midrule
-Lateness            & $38.28$             \\
-Wait Time           & $528.14$             \\
-Service Time        & $19.75$             \\
-Average System Load & $17.14$             \\ \bottomrule
+Lateness            & $23.24$             \\
+Wait Time           & $300.0$             \\
+Service Time        & $9.6$             \\
+Average System Load & $9.63$             \\ \bottomrule
 \end{tabular}
 \caption{Reduction (in \%) across all \glspl{kpi} of the \gls{st} against the \gls{msa} solver}
 \label{tab:opt_kpis_comp_gain}
@@ -1444,6 +1449,7 @@ Average System Load & $20.58$                & $12.76$                     & $-7
 \section{Discussion}
 
 \subsection{Optimization}
+\label{subsec:optimization_discussion}
 
 Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different solvers yield different solutions and computational complexities. Zeng mentions that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered \cite[p. 15]{Zeng2005}. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \cite[p. 13]{Zeng2005},\cite{Garey1990}. Zeng proposes however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it \cite[p. 13]{Zeng2005}. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of solvers. The \gls{st} ``flagship'' solver significantly outperforms the \gls{msa} solver (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher computational complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_solvers}) questions the practical use of this solver over the other methods. A $20\%$ gain in respect to lateness requiring a quadratic higher computational complexity poses a dubious trade-off from a business perspective.
 
@@ -1469,6 +1475,7 @@ Yet another aspect mentioned by Zeng is a more ``social'' aspect: the fairness o
 It is clear that \gls{st} is ``fairer'' at balancing loads across users compared to \gls{msa}. 
 
 \subsection{\glsentrylong{rl}}
+\label{subsec:rl_discussion}
 
 Let us first focus on \gls{llqp}, which, as explained in \secref{sec:opt_policies}, focuses on assigning a job to the least loaded qualified person. By comparing the results obtained with \gls{rl} against the optimization method, we clearly see that gains across all \glspl{kpi} are imperceptible (refer to \subsecref{subsec:llqp_rl_msa_comp_app} for more details). This sheds light on two key aspects:
 \begin{enumerate*}
@@ -1513,22 +1520,18 @@ On a more general note, different comparisons have shown huge spikes in reductio
 
 \section{Summary}
 
-\begin{enumerate}
-	\item analyzed current mathematical optimization
-	\item made new mathematical methods to further develop existing ones
-	\item researched new field of \gls{rl}
-	\item implemented state of the art abstract \gls{rl} to practical business case of workflow processes
-	\item compared new optimization methods to existing ones
-	\item compared new \gls{rl} methods to existing optimization methods
-\end{enumerate}
-
 The focus of this thesis was analyzing different approaches for optimally allocating resources inside workflow processes by means of different methods.
 
 Initially a found literature review has been made in order to establish the existing optimization solution (\ie foundations set by Zeng and Zhao \cite{Zeng2005}), then a roadmap on how to further develop such methods has been laid out. The roadmap encloses a two fold approach:
-\begin{enumerate}
- 	\item Further develop mathematical optimizations
- 	\item Use \gls{rl} methods as novel solution for optimal job assignment.
+
+\begin{enumerate}[label=\textbf{Appr. \arabic*},ref=Approach \arabic*]
+ 	\item Further develop mathematical optimizations \label{itm:math_opt}
+ 	\item Use \gls{rl} methods as novel solution for optimal job assignment. \label{itm:novel_rl}
  \end{enumerate} 
+
+Subsequently, a discrete event simulation environment as outlined in \subsecref{subsec:discrete_event_sim} has been implemented which served as foundation for evaluating all future optimization policies.
+
+For \ref{itm:math_opt} five existing optimization policies as outlined in \secref{sec:opt_policies} have been implemented and evaluated against the existing policies defined by Zeng and Zhao \cite[pp. 13-14]{Zeng2005}. Furthermore, for \ref{itm:novel_rl} a profound literature review about \gls{rl} had to be made and following on the theoretical foundations laid (see \secref{sec:rl_theory}) novel policies for solving the assignment problem based on \gls{rl} have been implemented (see \secref{sec:rl_policies}). Lastly, all \gls{rl} policies have been also evaluated and a comparison between them and the corresponding optimization methods has been made.
 
 \section{Resulting Conclusions}
 
@@ -1537,96 +1540,65 @@ Initially a found literature review has been made in order to establish the exis
 	\item \gls{rl} methods prove to be very good and interesting, however being novel methods one should proceed with caution and further analyze these methods
 \end{enumerate}
 
+Optimization methods are viable solutions for optimally assigning jobs to users inside workflow processes, as already argued by Zeng and Zhao \cite{Zeng2005}. Further developed policies relying on mathematical optimization done for this thesis proved indeed to yield better results (see \subsecref{subsec:opt_comparison}), however the higher required complexity (refer to \subsecref{subsec:optimization_discussion}) poses a critical trade-off. \ref{rq:one} can be affirmatively answer: there is definitely potential for further development and optimization of existing methods but further questions arise:
+
+\begin{enumerate}[label=\textbf{Q. \arabic*}]
+	\item Does a slight increase in performance justify the higher computational requirements?
+	\item Can only one \gls{kpi} be chosen as central parameter to evaluate a policy's performance or is a combination of different \glspl{kpi} more suitable?
+	\item Is it always the best solution to use only one type of optimizer or is it better to follow a more flexible approach an chose different policies on a per case basis?
+\end{enumerate}
+
+All these questions must be accounted for when considering policy based optimization in workflow processes integration in IT governance.
+
+On the other hand, \gls{rl} methods demonstrate to overcome some of the problematics laid by optimization very well:
+\begin{enumerate*}
+	\item Generally less computationally expensive
+	\item Can be adopted relatively fast
+	\item Are generally more ``dynamic'' and can adapt and exploit case specific characteristics.
+\end{enumerate*}
+
+Then again \gls{rl} methods are not exempt from disadvantages:
+\begin{enumerate*}
+	\item They require long training sessions in order to equal (or even outperform) optimization methods
+	\item When using \glspl{ann}, overfitting might lead to suboptimal solution in which policies get stuck (for viable solutions refer to \cite{Srivastava2014})
+	\item Multilayer \glspl{ann} (\ie deep \glspl{ann}) are very sensitive to \gls{vgp} and \gls{egp}.
+\end{enumerate*}
+
+In general \gls{rl} based approaches are a refreshing and novel methodology for solving optimization problems but require further development and sound domain knowledge.
+
 \section{Outlook}
 
-\begin{enumerate}
-	\item \gls{rl} methods also usually require long training sessions in order to outperform optimization methods, one should always account into this
-	\item \gls{rl} methods with \glspl{ann} can also overfit to specific domains and prove to be pretty static. See solutions for more ``dynamic'' approaches
-	\item \gls{rl} methods with \glspl{ann} (especially deeps ones) can also incur in \gls{vgp} and \gls{egp} so it is important to look for solid solutions
-	\item in general it is important to test in practice job assignment optimization with \gls{rl} methods in order to assert efficiency
-\end{enumerate}
+This thesis merely ``scratches the surface'' of viable alternatives to existing optimization techniques for workflow processes. A direct follow up consists in testing in operative workflows the efficiency measured in the simulation environment outlined in this thesis. This includes testing the robustness, efficacy and viability of the proposed policies by putting them under ``real-world'' stress situation in order to assert the efficiency claims. For \gls{rl} methods executing lengthy training sessions might prove impractical: thousands of training sessions required by \gls{rl} methods in order to comply with convergence properties can prove infeasible for companies that are not able to generate such amounts of data, thus directly limiting applicability of these methods.
+
+\gls{rl} is a novel field that is currently still being actively researched and pursued, as it has yield promising results \cite{Mnih2015,Silver2016}. By using \glspl{ann} one can effectively approximate nonlinear functions as it has been outlined in \subsecref{subsubsec:ann_theory}. Even though in this thesis only feedforward \glspl{ann} have been used, the problem domain is very well suited for the recurrent variant as well.
+
+Moreover, bleeding edge domains have originated from \gls{rl} such as \gls{irl} \cite{Ng2000} and \gls{al} which is based on the former \cite{Abbeel2004}. \gls{al} could prove to be yet another captivating approach to solve the assignment problem in which the reward function is not explicitly modeled, instead an ``expert'' of the domain (\ie a mathematical solver such as \gls{msa}) demonstrates a task and by means of \gls{al} the policy is trained \cite{Abbeel2004}.
+
+Having said that, \ref{rq:two} can be answered positively as well: there are indeed state of the art approaches that can be used as alternatives or complements to the job assignment mathematical optimization. 
 
 \appendix
 
+\chapter{Literature Overview}
+
+\fig[\textwidth]{literature_brainstorm}{Literature per topic categorization overview}{fig:literature_brainstorm}
+
+\clearpage
+
 \chapter{Optimization Results}
-
-\section{K-Batch}
-
-\subsection{\glsentryshortpl{kpi}}
-\label{subsec:kbatch_kpi_app}
-
-\fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_KPI}{K-Batch with \gls{msa} \glspl{kpi}}{fig:3_BATCH_MSA_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_KPI}{K-Batch with \gls{dmf} \glspl{kpi}}{fig:3_BATCH_DMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_KPI}{K-Batch with \gls{sdmf} \glspl{kpi}}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch with \gls{esdmf} \glspl{kpi}}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_KPI}{K-Batch with \gls{st} \glspl{kpi}}{fig:3_BATCH_ST_NU3_GI3_SIM50_KPI}
-
-\clearpage
-
-\subsection{Evolution}
-\label{subsec:kbatch_evo_app}
-
-\fig[\textwidth]{kbatch_res/3_BATCH_MSA_NU3_GI3_SIM50_EVO}{K-Batch with \gls{msa} evolution}{fig:3_BATCH_MSA_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatch_res/3_BATCH_DMF_NU3_GI3_SIM50_EVO}{K-Batch with \gls{dmf} evolution}{fig:3_BATCH_DMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatch_res/3_BATCH_SDMF_NU3_GI3_SIM50_EVO}{K-Batch with \gls{sdmf} evolution}{fig:3_BATCH_SDMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatch_res/3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch with \gls{esdmf} evolution}{fig:3_BATCH_ESDMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatch_res/3_BATCH_ST_NU3_GI3_SIM50_EVO}{K-Batch with \gls{st} evolution}{fig:3_BATCH_ST_NU3_GI3_SIM50_EVO}
-
-\clearpage
-
-\subsection{Batch Sizes Comparison}
-\label{subsec:kbatch_bscomp_app}
-
-\fig[\textwidth]{kbatch_res/1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch with \gls{msa} batch size comparison}{fig:1-9_BATCH_MSA_NU3_GI3_SIM50_BSEVAL}
-\fig[\textwidth]{kbatch_res/1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch with \gls{st} batch size comparison}{fig:1-9_BATCH_ST_NU3_GI3_SIM50_BSEVAL}
-
-\clearpage
-
-\section{K-Batch-1}
-
-\subsection{\glsentryshortpl{kpi}}
-\label{subsec:kbatchone_kpi_app}
-
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{msa} \glspl{kpi}}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{dmf} \glspl{kpi}}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{sdmf} \glspl{kpi}}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{esdmf} \glspl{kpi}}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_KPI}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_KPI}{K-Batch-1 with \gls{st} \glspl{kpi}}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_KPI}
-
-\clearpage
-
-\subsection{Evolution}
-\label{subsec:kbatchone_evo_app}
-
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{msa} evolution}{fig:3_BATCHONE_MSA_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{dmf} evolution}{fig:3_BATCHONE_DMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{sdmf} evolution}{fig:3_BATCHONE_SDMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{esdmf} evolution}{fig:3_BATCHONE_ESDMF_NU3_GI3_SIM50_EVO}
-\fig[\textwidth]{kbatchone_res/3_BATCHONE_ST_NU3_GI3_SIM50_EVO}{K-Batch-1 with \gls{st} evolution}{fig:3_BATCHONE_ST_NU3_GI3_SIM50_EVO}
-
-\clearpage
-
-\subsection{Batch Sizes Comparison}
-\label{subsec:kbatchone_bscomp_app}
-
-\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}{K-Batch-1 with \gls{msa} batch size comparison}{fig:1-9_BATCHONE_MSA_NU3_GI3_SIM50_BSEVAL}
-\fig[\textwidth]{kbatchone_res/1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}{K-Batch-1 with \gls{st} batch size comparison}{fig:1-9_BATCHONE_ST_NU3_GI3_SIM50_BSEVAL}
-
-\clearpage
 
 \section{\glsentrylong{llqp}}
 
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:llqp_kpi_app}
 
-\fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_KPI}{\gls{llqp} \glspl{kpi}}{fig:LLQP_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{llqp_res/LLQP_NU5_GI3_SIM1000_KPI}{\gls{llqp} \glspl{kpi}}{fig:LLQP_NU5_GI3_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:llqp_evo_app}
 
-\fig[\textwidth]{llqp_res/LLQP_NU3_GI3_SIM50_EVO}{\gls{llqp} evolution}{fig:LLQP_NU3_GI3_SIM50_EVO}
+%\fig[\textwidth]{llqp_res/LLQP_NU5_GI3_SIM1000_EVO}{\gls{llqp} evolution}{fig:LLQP_NU5_GI3_SIM1000_EVO}
 
 \clearpage
 
@@ -1635,14 +1607,102 @@ Initially a found literature review has been made in order to establish the exis
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:sq_kpi_app}
 
-\fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_KPI}{\gls{sq} \glspl{kpi}}{fig:SQ_NU3_GI3_SIM50_KPI}
+\fig[\textwidth]{sq_res/SQ_NU5_GI3_SIM1000_KPI}{\gls{sq} \glspl{kpi}}{fig:SQ_NU5_GI3_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:sq_evo_app}
 
-\fig[\textwidth]{sq_res/SQ_NU3_GI3_SIM50_EVO}{\gls{sq} evolution}{fig:SQ_NU3_GI3_SIM50_EVO}
+%\fig[\textwidth]{sq_res/SQ_NU5_GI3_SIM1000_EVO}{\gls{sq} evolution}{fig:SQ_NU5_GI3_SIM1000_EVO}
+
+\clearpage
+
+\section{K-Batch}
+
+\subsection{\glsentryshortpl{kpi}}
+\label{subsec:kbatch_kpi_app}
+
+\fig[\textwidth]{kbatch_res/5_BATCH_MSA_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{msa} \glspl{kpi}}{fig:5_BATCH_MSA_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_res/5_BATCH_DMF_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{dmf} \glspl{kpi}}{fig:5_BATCH_DMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_res/5_BATCH_SDMF_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{sdmf} \glspl{kpi}}{fig:5_BATCH_SDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_res/5_BATCH_ESDMF_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{esdmf} \glspl{kpi}}{fig:5_BATCH_ESDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_res/5_BATCH_ST_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{st} \glspl{kpi}}{fig:5_BATCH_ST_NU5_GI3_SIM1000_KPI}
+
+\clearpage
+
+\subsection{Evolution}
+\label{subsec:kbatch_evo_app}
+
+%\fig[\textwidth]{kbatch_res/5_BATCH_MSA_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{msa} evolution}{fig:5_BATCH_MSA_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_res/5_BATCH_DMF_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{dmf} evolution}{fig:5_BATCH_DMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_res/5_BATCH_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{sdmf} evolution}{fig:5_BATCH_SDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_res/5_BATCH_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{esdmf} evolution}{fig:5_BATCH_ESDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_res/5_BATCH_ST_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{st} evolution}{fig:5_BATCH_ST_NU5_GI3_SIM1000_EVO}
+
+\clearpage
+
+\subsection{Batch Sizes Comparison}
+\label{subsec:kbatch_bscomp_app}
+
+\fig[\textwidth]{kbatch_res/1-5_BATCH_MSA_NU5_GI3_SIM1000_BSEVAL}{K-Batch with \gls{msa} batch size comparison}{fig:1-5_BATCH_MSA_NU5_GI3_SIM1000_BSEVAL}
+\fig[\textwidth]{kbatch_res/1-5_BATCH_ST_NU5_GI3_SIM1000_BSEVAL}{K-Batch with \gls{st} batch size comparison}{fig:1-5_BATCH_ST_NU5_GI3_SIM1000_BSEVAL}
+
+\clearpage
+
+\section{K-Batch-1}
+
+\subsection{\glsentryshortpl{kpi}}
+\label{subsec:kbatchone_kpi_app}
+
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{msa} \glspl{kpi}}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{dmf} \glspl{kpi}}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{sdmf} \glspl{kpi}}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{esdmf} \glspl{kpi}}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{st} \glspl{kpi}}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_KPI}
+
+\clearpage
+
+\subsection{Evolution}
+\label{subsec:kbatchone_evo_app}
+
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{msa} evolution}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{dmf} evolution}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{sdmf} evolution}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{esdmf} evolution}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{st} evolution}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}
+
+\clearpage
+
+\subsection{Batch Sizes Comparison}
+\label{subsec:kbatchone_bscomp_app}
+
+\fig[\textwidth]{kbatchone_res/1-5_BATCHONE_MSA_NU5_GI3_SIM1000_BSEVAL}{K-Batch-1 with \gls{msa} batch size comparison}{fig:1-5_BATCHONE_MSA_NU5_GI3_SIM1000_BSEVAL}
+\fig[\textwidth]{kbatchone_res/1-5_BATCHONE_ST_NU5_GI3_SIM1000_BSEVAL}{K-Batch-1 with \gls{st} batch size comparison}{fig:1-5_BATCHONE_ST_NU5_GI3_SIM1000_BSEVAL}
+
+\clearpage
+
+\section{1-Batch-1}
+
+\subsection{\glsentryshortpl{kpi}}
+\label{subsec:onebatchone_kpi_app}
+
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{msa} \glspl{kpi}}{fig:1_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{dmf} \glspl{kpi}}{fig:1_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{sdmf} \glspl{kpi}}{fig:1_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{esdmf} \glspl{kpi}}{fig:1_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_ST_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{st} \glspl{kpi}}{fig:1_BATCHONE_ST_NU5_GI3_SIM1000_KPI}
+
+\clearpage
+
+\subsection{Evolution}
+\label{subsec:onebatchone_evo_app}
+
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{msa} evolution}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{dmf} evolution}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{sdmf} evolution}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{esdmf} evolution}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{st} evolution}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}
 
 \clearpage
 
@@ -1798,9 +1858,7 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & Action 
 
 \printglossaries
 
-\nocite{*}
-
-\bibliographystyle{apalike}
+\bibliographystyle{plain}
 \bibliography{sources}
 
 \end{document}
