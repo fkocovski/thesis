@@ -5,7 +5,7 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{booktabs}
-\usepackage[colorlinks=true]{hyperref}
+\usepackage[hidelinks]{hyperref}
 % used to fix structure
 \usepackage{bookmark}
 \usepackage{amsfonts}
@@ -20,8 +20,8 @@
 
 \thesisType{Master Thesis}
 \date{\today}
-\title{BPM}
-\subtitle{Discrete Event Simulation for Optimal Role Resolution in Workflow Processes}
+\title{\glsentryshort{bpm}}
+\subtitle{Reinforcement Learning Based Optimization in a Discrete Event Simulation Environment for Optimal Job Assignment in Workflow Processes}
 \author{Filip Ko\v{c}ovski}
 \home{Lugano} % Geburtsort
 \country{Switzerland}
@@ -38,7 +38,7 @@
 \frontmatter
 
 \begin{acknowledgements}
-
+\todo{WRITE ME!}
 \begin{itemize}
 	\item Prof. Dr. Daning Hu $\rightarrow$ for letting me do this thesis at his chair
 	\item Dr. Markus Uhr $\rightarrow$ for basically everything...and more
@@ -53,11 +53,11 @@
 \end{acknowledgements}
 
 \begin{abstract}
-
+\todo{WRITE ME!}
 \end{abstract}
 
 \begin{zusammenfassung}
-
+\todo{WRITE ME!}
 \end{zusammenfassung}
 
 \tableofcontents
@@ -244,7 +244,7 @@ Sun and Zhao cover the aspect of formal analysis for workflow models and they cl
 
 \subsection{\glsentrylong{rl}}
 
-\gls{rl} is a branch of machine learning that promises to overcome the drawbacks posed by the latter by not requiring a training set for efficient machine decisions. \ncite{citation needed?}
+\gls{rl} is a branch of machine learning that promises to overcome the drawbacks posed by the latter by not requiring a training set for efficient machine decisions \cite{Sutton2017}.
 
 One of the first \gls{mc} based \gls{pg} methods is the algorithm proposed by Williams called \texttt{REINFORCE} \cite{Williams1992}.
 
@@ -1158,11 +1158,11 @@ Two different types of processes have been defined:
 One key aspect in order to assert fairness across policies while simulated is to centrally define all parameters. \lstref{lst:central_parameters} shows the key central parameters defined as global variables.
 
 \begin{lstlisting}[caption=Central parameters definition that ensures fairness across simulation runs,label=lst:central_parameters,style=CustomPython]
-	NUMBER_OF_USERS = 2
+	NUMBER_OF_USERS = 3
 	SERVICE_INTERVAL = 1
 	GENERATION_INTERVAL = 3
-	SIM_TIME = 100
-	BATCH_SIZE = 1
+	SIM_TIME = 1000
+	BATCH_SIZE = 5
 	TASK_VARIABILITY = 0.2 * SERVICE_INTERVAL
 	WORKER_VARIABILITY = 0.2 * SERVICE_INTERVAL
 	SEED = 2
@@ -1499,14 +1499,12 @@ Having said that, deep \glspl{ann} exhibits worse results compared to their equi
 
 In brief, \gls{vgp} states that even very large change in partial derivatives on initial layers have imperceptible effects on subsequent layers \cite{Bengio1994} and \gls{egp} states that huge spikes in the norm of changes in partial derivatives which could potentially grow exponentially can happen under training, thus influencing internal parameters \cite{Bengio1994,Pascanu2012}.
 
-Yet another crucial aspect to consider when undergoing \gls{rl} methods is usage between \gls{onp} or \gls{op} learning (refer to \subsecref{subsec:onpol_pred} and \subsecref{subsec:onpol_control} for \gls{onp} respectively \subsecref{subsec:offpol_methods} for \gls{op}). As shown in \tabref{tab:llqp_mc_vfa_op_vs_on} (and \figref{fig:llqp_mc_vfa_on_vs_off}), \gls{op} methods converge slightly better compared to \gls{onp}, however the change is imperceptible and can be found in different factors (\eg random state seed choice or length of simulation). Having said that, it is important to note that these different approaches are being currently heavily studied by pioneers and the debate is still open, as Sutton and Barto explain in their book \cite[pp. 245-249]{Sutton2017}. The current key takeaways from this outgoing debate can be summarized as follows:
+Yet another crucial aspect to consider when undergoing \gls{rl} methods is usage between \gls{onp} or \gls{op} learning (refer to \subsecref{subsec:onpol_pred} and \subsecref{subsec:onpol_control} for \gls{onp} respectively \subsecref{subsec:offpol_methods} for \gls{op}). As shown in \tabref{tab:llqp_mc_vfa_op_vs_on} (and \figref{fig:llqp_mc_vfa_on_vs_off}), \gls{op} methods converge slightly better compared to \gls{onp}, however the change is imperceptible and can be found in different factors (\eg random state seed choice or length of simulation). Having said that, it is important to note that these different approaches are being currently heavily studied by pioneers and the debate is still open, as Sutton and Barto explain in their book \cite[pp. 245-249]{Sutton2017}. The current key takeaways from this outgoing debate can be summarized as follows \cite{Sutton2017}:
 \begin{enumerate*}
 	\item Learning \gls{op}
 	\item Usage of scalable function approximation methods like linear semi-gradient 
 	\item Usage of bootstrapping which is used in \gls{td} methods.
 \end{enumerate*}
-
-\ncite{book citation needed?}
 
 The combination of all these three factors is referred as ``the deadly triad'' \cite[p. 249]{Sutton2017}. Sutton and Barto argue that dangers can arise only when all three aspects are present, if used singularly convergence properties are safe \cite[p. 249]{Sutton2017}.
 
@@ -1858,7 +1856,7 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 
 \printglossaries
 
-\bibliographystyle{plain}
+\bibliographystyle{apalike}
 \bibliography{sources}
 
 \end{document}
