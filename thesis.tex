@@ -281,7 +281,7 @@ As \glspl{mdp} grow in size, so does the required computational memory to solve 
 
 When working with on-line algorithms such as \gls{td} it is important to choose correct parameters for an effective learning process, otherwise the learning algorithm put in place might never converge towards an optimal solution \cite{Sutton2017}. This aspect is being discussed by Korda and Prashanth in which they depict different non-asymptotic bounds for the \gls{td} learning algorithms \cite{Korda2014}.
 
-There are two main fields in \gls{rl}, one is using \gls{vfa} for either the state value function or for using control mechanisms with the state action value function, while the other one is using \gls{pg} methods for policy optimization \cite{Sutton2017}. The latter offers different methods such as the naive finite difference methods, \gls{mc} based \gls{pg} methods and finally actor critic \gls{pg} methods as defined by Silver \etal \cite{Silver2014}.
+There are two main fields in \gls{rl}, one is using \gls{vfa} for either the state value function or for using control mechanisms with the state \gls{av} function, while the other one is using \gls{pg} methods for policy optimization \cite{Sutton2017}. The latter offers different methods such as the naive finite difference methods, \gls{mc} based \gls{pg} methods and finally \gls{ac} \gls{pg} methods as defined by Silver \etal \cite{Silver2014}.
 
 Clevert \etal discuss a special class of activation functions for \glspl{ann} called \glspl{elu} which are improvements over classical \glspl{relu} \cite{Clevert2015}. \glspl{elu} activation functions are used for the modeling of the \glspl{ann} layers in this thesis.
 
@@ -353,7 +353,7 @@ The core elements of a workflow process (relevant for the simulation environment
 
 Start event objects require a simulation environment, a generation interval, an actions to follow array and its corresponding weights. The generation interval is generated in a three step process:
 \begin{enumerate*}
- 	\item before the simulation starts, a fixed service interval time unit $s$, number of users $n$ and an average system load $l$ are set. In contrast to Zeng's and Zhao's work, where the generation $\lambda$ interval follows a Poisson distribution \cite{Zeng2005} and is defined as shown in \equref{eq:generation_interval}, here the generation interval is a plain scalar value.
+ 	\item before the simulation starts, a fixed service interval time unit $s$, number of users $n$ and an average system load $l$ are set. In contrast to Zeng and Zhao's work, where the generation $\lambda$ interval follows a Poisson distribution \cite{Zeng2005} and is defined as shown in \equref{eq:generation_interval}, here the generation interval is a plain scalar value.
  	\item for a Poisson random exponential sampling of the generation rate, \texttt{NumPy}'s implementation of its exponential distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.exponential.html}{06.01.2017}.
  \end{enumerate*}
 
@@ -478,7 +478,7 @@ The class inheritance structure of the policies implementation can be seen in \f
 
 \fig[\textwidth]{policies}{Policies class structure}{fig:policies}
 
-The authors definition of the \gls{msa} problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' (MF) as defined by Baker \cite{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the \gls{dmf} problem \cite{Zeng2005}. The \gls{dmf} problem is formally defined by Zeng as follows:
+The authors definition of the \gls{msa} problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' (MF) as defined by Baker \cite{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the \gls{dmf} problem \cite{Zeng2005}. The \gls{dmf} problem is formally defined by Zeng and Zhao as follows:
 
 \begin{align}
     \min_z \quad z\\
@@ -491,7 +491,7 @@ The authors definition of the \gls{msa} problem is however a simplified version 
     s_j &\geq 0
 \end{align}
 
-Again, all variables definition still hold without loss of generality as described by the authors \cite[p. 6]{Zeng2005}. As Zeng notes in his work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints but mentions that by adding auxiliary variables the aforementioned \gls{dmf} formulation can be effectively converted into a mixed integer program and thus solve it \cite[p. 6]{Zeng2005}. On this note Zeng argues that the application of the \gls{dmf} problem in practice poses some problems \cite{Zeng2005}. In this thesis however a conversion of the \gls{dmf} formulation proposed by Zeng is formulated in order to adequately solve the optimization problem. The formal definition of such optimization problem is called EDMF (which stands for extended \gls{dmf}) and is devised as follows:
+Again, all variables definition still hold without loss of generality as described by the authors \cite[p. 6]{Zeng2005}. As Zeng and Zhao note in their work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints but mention that by adding auxiliary variables the aforementioned \gls{dmf} formulation can be effectively converted into a mixed integer program and thus solve it \cite[p. 6]{Zeng2005}. On this note they argue that the application of the \gls{dmf} problem in practice poses some problems \cite{Zeng2005}. In this thesis however a conversion of the \gls{dmf} formulation proposed by Zeng and Zhao is formulated in order to adequately solve the optimization problem. The formal definition of such optimization problem is called \gls{edmf} and is devised as follows:
 
 \begin{align}
     \min_{z_{\text{max}}} \quad z_{\text{max}}\\
@@ -505,9 +505,9 @@ Again, all variables definition still hold without loss of generality as describ
     z_{i*k} &\geq 0 \quad \forall i \in W, \forall k \in T
 \end{align}
 
-This formulation clearly gets rid of the nonlinear constraints while still accounting for dynamical arrival of tasks, making thus the \gls{dmf} problem as defined by Zeng effectively solvable.
+This formulation clearly gets rid of the nonlinear constraints while still accounting for dynamical arrival of tasks, making thus the \gls{dmf} problem as defined by Zeng and Zhao effectively solvable.
 
-When considering the minimization of the maximum flowtime of a task inside a process, the EDMF formulation can be further simplified by adopting some assumptions about the order and sequence of tasks. Based on how the batching policies are implemented, the policy job objects to be worked by users are implicitly stored in a sorted fashion. This means that the $z$ helper variables defined for EDMF are not strictly necessary and thus can be compressed by \equref{eq:simplified_z_with_k}:
+When considering the minimization of the maximum flowtime of a task inside a process, the \gls{edmf} formulation can be further simplified by adopting some assumptions about the order and sequence of tasks. Based on how the batching policies are implemented, the policy job objects to be worked by users are implicitly stored in a sorted fashion. This means that the $z$ helper variables defined for \gls{edmf} are not strictly necessary and thus can be compressed by \equref{eq:simplified_z_with_k}:
 
 \begin{equation}
 \label{eq:simplified_z_with_k}
@@ -520,9 +520,9 @@ The whole concept consists in the introduction of an identity variable $I$ which
 
 In order to calculate $z_{ijk}$, one has to consider also when user $i$ will actually be available to process his first task. This is depicted by the variable $a_i$, which summed together with the respective service times of user $i$ for task $j$ gives the complete work time user $i$ will require to process all tasks assigned to him.
 
-\fig[0.75\textwidth]{dmf_problem}{EDMF Task Assignment}{fig:edmf_task_assignment}
+\fig[0.75\textwidth]{dmf_problem}{\gls{edmf} Task Assignment}{fig:edmf_task_assignment}
 
-Without further ado, the simplified formulation of the extended \gls{dmf} variant (called \gls{sdmf}) is the following:
+Without further ado, the simplified formulation of \gls{edmf} (called \gls{sdmf}) is the following:
 
 \begin{align}
     \min_{z_{\text{max}}} \quad z_{\text{max}}\\
@@ -550,7 +550,7 @@ This formulation is colloquially called \gls{esdmf}.
 
 This version is however only possible by the nature of its implementation. Since the both the global as well as the local queues are implemented as FIFO queues, it is possible to relax the ordering constraint from the mathematical formulation since it is already implicitly defined by the implementation.
 
-Yet one last optimization of the method proposed by Zeng done in this thesis is a method that aims to optimally solve the assignment problem by changing its goal: minimize the service times by setting an upper bound on the maximum flowtime and is called \gls{st}. This method uses a two step process in order to optimally solve the assignment problem:
+Yet one last optimization of the method proposed by Zeng and Zhao done in this thesis is a method that aims to optimally solve the assignment problem by changing its goal: minimize the service times by setting an upper bound on the maximum flowtime and is called \gls{st}. This method uses a two step process in order to optimally solve the assignment problem:
 \begin{enumerate*}
 	\item optimally solve by means of using on of the \gls{dmf} optimization methods previously outlined. This yields an upper bound for the maximum flowtime.
 	\item use this upper bound as a constraint for the actual optimization in order to effectively optimize the problem for the minimal service time amongst users, jobs and their corresponding service time.
@@ -570,7 +570,7 @@ Yet one last optimization of the method proposed by Zeng done in this thesis is 
     \epsilon &= \num{1e-4}
 \end{align}
 
-\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The \gls{msa} method is the simplest solver and exhibits a linear complexity compared to the \gls{dmf} method proposed by Zeng. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, both solves the \gls{dmf} method and does it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:op_results}.
+\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The \gls{msa} method is the simplest solver and exhibits a linear complexity compared to the \gls{dmf} method proposed by Zeng and Zhao. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, both solves the \gls{dmf} method and does it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:op_results}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -638,7 +638,7 @@ Optimal state-value functions $v_*$ are formally defined as follows:
 	v_* (s) \doteq \max_\pi v_\pi (s)
 \end{equation}
 
-whereas optimal action-value functions $q_*$ are formally defined as follows:
+whereas optimal \gls{av} functions $q_*$ are formally defined as follows:
 
 \begin{equation}
 	q_* (s,a) \doteq \max_\pi q_\pi (s,a)
@@ -757,9 +757,9 @@ As any other function approximation method, overfitting can be a problem for \gl
 \subsection{\glsentrylong{onp} Control with Approximation}
 \label{subsec:onpol_control}
 
-Moving towards control with \gls{vfa}, we now focus on the approximation of the action-value function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton2017}.
+Moving towards control with \gls{vfa}, we now focus on the approximation of the \gls{av} function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton2017}.
 
-For the special case of the so called one-step \gls{sarsa} method, its gradient-descent update for the action-value function is defined as follows:
+For the special case of the so called one-step \gls{sarsa} method, its gradient-descent update for the \gls{av} function is defined as follows:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha [ R_{t+1} + \gamma \hat{q} (S_{t+1}, A_{t+1}, \theta_t) - \hat{q} (S_t, A_t, \theta_t) ] \nabla \hat{q} (S_t, A_t, \theta_t)
@@ -781,9 +781,9 @@ A new aspect being introduced in \gls{op} learning is the importance sampling co
 
 which can be used to ``warp the update distribution back to the \gls{onp} distribution, so that semi-gradient methods are guaranteed to converge.'' \cite[p. 243]{Sutton2017}.
 
-During \gls{op} learning, both policies $\pi$ and $\mu$ are usually defined as full greedy and somewhat more exploratory $\epsilon$-greedy \cite[p. 243]{Sutton2017}.
+During \gls{op} learning, both policies $\pi$ and $\mu$ are usually defined as full greedy and somewhat more exploratory \gls{ep} \cite[p. 243]{Sutton2017}.
 
-For the purpose of this thesis, the focus has been put upon the episodic action value update algorithms, defined as follows:
+For the purpose of this thesis, the focus has been put upon the episodic \gls{av} update algorithms, defined as follows:
 
 \begin{align}
 	\theta_{t+1} &\doteq \theta_t + \alpha \delta_t \nabla \hat{q} (S_t,A_t,\theta_t)\\
@@ -795,7 +795,7 @@ what is important to note here, is that the episodic \gls{op} algorithm does not
 \subsection{\glsentrylong{pg} Methods}
 \label{subsec:polgrad_methods}
 
-Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{Actor-critic methods are an exception, where a learned value function is used in combination with \gls{pg} as a baseline in order to lower variance.}  \cite[p. 265]{Sutton2017}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton2017}. For \gls{pg} methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
+Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{\gls{ac} methods are an exception, where a learned value function is used in combination with \gls{pg} as a baseline in order to lower variance.}  \cite[p. 265]{Sutton2017}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton2017}. For \gls{pg} methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha \widehat{\nabla \eta (\theta_t)}
@@ -821,9 +821,9 @@ Moreover, the preferences can be, as previously mentioned:
 
 \ie simply linear in features \cite[p. 266]{Sutton2017}.
 
-With these definitions in mind, one can formally define one of the very first \gls{mc} based \gls{pg} methods: REINFORCE \cite{Williams1992}.
+With these definitions in mind, one can formally define one of the very first \gls{mc} based \gls{pg} methods: \texttt{REINFORCE} \cite{Williams1992}.
 
-Williams defines his REINFORCE algorithm by the following update function:
+Williams defines his \texttt{REINFORCE} algorithm by the following update function:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha \gamma^t G_t \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
@@ -831,7 +831,7 @@ Williams defines his REINFORCE algorithm by the following update function:
 
 note that the vector $\frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}$ is called eligibility vector and it is usually written in a more compact form of $\nabla \log \pi(A_t|S_t,\theta)$ by relying on the mathematical identity $\nabla \log x = \frac{\nabla x}{x}$ \cite[p. 271]{Sutton2017}.
 
-For the REINFORCE algorithm, its eligibility vector is defined as follows:
+For the \texttt{REINFORCE} algorithm, its eligibility vector is defined as follows:
 
 \begin{equation}
 	\nabla_\theta \log \pi (a|s,\theta) = \phi (s,a) - \sum_b \pi (b|s,\theta) \phi (s,b)
@@ -841,7 +841,7 @@ and this method has solid convergence properties \cite[p. 271]{Sutton2017}.
 
 \subsubsection{\glsentrylong{pg} with Baseline}
 
-REINFORCE, however, being a method based on \gls{mc} it might exhibit high variance and prove relatively slow in its learning rate \cite[p. 271]{Sutton2017}. By introducing a baseline $b(s)$ to compare the action value:
+\texttt{REINFORCE}, however, being a method based on \gls{mc} it might exhibit high variance and prove relatively slow in its learning rate \cite[p. 271]{Sutton2017}. By introducing a baseline $b(s)$ to compare the \gls{av}:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha (G_t - \overbrace{b(S_t)}^{\text{baseline}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
@@ -849,13 +849,13 @@ REINFORCE, however, being a method based on \gls{mc} it might exhibit high varia
 
 one can achieve a positive effect towards diminishing variance of the update rule \cite[p. 271]{Sutton2017}.
 
-\subsubsection{Actor-Critic \glsentrylong{pg}}
+\subsubsection{\glsentrylong{ac} \glsentrylong{pg}}
 
-By introducing a base line, we have seen that variance can be lowered, however, the REINFORCE algorithm with a baseline is not a proper actor-critic method as its state-value function is only used as baseline and not as a critic \ie it is not used for bootstrapping \cite[p. 273]{Sutton2017}. By introducing bootstrapping we introduce bias and dependence of the quality of the approximated function, which in turn help to reduce variance and learn faster \cite[p. 273]{Sutton2017}. 
+By introducing a base line, we have seen that variance can be lowered, however, the \texttt{REINFORCE} algorithm with a baseline is not a proper \gls{ac} method as its state-value function is only used as baseline and not as a critic \ie it is not used for bootstrapping \cite[p. 273]{Sutton2017}. By introducing bootstrapping we introduce bias and dependence of the quality of the approximated function, which in turn help to reduce variance and learn faster \cite[p. 273]{Sutton2017}. 
 
 The only negative aspect still remaining is that \gls{pg} methods are still based on a full \gls{mc} update trajectory: this can be also mitigated by replacing the update function by \gls{td} learning approaches, such as those defined in \subsecref{subsec:td_learning} \cite[p. 273]{Sutton2017}.
 
-The formal definition of a one-step actor-critic update method is depicted as follows:
+The formal definition of a one-step \gls{ac} update method is depicted as follows:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha(R_{t+1} + \overbrace{\gamma \hat{v}(S_{t+1},w)-\hat{v}(S_t,w)}^{\text{\gls{td} update}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
@@ -909,7 +909,7 @@ During the evaluation phase of a job the policy has to choose an action (\ie a u
 
 As an example, let us consider a snippet of how a K-Batch policy using a linear state-\gls{vfa} performs its choices during its greedy phase: it iterates over all possible actions and performs the dot product between the state space and the corresponding $\theta$ vector and then maximizes the returned $Q$ value. This approach can be seen in \lstref{lst:e_greedy} 
 
-\begin{lstlisting}[caption=$\epsilon$-Greedy approach,label=lst:e_greedy,style=CustomPython]
+\begin{lstlisting}[caption=\gls{ep} approach,label=lst:e_greedy,style=CustomPython]
     if self.greedy:
         action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
     else:
@@ -1170,7 +1170,7 @@ One key aspect in order to assert fairness across policies while simulated is to
 
 \subsection{\glsentryshortpl{kpi} for Asserting Policy's Efficacy and Data Visualization}
 
-Based on Pinedo's and Zeng's definitions in their work, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load \cite{Pinedo2008},\cite{Zeng2005}. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
+Based on Pinedo's and Zeng and Zhao's definitions in their works, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load \cite{Pinedo2008,Zeng2005}. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
 
 \begin{align}
 	L_j&=F_j-A_j \label{eq:lateness}\\
@@ -1231,13 +1231,13 @@ Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
 \subsection{Comparison with Existing Literature}
 \label{subsec:opt_comparison}
 
-Zeng outlines in his work how different global parameters configurations and policy usage can affect \glspl{kpi} \cite[pp. 18-22]{Zeng2005}. He summarizes his key findings as follows:
+Zeng and Zhao outline in their work how different global parameters configurations and policy usage can affect \glspl{kpi} \cite[pp. 18-22]{Zeng2005}. They summarize their key findings as follows:
 \begin{enumerate*}
 	\item Usage of batch optimization should be done only with medium to high system load \cite[p. 24]{Zeng2005}.
 	\item Batch optimization policies without a fixed batch size, such as 1-Batch-1 yield best results \cite[p. 24]{Zeng2005}.
 \end{enumerate*}
 
-In order to assert the validity of the interpretation of Zeng's works and all subsequent derivative policies a comparison with similar configurations has been made for all five optimization policies. Zeng's main efficiency parameter is defined as the maximum flowtime or in his own words: ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \cite[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}. In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results to Zeng and Zhao's are obtained.
+In order to assert the validity of the interpretation of Zeng and Zhao's works and all subsequent derivative policies a comparison with similar configurations has been made for all five optimization policies. Zeng and Zhao's main efficiency parameter is defined as the maximum flowtime or in their own words: ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \cite[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}. In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results to Zeng and Zhao's are obtained.
 
 \fig[\textwidth]{opt_kpis_comp}{\glspl{kpi}  comparison for different optimization policies using the \gls{msa} solver for batch policies}{fig:opt_kpis_comp}  
 
@@ -1313,7 +1313,7 @@ Five different batch policies with \gls{rl} have been developed. \tabref{tab:rl_
 Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
 k\_batch\_mc\_vfa       & 1-Batch     & \gls{mc}            & \gls{vfa} & None                      \\
 k\_batch\_mc\_vfa\_op   & 1-Batch     & \gls{mc}            & \gls{vfa} & \gls{op}                \\
-k\_batch\_mc\_vfa\_opep & 1-Batch     & \gls{mc}            & \gls{vfa} & $\epsilon$-Greedy \gls{op} \\
+k\_batch\_mc\_vfa\_opep & 1-Batch     & \gls{mc}            & \gls{vfa} & \gls{ep}, \gls{op} \\
 k\_batch\_td\_vfa\_op   & 1-Batch     & \gls{td}            & \gls{vfa} & \gls{op}                \\
 k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \gls{op}                \\ \bottomrule
 \end{tabular}%
@@ -1451,11 +1451,11 @@ Average System Load & $20.58$                & $12.76$                     & $-7
 \subsection{Optimization}
 \label{subsec:optimization_discussion}
 
-Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different solvers yield different solutions and computational complexities. Zeng mentions that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered \cite[p. 15]{Zeng2005}. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \cite[p. 13]{Zeng2005},\cite{Garey1990}. Zeng proposes however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it \cite[p. 13]{Zeng2005}. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of solvers. The \gls{st} ``flagship'' solver significantly outperforms the \gls{msa} solver (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher computational complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_solvers}) questions the practical use of this solver over the other methods. A $20\%$ gain in respect to lateness requiring a quadratic higher computational complexity poses a dubious trade-off from a business perspective.
+Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different solvers yield different solutions and computational complexities. Zeng and Zhao mention that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered \cite[p. 15]{Zeng2005}. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \cite[p. 13]{Zeng2005},\cite{Garey1990}. Zeng and Zhao propose however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it \cite[p. 13]{Zeng2005}. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of solvers. The \gls{st} ``flagship'' solver significantly outperforms the \gls{msa} solver (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher computational complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_solvers}) questions the practical use of this solver over the other methods. A $20\%$ gain in respect to lateness requiring a quadratic higher computational complexity poses a dubious trade-off from a business perspective.
 
 \fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glspl{kpi} comparison between \gls{msa} and \gls{st} under 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
 
-Yet another aspect mentioned by Zeng is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment \cite[pp. 17-18]{Zeng2005}. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two solvers.
+Yet another aspect mentioned by Zeng and Zhao is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment \cite[pp. 17-18]{Zeng2005}. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two solvers.
 
 \begin{figure}[!ht]
 	\centering
@@ -1806,8 +1806,8 @@ llqp\_mc\_vfa       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & None   
 llqp\_td\_vfa   & \gls{llqp}     & \gls{td}            & \gls{vfa} & None                \\
 llqp\_mc\_pg   & \gls{llqp}     & \gls{mc}            & \gls{pg} & None                \\
 llqp\_mc\_pg\_wb   & \gls{llqp}     & \gls{mc}            & \gls{pg} & With Baseline                \\
-llqp\_td\_pg\_ac   & \gls{llqp}     & \gls{td}            & \gls{pg} & Actor Critic                \\
-llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & Action Value Actor Critic                \\ \bottomrule
+llqp\_td\_pg\_ac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{ac}                \\
+llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av}, \gls{ac}                \\ \bottomrule
 \end{tabular}%
 }
 \caption{Overview of additional \gls{llqp} policies with \gls{rl}}
