@@ -605,27 +605,27 @@ Solver & Computation Costs \\ \midrule
 \section{\glsentrylong{rl} Theory}
 \label{sec:rl_theory}
 
-In this section the \gls{rl} approach used to solve the different role resolution problems is depicted. Initially a foundation basis in the required knowledge is depicted and afterwards the description of the analysis environment implementation is presented.
+In this section the \gls{rl} approach used to solve the different role resolution problems is depicted. Initially a foundation basis in the required knowledge is illustrated and afterwards the description of the analysis environment implementation is presented.
 
 \subsection{\glsentrylong{rl} Definition}
 
-\gls{rl} is a novel approach originated as a branch from the broader field of machine learning. It is an automated approach to understanding and automating learning and decision-making \cite[p. 15]{Sutton2017}. It distinguishes itself from other approaches by its novel focus on learning thanks to an agent which directly interacts with its environment, without the necessity of relying on training sets \cite[p. 15]{Sutton2017}.
+\gls{rl} is a novel approach originated as a branch from the broader field of machine learning \cite{Sutton2017}. It is an automated approach to understanding and automating learning and decision-making \cite[p. 15]{Sutton2017}. It distinguishes itself from other approaches by its novel focus on learning thanks to an agent which directly interacts with its environment, without the necessity of relying on training sets \cite[p. 15]{Sutton2017}.
 
 The formal framework used by \gls{rl} defines the interaction between the so called learning agent and its environment by means of states, actions and rewards \cite[p. 15]{Sutton2017}.
 
-Key concepts in the field of \gls{rl} are those of values and value functions which helps distinguish \gls{rl} methods from evolutionary methods which have to undergo scalar evaluations of entire policies \cite[p. 15]{Sutton2017}.
+Key concepts in the field of \gls{rl} are those of values and value functions which help distinguish \gls{rl} methods from evolutionary methods which have to undergo scalar evaluations of entire policies \cite[p. 15]{Sutton2017}.
 
 \subsection{Finite \glsentrylongpl{mdp}}
 
-\gls{rl} approaches learn by interacting with the environment in order to achieve a goal. The agent interacting with the environment does this in a sequence of discrete time steps, it performs actions (choices made by the agent), reaches then states (basis for making decisions) and eventually receives rewards (basis for evaluating the choices) \cite[p. 73]{Sutton2017}. Moreover, a policy is a stochastic rule that the agent relies upon to choose actions as a function of states \cite[p. 73]{Sutton2017}. Ultimately, the sole goal of the agent is to maximize the reward that it receives over time \cite[p. 73]{Sutton2017}.
+\gls{rl} approaches learn by interacting with the environment in order to achieve a goal \cite{Sutton2017}. The agent interacting with the environment does this in a sequence of discrete time steps, it performs actions (choices made by the agent), reaches then states (basis for making decisions) and eventually receives rewards (basis for evaluating the choices) \cite[p. 73]{Sutton2017}. Moreover, a policy is a stochastic rule that the agent relies upon to choose actions as a function of states \cite[p. 73]{Sutton2017}. Ultimately, the sole goal of the agent is to maximize the reward that it receives over time \cite[p. 73]{Sutton2017}.
 
-Returns are modeled as functions of future rewards that an agents must maximize \cite[p. 73]{Sutton2017}. There exist two types of return functions which depend on the nature of the tasks and a discounting preference:
+Returns are modeled as functions of future rewards that an agents must maximize \cite[p. 73]{Sutton2017}. There exist two types of return functions which depend on the nature of the tasks and a discounting preference \cite[p. 73]{Sutton2017}:
 \begin{enumerate*}
-	\item for episodic tasks a non discontinued approach is preferred while
-	\item for continuous tasks, however, a discounted approach is better suited \cite[p. 73]{Sutton2017}.
+	\item For episodic tasks a non discontinued approach is preferred
+	\item For continuous tasks a discounted approach is better suited.
 \end{enumerate*}
 
-\equref{eq:expected_return} defines the sum of the rewards received over time step $t$:
+\equref{eq:expected_return} defines the sum of the rewards received over time step $t$ \cite[p. 73]{Sutton2017}:
 
 \begin{equation}
 \label{eq:expected_return}
@@ -639,46 +639,46 @@ If we account for discounting, \equref{eq:expected_return} has to be slightly ad
 	G_t  \doteq R_{t+1} + R_{t+2} + R_{t+3} + \cdots = \sum_{k=0}^\infty \gamma^k R_{t+k+1}
 \end{equation}
 
-where $0 \leq \gamma \leq 1$.
+where $0 \leq \gamma \leq 1$ \cite[p. 73]{Sutton2017}.
 
 An environment  with which one agent interacts, can satisfy a Markov property if the information contained at present effectively summarizes the past without affecting the capability of effectively predicting the future \cite[p. 73]{Sutton2017}. If the Markov property is satisfied, then this environment is called a \gls{mdp} \cite[p. 73]{Sutton2017}.
 
 Last but not least, value functions are used to assign each state or state-action pair an expected return based on the policy used by the agent \cite[p. 74]{Sutton2017}. Optimal value functions assign the highest achievable return by any policy to a state or state-action pair  and such policies, whose values are optimal, are called optimal policies \cite[p. 74]{Sutton2017}.
 
-Optimal state-value functions $v_*$ are formally defined as follows:
+Optimal state-value functions $v_*$ are formally defined as follows \cite[p. 74]{Sutton2017}:
 
 \begin{equation}
 	v_* (s) \doteq \max_\pi v_\pi (s)
 \end{equation}
 
-whereas optimal \gls{av} functions $q_*$ are formally defined as follows:
+whereas optimal \gls{av} functions $q_*$ are formally defined as follows \cite[p. 74]{Sutton2017}:
 
 \begin{equation}
 	q_* (s,a) \doteq \max_\pi q_\pi (s,a)
 \end{equation}
 
-\subsection{Dynamic Programming}
+\subsection{\glsentrylong{dp}}
 \label{subsec:dp}
 
-Dynamic programming (DP) is a set of ideas and algorithms that can be used to solve \glspl{mdp} \cite[p. 95]{Sutton2017}. There are two approaches in dynamic programming for solving \glspl{mdp}:
+\gls{dp} is a set of ideas and algorithms that can be used to solve \glspl{mdp} \cite[p. 95]{Sutton2017}. There are two approaches in \gls{dp} for solving \glspl{mdp} \cite[p. 95]{Sutton2017}:
 \begin{enumerate*}
-	\item policy evaluations is the iterative computation of value functions of a given policy and
-	\item policy improvement is the idea of computing an improved policy under the conditions of its given value functions \cite[p. 95]{Sutton2017}.
+	\item Policy evaluations is the iterative computation of value functions of a given policy
+	\item Policy improvement is the idea of computing an improved policy under the conditions of its given value functions.
 \end{enumerate*}
 
-By combining these two approaches we obtain the two most notable DP methods \ie policy and value iteration \cite[p. 95]{Sutton2017}.
+By combining these two approaches we obtain the two most notable \gls{dp} methods \ie policy and value iteration \cite[p. 95]{Sutton2017}.
 
-One captivating property of DP methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \cite[p. 96]{Sutton2017}.
+One captivating property of \gls{dp} methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \cite[p. 96]{Sutton2017}.
 
 \subsection{\glsentrylong{mc} Methods}
 \label{subsec:mc}
 
-\gls{mc} methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton2017}. This approach yields different advantages over the DP methods seen in \subsecref{subsec:dp}:
+\gls{mc} methods use experience in form of sample episodes in order to learn value functions and optimal policies \cite[p. 123]{Sutton2017}. This approach yields different advantages over the \gls{dp} methods seen in \subsecref{subsec:dp} \cite[p. 123]{Sutton2017}:
 \begin{enumerate*}
-	\item they do not need a model of the environment's dynamics as they learn the optimal solutions by merely interacting with the environment,
-	\item since the learn from sample episodes, they are very well suited for simulation environments,
-	\item it is efficient and surprisingly easy to use \gls{mc} methods to focus on smaller regions or subsets of a problem and
-	\item \gls{mc} methods are more robust when it comes to violations of the Markov property since they do not bootstrap for updating their values \cite[p. 123]{Sutton2017}.
+	\item They do not need a model of the environment's dynamics as they learn the optimal solutions by merely interacting with the environment
+	\item Since the learn from sample episodes, they are very well suited for simulation environments
+	\item It is efficient and surprisingly easy to use \gls{mc} methods to focus on smaller regions or subsets of a problem
+	\item \gls{mc} methods are more robust when it comes to violations of the Markov property since they do not bootstrap for updating their values.
 \end{enumerate*}
 
 One of the drawbacks that \gls{mc} methods bring along is the concept of maintaining sufficient exploration: by always acting greedily, alternative states will never yield their returns thus potentially never learning that they might prove to be better \cite[p. 123]{Sutton2017}.
@@ -695,25 +695,25 @@ where $G_t$ is the discounted return function defined by \equref{eq:expected_dis
 \subsection{\glsentrylong{td} Learning}
 \label{subsec:td_learning}
 
-\gls{td} are yet another set of learning methods for \gls{rl}. Compared to the \gls{mc} methods explained in \subsecref{subsec:mc}, \gls{td} methods do not need to wait all the way up to the end of an episode to actually learn, they only must wait until the next step \ie they can bootstrap \cite[p. 128]{Sutton2017}. When they reach time step $t+1$, they observe a reward $R_{t+1}$ which then use to estimate $V(S_{t+1})$ \cite[p. 128]{Sutton2017}. The simplest \gls{td} method, which is called $\gls{td}(0)$, is defined as follows:
+\gls{td} are yet another set of learning methods for \gls{rl} \cite{Sutton2017}. Compared to the \gls{mc} methods explained in \subsecref{subsec:mc}, \gls{td} methods do not need to wait all the way up to the end of an episode to actually learn, they only must wait until the next step \ie they can bootstrap \cite[p. 128]{Sutton2017}. When they reach time step $t+1$, they observe a reward $R_{t+1}$ which then use to estimate $V(S_{t+1})$ \cite[p. 128]{Sutton2017}. The simplest \gls{td} method is defined as follows:
 
 \begin{equation}
 \label{eq:td_update}
 	V(S_t) \leftarrow V(S_t) + \alpha [R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]
 \end{equation}
 
-\gls{td} methods, same as \gls{mc} methods, are not  excluded from the sufficient exploration methods \cite[p. 147]{Sutton2017}. \gls{td} methods deal with this complication in two different ways:
+\gls{td} methods, same as \gls{mc} methods, are not exempt from sufficient exploration \cite[p. 147]{Sutton2017}. \gls{td} methods deal with this complication in two different ways \cite[p. 128]{Sutton2017}:
 \begin{enumerate*}
-	\item \gls{onp} by using an algorithm called \gls{sarsa} and
-	\item \gls{op} by using an algorithm called Q-learning \cite[p. 128]{Sutton2017}.
+	\item \gls{onp} by using an algorithm called \gls{sarsa}
+	\item \gls{op} by using an algorithm called Q-learning.
 \end{enumerate*}
 
 \subsection{\glsentrylong{onp} Prediction with Approximation}
 \label{subsec:onpol_pred}
 
-Up until now, the different methods presented are not suited for arbitrarily large state spaces. However, there exist solution to tackle such large state spaces: approximate solution methods. Under the assumption that one must always account for finite and limited computational resources, it is not feasible to find an optimal policy or value function, instead we have to settle for a good approximation of the solution \cite[p. 189]{Sutton2017}.
+Up until now, the different methods presented are not suited for arbitrarily large state spaces \cite{Sutton2017}. There exist solution to tackle such large state spaces: approximate solution methods \cite{Sutton2017}. Under the assumption that one must always account for finite and limited computational resources, it is not feasible to find an optimal policy or value function, instead we have to settle for a good approximation of the solution \cite[p. 189]{Sutton2017}.
 
-An essential characteristic for \gls{rl} algorithms venturing in the area of approximation is being able of generalization \ie using experience from a limited subset of the state space to effectively generalize and produce a valid approximation of a much larger subset  \cite[p. 189]{Sutton2017}. \gls{rl} methods are capable of achieving this by relying on supervised-learning function approximation which essentially use backups as training example \cite[p. 222]{Sutton2017}. Specifically, one brilliant set of methods are those using parametrized function approximation \ie the policy is parametrized by a weight vector $\theta$.
+An essential characteristic for \gls{rl} algorithms venturing in the area of approximation is being able of generalization \ie using experience from a limited subset of the state space to effectively generalize and produce a valid approximation of a much larger subset  \cite[p. 189]{Sutton2017}. \gls{rl} methods are capable of achieving this by relying on supervised-learning function approximation which essentially uses backups as training examples \cite[p. 222]{Sutton2017}. Specifically, one brilliant set of methods are those using parametrized function approximation \ie the policy is parametrized by a weight vector $\theta$ \cite{Sutton2017}.
 
 The parametrized functional form with weight vector $\theta$ can be used to write $\hat{v}(s,\theta) \approx v_\pi (s)$, which is the approximated value of state $s$ given weight vector $\theta$ \cite[p. 191]{Sutton2017}.
 
@@ -732,7 +732,7 @@ where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$:
 
 is the vector of partial derivatives with respect to $\theta$ \cite[p. 195]{Sutton2017}.
 
-An exceptional case is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-\gls{vfa} as the inner product between $\theta$ and $\phi (s)$:
+An exceptional case is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \cite[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \cite[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-\gls{vfa} as the inner product between $\theta$ and $\phi (s)$ \cite[p. 198]{Sutton2017}:
 
 \begin{equation}
 \label{eq:function_approximation_dot}
@@ -751,28 +751,28 @@ This simplified case of linear function approximation for state-value functions 
 \subsubsection{\glsentrylongpl{ann}}
 \label{subsubsec:ann_theory}
 
-Up to this point, we considered linear function approximation. \glspl{ann} can be used instead for nonlinear function approximation \cite[p. 199]{Sutton2017}. The simplest case of an \glspl{ann} is a single feedforward perceptron, meaning that it has only one hidden layer (\ie a layer that is neither an input nor an output layer) and that the \glspl{ann} at hand has no loops between its neurons, meaning that the output can not influence the input (compared to recurrent \glspl{ann}, in which the output indeed can influence the input) \cite[p. 216]{Sutton2017}. 
+\glspl{ann} can be used for nonlinear function approximation \cite[p. 199]{Sutton2017}. The simplest case of an \gls{ann} is a single feedforward perceptron, meaning that it has only one hidden layer (\ie a layer that is neither an input nor an output layer) and that the \gls{ann} at hand has no loops between its neurons, meaning that the output can not influence the input (compared to recurrent \glspl{ann}, in which the output indeed can influence the input) \cite[p. 216]{Sutton2017}. 
 
-The connections between neurons inside an \glspl{ann} are called weights and the analogy to its human counterpart is how strong synaptic connections are \cite[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer \glspl{ann}.
+The connections between neurons inside an \gls{ann} are called weights and the analogy to its human counterpart is how strong synaptic connections are \cite[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer \gls{ann}.
 
-The key about solving nonlinearity with \glspl{ann} is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of the usually exhibits an ``S'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of \glspl{relu}, which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
+The key about solving nonlinearity with \glspl{ann} is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \cite[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of them usually exhibits an ``$S$'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of \glspl{relu}, which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \cite[p. 216]{Sutton2017}.
 
 \fig[0.5\textwidth]{ann_1h}{Single layer \glspl{ann}}{fig:ann_1h}
 
-Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development toward more complex \glspl{ann} with multiple hidden layers (\ie multi-layer perceptrons) has been on the rise \cite[p. 217]{Sutton2017}. These complex \glspl{ann} allow to solve many artificial intelligence tasks in a much more efficient way \cite{Bengio2009}. This area is called deep \gls{rl} and it has shed light on solutions that were never though possible before (for practical applications refer to Mnih's \cite{Mnih2015} and Silver's work \cite{Silver2016})\footnote{Note that the class of deep \glspl{ann} used in these works is a particular one called deep convolutional networks, which are specialized networks used for processing high dimensional data arranged in spatial arrays like images \cite[p. 219]{Sutton2017},\cite{Lecun1998}.} \cite{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer \glspl{ann}.
+Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development toward more complex \glspl{ann} with multiple hidden layers (\ie multi-layer perceptrons) has been on the rise \cite[p. 217]{Sutton2017}. These complex \glspl{ann} allow to solve many artificial intelligence tasks in a much more efficient way \cite{Bengio2009}. This area is called deep \gls{rl} and it has shed light on solutions that were never though possible before (for practical applications refer to Mnih \etal's work \cite{Mnih2015} and Silver \etal's work \cite{Silver2016})\footnote{Note that the class of deep \glspl{ann} used in these works is a particular one called deep convolutional networks, which are specialized networks used for processing high dimensional data arranged in spatial arrays like images \cite[p. 219]{Sutton2017},\cite{Lecun1998}.} \cite{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer \glspl{ann}.
 
 \fig[0.75\textwidth]{ann_2h}{Multi layer \glspl{ann}}{fig:ann_2h}
 
 Despite appearing more complex, \glspl{ann} rely on a similar approach for learning (\ie updating their internal parameters, or in this case the whole network synaptic connections) based on the \gls{sgd} method outlined in \subsecref{subsec:onpol_pred} \cite[p. 217]{Sutton2017}. This algorithm is called backpropagation and consists of doing a forward pass in which the activation function of each neuron is computed and then a backward pass computes the partial derivatives for each synaptic connection \cite[p. 218]{Sutton2017}.
 
-As any other function approximation method, overfitting can be a problem for \glspl{ann} as well and it is particularly present for deep \glspl{ann} \cite[p. 218]{Sutton2017}. There are different techniques that can be used in order to mitigate this effect, with the most prominent one being the dropout method outlined by Srivastava \cite{Srivastava2014}.
+As any other function approximation method, overfitting can be a problem for \glspl{ann} as well and it is particularly present for deep \glspl{ann} \cite[p. 218]{Sutton2017}. There are different techniques that can be used in order to mitigate this effect, with the most prominent one being the dropout method outlined by Srivastava \etal \cite{Srivastava2014}.
 
 \subsection{\glsentrylong{onp} Control with Approximation}
 \label{subsec:onpol_control}
 
 Moving towards control with \gls{vfa}, we now focus on the approximation of the \gls{av} function $\hat{q} (s,a,\theta) \approx q_* (s,a)$ \cite[p. 229]{Sutton2017}.
 
-For the special case of the so called one-step \gls{sarsa} method, its gradient-descent update for the \gls{av} function is defined as follows:
+For the special case of the so called one-step \gls{sarsa} method, its \gls{sgd} update for the \gls{av} function is defined as follows:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha [ R_{t+1} + \gamma \hat{q} (S_{t+1}, A_{t+1}, \theta_t) - \hat{q} (S_t, A_t, \theta_t) ] \nabla \hat{q} (S_t, A_t, \theta_t)
@@ -794,7 +794,7 @@ A new aspect being introduced in \gls{op} learning is the importance sampling co
 
 which can be used to ``warp the update distribution back to the \gls{onp} distribution, so that semi-gradient methods are guaranteed to converge.'' \cite[p. 243]{Sutton2017}.
 
-During \gls{op} learning, both policies $\pi$ and $\mu$ are usually defined as full greedy and somewhat more exploratory \gls{ep} \cite[p. 243]{Sutton2017}.
+During \gls{op} learning $\pi$ is defined as full greedy and $\mu$ is somewhat a more exploratory \gls{ep} \cite[p. 243]{Sutton2017}.
 
 For the purpose of this thesis, the focus has been put upon the episodic \gls{av} update algorithms, defined as follows:
 
@@ -808,7 +808,7 @@ what is important to note here, is that the episodic \gls{op} algorithm does not
 \subsection{\glsentrylong{pg} Methods}
 \label{subsec:polgrad_methods}
 
-Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{\gls{ac} methods are an exception, where a learned value function is used in combination with \gls{pg} as a baseline in order to lower variance.}  \cite[p. 265]{Sutton2017}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton2017}. For \gls{pg} methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the gradient ascent of $\eta$ as follows:
+Up until now all methods were based on the concept of learning values of actions and subsequently choosing the correct actions based on estimates, however, we now move our focus towards methods that actually learn a parametrized policy without needing value functions at all\footnote{\gls{ac} methods are an exception, where a learned value function is used in combination with \gls{pg} as a baseline in order to lower variance \cite{Sutton2017}.}  \cite[p. 265]{Sutton2017}. Parametrized policies work with probabilities that a specific action $a$ will be chosen at time $t$ if the agent finds itself in state $s$ at time $t$ with a weight vector $\theta$ \cite[p. 265]{Sutton2017}. For \gls{pg} methods it is crucial to learn the weight vector based on a performance measure $\eta(\theta)$ by trying to maximize and thus approximating the \gls{sga} of $\eta$ as follows:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha \widehat{\nabla \eta (\theta_t)}
@@ -874,25 +874,25 @@ The formal definition of a one-step \gls{ac} update method is depicted as follow
 	\theta_{t+1} \doteq \theta_t + \alpha(R_{t+1} + \overbrace{\gamma \hat{v}(S_{t+1},w)-\hat{v}(S_t,w)}^{\text{\gls{td} update}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
 \end{equation}
 
-and this is now a fully online implementation that executes updated after each newly visited state \cite[p. 274]{Sutton2017}. 
+and this is now a fully online implementation that executes updates after each newly visited state \cite[p. 274]{Sutton2017}. 
 
 \section{\glsentrylong{rl} Policies}
 \label{sec:rl_policies}
 
-Analog to \secref{sec:opt_policies}, the same policies are considered where now different \gls{rl} methods and techniques are used to solve the assignment problem.
+Analog to \secref{sec:opt_policies}, the same policies are considered but now the \gls{rl} methods and techniques outlined in \secref{sec:rl_theory} are used to solve the assignment problem.
 
 Different subsections are used in order to separate better the different approaches used for each type of policy:
 \begin{enumerate*}
-	\item Batch policy methods.
-	\item \gls{llqp} policy methods.
-	\item other policy methods that do not fit in any of the previous categories.
+	\item Batch policy methods
+	\item \gls{llqp} policy methods
+	\item Other policy methods that do not fit in any of the previous categories.
 \end{enumerate*}
 
 The two key concepts required in order to effectively apply \gls{rl} techniques in the domain of workflow processes and the optimal assignment of jobs to users are:
 \begin{enumerate*}
-	\item correctly defined states and actions spaces.
-	\item precise rewards definition.
-	\item effective update method for the policy's internal parameters. 
+	\item Correctly defined states and actions spaces
+	\item Precise rewards definition
+	\item Effective update method for the policy's internal parameters. 
 \end{enumerate*}
 
 In the next subsections a distinction between prediction and update methods is outlined.
@@ -953,7 +953,7 @@ and its respective state-\gls{vfa} in \lstref{lst:value_f_approx}.
         return features
 \end{lstlisting}
 
-The features method outputs a matrix which has its values populated only for the actual chosen action. Let us assume our policy has chosen user 1 out of 2 possible users, then the state space looks as defined by \equref{eq:kbatch_sp_ex}:
+The features method outputs a matrix which has its values populated only for the actual chosen action. Let us assume our policy has chosen user 1 out of two possible users, then the state space looks as defined by \equref{eq:kbatch_sp_ex}:
 
 \begin{equation}
 \label{eq:kbatch_sp_ex}
@@ -969,7 +969,7 @@ and its features vector looks as defined by \equref{eq:kbatch_features_ex}:
 
 \begin{equation}
 \label{eq:kbatch_features_ex}
-	F_{2,3} = 
+	\phi_{2,3} = 
 	\begin{bmatrix}
 	a_1 & 0 \\
 	a_2 & 0 \\
@@ -998,7 +998,7 @@ The policy probabilities method takes as input parameter the current state space
 
 \subsubsection{\glsentrylongpl{ann} as Function Approximation}
 
-Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, \glspl{ann} can be used for nonlinear function approximation. The assignment problem poses its very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our \glspl{ann} using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space (\ie input to the \glspl{ann}) together with its weights and biases, creates an activation function and maps the prediction layer (\ie output) with a softmax classification.
+Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, \glspl{ann} can be used for nonlinear function approximation. The assignment problem  poses itself very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our \glspl{ann} using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space (\ie input to the \glspl{ann}) together with its weights and biases, creates an activation function and maps the prediction layer (\ie output) with a softmax classification.
 
 \begin{lstlisting}[caption=Modeling of a single perceptron in \gls{tf},label=lst:ann_1h,style=CustomPython]
 	with tf.name_scope("neural_network"):
@@ -1057,7 +1057,7 @@ Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \b
 \subsection{Batch Size Emulation}
 \label{subsec:batch_size_emulation}
 
-Correctly defined state spaces is a crucial requirement for effective \gls{rl} methods. \gls{llqp} policies are relatively easy to be modeled, on the other hand policies with batch sizes require a more meticulous consideration. By introducing a batch size that retains jobs in its global queue (\ie all batch sizes $K>1$), not only the job-to-user assignment plays a role, be the ordering of the assignment influences greatly the final outcome as well. Let us consider a simple case with users $i=2$ and jobs $j=3$ at time step $t$. \tabref{tab:users_service_times_example} summarizes the service times $p_{ij}$ in time units $t$ of both users for all three jobs.
+Correctly defined state spaces is a crucial requirement for effective \gls{rl} methods. \gls{llqp} policies are relatively easy to be modeled, on the other hand policies with batch sizes require a more meticulous consideration. By introducing a batch size that retains jobs in its global queue (\ie all batch sizes $K>1$), not only the job-to-user assignment plays a role, be the ordering of the assignment influences greatly the final outcome as well. Let us consider a simple case with number of users $n=2$ and number of jobs $m=3$ at time step $t$. \tabref{tab:users_service_times_example} summarizes the service times $p_{ij}$ in time units $t$ of both users for all three jobs.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1075,7 +1075,7 @@ User 2 & $4$     & $5$     & $6$     \\ \bottomrule
 
 It is clear that the ordering of the jobs assigned has an impact on the final outcome. \figref{fig:user_job_assignment_order} outlines a possible conformation where user 1 receives job 1 while user 2 gets assigned to jobs 2 and 3 respectively. In this case, job 1 is started at $t$ and is finished at $t+1$, job 2 is started at $t$ and is finished at $t+5$ and job 3 is started at $t+5$ and is finished at $t+11$. The respective lateness per job is: $1$ for job 1, $5$ for job 2 and $6$ for job $3$.
 
-By changing the assignment order (refer to \figref{fig:user_job_assignment_order2} for a graphical representation), the final outcome changes as well: In this case, job 1 is started at $t+2$ and is finished at $t+3$, job 2 is started at $t$ and is finished at $t+2$ and job 3 is started at $t$ and is finished at $t+6$. The respective lateness per job is: $1$ for job 1, $2$ for job 2 and $6$ for job $3$. By merely changing the assignment order a reduction of $40\%$ in lateness is observed by job 2.
+By changing the assignment order (refer to \figref{fig:user_job_assignment_order2} for a graphical representation), the final outcome changes as well: In this case, job 1 is started at $t+2$ and is finished at $t+3$, job 2 is started at $t$ and is finished at $t+2$ and job 3 is started at $t$ and is finished at $t+6$. The respective lateness per job is: $1$ for job 1, $2$ for job 2 and $6$ for job $3$. By merely changing the assignment order a reduction of $40\%$ in lateness is observed for job 2.
 
 \begin{figure}[!ht]
 	\centering

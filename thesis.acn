@@ -345,10 +345,15 @@
 \glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{19}
 \glossaryentry{MDP?\glossentry{mdp}|setentrycounter[]{page}\glsnumberformat}{20}
 \glossaryentry{AV?\glossentry{av}|setentrycounter[]{page}\glsnumberformat}{20}
+\glossaryentry{DP?\glossentry{dp}|setentrycounter[]{page}\glsnumberformat}{20}
 \glossaryentry{MDP?\glossentry{mdp}|setentrycounter[]{page}\glsnumberformat}{20}
+\glossaryentry{DP?\glossentry{dp}|setentrycounter[]{page}\glsnumberformat}{20}
 \glossaryentry{MDP?\glossentry{mdp}|setentrycounter[]{page}\glsnumberformat}{20}
+\glossaryentry{DP?\glossentry{dp}|setentrycounter[]{page}\glsnumberformat}{20}
+\glossaryentry{DP?\glossentry{dp}|setentrycounter[]{page}\glsnumberformat}{20}
 \glossaryentry{MC?\glossentry{mc}|setentrycounter[]{page}\glsnumberformat}{20}
-\glossaryentry{MC?\glossentry{mc}|setentrycounter[]{page}\glsnumberformat}{20}
+\glossaryentry{DP?\glossentry{dp}|setentrycounter[]{page}\glsnumberformat}{20}
+\glossaryentry{MC?\glossentry{mc}|setentrycounter[]{page}\glsnumberformat}{21}
 \glossaryentry{MC?\glossentry{mc}|setentrycounter[]{page}\glsnumberformat}{21}
 \glossaryentry{MC?\glossentry{mc}|setentrycounter[]{page}\glsnumberformat}{21}
 \glossaryentry{MC?\glossentry{mc}|setentrycounter[]{page}\glsnumberformat}{21}
@@ -356,7 +361,6 @@
 \glossaryentry{TD?\glossentry{td}|setentrycounter[]{page}\glsnumberformat}{21}
 \glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{21}
 \glossaryentry{MC?\glossentry{mc}|setentrycounter[]{page}\glsnumberformat}{21}
-\glossaryentry{TD?\glossentry{td}|setentrycounter[]{page}\glsnumberformat}{21}
 \glossaryentry{TD?\glossentry{td}|setentrycounter[]{page}\glsnumberformat}{21}
 \glossaryentry{TD?\glossentry{td}|setentrycounter[]{page}\glsnumberformat}{21}
 \glossaryentry{TD?\glossentry{td}|setentrycounter[]{page}\glsnumberformat}{21}
@@ -394,6 +398,7 @@
 \glossaryentry{VFA?\glossentry{vfa}|setentrycounter[]{page}\glsnumberformat}{24}
 \glossaryentry{AV?\glossentry{av}|setentrycounter[]{page}\glsnumberformat}{24}
 \glossaryentry{SARSA?\glossentry{sarsa}|setentrycounter[]{page}\glsnumberformat}{24}
+\glossaryentry{SGD?\glossentry{sgd}|setentrycounter[]{page}\glsnumberformat}{24}
 \glossaryentry{AV?\glossentry{av}|setentrycounter[]{page}\glsnumberformat}{24}
 \glossaryentry{OP?\glossentry{op}|setentrycounter[]{page}\glsnumberformat}{24}
 \glossaryentry{OP?\glossentry{op}|setentrycounter[]{page}\glsnumberformat}{24}
@@ -405,6 +410,7 @@
 \glossaryentry{AV?\glossentry{av}|setentrycounter[]{page}\glsnumberformat}{24}
 \glossaryentry{OP?\glossentry{op}|setentrycounter[]{page}\glsnumberformat}{24}
 \glossaryentry{PG?\glossentry{pg}|setentrycounter[]{page}\glsnumberformat}{25}
+\glossaryentry{SGA?\glossentry{sga}|setentrycounter[]{page}\glsnumberformat}{25}
 \glossaryentry{MC?\glossentry{mc}|setentrycounter[]{page}\glsnumberformat}{25}
 \glossaryentry{PG?\glossentry{pg}|setentrycounter[]{page}\glsnumberformat}{25}
 \glossaryentry{MC?\glossentry{mc}|setentrycounter[]{page}\glsnumberformat}{25}
@@ -834,6 +840,6 @@
 \glossaryentry{TF?\glossentry{tf}|setentrycounter[]{page}\glsnumberformat}{83}
 \glossaryentry{DMF?\glossentry{dmf}|setentrycounter[]{page}\glsnumberformat}{83}
 \glossaryentry{DMF?\glossentry{dmf}|setentrycounter[]{page}\glsnumberformat}{83}
-\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{83}
+\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{84}
 \glossaryentry{DMF?\glossentry{dmf}|setentrycounter[]{page}\glsnumberformat}{84}
 \glossaryentry{ESDMF?\glossentry{esdmf}|setentrycounter[]{page}\glsnumberformat}{84}
