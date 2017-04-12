@@ -1111,13 +1111,15 @@ This approach effectively simulates batch policies with batch sizes $K>1$.
 In order to consistently and fairly evaluate all policies with the methods defined in the previous chapters, the following methodology was put in place:
 \begin{enumerate*}
 	\item Each policy has its own simulation script that initialized a process that uses the predefined policy as means to optimally assign jobs to tasks
-	\item Parameters are centrally defined.
+	\item Parameters are centrally defined
 	\item Different \glspl{kpi} have been defined which are used to assert the efficiency of one policy against one another.
 \end{enumerate*}
 
-\subsection{Simulation script}
+\subsection{Simulation Script}
 
-Each simulation script is the abstract element that import all required dependencies, initializes the SimPy simulation environment, the statistics file into which the policy dumps all data on runtime, the policy object itself to be used for the assignment and the workflow process to be used. 
+Each simulation script is the abstract element that imports all required dependencies, initializes the SimPy simulation environment, the statistics file into which the policy dumps all data on runtime, the policy object itself to be used for the assignment and the workflow process to be used. 
+
+The script initializes the chosen workflow process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling the run method of the SimPy environment. A snippet of a simulation script can be found in \lstref{lst:simulation_script}.
 
 \begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the \gls{dmf} solver,label=lst:simulation_script,style=CustomPython]
 	import simpy
@@ -1147,8 +1149,6 @@ Each simulation script is the abstract element that import all required dependen
 
 	evolution(file_policy.name, outfile=True)
 \end{lstlisting}
-
-The script initialized the chosen workflow process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling the run method of the SimPy environment.
 
 \subsection{Workflow Process Modeling}
 
@@ -1183,7 +1183,7 @@ One key aspect in order to assert fairness across policies while simulated is to
 
 \subsection{\glsentryshortpl{kpi} for Asserting Policy's Efficacy and Data Visualization}
 
-Based on Pinedo's and Zeng and Zhao's definitions in their works, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load \cite{Pinedo2008,Zeng2005}. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
+Based on Pinedo's and Zeng and Zhao's definitions in their works, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load \cite{Pinedo2008,Zeng2005}. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$ to token $j$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
 
 \begin{align}
 	L_j&=F_j-A_j \label{eq:lateness}\\
@@ -1197,7 +1197,7 @@ Moreover, if we account for simulation time $T$, load $l_i$ of user $i$ is defin
 	l_i=\frac{\sum_j p_{ij}}{T}
 \end{equation}
 
-and thus the average system load $\overline{l}$ over all users participating $n$ is defined as the average across all user's loads \ie
+and thus the average system load $\overline{l}$ over all $n$ users participating is defined as the average across all user's loads \ie
 
 \begin{equation}
 	\overline{l} = \frac{\sum_i l_i}{n}
