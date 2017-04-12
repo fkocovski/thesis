@@ -1237,7 +1237,7 @@ Worker Variability  & $20\%$        & $0\%-100\%$      \\
 Random State Seed   & $2$           & $\emptyset-\infty$      \\
 Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
 \end{tabular}
-\caption{Global Parameters for Simulation}
+\caption{Global parameters for simulation}
 \label{tab:global_parameters_sim}
 \end{table}
 
@@ -1289,7 +1289,7 @@ Average System Load & $9.63$             \\ \bottomrule
 
 This section focuses on the results obtained with the \gls{rl} methods outlined in \secref{sec:rl_policies}. A more in-depth review of the different policies is required, thus a finer subdivision has been made in different subsections per policy type: \subsecref{subsec:rl_batch} focuses on batch policies, \subsecref{subsec:rl_llqp} focuses on \gls{llqp} policies and \subsecref{subsec:rl_others} focuses on all remaining policies that do not fit in either of the previous categories.
 
-In order to maintain fairness amongst \gls{rl} training methods, all required parameters are globally set and equal across all simulation scripts and can be found summarized in \tabref{tab:global_rl_params}.
+In order to maintain fairness amongst \gls{rl} training methods, all required parameters are globally set and equal across all simulation scripts and can be found summarized in \tabref{tab:global_rl_params} which complement the global simulation parameters depicted in \tabref{tab:global_parameters_sim}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1298,11 +1298,11 @@ In order to maintain fairness amongst \gls{rl} training methods, all required pa
 \begin{tabular}{@{}ll@{}}
 \toprule
 Parameter        & Value  \\ \midrule
-$\gamma$            & 0.5    \\
-$\alpha$            & 0.0001 \\
-$\epsilon$          & 0.1    \\
-\gls{mc} epochs        & 1000   \\
-\gls{td} training time & 1000   \\ \bottomrule
+$\gamma$            & $0.5$    \\
+$\alpha$            & $0.0001$ \\
+$\epsilon$          & $0.1$    \\
+\gls{mc} epochs        & $1000$   \\
+\gls{td} training time & $1000$   \\ \bottomrule
 \end{tabular}
 \caption{Global \gls{rl} parameters}
 \label{tab:global_rl_params}
@@ -1510,9 +1510,9 @@ Having said that, deep \glspl{ann} exhibits worse results compared to their equi
 	\item \gls{egp}.
 \end{enumerate*}
 
-In brief, \gls{vgp} states that even very large change in partial derivatives on initial layers have imperceptible effects on subsequent layers \cite{Bengio1994} and \gls{egp} states that huge spikes in the norm of changes in partial derivatives which could potentially grow exponentially can happen under training, thus influencing internal parameters \cite{Bengio1994,Pascanu2012}.
+In brief, \gls{vgp} states that even very large changes in partial derivatives on initial layers have imperceptible effects on subsequent layers \cite{Bengio1994} and \gls{egp} states that huge spikes in the norm of changes in partial derivatives which could potentially grow exponentially can happen under training, thus influencing internal parameters \cite{Bengio1994,Pascanu2012}.
 
-Yet another crucial aspect to consider when undergoing \gls{rl} methods is usage between \gls{onp} or \gls{op} learning (refer to \subsecref{subsec:onpol_pred} and \subsecref{subsec:onpol_control} for \gls{onp} respectively \subsecref{subsec:offpol_methods} for \gls{op}). As shown in \tabref{tab:llqp_mc_vfa_op_vs_on} (and \figref{fig:llqp_mc_vfa_on_vs_off}), \gls{op} methods converge slightly better compared to \gls{onp}, however the change is imperceptible and can be found in different factors (\eg random state seed choice or length of simulation). Having said that, it is important to note that these different approaches are being currently heavily studied by pioneers and the debate is still open, as Sutton and Barto explain in their book \cite[pp. 245-249]{Sutton2017}. The current key takeaways from this outgoing debate can be summarized as follows \cite{Sutton2017}:
+Yet another crucial aspect to consider when undergoing \gls{rl} methods is usage between \gls{onp} or \gls{op} learning (refer to \subsecref{subsec:onpol_pred} for \gls{onp} respectively to \subsecref{subsec:offpol_methods} for \gls{op} \subsecref{subsec:onpol_control}). As shown in \tabref{tab:llqp_mc_vfa_op_vs_on} (and \figref{fig:llqp_mc_vfa_on_vs_off}), \gls{op} methods converge slightly better compared to \gls{onp}, however the change is imperceptible and can be found in different factors (\eg random state seed choice or length of simulation). Having said that, it is important to note that these different approaches are being currently heavily studied by pioneers and the debate is still open, as Sutton and Barto explain in their book \cite[pp. 245-249]{Sutton2017}. The current key takeaways from this outgoing debate can be summarized as follows \cite{Sutton2017}:
 \begin{enumerate*}
 	\item Learning \gls{op}
 	\item Usage of scalable function approximation methods like linear semi-gradient 
@@ -1546,17 +1546,12 @@ For \ref{itm:math_opt} five existing optimization policies as outlined in \secre
 
 \section{Resulting Conclusions}
 
-\begin{enumerate}
-	\item there is optimization potential even for existing methods, however business application might prove limited since it requires more computational resources and one is maybe better off with simplified version
-	\item \gls{rl} methods prove to be very good and interesting, however being novel methods one should proceed with caution and further analyze these methods
-\end{enumerate}
-
 Optimization methods are viable solutions for optimally assigning jobs to users inside workflow processes, as already argued by Zeng and Zhao \cite{Zeng2005}. Further developed policies relying on mathematical optimization done for this thesis proved indeed to yield better results (see \subsecref{subsec:opt_comparison}), however the higher required complexity (refer to \subsecref{subsec:optimization_discussion}) poses a critical trade-off. \ref{rq:one} can be affirmatively answer: there is definitely potential for further development and optimization of existing methods but further questions arise:
 
 \begin{enumerate}[label=\textbf{Q. \arabic*}]
 	\item Does a slight increase in performance justify the higher computational requirements?
 	\item Can only one \gls{kpi} be chosen as central parameter to evaluate a policy's performance or is a combination of different \glspl{kpi} more suitable?
-	\item Is it always the best solution to use only one type of optimizer or is it better to follow a more flexible approach an chose different policies on a per case basis?
+	\item Is it always the best solution to use only one type of optimizer or is it better to follow a more flexible approach and chose different policies on a per case basis?
 \end{enumerate}
 
 All these questions must be accounted for when considering policy based optimization in workflow processes integration in IT governance.
@@ -1572,14 +1567,14 @@ Then again \gls{rl} methods are not exempt from disadvantages:
 \begin{enumerate*}
 	\item They require long training sessions in order to equal (or even outperform) optimization methods
 	\item When using \glspl{ann}, overfitting might lead to suboptimal solution in which policies get stuck (for viable solutions refer to \cite{Srivastava2014})
-	\item Multilayer \glspl{ann} (\ie deep \glspl{ann}) are very sensitive to \gls{vgp} and \gls{egp}.
+	\item Multilayer \glspl{ann} (\ie deep \glspl{ann}) are very sensitive to \gls{vgp} and \gls{egp} \cite{Bengio1994,Pascanu2012}.
 \end{enumerate*}
 
 In general \gls{rl} based approaches are a refreshing and novel methodology for solving optimization problems but require further development and sound domain knowledge.
 
 \section{Outlook}
 
-This thesis merely ``scratches the surface'' of viable alternatives to existing optimization techniques for workflow processes. A direct follow up consists in testing in operative workflows the efficiency measured in the simulation environment outlined in this thesis. This includes testing the robustness, efficacy and viability of the proposed policies by putting them under ``real-world'' stress situation in order to assert the efficiency claims. For \gls{rl} methods executing lengthy training sessions might prove impractical: thousands of training sessions required by \gls{rl} methods in order to comply with convergence properties can prove infeasible for companies that are not able to generate such amounts of data, thus directly limiting applicability of these methods.
+This thesis merely ``scratches the surface'' of viable alternatives to existing optimization techniques for workflow processes. A direct follow up consists in testing in operative environments the introduction feasibility and efficiency measured in the simulation environment outlined in this thesis. This includes testing the robustness, efficacy and viability of the proposed policies by putting them under ``real-world'' stress situation in order to assert the efficiency claims. For \gls{rl} methods executing lengthy training sessions might prove impractical: thousands of training sessions required by \gls{rl} methods in order to comply with convergence properties can prove infeasible for companies that are not able to generate such amounts of data, thus directly limiting applicability of these methods.
 
 \gls{rl} is a novel field that is currently still being actively researched and pursued, as it has yield promising results \cite{Mnih2015,Silver2016}. By using \glspl{ann} one can effectively approximate nonlinear functions as it has been outlined in \subsecref{subsubsec:ann_theory}. Even though in this thesis only feedforward \glspl{ann} have been used, the problem domain is very well suited for the recurrent variant as well.
 
