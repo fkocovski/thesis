@@ -21,7 +21,6 @@
   eprint       = {http://dx.doi.org/10.1287/ijoc.1040.0067},
   groups       = {Workflow},
   journaltitle = {INFORMS Journal on Computing},
-  keywords     = {rank5},
   review       = {Role resolution, i.e., the mechanism of assigning tasks to individual workers at runtime according to the role qualification defined in the workflow model.
 Staffing decisions is assigning one more more roles to each user.
 Role resolution is assigning a task to an appropriate worker at runtime.
@@ -613,6 +612,14 @@ Data flow matrix (p. 7) is an interesting aspect to model data flows with write 
   isbn      = {1-55860-707-2},
   numpages  = {8},
   url       = {http://dl.acm.org/citation.cfm?id=645529.657801},
+}
+
+@Misc{,
+  author = {Martin Milo},
+  title  = {Performance and Benchmarking},
+  year   = {2012},
+  review = {Defines speedup as metric},
+  url    = {http://www.cis.upenn.edu/~milom/cis501-Fall12/lectures/04_performance.pdf},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

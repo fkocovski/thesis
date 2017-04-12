@@ -22,7 +22,7 @@
 \thesisType{Master Thesis}
 \date{\today}
 \title{Workflow Optimization}
-\subtitle{Reinforcement Learning Based Optimization in a Discrete Event Simulation Environment for Optimal Job Assignment in Workflow Processes}
+\subtitle{Optimal Job Assignment in a Discrete Event Simulation Environment}
 \author{Filip Ko\v{c}ovski}
 \home{Lugano} % Geburtsort
 \country{Switzerland}
@@ -330,6 +330,8 @@ According to \citet{Matloff2008}, different world views for discrete event progr
 \end{enumerate*}
 
 Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities \citep{Matloff2008}. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there won't be any change in state for the simulated entities \citep{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated \citep{Matloff2008}. By filling these gaps, a dramatical increase in computation can be observed \citep{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread \citep{Matloff2008}. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks exist \citep{Matloff2008}.
+
+\citet{Milo2012} defines speedup as a metric for evaluating comparisons in computer architecture which is used when analyzing the results of this thesis.
 
 \glsresetall
 
@@ -1056,7 +1058,7 @@ Discount       & Required               & Not required                     \\
 Convergance    & Good                   & Very Good                        \\
 Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \bottomrule
 \end{tabular}
-\caption{Qualitative comparison between \gls{mc} and \gls{td} update methods \citep[p. 130]{Sutton2017}}
+\caption{Qualitative comparison between \glsentryfull{mc} and \glsentryfull{td} update methods \citep[p. 130]{Sutton2017}}
 \label{tab:mc_td_comp}
 \end{table}
 
@@ -1212,13 +1214,19 @@ and thus the average system load $\overline{l}$ over all $n$ users participating
 
 A summary plot with all \glspl{kpi} is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glspl{kpi}  summary plot for a 3-Batch policy using the \gls{msa} solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryfullpl{kpi}  summary plot for a 3-Batch policy using the \glsentryfull{msa} solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
 
 Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \secref{sec:opt_policies}.
 
 The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the \gls{msa} solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the \glsentryfull{msa} solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
+
+Finally, when comparing different policies between each other, \citet{Milo2012}'s definition of speedup $S$ between two quantities $q_1$ and $q_2$ is adopted, which is formally defined by him as:
+
+\begin{equation}
+	S=\frac{q_1}{q_2}
+\end{equation}
 
 \clearpage
 
@@ -1259,19 +1267,19 @@ Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
 
 In order to assert the validity of the interpretation of \citet{Zeng2005}'s works and all subsequent derivative policies a comparison with similar configurations has been made for all five optimization policies. \citet{Zeng2005}'s main efficiency parameter is defined as the maximum flowtime or in their own words: ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \citep[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}. In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results to \citet{Zeng2005}'s are obtained.
 
-\fig[\textwidth]{opt_kpis_comp}{\glspl{kpi}  comparison for different optimization policies using the \gls{msa} solver for batch policies}{fig:opt_kpis_comp}  
+\fig[\textwidth]{opt_kpis_comp}{\glsentryfullpl{kpi}  comparison for different optimization policies using the \glsentryfull{msa} solver for batch policies}{fig:opt_kpis_comp}  
 
 The simulations have been run with the parameters outlined in \tabref{tab:global_parameters_sim} by using the same solver used by \citet{Zeng2005}: \gls{msa}.
 
 By running the same simulations with the optimization solver implemented for this thesis (\ie \gls{st}, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized \glspl{kpi} amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
 
-\fig[\textwidth]{opt_st_kpis_comp}{\glspl{kpi}  comparison for different optimization policies using the \gls{st} solver for batch policies}{fig:opt_st_kpis_comp}
+\fig[\textwidth]{opt_st_kpis_comp}{\glsentryfullpl{kpi}  comparison for different optimization policies using the \glsentryfull{st} solver for batch policies}{fig:opt_st_kpis_comp}
 
-The percent reduction for both batch policies with a higher batch size is tiny, but when considering the reduction between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy reduction is present for all \glspl{kpi}. For a detailed overview of the overall reductions of the \gls{st} against the \gls{msa} solver refer to \figref{fig:opt_kpis_comp_gain}.
+The percent speedup for both batch policies with a higher batch size is tiny, but when considering the speedup between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy speedup is present for all \glspl{kpi}. For a detailed overview of the overall speedups of the \gls{st} against the \gls{msa} solver refer to \figref{fig:opt_kpis_comp_gain}.
 
-\fig[\textwidth]{opt_kpis_comp_gain}{\glspl{kpi}  reduction comparison between the \gls{msa} and the \gls{st} solvers for different batch policies}{fig:opt_kpis_comp_gain}
+\fig[\textwidth]{opt_kpis_comp_gain}{\glsentryfullpl{kpi}  speedup comparison between the \glsentryfull{msa} and the \glsentryfull{st} solvers for 5-Batch, 5-Batch-1 and 1-Batch-1}{fig:opt_kpis_comp_gain}
 
-Astonishing reductions have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by \citet{Zeng2005} (for a detailed comparison of how different batch sizes affect the policy's \glspl{kpi} refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \citep[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
+Astonishing speedups have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by \citet{Zeng2005} (for a detailed comparison of how different batch sizes affect the policy's \glspl{kpi} refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \citep[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1279,13 +1287,13 @@ Astonishing reductions have been observed for the 1-Batch-1 policy, which is ind
 \centering
 \begin{tabular}{@{}ll@{}}
 \toprule
-\gls{kpi}                 & Reduction (in \%) \\ \midrule
-Lateness            & $23.24$             \\
-Wait Time           & $300.0$             \\
-Service Time        & $9.6$             \\
-Average System Load & $9.63$             \\ \bottomrule
+\gls{kpi}                 & Speedup \\ \midrule
+Lateness            & $1.23$             \\
+Wait Time           & $4.0$             \\
+Service Time        & $1.1$             \\
+Average System Load & $1.1$             \\ \bottomrule
 \end{tabular}
-\caption{Reduction (in \%) across all \glspl{kpi} of the \gls{st} against the \gls{msa} solver}
+\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{st} against the \glsentryfull{msa} solver}
 \label{tab:opt_kpis_comp_gain}
 \end{table}
 
@@ -1311,7 +1319,7 @@ $\epsilon$          & $0.1$    \\
 \gls{mc} epochs        & $1000$   \\
 \gls{td} training time & $1000$   \\ \bottomrule
 \end{tabular}
-\caption{Global \gls{rl} parameters}
+\caption{Global \glsentryfull{rl} parameters}
 \label{tab:global_rl_params}
 \end{table}
 
@@ -1338,7 +1346,7 @@ k\_batch\_td\_vfa\_op   & 1-Batch     & \gls{td}            & \gls{vfa} & \gls{o
 k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \gls{op}                \\ \bottomrule
 \end{tabular}%
 }
-\caption{Overview of developed batch policies with \gls{rl}}
+\caption{Overview of developed batch policies with \glsentryfull{rl}}
 \label{tab:rl_batch_policies_overview}
 \end{table}
 
@@ -1359,7 +1367,7 @@ Service Time        & $12.07$                  & $13.06$                      & 
 Average System Load & $11.74$                  & $12.75$                      & $14.4$                        & $11.8$                      & $13.81$                         \\ \bottomrule
 \end{tabular}%
 }
-\caption{Reduction (in \%) across all \glspl{kpi} of the batch policies with \gls{rl} against the \gls{msa} solver}
+\caption{Reduction (in \%) across all \glsentryfullpl{kpi} of the batch policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
 \label{tab:rl_batch_kpis_comp_gain}
 \end{table}
 
@@ -1382,7 +1390,7 @@ llqp\_td\_vfa\_op   & \gls{llqp}     & \gls{td}            & \gls{vfa} & \gls{op
 llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{op}                \\ \bottomrule
 \end{tabular}%
 }
-\caption{Overview of developed \gls{llqp} policies with \gls{rl}}
+\caption{Overview of developed \glsentryfull{llqp} policies with \glsentryfull{rl}}
 \label{tab:rl_llqp_policies_overview}
 \end{table}
 
@@ -1400,7 +1408,7 @@ Wait Time           & $2.98$                  & $0.81$                  & $10.8$
 Service Time        & $-0.14$                  & $0.14$                  & $-0.3$                 \\
 Average System Load & $-0.15$                  & $0.19$                  & $-0.3$                 \\ \bottomrule
 \end{tabular}
-\caption{Reduction (in \%) across all \glspl{kpi} of the \gls{llqp} policies with \gls{rl} against the \gls{msa} solver}
+\caption{Reduction (in \%) across all \glsentryfullpl{kpi} of the \glsentryfull{llqp} policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
 \label{tab:rl_llqp_kpis_comp_gain}
 \end{table}
 
@@ -1418,7 +1426,7 @@ Wait Time           & $0.0874$                  & $0.1408$              & $-37.9
 Service Time        & $1.2264$                  & $1.2014$              & $2.08$                   \\
 Average System Load & $39.24\%$                  & $38.49\%$              & $2.19$                   \\ \bottomrule
 \end{tabular}
-\caption{\glspl{kpi} comparison between \gls{op} and \gls{onp} approaches}
+\caption{\glsentryfullpl{kpi} comparison between \glsentryfull{op} and \glsentryfull{onp} approaches}
 \label{tab:llqp_mc_vfa_op_vs_on}
 \end{table}
 
@@ -1441,7 +1449,7 @@ wz\_one\_td\_vfa\_op   & \gls{wzo}     & \gls{td}            & \gls{vfa} & \gls{
 bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & \gls{pg}                \\ \bottomrule
 \end{tabular}%
 }
-\caption{Overview of additional developed policies with \gls{rl}}
+\caption{Overview of additional developed policies with \glsentryfull{rl}}
 \label{tab:rl_others_policies_overview}
 \end{table}
 
@@ -1462,7 +1470,7 @@ Service Time        & $20.76$                & $13.08$                     & $-7
 Average System Load & $20.58$                & $12.76$                     & $-7.45$                    & $-15.95$                    & $-18.99$                    & $-18.68$                    \\ \bottomrule
 \end{tabular}%
 }
-\caption{Reduction (in \%) across all \glspl{kpi} of the additional policies with \gls{rl} against the \gls{msa} solver}
+\caption{Reduction (in \%) across all \glsentryfullpl{kpi} of the additional policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
 \label{tab:rl_others_kpis_comp_gain}
 \end{table}
 
@@ -1473,7 +1481,7 @@ Average System Load & $20.58$                & $12.76$                     & $-7
 
 Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different solvers yield different solutions and computational complexities. \citet[p. 15]{Zeng2005} mention that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \citep[p. 13]{Zeng2005},\citep{Garey1990}. \citet[p. 13]{Zeng2005} propose however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of solvers. The \gls{st} ``flagship'' solver significantly outperforms the \gls{msa} solver (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher computational complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_solvers}) questions the practical use of this solver over the other methods. A $20\%$ gain in respect to lateness requiring a quadratic higher computational complexity poses a dubious trade-off from a business perspective.
 
-\fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glspl{kpi} comparison between \gls{msa} and \gls{st} under 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
+\fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glsentryfullpl{kpi} speedup comparison between \glsentryfull{msa} and \glsentryfull{st} solvers for 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
 
 Yet another aspect mentioned by \citet[pp. 17-18]{Zeng2005} is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two solvers.
 
@@ -1481,13 +1489,13 @@ Yet another aspect mentioned by \citet[pp. 17-18]{Zeng2005} is a more ``social''
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/1_BATCHONE_MSA_NU5_GI3_SIM1000_FAIR}
-		\caption{User loads distribution for 1-Batch-1 using \gls{msa}}
+		\caption{User loads distribution for 1-Batch-1 using \glsentryfull{msa}}
 		\label{fig:msa_fairness}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/1_BATCHONE_ST_NU5_GI3_SIM1000_FAIR}
-		\caption{User loads distribution for 1-Batch-1 using \gls{st}}
+		\caption{User loads distribution for 1-Batch-1 using \glsentryfull{st}}
 		\label{fig:st_fairness}
 	\end{minipage}
 \end{figure}
@@ -1530,7 +1538,7 @@ The combination of all these three factors is referred as ``the deadly triad'' \
 
 On a more general note, different comparisons have shown huge spikes in reduction of waiting time (\eg \subsecref{subsec:onebatch_rl_msa_comp_app}). Even though compelling, the practical usage is limited: when considering workflow processes with fixed available resources (\ie users participating), huge reduction in job waiting times does not always correlate with better system performance, since it might be the case that even if a job is ready to be assigned there are no available resources to complete such job.
 
-\fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glspl{kpi} comparison between \gls{op} and \gls{onp} approaches}{fig:llqp_mc_vfa_on_vs_off}
+\fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glsentryfullpl{kpi} comparison between \glsentryfull{op} and \glsentryfull{onp} approaches}{fig:llqp_mc_vfa_on_vs_off}
 
 \glsresetall
 
@@ -1609,14 +1617,14 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:llqp_kpi_app}
 
-\fig[\textwidth]{llqp_res/LLQP_NU5_GI3_SIM1000_KPI}{\gls{llqp} \glspl{kpi}}{fig:LLQP_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{llqp_res/LLQP_NU5_GI3_SIM1000_KPI}{\glsentryfull{llqp} \glsentryfullpl{kpi}}{fig:LLQP_NU5_GI3_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:llqp_evo_app}
 
-%\fig[\textwidth]{llqp_res/LLQP_NU5_GI3_SIM1000_EVO}{\gls{llqp} evolution}{fig:LLQP_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{llqp_res/LLQP_NU5_GI3_SIM1000_EVO}{\glsentryfull{llqp} evolution}{fig:LLQP_NU5_GI3_SIM1000_EVO}
 
 \clearpage
 
@@ -1625,14 +1633,14 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:sq_kpi_app}
 
-\fig[\textwidth]{sq_res/SQ_NU5_GI3_SIM1000_KPI}{\gls{sq} \glspl{kpi}}{fig:SQ_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{sq_res/SQ_NU5_GI3_SIM1000_KPI}{\glsentryfull{sq} \glsentryfullpl{kpi}}{fig:SQ_NU5_GI3_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:sq_evo_app}
 
-%\fig[\textwidth]{sq_res/SQ_NU5_GI3_SIM1000_EVO}{\gls{sq} evolution}{fig:SQ_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{sq_res/SQ_NU5_GI3_SIM1000_EVO}{\glsentryfull{sq} evolution}{fig:SQ_NU5_GI3_SIM1000_EVO}
 
 \clearpage
 
@@ -1641,30 +1649,30 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:kbatch_kpi_app}
 
-\fig[\textwidth]{kbatch_res/5_BATCH_MSA_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{msa} \glspl{kpi}}{fig:5_BATCH_MSA_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{kbatch_res/5_BATCH_DMF_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{dmf} \glspl{kpi}}{fig:5_BATCH_DMF_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{kbatch_res/5_BATCH_SDMF_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{sdmf} \glspl{kpi}}{fig:5_BATCH_SDMF_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{kbatch_res/5_BATCH_ESDMF_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{esdmf} \glspl{kpi}}{fig:5_BATCH_ESDMF_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{kbatch_res/5_BATCH_ST_NU5_GI3_SIM1000_KPI}{K-Batch with \gls{st} \glspl{kpi}}{fig:5_BATCH_ST_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_res/5_BATCH_MSA_NU5_GI3_SIM1000_KPI}{K-Batch with \glsentryfull{msa} \glsentryfullpl{kpi}}{fig:5_BATCH_MSA_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_res/5_BATCH_DMF_NU5_GI3_SIM1000_KPI}{K-Batch with \glsentryfull{dmf} \glsentryfullpl{kpi}}{fig:5_BATCH_DMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_res/5_BATCH_SDMF_NU5_GI3_SIM1000_KPI}{K-Batch with \glsentryfull{sdmf} \glsentryfullpl{kpi}}{fig:5_BATCH_SDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_res/5_BATCH_ESDMF_NU5_GI3_SIM1000_KPI}{K-Batch with \glsentryfull{esdmf} \glsentryfullpl{kpi}}{fig:5_BATCH_ESDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_res/5_BATCH_ST_NU5_GI3_SIM1000_KPI}{K-Batch with \glsentryfull{st} \glsentryfullpl{kpi}}{fig:5_BATCH_ST_NU5_GI3_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:kbatch_evo_app}
 
-%\fig[\textwidth]{kbatch_res/5_BATCH_MSA_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{msa} evolution}{fig:5_BATCH_MSA_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_res/5_BATCH_DMF_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{dmf} evolution}{fig:5_BATCH_DMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_res/5_BATCH_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{sdmf} evolution}{fig:5_BATCH_SDMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_res/5_BATCH_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{esdmf} evolution}{fig:5_BATCH_ESDMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_res/5_BATCH_ST_NU5_GI3_SIM1000_EVO}{K-Batch with \gls{st} evolution}{fig:5_BATCH_ST_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_res/5_BATCH_MSA_NU5_GI3_SIM1000_EVO}{K-Batch with \glsentryfull{msa} evolution}{fig:5_BATCH_MSA_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_res/5_BATCH_DMF_NU5_GI3_SIM1000_EVO}{K-Batch with \glsentryfull{dmf} evolution}{fig:5_BATCH_DMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_res/5_BATCH_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch with \glsentryfull{sdmf} evolution}{fig:5_BATCH_SDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_res/5_BATCH_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch with \glsentryfull{esdmf} evolution}{fig:5_BATCH_ESDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_res/5_BATCH_ST_NU5_GI3_SIM1000_EVO}{K-Batch with \glsentryfull{st} evolution}{fig:5_BATCH_ST_NU5_GI3_SIM1000_EVO}
 
 \clearpage
 
 \subsection{Batch Sizes Comparison}
 \label{subsec:kbatch_bscomp_app}
 
-\fig[\textwidth]{kbatch_res/1-5_BATCH_MSA_NU5_GI3_SIM1000_BSEVAL}{K-Batch with \gls{msa} batch size comparison}{fig:1-5_BATCH_MSA_NU5_GI3_SIM1000_BSEVAL}
-\fig[\textwidth]{kbatch_res/1-5_BATCH_ST_NU5_GI3_SIM1000_BSEVAL}{K-Batch with \gls{st} batch size comparison}{fig:1-5_BATCH_ST_NU5_GI3_SIM1000_BSEVAL}
+\fig[\textwidth]{kbatch_res/1-5_BATCH_MSA_NU5_GI3_SIM1000_BSEVAL}{K-Batch with \glsentryfull{msa} batch size comparison}{fig:1-5_BATCH_MSA_NU5_GI3_SIM1000_BSEVAL}
+\fig[\textwidth]{kbatch_res/1-5_BATCH_ST_NU5_GI3_SIM1000_BSEVAL}{K-Batch with \glsentryfull{st} batch size comparison}{fig:1-5_BATCH_ST_NU5_GI3_SIM1000_BSEVAL}
 
 \clearpage
 
@@ -1673,30 +1681,30 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:kbatchone_kpi_app}
 
-\fig[\textwidth]{kbatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{msa} \glspl{kpi}}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{kbatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{dmf} \glspl{kpi}}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{kbatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{sdmf} \glspl{kpi}}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{kbatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{esdmf} \glspl{kpi}}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{kbatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \gls{st} \glspl{kpi}}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \glsentryfull{msa} \glsentryfullpl{kpi}}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \glsentryfull{dmf} \glsentryfullpl{kpi}}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \glsentryfull{sdmf} \glsentryfullpl{kpi}}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \glsentryfull{esdmf} \glsentryfullpl{kpi}}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_KPI}{K-Batch-1 with \glsentryfull{st} \glsentryfullpl{kpi}}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:kbatchone_evo_app}
 
-%\fig[\textwidth]{kbatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{msa} evolution}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{kbatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{dmf} evolution}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{kbatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{sdmf} evolution}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{kbatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{esdmf} evolution}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{kbatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{st} evolution}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{msa} evolution}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{dmf} evolution}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{sdmf} evolution}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{esdmf} evolution}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{st} evolution}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}
 
 \clearpage
 
 \subsection{Batch Sizes Comparison}
 \label{subsec:kbatchone_bscomp_app}
 
-\fig[\textwidth]{kbatchone_res/1-5_BATCHONE_MSA_NU5_GI3_SIM1000_BSEVAL}{K-Batch-1 with \gls{msa} batch size comparison}{fig:1-5_BATCHONE_MSA_NU5_GI3_SIM1000_BSEVAL}
-\fig[\textwidth]{kbatchone_res/1-5_BATCHONE_ST_NU5_GI3_SIM1000_BSEVAL}{K-Batch-1 with \gls{st} batch size comparison}{fig:1-5_BATCHONE_ST_NU5_GI3_SIM1000_BSEVAL}
+\fig[\textwidth]{kbatchone_res/1-5_BATCHONE_MSA_NU5_GI3_SIM1000_BSEVAL}{K-Batch-1 with \glsentryfull{msa} batch size comparison}{fig:1-5_BATCHONE_MSA_NU5_GI3_SIM1000_BSEVAL}
+\fig[\textwidth]{kbatchone_res/1-5_BATCHONE_ST_NU5_GI3_SIM1000_BSEVAL}{K-Batch-1 with \glsentryfull{st} batch size comparison}{fig:1-5_BATCHONE_ST_NU5_GI3_SIM1000_BSEVAL}
 
 \clearpage
 
@@ -1705,22 +1713,22 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:onebatchone_kpi_app}
 
-\fig[\textwidth]{onebatchone_res/1_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{msa} \glspl{kpi}}{fig:1_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{onebatchone_res/1_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{dmf} \glspl{kpi}}{fig:1_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{onebatchone_res/1_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{sdmf} \glspl{kpi}}{fig:1_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{onebatchone_res/1_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{esdmf} \glspl{kpi}}{fig:1_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}
-\fig[\textwidth]{onebatchone_res/1_BATCHONE_ST_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \gls{st} \glspl{kpi}}{fig:1_BATCHONE_ST_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \glsentryfull{msa} \glsentryfullpl{kpi}}{fig:1_BATCHONE_MSA_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \glsentryfull{dmf} \glsentryfullpl{kpi}}{fig:1_BATCHONE_DMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \glsentryfull{sdmf} \glsentryfullpl{kpi}}{fig:1_BATCHONE_SDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \glsentryfull{esdmf} \glsentryfullpl{kpi}}{fig:1_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{onebatchone_res/1_BATCHONE_ST_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \glsentryfull{st} \glsentryfullpl{kpi}}{fig:1_BATCHONE_ST_NU5_GI3_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:onebatchone_evo_app}
 
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{msa} evolution}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{dmf} evolution}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{sdmf} evolution}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{esdmf} evolution}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{st} evolution}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{msa} evolution}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{dmf} evolution}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{sdmf} evolution}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{esdmf} evolution}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{st} evolution}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}
 
 \clearpage
 
@@ -1733,51 +1741,53 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:onebatch_rl_kpi_app}
 
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}{1-Batch with \gls{mc} and \gls{vfa} \glspl{kpi}}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{1-Batch with \gls{mc}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}{1-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} \glspl{kpi}}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{1-Batch with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}{1-Batch with \glsentryfull{mc} and \glsentryfull{vfa} \glsentryfullpl{kpi}}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa}, \glsentryfull{op} and \glsentryfull{ep} \glsentryfullpl{kpi}}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{1-Batch with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:onebatch_rl_evo_app}
 
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}{1-Batch with \gls{mc} and \gls{vfa} evolution}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{1-Batch with \gls{mc}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}{1-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} evolution}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{1-Batch with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}{1-Batch with \glsentryfull{mc} and \glsentryfull{vfa} evolution}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa}, \glsentryfull{op} and \glsentryfull{ep} evolution}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{1-Batch with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
 
 \clearpage
 
 \subsection{Comparison with \glsentryshort{msa}}
 \label{subsec:onebatch_rl_msa_comp_app}
 
-\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa}{1-Batch with \gls{mc} and \gls{vfa} \gls{msa} comparison}{fig:k_batch_mc_vfa}
-\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_op}{1-Batch with \gls{mc}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:k_batch_mc_vfa_op}
-\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_opep}{1-Batch with \gls{mc}, \gls{vfa}, \gls{op} and \gls{ep} \gls{msa} comparison}{fig:k_batch_mc_vfa_opep}
-\fig[\textwidth]{kbatch_rl_res/k_batch_td_vfa_op}{1-Batch with \gls{td}, \gls{vfa}, \gls{op} and \gls{ep} \gls{msa} comparison}{fig:k_batch_td_vfa_op}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa}{1-Batch with \glsentryfull{mc} and \glsentryfull{vfa} \glsentryfull{msa} comparison}{fig:k_batch_mc_vfa}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_op}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfull{msa} comparison}{fig:k_batch_mc_vfa_op}
+\fig[\textwidth]{kbatch_rl_res/k_batch_mc_vfa_opep}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa}, \glsentryfull{op} and \glsentryfull{ep} \glsentryfull{msa} comparison}{fig:k_batch_mc_vfa_opep}
+\fig[\textwidth]{kbatch_rl_res/k_batch_td_vfa_op}{1-Batch with \glsentryfull{td}, \glsentryfull{vfa}, \glsentryfull{op} and \glsentryfull{ep} \glsentryfull{msa} comparison}{fig:k_batch_td_vfa_op}
+
+\clearpage
 
 \section{1-Batch-1}
 
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:onebatchone_rl_kpi_app}
 
-\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{1-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{1-Batch-1 with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:onebatchone_rl_evo_app}
 
-%\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{1-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{1-Batch-1 with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
 
 \clearpage
 
 \subsection{Comparison with \glsentryshort{msa}}
 \label{subsec:onebatchone_rl_msa_comp_app}
 
-\fig[\textwidth]{kbatchone_rl_res/k_batchone_td_vfa_op}{1-Batch-1 with \gls{td}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:k_batchone_td_vfa_op}
+\fig[\textwidth]{kbatchone_rl_res/k_batchone_td_vfa_op}{1-Batch-1 with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfull{msa} comparison}{fig:k_batchone_td_vfa_op}
 
 \clearpage
 
@@ -1786,27 +1796,27 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:llqp_rl_kpi_app}
 
-\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{\gls{llqp} with \gls{mc}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\gls{llqp} with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
-\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\gls{llqp} with \gls{td}, \gls{tf} and \gls{op} \glspl{kpi}}{fig:LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{\glsentryfull{llqp} with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{tf} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:llqp_rl_evo_app}
 
-%\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{\gls{llqp} with \gls{mc}, \gls{vfa} and \gls{op} evolution}{fig:LLQP_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\gls{llqp} with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
-%\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\gls{llqp} with \gls{td}, \gls{tf} and \gls{op} evolution}{fig:LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{\glsentryfull{llqp} with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:LLQP_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{tf} and \glsentryfull{op} evolution}{fig:LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_EVO}
 
 \clearpage
 
 \subsection{Comparison with \glsentryshort{msa}}
 \label{subsec:llqp_rl_msa_comp_app}
 
-\fig[\textwidth]{llqp_rl_res/llqp_mc_vfa_op}{\gls{llqp} with \gls{mc}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:llqp_mc_vfa_op}
-\fig[\textwidth]{llqp_rl_res/llqp_td_vfa_op}{\gls{llqp} with \gls{td}, \gls{vfa} and \gls{op} \gls{msa} comparison}{fig:llqp_td_vfa_op}
-\fig[\textwidth]{llqp_rl_res/llqp_td_tf_op}{\gls{llqp} with \gls{td}, \gls{tf} and \gls{op} \gls{msa} comparison}{fig:llqp_td_tf_op}
+\fig[\textwidth]{llqp_rl_res/llqp_mc_vfa_op}{\glsentryfull{llqp} with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfull{msa} comparison}{fig:llqp_mc_vfa_op}
+\fig[\textwidth]{llqp_rl_res/llqp_td_vfa_op}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfull{msa} comparison}{fig:llqp_td_vfa_op}
+\fig[\textwidth]{llqp_rl_res/llqp_td_tf_op}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{tf} and \glsentryfull{op} \glsentryfull{msa} comparison}{fig:llqp_td_tf_op}
 
 \clearpage
 
@@ -1830,7 +1840,7 @@ llqp\_td\_pg\_ac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{ac} 
 llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av}, \gls{ac}                \\ \bottomrule
 \end{tabular}%
 }
-\caption{Overview of additional \gls{llqp} policies with \gls{rl}}
+\caption{Overview of additional \glsentryfull{llqp} policies with \glsentryfull{rl}}
 \label{tab:rl_llqp_add_policies_overview}
 \end{table}
 
@@ -1841,36 +1851,36 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:others_rl_kpi_app}
 
-\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\gls{wz} with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\gls{wzo} with \gls{td}, \gls{vfa} and \gls{op} \glspl{kpi}}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_KPI}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{1l} \glspl{kpi}}{fig:1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_KPI}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{2l} \glspl{kpi}}{fig:1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_KPI}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{3l} \glspl{kpi}}{fig:1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_KPI}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{4l} \glspl{kpi}}{fig:1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:others_rl_evo_app}
 
-%\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\gls{wz} with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\gls{wzo} with \gls{td}, \gls{vfa} and \gls{op} evolution}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_EVO}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{1l} evolution}{fig:1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_EVO}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{2l} evolution}{fig:1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_EVO}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{3l} evolution}{fig:1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_EVO}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{4l} evolution}{fig:1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} evolution}{fig:1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} evolution}{fig:1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} evolution}{fig:1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} evolution}{fig:1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_EVO}
 
 \clearpage
 
 \subsection{Comparison with \glsentryshort{msa}}
 \label{subsec:others_rl_msa_comp_app}
 
-\fig[\textwidth]{others_rl_res/wz_td_vfa_op}{\gls{wz} with \gls{td}, \gls{vfa} and \gls{op} \glspl{msa} comparison}{fig:wz_td_vfa_op}
-\fig[\textwidth]{others_rl_res/wz_one_td_vfa_op}{\gls{wzo} with \gls{td}, \gls{vfa} and \gls{op} \glspl{msa} comparison}{fig:wz_one_td_vfa_op}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_1l}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{1l} \glspl{msa} comparison}{fig:bi_one_mc_tf_1l}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_2l}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{2l} \glspl{msa} comparison}{fig:bi_one_mc_tf_2l}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{3l} \glspl{msa} comparison}{fig:bi_one_mc_tf_3l}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\gls{bi} with \gls{mc}, \gls{tf} and \gls{4l} \glspl{msa} comparison}{fig:bi_one_mc_tf_4l}
+\fig[\textwidth]{others_rl_res/wz_td_vfa_op}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{msa} comparison}{fig:wz_td_vfa_op}
+\fig[\textwidth]{others_rl_res/wz_one_td_vfa_op}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{msa} comparison}{fig:wz_one_td_vfa_op}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_1l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_1l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_2l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_2l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_3l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_4l}
 
 \clearpage
 
