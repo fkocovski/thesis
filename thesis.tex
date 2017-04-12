@@ -85,6 +85,8 @@ Both the extended mathematical optimization methods as well as the \gls{rl} base
 
 \mainmatter
 
+\glsresetall
+
 \chapter{Introduction}
 \label{ch:intro}
 
@@ -129,6 +131,8 @@ This thesis is subdivided in five main chapters:
 	\item \chpref{ch:empirical_analysis} builds upon \chpref{ch:methodology} and makes its way into the hypothesis test field and the respective analysis results. Furthermore looks introspectively on the data correlation and gives an interpretation of the latter. Eventually in this section a statement about the contribution that the results bring into this field is given.
 	\item \chpref{ch:conclusion} is the culminating chapter in which a summary of the key findings of the thesis are outlined, the research questions posed in \secref{sec:objectives} are answered by looking at the actual usability, limitations and to whom the results are most applicable. Finally outlooks about the future trends and how the empirical results of this thesis can be extended by prospective researchers.
 \end{itemize}
+
+\glsresetall
 
 \chapter{Theoretical Foundations}
 \label{ch:foundations}
@@ -326,6 +330,8 @@ According to Matloff, different world views for discrete event programing \cite{
 \end{enumerate*}
 
 Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities \cite{Matloff2008}. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there won't be any change in state for the simulated entities \cite{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated \cite{Matloff2008}. By filling these gaps, a dramatical increase in computation can be observed \cite{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread \cite{Matloff2008}. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks exist \cite{Matloff2008}.
+
+\glsresetall
 
 \chapter{Methodology}
 \label{ch:methodology}
@@ -1102,6 +1108,7 @@ By changing the assignment order (refer to \figref{fig:user_job_assignment_order
 
 This approach effectively simulates batch policies with batch sizes $K>1$.
 
+\glsresetall
 
 \chapter{Empirical Analysis}
 \label{ch:empirical_analysis}
@@ -1525,6 +1532,7 @@ On a more general note, different comparisons have shown huge spikes in reductio
 
 \fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glspl{kpi} comparison between \gls{op} and \gls{onp} approaches}{fig:llqp_mc_vfa_on_vs_off}
 
+\glsresetall
 
 \chapter{Conclusion}
 \label{ch:conclusion}
@@ -1584,11 +1592,15 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 
 \appendix
 
+\glsresetall
+
 \chapter{Literature Overview}
 
 \fig[\textwidth]{literature_brainstorm}{Literature per topic categorization overview}{fig:literature_brainstorm}
 
 \clearpage
+
+\glsresetall
 
 \chapter{Optimization Results}
 
@@ -1711,6 +1723,8 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 %\fig[\textwidth]{onebatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \gls{st} evolution}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}
 
 \clearpage
+
+\glsresetall
 
 \chapter{\glsentrylong{rl} Results}
 
