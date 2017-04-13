@@ -5,7 +5,7 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{booktabs}
-\usepackage[colorlinks=true]{hyperref}
+\usepackage[colorlinks]{hyperref}
 % used to fix structure
 \usepackage{bookmark}
 \usepackage{amsfonts}
@@ -1313,12 +1313,12 @@ In order to maintain fairness amongst \gls{rl} training methods, all required pa
 \begin{tabular}{@{}ll@{}}
 \toprule
 Parameter        & Value  \\ \midrule
-$\gamma$            & $0.5$    \\
-$\alpha$            & $0.0001$ \\
-$\epsilon$          & $0.1$    \\
+Discount factor $\gamma$            & $0.5$    \\
+Step size parameter $\alpha$            & $0.0001$ \\
+\gls{ep} threshold $\epsilon$          & $0.1$    \\
 \gls{mc} epochs        & $1000$   \\
-\gls{mc} epoch training time & $100$ \\
-\glspl{ann} \gls{mc} training epochs & $5000$ \\
+\glspl{ann} \gls{mc} epochs & $10000$ \\
+\gls{mc} and \glspl{ann} \gls{mc} epoch training time & $100$ \\
 \gls{td} training time & $100000$   \\ \bottomrule
 \end{tabular}
 \caption{Global \glsentryfull{rl} parameters}
@@ -1466,10 +1466,10 @@ bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & \gls{pg} 
 \begin{tabular}{@{}lllllll@{}}
 \toprule
 KPI                 & wz\_td\_vfa\_op & wz\_one\_td\_vfa\_op & bi\_one\_mc\_tf\_1l & bi\_one\_mc\_tf\_2l & bi\_one\_mc\_tf\_3l & bi\_one\_mc\_tf\_4l \\ \midrule
-Lateness            & $0.97$                & $1.2$                     & $1.07$                    &                     &                     &                     \\
-Wait Time           & $0.89$                & $2.33$                     & $2.46$                    &                     &                     &                     \\
-Service Time        & $1.21$                & $1.1$                     & $0.98$                    &                     &                     &                     \\
-Average System Load & $1.22$                & $1.1$                     & $0.98$                    &                     &                     &                     \\ \bottomrule
+Lateness            & $0.97$                & $1.2$                     & $1.07$                    & $0.9$                    & $0.84$                    & $0.84$                    \\
+Wait Time           & $0.89$                & $2.33$                     & $2.46$                    & $1.11$                    & $0.85$                    & $0.86$                    \\
+Service Time        & $1.21$                & $1.1$                     & $0.98$                    & $0.87$                    & $0.84$                    & $0.84$                    \\
+Average System Load & $1.22$                & $1.1$                     & $0.98$                    & $0.87$                    & $0.84$                    & $0.84$                    \\ \bottomrule
 \end{tabular}%
 }
 \caption{Speedup across all \glsentryfullpl{kpi} of the additional policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
@@ -1726,11 +1726,11 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{Evolution}
 \label{subsec:onebatchone_evo_app}
 
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{msa} evolution}{fig:5_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{dmf} evolution}{fig:5_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{sdmf} evolution}{fig:5_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{esdmf} evolution}{fig:5_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}
-%\fig[\textwidth]{onebatchone_res/5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{st} evolution}{fig:5_BATCHONE_ST_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/1_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{msa} evolution}{fig:1_BATCHONE_MSA_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/1_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{dmf} evolution}{fig:1_BATCHONE_DMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/1_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{sdmf} evolution}{fig:1_BATCHONE_SDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/1_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{esdmf} evolution}{fig:1_BATCHONE_ESDMF_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{onebatchone_res/1_BATCHONE_ST_NU5_GI3_SIM1000_EVO}{K-Batch-1 with \glsentryfull{st} evolution}{fig:1_BATCHONE_ST_NU5_GI3_SIM1000_EVO}
 
 \clearpage
 
@@ -1863,9 +1863,9 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 \fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:5_WZ_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}
 \fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}
 \fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_1L_NU5_GI3_SIM1000_KPI}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_2L_NU5_GI3_SIM1000_KPI}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_3L_NU5_GI3_SIM1000_KPI}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_4L_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_2L_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_3L_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_4L_NU5_GI3_SIM1000_KPI}
 
 \clearpage
 
@@ -1887,9 +1887,9 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 \fig[\textwidth]{others_rl_res/wz_td_vfa_op}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{msa} comparison}{fig:wz_td_vfa_op}
 \fig[\textwidth]{others_rl_res/wz_one_td_vfa_op}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{msa} comparison}{fig:wz_one_td_vfa_op}
 \fig[\textwidth]{others_rl_res/bi_one_mc_tf_1l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_1l}
-%\fig[\textwidth]{others_rl_res/bi_one_mc_tf_2l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_2l}
-%\fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_3l}
-%\fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_4l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_2l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_2l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_3l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_4l}
 
 \clearpage
 
