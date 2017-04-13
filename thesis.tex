@@ -1,4 +1,4 @@
-\documentclass{seal_thesis}
+\documentclass[draft=false]{seal_thesis}
 
 \usepackage{url}
 \usepackage[inline]{enumitem}
@@ -64,9 +64,9 @@ This thesis expands the already prominent work in the field of optimal task assi
 
 By means of a discrete event simulation environment, in which existing policies for optimal job assignment in workflow processes, such as \gls{sq}, \gls{llqp}, K-Batch and 1-Batch-1, are extended and tested using both mathematical and \gls{rl} based optimization approaches. The discrete event simulation environment proposed in this thesis allows to control key variables that influence the efficiency of a policy, such as number of users, generation interval, service interval and length of the simulation.
 
-Both the extended mathematical optimization methods as well as the \gls{rl} based methods outperform the already existing approaches by a magnitude of $100\%-300\%$ under different circumstances. Even though promising results have been obtained, precautions have to be taken when interpreting the results: on one hand the mathematical optimizations obtained are coupled with higher computational complexity which arises business trade-offs, on the other hand the \gls{rl} based optimization overcome the computational complexity problem of the former by require lengthy training sessions in order to assert optimal convergence.
+Both the extended mathematical optimization methods as well as the \gls{rl} based methods outperform the already existing approaches by a $1.3$ speedup factor under different circumstances. Even though promising results have been obtained, precautions have to be taken when interpreting the results: on one hand the mathematical optimizations obtained are coupled with higher computational complexity which raise business trade-offs, on the other hand, \gls{rl} based optimizations overcome the computational complexity problem of the former but require lengthy training sessions in order to assert optimal convergence.
 
-\gls{rl} based optimization methods lay the foundations for possible extensions by using alternative methods such as \gls{irl} and \gls{al} which promise to overcome the limitations of \gls{rl} methods by eliminating the requirement of internal reward functions and merely ``observing'' experts executing tasks and learning optimal behaviors from them.
+\gls{rl} based optimization methods lay the foundations for extensions by using alternative methods such as \gls{irl} and \gls{al} which promise to overcome the limitations of \gls{rl} methods by eliminating the requirement of internal reward functions and merely ``observing'' experts executing tasks and learning optimal behaviors from them.
 
 \end{abstract}
 
@@ -93,7 +93,7 @@ Both the extended mathematical optimization methods as well as the \gls{rl} base
 
 \section{Problem Definition}
 
-Workflows are IT solutions that can help increase efficiency and get tasks done better and faster. However a key element of each workflow process still remains the human aspect. This human aspect can take many facets, such as humans analyzing a process, humans designing a process and humans executing the latter. This thesis focuses on the latter \ie where human agents interact with the workflow process in order to work on tasks. A business process that has been efficiently analyzed and subsequently optimally implemented still cannot ensure optimal execution, or no optimal execution can be achieved while a human intervention for task execution is present. It is here that optimal role resolution comes in play: optimally choosing and assigning a specific task inside the workflow process to the best possible actor is a non trivial task that has to be solved in order to close the ``optimization'' circle that workflow engines advertise.
+Workflows are IT solutions that can help increase efficiency and get tasks done better and faster. However a key element of each workflow process still remains the human aspect. This human aspect can take many facets, such as humans analyzing, designing or executing workflow processes. This thesis focuses on the latter: human agents interact with workflow processes in order to work on tasks. A business process that has been efficiently analyzed and subsequently optimally implemented still cannot ensure optimal execution, or no optimal execution can be achieved while a human intervention for task execution is present. It is here that optimal role resolution comes in play: optimally choosing and assigning a specific task inside the workflow process to the best possible actor is a non trivial task that has to be solved in order to close the ``optimization'' circle that workflow engines advertise.
 
 This field is relevant since an optimal role resolution can bring optimization from many sides:
 \begin{enumerate*}
@@ -499,7 +499,7 @@ The class inheritance structure of the policies implementation can be seen in \f
 
 \fig[\textwidth]{policies}{Policies class structure}{fig:policies}
 
-The authors definition of the \gls{msa} problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' as defined by \citet{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the \gls{dmf} problem \citep{Zeng2005}. The \gls{dmf} problem is formally defined by \citet{Zeng2005} as follows:
+The authors' definition of the \gls{msa} problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' as defined by \citet{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the \gls{dmf} problem \citep{Zeng2005}. The \gls{dmf} problem is formally defined by \citet{Zeng2005} as follows:
 
 \begin{align}
     \min_z \quad z\\
@@ -684,7 +684,7 @@ One captivating property of \gls{dp} methods is the concept of bootstrapping: up
 \gls{mc} methods use experience in form of sample episodes in order to learn value functions and optimal policies \citep[p. 123]{Sutton2017}. This approach yields different advantages over the \gls{dp} methods seen in \subsecref{subsec:dp} \citep[p. 123]{Sutton2017}:
 \begin{enumerate*}
 	\item They do not need a model of the environment's dynamics as they learn the optimal solutions by merely interacting with the environment
-	\item Since the learn from sample episodes, they are very well suited for simulation environments
+	\item Since they learn from sample episodes, they are very well suited for simulation environments
 	\item It is efficient and surprisingly easy to use \gls{mc} methods to focus on smaller regions or subsets of a problem
 	\item \gls{mc} methods are more robust when it comes to violations of the Markov property since they do not bootstrap for updating their values.
 \end{enumerate*}
@@ -759,7 +759,7 @@ This simplified case of linear function approximation for state-value functions 
 \subsubsection{\glsentrylongpl{ann}}
 \label{subsubsec:ann_theory}
 
-\glspl{ann} can be used for nonlinear function approximation \citep[p. 199]{Sutton2017}. The simplest case of an \gls{ann} is a single feedforward perceptron, meaning that it has only one hidden layer (\ie a layer that is neither an input nor an output layer) and that the \gls{ann} at hand has no loops between its neurons, meaning that the output can not influence the input (compared to recurrent \glspl{ann}, in which the output indeed can influence the input) \citep[p. 216]{Sutton2017}. 
+\glspl{ann} can be used for nonlinear function approximation \citep[p. 199]{Sutton2017}. The simplest case of an \gls{ann} is a single feedforward perceptron, meaning that it has only one hidden layer \ie a layer that is neither an input nor an output layer and that the \gls{ann} at hand has no loops between its neurons, meaning that the output can not influence the input (compared to recurrent \glspl{ann}, in which the output indeed can influence the input) \citep[p. 216]{Sutton2017}. 
 
 The connections between neurons inside an \gls{ann} are called weights and the analogy to its human counterpart is how strong synaptic connections are \citep[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer \gls{ann}.
 
@@ -1083,7 +1083,7 @@ User 2 & $4$     & $5$     & $6$     \\ \bottomrule
 
 It is clear that the ordering of the jobs assigned has an impact on the final outcome. \figref{fig:user_job_assignment_order} outlines a possible conformation where user 1 receives job 1 while user 2 gets assigned to jobs 2 and 3 respectively. In this case, job 1 is started at $t$ and is finished at $t+1$, job 2 is started at $t$ and is finished at $t+5$ and job 3 is started at $t+5$ and is finished at $t+11$. The respective lateness per job is: $1$ for job 1, $5$ for job 2 and $6$ for job $3$.
 
-By changing the assignment order (refer to \figref{fig:user_job_assignment_order2} for a graphical representation), the final outcome changes as well: In this case, job 1 is started at $t+2$ and is finished at $t+3$, job 2 is started at $t$ and is finished at $t+2$ and job 3 is started at $t$ and is finished at $t+6$. The respective lateness per job is: $1$ for job 1, $2$ for job 2 and $6$ for job $3$. By merely changing the assignment order a reduction of $40\%$ in lateness is observed for job 2.
+By changing the assignment order (refer to \figref{fig:user_job_assignment_order2} for a graphical representation), the final outcome changes as well: In this case, job 1 is started at $t+2$ and is finished at $t+3$, job 2 is started at $t$ and is finished at $t+2$ and job 3 is started at $t$ and is finished at $t+6$. The respective lateness per job is: $1$ for job 1, $2$ for job 2 and $6$ for job $3$. By merely changing the assignment order a $2.5$ speedup factor in lateness is observed for job 2.
 
 \begin{figure}[!ht]
 	\centering
@@ -1175,11 +1175,11 @@ Two different types of processes have been defined:
 
 \fig[\textwidth]{acquisition_process}{Acquisition workflow process consisting of multiple user tasks and decision nodes}{fig:acquisition_process}
 
-\subsection{Central Simulation and Process Parameters Definition}
+\subsection{Global Simulation and Process Parameters Definition}
 
-One key aspect in order to assert fairness across policies while simulated is to centrally define all parameters. \lstref{lst:central_parameters} shows the key central parameters defined as global variables.
+One key aspect in order to assert comparability across policies while simulated is to centrally define all parameters. \lstref{lst:central_parameters} shows the key central parameters defined as global variables.
 
-\begin{lstlisting}[caption=Central parameters definition that ensures fairness across simulation runs,label=lst:central_parameters,style=CustomPython]
+\begin{lstlisting}[caption=Global parameters definition that ensures comparability across simulation runs,label=lst:central_parameters,style=CustomPython]
 	NUMBER_OF_USERS = 3
 	SERVICE_INTERVAL = 1
 	GENERATION_INTERVAL = 3
@@ -1222,7 +1222,7 @@ The evolution plot shows the state change for the policy being analyzed by plott
 
 \fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the \glsentryfull{msa} solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
 
-Finally, when comparing different policies between each other, \citet{Milo2012}'s definition of speedup $S$ between two quantities $q_1$ and $q_2$ is adopted, which is formally defined by him as:
+Finally, when comparing different policies between each other, \citet{Milo2012}'s definition of speedup $S$ between two quantities $q_1$ and $q_2$ is adopted, which he formally defines as:
 
 \begin{equation}
 	S=\frac{q_1}{q_2}
@@ -1242,7 +1242,7 @@ This section focuses on the results of the different types of policies using the
 \begin{tabular}{@{}lll@{}}
 \toprule
 Variable            & Default     & Valid Range \\ \midrule
-Number of Users     & $3$           & $1-\infty$      \\
+Number of Users     & $5$           & $1-\infty$      \\
 Service Interval    & $1$           & $1-\infty$      \\
 Generation Interval & $3$           & $1-\infty$      \\
 Simulation Time     & $1000$          & $1-\infty$      \\
@@ -1317,7 +1317,9 @@ $\gamma$            & $0.5$    \\
 $\alpha$            & $0.0001$ \\
 $\epsilon$          & $0.1$    \\
 \gls{mc} epochs        & $1000$   \\
-\gls{td} training time & $1000$   \\ \bottomrule
+\gls{mc} epoch training time & $100$ \\
+\glspl{ann} \gls{mc} training epochs & $5000$ \\
+\gls{td} training time & $100000$   \\ \bottomrule
 \end{tabular}
 \caption{Global \glsentryfull{rl} parameters}
 \label{tab:global_rl_params}
@@ -1350,7 +1352,7 @@ k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \
 \label{tab:rl_batch_policies_overview}
 \end{table}
 
-\tabref{tab:rl_batch_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:onebatch_rl_msa_comp_app} for 1-Batch respectively to \subsecref{subsec:onebatchone_rl_msa_comp_app} for 1-Batch-1.
+\tabref{tab:rl_batch_kpis_comp_gain} summarizes the results. For the detailed results refer to \subsecref{subsec:onebatch_rl_msa_comp_app} for 1-Batch respectively to \subsecref{subsec:onebatchone_rl_msa_comp_app} for 1-Batch-1.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1360,14 +1362,14 @@ k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}llllll@{}}
 \toprule
-gls{kpi}                 & k\_batch\_mc\_vfa & k\_batch\_mc\_vfa\_op & k\_batch\_mc\_vfa\_opep & k\_batch\_td\_vfa\_op & k\_batchone\_td\_vfa\_op \\ \midrule
-Lateness            & $32.96$                  & $33.88$                      & $32.75$                        & $33.71$                      & $20.33$                         \\
-Wait Time           & $230.3$                  & $226.58$                      & $167.28$                        & $248.98$                      & $44.4$                         \\
-Service Time        & $12.07$                  & $13.06$                      & $14.71$                        & $12.11$                      & $14.14$                         \\
-Average System Load & $11.74$                  & $12.75$                      & $14.4$                        & $11.8$                      & $13.81$                         \\ \bottomrule
+\gls{kpi}                 & k\_batch\_mc\_vfa & k\_batch\_mc\_vfa\_op & k\_batch\_mc\_vfa\_opep & k\_batch\_td\_vfa\_op & k\_batchone\_td\_vfa\_op \\ \midrule
+Lateness            & $1.22$                  & $1.24$                      & $1.22$                        & $1.23$                      & $1.23$                         \\
+Wait Time           & $2.63$                  & $3.08$                      & $2.39$                        & $3.62$                      & $3.51$                         \\
+Service Time        & $1.11$                  & $1.11$                      & $1.12$                        & $1.1$                      & $1.1$                         \\
+Average System Load & $1.11$                  & $1.11$                      & $1.12$                        & $1.1$                      & $1.1$                         \\ \bottomrule
 \end{tabular}%
 }
-\caption{Reduction (in \%) across all \glsentryfullpl{kpi} of the batch policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
+\caption{Speedup across all \glsentryfullpl{kpi} of the batch policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
 \label{tab:rl_batch_kpis_comp_gain}
 \end{table}
 
@@ -1387,7 +1389,7 @@ Three different \gls{llqp} policies with \gls{rl} have been developed. \tabref{t
 Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
 llqp\_mc\_vfa\_op       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & \gls{op}                      \\
 llqp\_td\_vfa\_op   & \gls{llqp}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
-llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{op}                \\ \bottomrule
+llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{op}, \gls{1l}                \\ \bottomrule
 \end{tabular}%
 }
 \caption{Overview of developed \glsentryfull{llqp} policies with \glsentryfull{rl}}
@@ -1403,12 +1405,12 @@ llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{o
 \begin{tabular}{@{}llll@{}}
 \toprule
 \gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_td\_vfa\_op & llqp\_td\_tf\_op \\ \midrule
-Lateness            & $0.18$                  & $0.21$                  & $0.81$                 \\
-Wait Time           & $2.98$                  & $0.81$                  & $10.8$                 \\
-Service Time        & $-0.14$                  & $0.14$                  & $-0.3$                 \\
-Average System Load & $-0.15$                  & $0.19$                  & $-0.3$                 \\ \bottomrule
+Lateness            & $1.0$                  & $1.0$                  & $1.0$                 \\
+Wait Time           & $0.92$                  & $0.99$                  & $1.02$                 \\
+Service Time        & $1.01$                  & $1.0$                  & $1.0$                 \\
+Average System Load & $1.01$                  & $1.0$                  & $1.0$                 \\ \bottomrule
 \end{tabular}
-\caption{Reduction (in \%) across all \glsentryfullpl{kpi} of the \glsentryfull{llqp} policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
+\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{llqp} policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
 \label{tab:rl_llqp_kpis_comp_gain}
 \end{table}
 
@@ -1420,11 +1422,11 @@ Average System Load & $-0.15$                  & $0.19$                  & $-0.3
 \centering
 \begin{tabular}{@{}llll@{}}
 \toprule
-\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_mc\_vfa & difference (in \%) \\ \midrule
-Lateness            & $1.3138$                  & $1.3422$              & $-2.12$                   \\
-Wait Time           & $0.0874$                  & $0.1408$              & $-37.93$                   \\
-Service Time        & $1.2264$                  & $1.2014$              & $2.08$                   \\
-Average System Load & $39.24\%$                  & $38.49\%$              & $2.19$                   \\ \bottomrule
+\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_mc\_vfa & Speedup \\ \midrule
+Lateness            & $1.2756$                  & $1.2914$              & $0.99$                   \\
+Wait Time           & $0.0796$                  & $0.0711$              & $1.12$                   \\
+Service Time        & $1.1960$                  & $1.2203$              & $0.98$                   \\
+Average System Load & $38.22\%$                  & $39.00\%$              & $0.98$                   \\ \bottomrule
 \end{tabular}
 \caption{\glsentryfullpl{kpi} comparison between \glsentryfull{op} and \glsentryfull{onp} approaches}
 \label{tab:llqp_mc_vfa_op_vs_on}
@@ -1464,13 +1466,13 @@ bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & \gls{pg} 
 \begin{tabular}{@{}lllllll@{}}
 \toprule
 KPI                 & wz\_td\_vfa\_op & wz\_one\_td\_vfa\_op & bi\_one\_mc\_tf\_1l & bi\_one\_mc\_tf\_2l & bi\_one\_mc\_tf\_3l & bi\_one\_mc\_tf\_4l \\ \midrule
-Lateness            & $-6.02$                & $24.16$                     & $8.98$                    & $-12.12$                    & $-21.37$                    & $-18.8$                    \\
-Wait Time           & $-17.52$                & $77.88$                     & $134.96$                    & $1.88$                    & $-28.06$                    & $-19.39$                    \\
-Service Time        & $20.76$                & $13.08$                     & $-7.18$                    & $-15.87$                    & $-18.92$                    & $-18.6$                    \\
-Average System Load & $20.58$                & $12.76$                     & $-7.45$                    & $-15.95$                    & $-18.99$                    & $-18.68$                    \\ \bottomrule
+Lateness            & $0.97$                & $1.2$                     & $1.07$                    &                     &                     &                     \\
+Wait Time           & $0.89$                & $2.33$                     & $2.46$                    &                     &                     &                     \\
+Service Time        & $1.21$                & $1.1$                     & $0.98$                    &                     &                     &                     \\
+Average System Load & $1.22$                & $1.1$                     & $0.98$                    &                     &                     &                     \\ \bottomrule
 \end{tabular}%
 }
-\caption{Reduction (in \%) across all \glsentryfullpl{kpi} of the additional policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
+\caption{Speedup across all \glsentryfullpl{kpi} of the additional policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
 \label{tab:rl_others_kpis_comp_gain}
 \end{table}
 
@@ -1479,7 +1481,7 @@ Average System Load & $20.58$                & $12.76$                     & $-7
 \subsection{Optimization}
 \label{subsec:optimization_discussion}
 
-Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different solvers yield different solutions and computational complexities. \citet[p. 15]{Zeng2005} mention that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \citep[p. 13]{Zeng2005},\citep{Garey1990}. \citet[p. 13]{Zeng2005} propose however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of solvers. The \gls{st} ``flagship'' solver significantly outperforms the \gls{msa} solver (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher computational complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_solvers}) questions the practical use of this solver over the other methods. A $20\%$ gain in respect to lateness requiring a quadratic higher computational complexity poses a dubious trade-off from a business perspective.
+Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different solvers yield different solutions and computational complexities. \citet[p. 15]{Zeng2005} mention that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \citep[p. 13]{Zeng2005},\citep{Garey1990}. \citet[p. 13]{Zeng2005} propose however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of solvers. The \gls{st} ``flagship'' solver significantly outperforms the \gls{msa} solver (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher computational complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_solvers}) questions the practical use of this solver over the other methods. A speedup factor of $1.23$ in respect to lateness requiring a quadratic higher computational complexity poses a dubious trade-off from a business perspective.
 
 \fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glsentryfullpl{kpi} speedup comparison between \glsentryfull{msa} and \glsentryfull{st} solvers for 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
 
@@ -1505,18 +1507,18 @@ It is clear that \gls{st} is ``fairer'' at balancing loads across users compared
 \subsection{\glsentrylong{rl}}
 \label{subsec:rl_discussion}
 
-Let us first focus on \gls{llqp}, which, as explained in \secref{sec:opt_policies}, focuses on assigning a job to the least loaded qualified person. By comparing the results obtained with \gls{rl} against the optimization method, we clearly see that gains across all \glspl{kpi} are imperceptible (refer to \subsecref{subsec:llqp_rl_msa_comp_app} for more details). This sheds light on two key aspects:
+Let us first focus on \gls{llqp}, which, as explained in \secref{sec:opt_policies}, focuses on assigning a job to the least loaded qualified person. By comparing the results obtained with \gls{rl} against the optimization method, we clearly see that speedups across all \glspl{kpi} are imperceptible (refer to \subsecref{subsec:llqp_rl_msa_comp_app} for more details). This sheds light on two key aspects:
 \begin{enumerate*}
 	\item \gls{llqp} policies are intrinsically optimized by their nature of implementation.
 	\item \gls{rl} methods converge really well (for a $1000$ time steps \gls{llqp} simulation, \gls{llqp} with \gls{td} and \gls{tf} only needs 20 times the simulation time as training in order to perfectly converge to actual \gls{llqp}) and, even if only slightly, exploit internal mechanisms of \gls{llqp} policies to extract better results.
 \end{enumerate*}
 
-On the other hand, batch policies exhibit a much bigger optimization potential for which \gls{rl} methods do really adapt well. Lateness improvements in the range of $30\%$ for 1-Batch (see \subsecref{subsec:onebatch_rl_msa_comp_app}) respectively $20\%$ for 1-Batch-1 (see \subsecref{subsec:onebatchone_rl_msa_comp_app}) confirm the previous claim.
+On the other hand, batch policies exhibit a much bigger optimization potential for which \gls{rl} methods do really adapt well. Lateness speedup of factor $1.24$ for 1-Batch (see \subsecref{subsec:onebatch_rl_msa_comp_app}) respectively $1.23$ for 1-Batch-1 (see \subsecref{subsec:onebatchone_rl_msa_comp_app}) confirm the previous claim.
 
 Lastly, when accounting for job order during assignment (refer to \subsecref{subsec:batch_size_emulation} for the detailed explanation), improvements are observed only under specific conditions:
 \begin{enumerate*}
 	\item by using \gls{wzo} (see \figref{fig:wz_one_td_vfa_op}) and 
-	\item \glspl{ann} with \gls{1l} (see \figref{fig:bi_one_mc_tf_1l}).
+	\item \glspl{ann} with \gls{1l} (see \figref{fig:bi_one_mc_tf_1l} for \glspl{kpi} comparison against \gls{msa} and fig for the graphical representation of the \gls{ann} implemented with \gls{tf}).
 \end{enumerate*}
 
 Having said that, deep \glspl{ann} exhibits worse results compared to their equivalent emulated optimization methods. This can be explained from a twofold perspective:
@@ -1536,7 +1538,7 @@ Yet another crucial aspect to consider when undergoing \gls{rl} methods is usage
 
 The combination of all these three factors is referred as ``the deadly triad'' \citep[p. 249]{Sutton2017}. \citet[p. 249]{Sutton2017} argue that dangers can arise only when all three aspects are present, if used singularly convergence properties are safe.
 
-On a more general note, different comparisons have shown huge spikes in reduction of waiting time (\eg \subsecref{subsec:onebatch_rl_msa_comp_app}). Even though compelling, the practical usage is limited: when considering workflow processes with fixed available resources (\ie users participating), huge reduction in job waiting times does not always correlate with better system performance, since it might be the case that even if a job is ready to be assigned there are no available resources to complete such job.
+On a more general note, different comparisons have shown huge spikes in speedup of waiting time (\eg \subsecref{subsec:onebatch_rl_msa_comp_app}). Even though compelling, the practical usage is limited: when considering workflow processes with fixed available resources (\ie users participating), huge speedup in job waiting times does not always correlate with better system performance, since it might be the case that even if a job is ready to be assigned there are no available resources to complete such job.
 
 \fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glsentryfullpl{kpi} comparison between \glsentryfull{op} and \glsentryfull{onp} approaches}{fig:llqp_mc_vfa_on_vs_off}
 
@@ -1547,9 +1549,9 @@ On a more general note, different comparisons have shown huge spikes in reductio
 
 \section{Summary}
 
-The focus of this thesis was analyzing different approaches for optimally allocating resources inside workflow processes by means of different methods.
+This thesis' focus was analyzing different approaches for optimally allocating resources inside workflow processes by means of different methods.
 
-Initially a found literature review has been made in order to establish the existing optimization solution (\ie foundations set by \citet{Zeng2005}), then a roadmap on how to further develop such methods has been laid out. The roadmap encloses a two fold approach:
+Initially, a through literature review has been made in order to establish the existing optimization solution (\ie foundations set by \citet{Zeng2005}), then a roadmap on how to further develop such methods has been laid out. The roadmap encloses a two fold approach:
 
 \begin{enumerate}[label=\textbf{Appr. \arabic*},ref=Approach \arabic*]
  	\item Further develop mathematical optimizations \label{itm:math_opt}
@@ -1590,7 +1592,7 @@ In general \gls{rl} based approaches are a refreshing and novel methodology for 
 
 \section{Outlook}
 
-This thesis merely ``scratches the surface'' of viable alternatives to existing optimization techniques for workflow processes. A direct follow up consists in testing in operative environments the introduction feasibility and efficiency measured in the simulation environment outlined in this thesis. This includes testing the robustness, efficacy and viability of the proposed policies by putting them under ``real-world'' stress situation in order to assert the efficiency claims. For \gls{rl} methods executing lengthy training sessions might prove impractical: thousands of training sessions required by \gls{rl} methods in order to comply with convergence properties can prove infeasible for companies that are not able to generate such amounts of data, thus directly limiting applicability of these methods.
+This thesis does a first step in laying the foundations for viable alternatives to existing optimization techniques for workflow processes. A direct follow up consists in testing in operative environments the introduction feasibility and efficiency measured in the simulation environment outlined in this thesis. This includes testing the robustness, efficacy and viability of the proposed policies by putting them under ``real-world'' stress situation in order to assert the efficiency claims. For \gls{rl} methods executing lengthy training sessions might prove impractical: thousands of training sessions required by \gls{rl} methods in order to comply with convergence properties can prove infeasible for companies that are not able to generate such amounts of data, thus directly limiting applicability of these methods.
 
 \gls{rl} is a novel field that is currently still being actively researched and pursued, as it has yield promising results \citep{Mnih2015,Silver2016}. By using \glspl{ann} one can effectively approximate nonlinear functions as it has been outlined in \subsecref{subsubsec:ann_theory}. Even though in this thesis only feedforward \glspl{ann} have been used, the problem domain is very well suited for the recurrent variant as well.
 
@@ -1741,20 +1743,20 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:onebatch_rl_kpi_app}
 
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}{1-Batch with \glsentryfull{mc} and \glsentryfull{vfa} \glsentryfullpl{kpi}}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa}, \glsentryfull{op} and \glsentryfull{ep} \glsentryfullpl{kpi}}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{1-Batch with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI3_SIM1000_KPI}{1-Batch with \glsentryfull{mc} and \glsentryfull{vfa} \glsentryfullpl{kpi}}{fig:1_BATCH_MC_VFA_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI3_SIM1000_KPI}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_BATCH_MC_VFA_OP_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI3_SIM1000_KPI}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa}, \glsentryfull{op} and \glsentryfull{ep} \glsentryfullpl{kpi}}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}{1-Batch with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_BATCH_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:onebatch_rl_evo_app}
 
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}{1-Batch with \glsentryfull{mc} and \glsentryfull{vfa} evolution}{fig:1_BATCH_MC_VFA_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_BATCH_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa}, \glsentryfull{op} and \glsentryfull{ep} evolution}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{1-Batch with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_BATCH_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_NU5_GI3_SIM1000_EVO}{1-Batch with \glsentryfull{mc} and \glsentryfull{vfa} evolution}{fig:1_BATCH_MC_VFA_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OP_NU5_GI3_SIM1000_EVO}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_BATCH_MC_VFA_OP_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_MC_VFA_OPEP_NU5_GI3_SIM1000_EVO}{1-Batch with \glsentryfull{mc}, \glsentryfull{vfa}, \glsentryfull{op} and \glsentryfull{ep} evolution}{fig:1_BATCH_MC_VFA_OPEP_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{kbatch_rl_res/1_BATCH_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}{1-Batch with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_BATCH_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}
 
 \clearpage
 
@@ -1773,14 +1775,14 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:onebatchone_rl_kpi_app}
 
-\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{1-Batch-1 with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}{1-Batch-1 with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:onebatchone_rl_evo_app}
 
-%\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{1-Batch-1 with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{kbatchone_rl_res/1_BATCHONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}{1-Batch-1 with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_BATCHONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}
 
 \clearpage
 
@@ -1796,18 +1798,18 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:llqp_rl_kpi_app}
 
-\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI}{\glsentryfull{llqp} with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:LLQP_MC_VFA_OP_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
-\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{tf} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI3_SIM1000_KPI}{\glsentryfull{llqp} with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:LLQP_MC_VFA_OP_NU5_GI3_SIM1000_KPI}
+\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:LLQP_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI3_TRSD2_SIM1000_KPI}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{tf} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:LLQP_TD_TF_OP_NU5_GI3_TRSD2_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:llqp_rl_evo_app}
 
-%\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI2_SIM1000_EVO}{\glsentryfull{llqp} with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:LLQP_MC_VFA_OP_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:LLQP_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
-%\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{tf} and \glsentryfull{op} evolution}{fig:LLQP_TD_TF_OP_NU5_GI2_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{llqp_rl_res/LLQP_MC_VFA_OP_NU5_GI3_SIM1000_EVO}{\glsentryfull{llqp} with \glsentryfull{mc}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:LLQP_MC_VFA_OP_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{llqp_rl_res/LLQP_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:LLQP_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{llqp_rl_res/LLQP_TD_TF_OP_NU5_GI3_TRSD2_SIM1000_EVO}{\glsentryfull{llqp} with \glsentryfull{td}, \glsentryfull{tf} and \glsentryfull{op} evolution}{fig:LLQP_TD_TF_OP_NU5_GI3_TRSD2_SIM1000_EVO}
 
 \clearpage
 
@@ -1846,29 +1848,36 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 
 \clearpage
 
+\subsection{\glsentrylong{ann} Implementation in \glsentrylong{tf} for \glsentrylong{llqp} Policy}
+\label{subsec:llqp_rl_ann_app}
+
+\fig[\textwidth]{llqp_rl_ann_with_tf}{\glsentryfull{1l} Implementation in \glsentryfull{tf} for \glsentryfull{llqp} Policy}{fig:llqp_rl_ann_with_tf}
+
+\clearpage
+
 \section{Others}
 
 \subsection{\glsentryshortpl{kpi}}
 \label{subsec:others_rl_kpi_app}
 
-\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_KPI}
-\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:5_WZ_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{kpi}}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_KPI}
+\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_1L_NU5_GI3_SIM1000_KPI}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_2L_NU5_GI3_SIM1000_KPI}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_3L_NU5_GI3_SIM1000_KPI}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI3_SIM1000_KPI}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{kpi}}{fig:1_BI_ONE_MC_TF_4L_NU5_GI3_SIM1000_KPI}
 
 \clearpage
 
 \subsection{Evolution}
 \label{subsec:others_rl_evo_app}
 
-%\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:5_WZ_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI2_TRSD2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} evolution}{fig:1_BI_ONE_MC_TF_1L_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} evolution}{fig:1_BI_ONE_MC_TF_2L_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} evolution}{fig:1_BI_ONE_MC_TF_3L_NU5_GI2_SIM1000_EVO}
-%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} evolution}{fig:1_BI_ONE_MC_TF_4L_NU5_GI2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/5_WZ_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:5_WZ_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_WZ_ONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} evolution}{fig:1_WZ_ONE_TD_VFA_OP_NU5_GI3_TRSD2_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_1L_NU5_GI3_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} evolution}{fig:1_BI_ONE_MC_TF_1L_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_2L_NU5_GI3_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} evolution}{fig:1_BI_ONE_MC_TF_2L_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_3L_NU5_GI3_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} evolution}{fig:1_BI_ONE_MC_TF_3L_NU5_GI3_SIM1000_EVO}
+%\fig[\textwidth]{others_rl_res/1_BI_ONE_MC_TF_4L_NU5_GI3_SIM1000_EVO}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} evolution}{fig:1_BI_ONE_MC_TF_4L_NU5_GI3_SIM1000_EVO}
 
 \clearpage
 
@@ -1878,9 +1887,9 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 \fig[\textwidth]{others_rl_res/wz_td_vfa_op}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{msa} comparison}{fig:wz_td_vfa_op}
 \fig[\textwidth]{others_rl_res/wz_one_td_vfa_op}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{msa} comparison}{fig:wz_one_td_vfa_op}
 \fig[\textwidth]{others_rl_res/bi_one_mc_tf_1l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_1l}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_2l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_2l}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_3l}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_4l}
+%\fig[\textwidth]{others_rl_res/bi_one_mc_tf_2l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_2l}
+%\fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_3l}
+%\fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_4l}
 
 \clearpage
 
