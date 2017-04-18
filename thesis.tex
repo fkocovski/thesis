@@ -740,7 +740,13 @@ where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$:
 
 is the vector of partial derivatives with respect to $\theta$ \citep[p. 195]{Sutton2017}.
 
-An exceptional case is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \citep[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features $\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top$ which has the same number of components as $\theta$ \citep[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-\gls{vfa} as the inner product between $\theta$ and $\phi (s)$ \citep[p. 198]{Sutton2017}:
+An exceptional case is linear methods for function approximation, where the approximate function $\hat{v} (\cdot ,\theta)$ is a linear function of the weight vector $\theta$ \citep[p. 198]{Sutton2017}. This means that for each state $s$ there is a corresponding vector of features
+
+\begin{equation}
+	\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top
+\end{equation}
+
+which has the same number of components as $\theta$ \citep[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the state-\gls{vfa} as the inner product between $\theta$ and $\phi (s)$ \citep[p. 198]{Sutton2017}:
 
 \begin{equation}
 \label{eq:function_approximation_dot}
@@ -1897,7 +1903,7 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 
 \printglossaries
 
-\bibliographystyle{humannat}
+\bibliographystyle{apalike}
 \bibliography{sources}
 
 \end{document}
