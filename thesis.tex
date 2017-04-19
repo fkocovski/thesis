@@ -5,7 +5,7 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks]{hyperref}
 % used to fix structure
 \usepackage{bookmark}
 \usepackage{amsfonts}
@@ -1607,6 +1607,26 @@ Moreover, bleeding edge domains have originated from \gls{rl} such as \gls{irl} 
 Having said that, \ref{rq:two} can be answered positively as well: there are indeed state of the art approaches that can be used as alternatives or complements to the job assignment mathematical optimization. 
 
 \appendix
+
+\glsresetall
+
+\chapter{Project Management}
+
+The first half of the thesis road-map consisted of an in-depth literature review with a twofold focus:
+\begin{enumerate*}
+	\item Analyzing existing literature and solutions in the domain as proposed by \citet{Zeng2005}.
+	\item Analyzing novel approaches for complementing the existing solutions as outlined by \citet{Sutton2017}.
+\end{enumerate*}
+
+With a solid foundations laid down, starting December 1, 2016 the implementation phase began. Initially the focus was set on implementing the simulation environment, followed by the implementation of the optimization solution \ie the \gls{msa} solver, proposed by \citet{Zeng2005} and subsequently the optimization alternatives (refer to \subsecref{sec:opt_policies}).
+
+\fig[\textwidth]{project_management_gantt_chart}{Project Management Gantt Chart for 2016}{fig:project_management_gantt_chart}
+
+Starting January 1, 2017 the implementation focus shifted towards the novel \gls{rl} approaches as outlined by \citet{Sutton2017}, which continued until March 31, 2017. In parallel, the thesis report was being iteratively written. Starting April 17, 2017 the presentation's work started in conjunction with the thesis report.
+
+\fig[\textwidth]{project_management_gantt_chart_2017}{Project Management Gantt Chart for 2017}{fig:project_management_gantt_chart_2017}
+
+\clearpage
 
 \glsresetall
 
