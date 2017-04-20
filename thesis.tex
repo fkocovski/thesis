@@ -132,7 +132,21 @@ This thesis is subdivided in five main chapters:
 	\item \chpref{ch:conclusion} is the culminating chapter in which a summary of the key findings of the thesis are outlined, the research questions posed in \secref{sec:objectives} are answered by looking at the actual usability, limitations and to whom the results are most applicable. Finally outlooks about the future trends and how the empirical results of this thesis can be extended by prospective researchers is given.
 \end{itemize}
 
-An overview of the different project phases outlined can be found in \chpref{ch:project_management}.
+\section{Project Management}
+
+The first half of the thesis road-map consisted of an in-depth literature review with a twofold focus:
+\begin{enumerate*}
+	\item Analyzing existing literature and solutions in the domain as proposed by \citet{Zeng2005}.
+	\item Analyzing novel approaches for complementing the existing solutions as outlined by \citet{Sutton2017}.
+\end{enumerate*}
+
+With a solid foundations laid down, starting December 1, 2016 the implementation phase began. Initially the focus was set on implementing the simulation environment, followed by the implementation of the optimization solution \ie the \gls{msa} solver, proposed by \citet{Zeng2005} and subsequently the optimization alternatives (refer to \subsecref{sec:opt_policies}).
+
+\fig[\textwidth]{project_management_gantt_chart}{Project Management Gantt Chart for 2016}{fig:project_management_gantt_chart}
+
+Starting January 1, 2017 the implementation focus shifted towards the novel \gls{rl} approaches as outlined by \citet{Sutton2017}, which continued until March 31, 2017. In parallel, the thesis report was being iteratively written. Starting April 17, 2017 the presentation's work started in conjunction with the thesis report.
+
+\fig[\textwidth]{project_management_gantt_chart_2017}{Project Management Gantt Chart for 2017}{fig:project_management_gantt_chart_2017}
 
 \glsresetall
 
@@ -850,7 +864,7 @@ simply linear in features \citep[p. 266]{Sutton2017}.
 
 With these definitions in mind, one can formally define one of the very first \gls{mc} based \gls{pg} methods: \texttt{REINFORCE} \citep{Williams1992}.
 
-Williams defines his \texttt{REINFORCE} algorithm by the following update function:
+\citet{Williams1992} defines his \texttt{REINFORCE} algorithm by the following update function:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha \gamma^t G_t \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
@@ -1610,27 +1624,6 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 
 \glsresetall
 
-\chapter{Project Management}
-\label{ch:project_management}
-
-The first half of the thesis road-map consisted of an in-depth literature review with a twofold focus:
-\begin{enumerate*}
-	\item Analyzing existing literature and solutions in the domain as proposed by \citet{Zeng2005}.
-	\item Analyzing novel approaches for complementing the existing solutions as outlined by \citet{Sutton2017}.
-\end{enumerate*}
-
-With a solid foundations laid down, starting December 1, 2016 the implementation phase began. Initially the focus was set on implementing the simulation environment, followed by the implementation of the optimization solution \ie the \gls{msa} solver, proposed by \citet{Zeng2005} and subsequently the optimization alternatives (refer to \subsecref{sec:opt_policies}).
-
-\fig[\textwidth]{project_management_gantt_chart}{Project Management Gantt Chart for 2016}{fig:project_management_gantt_chart}
-
-Starting January 1, 2017 the implementation focus shifted towards the novel \gls{rl} approaches as outlined by \citet{Sutton2017}, which continued until March 31, 2017. In parallel, the thesis report was being iteratively written. Starting April 17, 2017 the presentation's work started in conjunction with the thesis report.
-
-\fig[\textwidth]{project_management_gantt_chart_2017}{Project Management Gantt Chart for 2017}{fig:project_management_gantt_chart_2017}
-
-\clearpage
-
-\glsresetall
-
 \chapter{Literature Overview}
 
 \fig[\textwidth]{literature_brainstorm}{Literature per topic categorization overview}{fig:literature_brainstorm}
@@ -1826,12 +1819,12 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 \subsection{Comparison with \glsentryshort{msa}}
 \label{subsec:others_rl_msa_comp_app}
 
-\fig[\textwidth]{others_rl_res/wz_td_vfa_op}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{msa} comparison}{fig:wz_td_vfa_op}
-\fig[\textwidth]{others_rl_res/wz_one_td_vfa_op}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfullpl{msa} comparison}{fig:wz_one_td_vfa_op}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_1l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_1l}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_2l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_2l}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_3l}
-\fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfullpl{msa} comparison}{fig:bi_one_mc_tf_4l}
+\fig[\textwidth]{others_rl_res/wz_td_vfa_op}{\glsentryfull{wz} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfull{msa} comparison}{fig:wz_td_vfa_op}
+\fig[\textwidth]{others_rl_res/wz_one_td_vfa_op}{\glsentryfull{wzo} with \glsentryfull{td}, \glsentryfull{vfa} and \glsentryfull{op} \glsentryfull{msa} comparison}{fig:wz_one_td_vfa_op}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_1l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{1l} \glsentryfull{msa} comparison}{fig:bi_one_mc_tf_1l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_2l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{2l} \glsentryfull{msa} comparison}{fig:bi_one_mc_tf_2l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfull{msa} comparison}{fig:bi_one_mc_tf_3l}
+\fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfull{msa} comparison}{fig:bi_one_mc_tf_4l}
 
 \clearpage
 
