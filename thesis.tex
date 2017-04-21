@@ -58,9 +58,11 @@ Ultimately I want to thank the whole staff of immopac ag for their continuous su
 
 \end{acknowledgements}
 
+\glsresetall
+
 \begin{abstract}
 
-Efficiently assigning resources, specifically human resources \ie users, in workflow processes in order to maximize the efficiency is a vital aspect when implementing workflow engines in corporate environments. By what means this optimal assignment is done, or more generally the resolvability of the assignment problem in combinatorial optimization, has been widely researched \citep{Zeng2005}. Usual methods consider mathematical optimization with numerical optimizers which has lead to promising results \citep{Zeng2005}. However computational complexity is a key limiting factor when approaching the assignment problem from a mathematical optimizer perspective \citep{Zeng2005}.
+Efficiently assigning resources, specifically human resources \ie users, in workflow processes in order to maximize the efficiency is a vital aspect when implementing workflow engines in corporate environments \citep{Mentzas2001}. By what means this optimal assignment is done, or more generally the resolvability of the assignment problem in combinatorial optimization, has been widely researched \citep{Zeng2005}. Usual methods consider mathematical optimization with numerical optimizers which has lead to promising results \citep{Zeng2005}. However computational complexity is a key limiting factor when approaching the assignment problem from a mathematical optimizer perspective \citep{Zeng2005}.
 
 This thesis expands the already prominent work in the field of optimal task assignment in workflow processes by extending the already researched mathematical optimization and proposes a novel approach by introducing \gls{rl} based optimization approaches \citep{Sutton2017}.
 
@@ -72,9 +74,21 @@ Both the extended mathematical optimization methods as well as the \gls{rl} base
 
 \end{abstract}
 
-\begin{zusammenfassung}
-\todo{WRITE ME!}
-\end{zusammenfassung}
+\glsresetall
+
+\begin{otherlanguage}{ngerman}
+	\begin{zusammenfassung}
+	Ressourcen, insbesondere menschliche Ressourcen \dhg Nutzer, in Workflowprozessen zu zuteilen zwecks Effizienz Maximierung, ist ein zentraler Aspekt bei der Umsetzung von Workflowinstallationen in Gesellschaftsumgebungen \citep{Mentzas2001}. Wie diese Zuteilung erfolgt oder im Allgemeinen die Lösbarkeit des Zuordnungsproblems wurden ausführlich erforscht \citep{Zeng2005}. Normalerweise Methoden aus der kombinatorischen Optimierung mit numerischen Optimierungen haben vielversprechende Resultate bewiesen \citep{Zeng2005}. Allerdings spielt die rechnerische Komplexität aus der mathematischen Perspektive eine zentrale Rolle \citep{Zeng2005}.
+
+	Diese Masterarbeit erweitert die prominente Arbeit im Bereich von der optimalen Aufgabezuteilung in Workflowprozessen indem die mathematischen Optimierungsmethoden ausgebaut sind und einen neuartigen Ansatz mit \gls{rl} vorgestellt ist \citep{Sutton2017}.
+
+	Mittels einer diskreten Ereignisssimulationsumgebung worin die bestehenden Policen für die optimalen Aufgabenzuteilung in Workflowprozessen \zbg \gls{sq}, \gls{llqp}, K-Batch und 1-Batch-1, erweitert und getestet wurden unter Verwendung von mathematischen und \gls{rl} basierten Methoden. Die diskrete Ereignisssimulationsumgebung aus dieser Masterarbeit ermöglicht die Steuerung von wesentlichen Variablen die die Effizienz einer Police beeinflussen können \zbg Anzahl Nutzer, Generationsintervall, Bearbeitungsintervall und Länge der Simulation.
+
+	Sowohl die mathematischen als auch die \gls{rl} basierten Optimierungsmethoden übertreffen die bestehenden Methoden bei einem $1.3$ Beschleunigungsfaktor unter verschiedenen Konditionen. Obwohl vielversprechende Resultate erreicht wurden, man muss Sicherheitsmassnahmen bei der Resultateinterpretation treffen: einerseits weisen die mathematischen Optimierungsmethoden höhere rechnerische Komplexität auf welche Businesskompromisse aufwirft, anderseits überwinden die \gls{rl} basierten Methoden die rechnerische Komplexität von den Optimierungsmethoden, verlangen aber langwierige Trainingssessionen um die optimale Konvergenz sicherzustellen.
+
+	Die \gls{rl} basierten Methoden legen die Grundlagen für Erweiterungen mittels alternativer Methoden \zbg \gls{irl} \citep{Ng2000} und \gls{al} welche verspricht die Einschränkungen von \gls{rl} basierten Methoden durch die Auflösung von internen Entlohnungsfunktionen zu überwinden und lediglich optimale Verhalten zu lernen durch die ``Beobachtung'' von Sachverständigen \citep{Abbeel2004}.
+	\end{zusammenfassung}
+\end{otherlanguage}
 
 \tableofcontents
 
@@ -502,11 +516,13 @@ Different types of policies have been implemented following the foundations laid
 All batch policies require the solution of an optimization problem. The authors define this problem as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``\gls{msa}''\citep[p. 7]{Zeng2005}. The authors define the task flowtime as the elapsed simulation time between task generation and its completion \citep{Zeng2005,Baker1974}. Formally \gls{msa} is formulated as follows:
 
 \begin{align}
-    \min \quad z\\
-    \text{subject to: } \notag \\
-    \sum_{i \in W} x_{ij} &= 1 \quad \forall j \in T\\
-    a_i + \sum_{j \in T} x_{ij} p_{ij} &\leq z \quad \forall i \in W\\
-    x_{ij}=0 \quad \text{or} \quad x_{ij}&=1 \quad \forall i \in W, \forall j \in T
+	\begin{split}
+	    \min \quad z\\
+	    \text{subject to:} \\
+	    \sum_{i \in W} x_{ij} &= 1 \quad \forall j \in T\\
+	    a_i + \sum_{j \in T} x_{ij} p_{ij} &\leq z \quad \forall i \in W\\
+	    x_{ij}=0 \quad \text{or} \quad x_{ij}&=1 \quad \forall i \in W, \forall j \in T
+	\end{split}
 \end{align}
 
 All variables definition still hold without loss of generality as defined by the authors \citep[pp. 5-7]{Zeng2005}.
@@ -518,28 +534,30 @@ The class inheritance structure of the policies implementation can be seen in \f
 The authors' definition of the \gls{msa} problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' as defined by \citet{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the \gls{dmf} problem \citep{Zeng2005}. The \gls{dmf} problem is formally defined by \citet{Zeng2005} as follows:
 
 \begin{align}
-    \min \quad z\\
-    \text{subject to: } \notag \\
-    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
-    s_j &\geq r_j \quad \forall j \in T\\
+    \min \quad z \notag \\
+    \text{subject to:} \notag \\
+    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T \notag \\
+    s_j &\geq r_j \quad \forall j \in T \notag \\
     (x_{ijk} + x_{ij'(k+1)} - 1)(s_j + p_{ij}) &\leq s_{j'} \quad \forall i \in W, \forall k \in T, \forall j \in T, \forall j' \in T \label{eq:nonlinear_constraints_dmf}\\
-    s_j + \sum_{i \in W} \sum_{k \in T} p_{ij} x_{ijk} - r_j &\leq z \quad \forall j \in T\\
-    x_{ijk} = 0 \quad \text{or} \quad x_{ijk} = 1 &\quad \forall i \in W, \forall j \in T, \forall k \in T\\
-    s_j &\geq 0
+    s_j + \sum_{i \in W} \sum_{k \in T} p_{ij} x_{ijk} - r_j &\leq z \quad \forall j \in T \notag \\
+    x_{ijk} = 0 \quad \text{or} \quad x_{ijk} = 1 &\quad \forall i \in W, \forall j \in T, \forall k \in T \notag \\
+    s_j &\geq 0 \notag 
 \end{align}
 
 Again, all variables definition still hold without loss of generality as described by the authors \citep[p. 6]{Zeng2005}. As \citet{Zeng2005} note in their work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints but mention that by adding auxiliary variables the aforementioned \gls{dmf} formulation can be effectively converted into a mixed integer program and thus solve it \citep[p. 6]{Zeng2005}. On this note they argue that the application of the \gls{dmf} problem in practice poses some problems \citep{Zeng2005}. In this thesis however a conversion of the \gls{dmf} formulation proposed by \citet{Zeng2005} is introduced in order to adequately solve the optimization problem. The formal definition of such optimization problem is called \gls{edmf} and is devised as follows:
 
 \begin{align}
-    \min \quad z_{\text{max}}\\
-    \text{subject to: } \notag \\
-    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
-    a_i + \sum_{j \in T} p_{ij} x_{ijk} &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
-    z_{i*k-1} + \sum_{j \in T} p_{ij} x_{ijk} &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
-    z_{i*k}+ \sum_{j \in T} w_j x_{ijk} &\leq z_{\text{max}} \quad \forall i \in W, \forall k \in T\\
-    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
-    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
-    z_{i*k} &\geq 0 \quad \forall i \in W, \forall k \in T
+	\begin{split}
+	    \min \quad z_{\text{max}}\\
+	    \text{subject to:} \\
+	    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
+	    a_i + \sum_{j \in T} p_{ij} x_{ijk} &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+	    z_{i*k-1} + \sum_{j \in T} p_{ij} x_{ijk} &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
+	    z_{i*k}+ \sum_{j \in T} w_j x_{ijk} &\leq z_{\text{max}} \quad \forall i \in W, \forall k \in T\\
+	    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+	    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
+	    z_{i*k} &\geq 0 \quad \forall i \in W, \forall k \in T
+	\end{split}
 \end{align}
 
 This formulation clearly gets rid of the nonlinear constraints while still accounting for dynamical arrival of tasks, making thus the \gls{dmf} problem as defined by \citet{Zeng2005} effectively solvable.
@@ -562,12 +580,14 @@ In order to calculate $z_{ijk}$, one has to consider also when user $i$ will act
 Without further ado, the simplified formulation of \gls{edmf} (called \gls{sdmf}) is the following:
 
 \begin{align}
-    \min \quad z_{\text{max}}\\
-    \text{subject to: } \notag \\
-    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
-    a_i + \sum_{t=1}^k \sum_j (p_{ij} + w_j I(t=k))x_{ijt} &\leq z_{\text{max}}\\
-    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
-    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0
+	\begin{split}
+	    \min \quad z_{\text{max}}\\
+	    \text{subject to:} \\
+	    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
+	    a_i + \sum_{t=1}^k \sum_j (p_{ij} + w_j I(t=k))x_{ijt} &\leq z_{\text{max}}\\
+	    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+	    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0
+	\end{split}
 \end{align}
 
 By comparing both formulation it is clear that \gls{sdmf} manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness. Please note, however, that this simplification is only possible because of the nature of the implementation.
@@ -577,10 +597,12 @@ Based on this approach and by further exploiting the implicit order implementati
 The formulation of the \gls{dmf} problem by relaxing both the $z$ variables and $k$ indexes, it is possible to formulate the same \gls{dmf} problem as follows:
 
 \begin{align}
-    \min_{z_{\text{max}}} \quad z_{\text{max}}\\
-    \text{subject to: } \notag \\
-    \sum_{i \in W} x_{ij} &= 1 \quad \forall j \in T\\
-    a_i + \sum_{k=1}^j (p_{ik} + w_k I(k=j))x_{ik} &\leq z_{\text{max}}
+	\begin{split}
+	    \min_{z_{\text{max}}} \quad z_{\text{max}}\\
+	    \text{subject to:} \\
+	    \sum_{i \in W} x_{ij} &= 1 \quad \forall j \in T\\
+	    a_i + \sum_{k=1}^j (p_{ik} + w_k I(k=j))x_{ik} &\leq z_{\text{max}}
+	\end{split}
 \end{align}
 
 This formulation is colloquially called \gls{esdmf}.
@@ -594,17 +616,19 @@ The culminating ``flagship'' improvement of the optimization method proposed by 
 \end{enumerate*}
 
 \begin{align}
-    \min_z \quad \sum_{i \in W} \sum_{k \in T} z_{ik}\\
-    \text{subject to: } \notag \\
-    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
-    a_i + \sum_{j \in T} p_{ij} x_{ijk} - M(1 - \sum_{j \in T} x_{ijk}) &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
-    z_{i*k-1} + \sum_{j \in T} p_{ij} x_{ijk} - M(1 - \sum_{j \in T} x_{ijk}) &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
-    z_{i*k}+ \sum_{j \in T} w_j x_{ijk} &\leq z_{\text{max}} + \epsilon \quad \forall i \in W, \forall k \in T\\
-    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
-    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
-    z_{i*k} &\geq 0 \quad \forall i \in W, \forall k \in T\\
-    M &= \max_a a_i + \max_p \sum_{i \in W} \sum_{j \in T} p_{ij}\\
-    \epsilon &= \num{1e-4}
+	\begin{split}
+	    \min_z \quad \sum_{i \in W} \sum_{k \in T} z_{ik}\\
+	    \text{subject to:} \\
+	    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
+	    a_i + \sum_{j \in T} p_{ij} x_{ijk} - M(1 - \sum_{j \in T} x_{ijk}) &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+	    z_{i*k-1} + \sum_{j \in T} p_{ij} x_{ijk} - M(1 - \sum_{j \in T} x_{ijk}) &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
+	    z_{i*k}+ \sum_{j \in T} w_j x_{ijk} &\leq z_{\text{max}} + \epsilon \quad \forall i \in W, \forall k \in T\\
+	    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
+	    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
+	    z_{i*k} &\geq 0 \quad \forall i \in W, \forall k \in T\\
+	    M &= \max_a a_i + \max_p \sum_{i \in W} \sum_{j \in T} p_{ij}\\
+	    \epsilon &= \num{1e-4}
+	\end{split}
 \end{align}
 
 \tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The \gls{msa} method is the simplest solver and exhibits a linear complexity compared to the \gls{dmf} method proposed by \citet{Zeng2005}. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, all solve the \gls{dmf} method and do it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \subsecref{subsec:optimization_discussion}.
@@ -744,8 +768,10 @@ The parametrized functional form with weight vector $\theta$ can be used to writ
 It is then clear that the weight vector $\theta$ has to be chosen wisely: this can be done by using variations of \gls{sgd} methods \citep[p. 223]{Sutton2017}. \gls{sgd} methods adjust the weight vector after each step by a tiny amount following the direction that would reduce the error the most:
 
 \begin{align}
-	\theta_{t+1} &\doteq \theta_t - \frac{1}{2} \alpha \nabla [v_\pi (S_t) - \hat{v} (S_t,\theta_t)]^2\\
-	&= \theta_t + \alpha  [v_\pi (S_t) - \hat{v} (S_t,\theta_t)] \nabla \hat{v} (S_t,\theta_t)
+	\begin{split}
+		\theta_{t+1} &\doteq \theta_t - \frac{1}{2} \alpha \nabla [v_\pi (S_t) - \hat{v} (S_t,\theta_t)]^2\\
+		&= \theta_t + \alpha  [v_\pi (S_t) - \hat{v} (S_t,\theta_t)] \nabla \hat{v} (S_t,\theta_t)
+	\end{split}
 \end{align}
 
 where $\alpha$ is a positive step size parameter and $\nabla f(\theta)$:
@@ -826,12 +852,17 @@ which can be used to ``warp the update distribution back to the \gls{onp} distri
 
 During \gls{op} learning $\pi$ is defined as full greedy and $\mu$ is somewhat more exploratory \gls{ep} \citep[p. 243]{Sutton2017}.
 
-For the purpose of this thesis, the focus has been put upon the episodic \gls{av} update algorithms, defined as follows:
+For the purpose of this thesis, the focus has been put upon the episodic \gls{av} update algorithm, defined as follows:
 
-\begin{align}
-	\theta_{t+1} &\doteq \theta_t + \alpha \delta_t \nabla \hat{q} (S_t,A_t,\theta_t)\\
-	\delta_t &\doteq R_{t+1} + \gamma \underbrace{\sum_a \pi (a|S_{t+1}) \hat{q} (S_{t+1},a,\theta_t)}_{\max_a \hat{q} (S_{t+1},a,\theta_t)} - \hat{q} (S_t,A_t,\theta_t)
-\end{align}
+\begin{equation}
+	\theta_{t+1} \doteq \theta_t + \alpha \delta_t \nabla \hat{q} (S_t,A_t,\theta_t)\\
+\end{equation}
+
+where $\delta_t$ is defined as:
+
+\begin{equation}
+	\delta_t \doteq R_{t+1} + \gamma \underbrace{\sum_a \pi (a|S_{t+1}) \hat{q} (S_{t+1},a,\theta_t)}_{\max_a \hat{q} (S_{t+1},a,\theta_t)} - \hat{q} (S_t,A_t,\theta_t)
+\end{equation}
 
 what is important to note here, is that the episodic \gls{op} algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \citep[p. 244]{Sutton2017}. The authors state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed \citep[p. 244]{Sutton2017}.
 
