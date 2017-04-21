@@ -19,6 +19,8 @@
 % see http://tex.stackexchange.com/questions/183149/cant-silence-a-pdftex-pdf-inclusion-multiple-pdfs-with-page-group-error for more information
 \pdfsuppresswarningpagegroup=1
 
+\setlist[enumerate]{label=\textbf{\Roman*.}, ref=\Roman*}
+
 \thesisType{Master Thesis}
 \date{\today}
 \title{Workflow Optimization}
@@ -115,7 +117,7 @@ The objectives of this thesis build upon the work of \citet{Zeng2005} in which t
 
 Formally, this thesis tries to answer the following research questions:
 
-\begin{enumerate}[label=\textbf{RQ. \arabic*},ref=Research Question \arabic*]
+\begin{enumerate}[label=\textbf{Q. \Roman*},ref=Research Question \Roman*]
 \item Can current optimization methods for job assignment in workflow processes be further developed? \label{rq:one}
 \item Are there state of the art approaches that can complement job assignment with mathematical optimization methods? \label{rq:two}
 \end{enumerate}
@@ -1571,9 +1573,9 @@ On a more general note, different comparisons have shown huge spikes in speedup 
 
 This thesis' focus was analyzing different approaches for optimally allocating resources inside workflow processes by means of different methods.
 
-Initially, a through literature review has been made in order to establish the existing optimization solution (\ie foundations set by \citet{Zeng2005}), then a roadmap on how to further develop such methods has been laid out. The roadmap encloses a two fold approach:
+Initially, a through literature review has been made in order to establish the existing optimization solution (\ie foundations set by \citet{Zeng2005}), then a roadmap on how to further develop such methods has been laid out. The roadmap encloses a twofold approach:
 
-\begin{enumerate}[label=\textbf{Appr. \arabic*},ref=Approach \arabic*]
+\begin{enumerate}[label=\textbf{A. \Roman*},ref=Approach \Roman*]
  	\item Further develop mathematical optimizations \label{itm:math_opt}
  	\item Use \gls{rl} methods as novel solution for optimal job assignment. \label{itm:novel_rl}
  \end{enumerate} 
@@ -1586,7 +1588,7 @@ For \ref{itm:math_opt} five existing optimization policies as outlined in \secre
 
 Optimization methods are viable solutions for optimally assigning jobs to users inside workflow processes, as already argued by \citet{Zeng2005}. Further developed policies relying on mathematical optimization done for this thesis proved indeed to yield better results (see \subsecref{subsec:opt_comparison}), however the higher required complexity (refer to \subsecref{subsec:optimization_discussion}) poses a critical trade-off. \ref{rq:one} can be affirmatively answer: there is definitely potential for further development and optimization of existing methods but further questions arise:
 
-\begin{enumerate}[label=\textbf{Q. \arabic*}]
+\begin{enumerate}[label=\textbf{Q. \Roman*}]
 	\item Does a slight increase in performance justify the higher computational requirements?
 	\item Can only one \gls{kpi} be chosen as central parameter to evaluate a policy's performance or is a combination of different \glspl{kpi} more suitable?
 	\item Is it always the best solution to use only one type of optimizer or is it better to follow a more flexible approach and chose different policies on a per case basis?
@@ -1827,6 +1829,19 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 \fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfull{msa} comparison}{fig:bi_one_mc_tf_4l}
 
 \clearpage
+
+\glsresetall
+
+\chapter{\glsentryshort{cd} Content}
+
+\begin{itemize}
+	\item A \texttt{Zusfsg.txt} file which contains a German summary of the thesis
+	\item An \texttt{Abstract.txt} file which contains an English summary of the thesis
+	\item A \texttt{Masterarbeit.pdf} file which corresponds to this report
+	\item A \texttt{SourceCode.zip} file which contains the whole source code of this thesis
+	\item A \texttt{Latex.zip} file which contains the whole source code of this report
+	\item A \texttt{Presentation.pptx} file which corresponds to the presentation of this report
+\end{itemize}
 
 \backmatter
 
