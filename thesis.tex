@@ -1,4 +1,4 @@
-\documentclass[draft=false]{seal_thesis}
+\documentclass{seal_thesis}
 
 \usepackage{url}
 \usepackage[inline]{enumitem}
@@ -6,19 +6,14 @@
 \usepackage{siunitx}
 \usepackage{booktabs}
 \usepackage[colorlinks]{hyperref}
-% used to fix structure
 \usepackage{bookmark}
 \usepackage{amsfonts}
 \usepackage[acronym]{glossaries}
 \usepackage[round,sort]{natbib}
 
 \makeglossaries
-
 \loadglsentries{glossaries}
-
-% see http://tex.stackexchange.com/questions/183149/cant-silence-a-pdftex-pdf-inclusion-multiple-pdfs-with-page-group-error for more information
 \pdfsuppresswarningpagegroup=1
-
 \setlist[enumerate]{label=\textbf{\Roman*.}, ref=\Roman*}
 
 \thesisType{Master Thesis}
@@ -36,6 +31,7 @@
 \enddate{May 15, 2017}
 
 \begin{document}
+
 \maketitle
 
 \frontmatter
@@ -527,7 +523,7 @@ All batch policies require the solution of an optimization problem. The authors 
 	\end{split}
 \end{align}
 
-All variables definition still hold without loss of generality as defined by the authors \citep[pp. 5-7]{Zeng2005}.
+All variables definition still hold without loss of generality as defined by the authors \citep[pp. 5--7]{Zeng2005}.
 
 The class inheritance structure of the policies implementation can be seen in \figref{fig:policies}.
 
@@ -638,18 +634,18 @@ The culminating ``flagship'' improvement of the optimization method proposed by 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!ht]
-\centering
-\begin{tabular}{@{}lc@{}}
-\toprule
-Solver & Computation Costs \\ \midrule
-\gls{msa}    & $O(mn)$           \\
-\gls{dmf}   & $O(mn^2)$         \\
-\gls{sdmf}  & $O(mn^2)$         \\
-\gls{esdmf}  & $O(mn)$           \\
-\gls{st} 	   & $O(m^2n^2)$ \\	\bottomrule
-\end{tabular}
-\caption{Comparison of computational costs for different solvers}
-\label{tab:big_oh_solvers}
+	\centering
+		\begin{tabular}{@{}lc@{}}
+		\toprule
+		Solver & Computation Costs \\ \midrule
+		\gls{msa}    & $O(mn)$           \\
+		\gls{dmf}   & $O(mn^2)$         \\
+		\gls{sdmf}  & $O(mn^2)$         \\
+		\gls{esdmf}  & $O(mn)$           \\
+		\gls{st} 	   & $O(m^2n^2)$ \\	\bottomrule
+		\end{tabular}
+	\caption{Comparison of computational costs for different solvers}
+	\label{tab:big_oh_solvers}
 \end{table}
 
 \section{\glsentrylong{rl} Theory}
@@ -1103,18 +1099,18 @@ For the case at hand, this means that training the policies has to be done in a 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!ht]
-\centering
-\begin{tabular}{@{}lll@{}}
-\toprule
-Characteristic & \gls{mc}                     & \gls{td}                               \\ \midrule
-Bootstrap      & No                     & Yes                              \\
-Update Time    & End of episode         & Each time step                   \\
-Discount       & Required               & Not required                     \\
-Convergance    & Good                   & Very Good                        \\
-Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \bottomrule
-\end{tabular}
-\caption{Qualitative comparison between \glsentryfull{mc} and \glsentryfull{td} update methods \citep[p. 130]{Sutton2017}}
-\label{tab:mc_td_comp}
+	\centering
+		\begin{tabular}{@{}lll@{}}
+		\toprule
+		Characteristic & \gls{mc}                     & \gls{td}                               \\ \midrule
+		Bootstrap      & No                     & Yes                              \\
+		Update Time    & End of episode         & Each time step                   \\
+		Discount       & Required               & Not required                     \\
+		Convergance    & Good                   & Very Good                        \\
+		Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \bottomrule
+		\end{tabular}
+	\caption{Qualitative comparison between \glsentryfull{mc} and \glsentryfull{td} update methods \citep[p. 130]{Sutton2017}}
+	\label{tab:mc_td_comp}
 \end{table}
 
 \subsection{Batch Size Emulation}
@@ -1125,15 +1121,15 @@ Correctly defined state spaces is a crucial requirement for effective \gls{rl} m
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!ht]
-\centering
-\begin{tabular}{@{}llll@{}}
-\toprule
-User   & Job 1 & Job 2 & Job 3 \\ \midrule
-User 1 & $1$     & $2$     & $3$     \\
-User 2 & $4$     & $5$     & $6$     \\ \bottomrule
-\end{tabular}
-\caption{Service times of both users for all three jobs}
-\label{tab:users_service_times_example}
+	\centering
+		\begin{tabular}{@{}llll@{}}
+		\toprule
+		User   & Job 1 & Job 2 & Job 3 \\ \midrule
+		User 1 & $1$     & $2$     & $3$     \\
+		User 2 & $4$     & $5$     & $6$     \\ \bottomrule
+		\end{tabular}
+	\caption{Service times of both users for all three jobs}
+	\label{tab:users_service_times_example}
 \end{table}
 
 It is clear that the ordering of the jobs assigned has an impact on the final outcome. \figref{fig:user_job_assignment_order} outlines a possible conformation where user 1 receives job 1 while user 2 gets assigned to jobs 2 and 3 respectively. In this case, job 1 is started at $t$ and is finished at $t+1$, job 2 is started at $t$ and is finished at $t+5$ and job 3 is started at $t+5$ and is finished at $t+11$. The respective lateness per job is: $1$ for job 1, $5$ for job 2 and $6$ for job $3$.
@@ -1283,8 +1279,6 @@ Finally, when comparing different policies between each other, \citet{Milo2012}'
 	S=\frac{q_1}{q_2}
 \end{equation}
 
-\clearpage
-
 \section{Optimization}
 \label{sec:op_results}
 
@@ -1293,28 +1287,28 @@ This section focuses on the results of the different types of policies using the
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!ht]
-\centering
-\begin{tabular}{@{}lll@{}}
-\toprule
-Variable            & Default     & Valid Range \\ \midrule
-Number of Users     & $5$           & $1-\infty$      \\
-Service Interval    & $1$           & $1-\infty$      \\
-Generation Interval & $3$           & $1-\infty$      \\
-Simulation Time     & $1000$          & $1-\infty$      \\
-Batch Size          & $5$ ($1$ for 1-Batch-1)           & $1-\infty$      \\
-Task Varaibility    & $20\%$        & $0\%-100\%$      \\
-Worker Variability  & $20\%$        & $0\%-100\%$      \\
-Random State Seed   & $2$           & $\emptyset-\infty$      \\
-Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
-\end{tabular}
-\caption{Global parameters for simulation}
-\label{tab:global_parameters_sim}
+	\centering
+		\begin{tabular}{@{}lll@{}}
+		\toprule
+		Variable            & Default     & Valid Range \\ \midrule
+		Number of Users     & $5$           & $1-\infty$      \\
+		Service Interval    & $1$           & $1-\infty$      \\
+		Generation Interval & $3$           & $1-\infty$      \\
+		Simulation Time     & $1000$          & $1-\infty$      \\
+		Batch Size          & $5$ ($1$ for 1-Batch-1)           & $1-\infty$      \\
+		Task Varaibility    & $20\%$        & $0\%-100\%$      \\
+		Worker Variability  & $20\%$        & $0\%-100\%$      \\
+		Random State Seed   & $2$           & $\emptyset-\infty$      \\
+		Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
+		\end{tabular}
+	\caption{Global parameters for simulation}
+	\label{tab:global_parameters_sim}
 \end{table}
 
 \subsection{Comparison with Existing Literature}
 \label{subsec:opt_comparison}
 
-\citet[pp. 18-22]{Zeng2005} outline in their work how different global parameters configurations and policy usage can affect \glspl{kpi}. They summarize their key findings as follows:
+\citet[pp. 18--22]{Zeng2005} outline in their work how different global parameters configurations and policy usage can affect \glspl{kpi}. They summarize their key findings as follows:
 \begin{enumerate*}
 	\item Usage of batch optimization should be done only with medium to high system load \citep[p. 24]{Zeng2005}.
 	\item Batch optimization policies without a fixed batch size, such as 1-Batch-1 yield best results \citep[p. 24]{Zeng2005}.
@@ -1339,20 +1333,18 @@ Astonishing speedups have been observed for the 1-Batch-1 policy, which is indee
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!ht]
-\centering
-\begin{tabular}{@{}ll@{}}
-\toprule
-\gls{kpi}                 & Speedup \\ \midrule
-Lateness            & $1.23$             \\
-Wait Time           & $4.0$             \\
-Service Time        & $1.1$             \\
-Average System Load & $1.1$             \\ \bottomrule
-\end{tabular}
-\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{st} against the \glsentryfull{msa} solver}
-\label{tab:opt_kpis_comp_gain}
+	\centering
+		\begin{tabular}{@{}ll@{}}
+		\toprule
+		\gls{kpi}                 & Speedup \\ \midrule
+		Lateness            & $1.23$             \\
+		Wait Time           & $4.0$             \\
+		Service Time        & $1.1$             \\
+		Average System Load & $1.1$             \\ \bottomrule
+		\end{tabular}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{st} against the \glsentryfull{msa} solver}
+	\label{tab:opt_kpis_comp_gain}
 \end{table}
-
-\clearpage
 
 \section{\glsentrylong{rl}}
 \label{sec:rl_results}
@@ -1364,20 +1356,20 @@ In order to maintain fairness amongst \gls{rl} training methods, all required pa
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!ht]
-\centering
-\begin{tabular}{@{}ll@{}}
-\toprule
-Parameter        & Value  \\ \midrule
-Discount factor $\gamma$            & $0.5$    \\
-Step size parameter $\alpha$            & $0.0001$ \\
-\gls{ep} threshold $\epsilon$          & $0.1$    \\
-\gls{mc} epochs        & $1000$   \\
-\glspl{ann} \gls{mc} epochs & $10000$ \\
-\gls{mc} and \glspl{ann} \gls{mc} epoch training time & $100$ \\
-\gls{td} training time & $100000$   \\ \bottomrule
-\end{tabular}
-\caption{Global \glsentryfull{rl} parameters}
-\label{tab:global_rl_params}
+	\centering
+		\begin{tabular}{@{}ll@{}}
+		\toprule
+		Parameter        & Value  \\ \midrule
+		Discount factor $\gamma$            & $0.5$    \\
+		Step size parameter $\alpha$            & $0.0001$ \\
+		\gls{ep} threshold $\epsilon$          & $0.1$    \\
+		\gls{mc} epochs        & $1000$   \\
+		\glspl{ann} \gls{mc} epochs & $10000$ \\
+		\gls{mc} and \glspl{ann} \gls{mc} epoch training time & $100$ \\
+		\gls{td} training time & $100000$   \\ \bottomrule
+		\end{tabular}
+	\caption{Global \glsentryfull{rl} parameters}
+	\label{tab:global_rl_params}
 \end{table}
 
 Comparisons will be made, where not otherwise stated, with the corresponding optimization policy simulated under the same conditions.
@@ -1391,20 +1383,20 @@ Five different batch policies with \gls{rl} have been developed. \tabref{tab:rl_
 % \usepackage{booktabs}
 % \usepackage{graphicx}
 \begin{table}[!ht]
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lllll@{}}
-\toprule
-Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
-k\_batch\_mc\_vfa       & 1-Batch     & \gls{mc}            & \gls{vfa} & None                      \\
-k\_batch\_mc\_vfa\_op   & 1-Batch     & \gls{mc}            & \gls{vfa} & \gls{op}                \\
-k\_batch\_mc\_vfa\_opep & 1-Batch     & \gls{mc}            & \gls{vfa} & \gls{ep}, \gls{op} \\
-k\_batch\_td\_vfa\_op   & 1-Batch     & \gls{td}            & \gls{vfa} & \gls{op}                \\
-k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \gls{op}                \\ \bottomrule
-\end{tabular}%
-}
-\caption{Overview of developed batch policies with \glsentryfull{rl}}
-\label{tab:rl_batch_policies_overview}
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}lllll@{}}
+		\toprule
+		Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+		k\_batch\_mc\_vfa       & 1-Batch     & \gls{mc}            & \gls{vfa} & None                      \\
+		k\_batch\_mc\_vfa\_op   & 1-Batch     & \gls{mc}            & \gls{vfa} & \gls{op}                \\
+		k\_batch\_mc\_vfa\_opep & 1-Batch     & \gls{mc}            & \gls{vfa} & \gls{ep}, \gls{op} \\
+		k\_batch\_td\_vfa\_op   & 1-Batch     & \gls{td}            & \gls{vfa} & \gls{op}                \\
+		k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \gls{op}                \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Overview of developed batch policies with \glsentryfull{rl}}
+	\label{tab:rl_batch_policies_overview}
 \end{table}
 
 \tabref{tab:rl_batch_kpis_comp_gain} summarizes the results. For the detailed results refer to \subsecref{subsec:onebatch_rl_msa_comp_app} for 1-Batch respectively to \subsecref{subsec:onebatchone_rl_msa_comp_app} for 1-Batch-1.
@@ -1413,19 +1405,19 @@ k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \
 % \usepackage{booktabs}
 % \usepackage{graphicx}
 \begin{table}[!ht]
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}llllll@{}}
-\toprule
-\gls{kpi}                 & k\_batch\_mc\_vfa & k\_batch\_mc\_vfa\_op & k\_batch\_mc\_vfa\_opep & k\_batch\_td\_vfa\_op & k\_batchone\_td\_vfa\_op \\ \midrule
-Lateness            & $1.22$                  & $1.24$                      & $1.22$                        & $1.23$                      & $1.23$                         \\
-Wait Time           & $2.63$                  & $3.08$                      & $2.39$                        & $3.62$                      & $3.51$                         \\
-Service Time        & $1.11$                  & $1.11$                      & $1.12$                        & $1.1$                      & $1.1$                         \\
-Average System Load & $1.11$                  & $1.11$                      & $1.12$                        & $1.1$                      & $1.1$                         \\ \bottomrule
-\end{tabular}%
-}
-\caption{Speedup across all \glsentryfullpl{kpi} of the batch policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
-\label{tab:rl_batch_kpis_comp_gain}
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}llllll@{}}
+		\toprule
+		\gls{kpi}                 & k\_batch\_mc\_vfa & k\_batch\_mc\_vfa\_op & k\_batch\_mc\_vfa\_opep & k\_batch\_td\_vfa\_op & k\_batchone\_td\_vfa\_op \\ \midrule
+		Lateness            & $1.22$                  & $1.24$                      & $1.22$                        & $1.23$                      & $1.23$                         \\
+		Wait Time           & $2.63$                  & $3.08$                      & $2.39$                        & $3.62$                      & $3.51$                         \\
+		Service Time        & $1.11$                  & $1.11$                      & $1.12$                        & $1.1$                      & $1.1$                         \\
+		Average System Load & $1.11$                  & $1.11$                      & $1.12$                        & $1.1$                      & $1.1$                         \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the batch policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
+	\label{tab:rl_batch_kpis_comp_gain}
 \end{table}
 
 \subsection{\glsentrylong{llqp}}
@@ -1437,18 +1429,18 @@ Three different \gls{llqp} policies with \gls{rl} have been developed. \tabref{t
 % \usepackage{booktabs}
 % \usepackage{graphicx}
 \begin{table}[!ht]
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lllll@{}}
-\toprule
-Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
-llqp\_mc\_vfa\_op       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & \gls{op}                      \\
-llqp\_td\_vfa\_op   & \gls{llqp}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
-llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{op}, \gls{1l}                \\ \bottomrule
-\end{tabular}%
-}
-\caption{Overview of developed \glsentryfull{llqp} policies with \glsentryfull{rl}}
-\label{tab:rl_llqp_policies_overview}
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}lllll@{}}
+		\toprule
+		Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+		llqp\_mc\_vfa\_op       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & \gls{op}                      \\
+		llqp\_td\_vfa\_op   & \gls{llqp}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
+		llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{op}, \gls{1l}                \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Overview of developed \glsentryfull{llqp} policies with \glsentryfull{rl}}
+	\label{tab:rl_llqp_policies_overview}
 \end{table}
 
 \tabref{tab:rl_llqp_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:llqp_rl_msa_comp_app}.
@@ -1456,17 +1448,17 @@ llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{o
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!ht]
-\centering
-\begin{tabular}{@{}llll@{}}
-\toprule
-\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_td\_vfa\_op & llqp\_td\_tf\_op \\ \midrule
-Lateness            & $1.0$                  & $1.0$                  & $1.0$                 \\
-Wait Time           & $0.92$                  & $0.99$                  & $1.02$                 \\
-Service Time        & $1.01$                  & $1.0$                  & $1.0$                 \\
-Average System Load & $1.01$                  & $1.0$                  & $1.0$                 \\ \bottomrule
-\end{tabular}
-\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{llqp} policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
-\label{tab:rl_llqp_kpis_comp_gain}
+	\centering
+		\begin{tabular}{@{}llll@{}}
+		\toprule
+		\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_td\_vfa\_op & llqp\_td\_tf\_op \\ \midrule
+		Lateness            & $1.0$                  & $1.0$                  & $1.0$                 \\
+		Wait Time           & $0.92$                  & $0.99$                  & $1.02$                 \\
+		Service Time        & $1.01$                  & $1.0$                  & $1.0$                 \\
+		Average System Load & $1.01$                  & $1.0$                  & $1.0$                 \\ \bottomrule
+		\end{tabular}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{llqp} policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
+	\label{tab:rl_llqp_kpis_comp_gain}
 \end{table}
 
 \tabref{tab:llqp_mc_vfa_op_vs_on} shows the comparison between \gls{op} and \gls{onp} approaches.
@@ -1474,17 +1466,17 @@ Average System Load & $1.01$                  & $1.0$                  & $1.0$  
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!ht]
-\centering
-\begin{tabular}{@{}llll@{}}
-\toprule
-\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_mc\_vfa & Speedup \\ \midrule
-Lateness            & $1.2756$                  & $1.2914$              & $0.99$                   \\
-Wait Time           & $0.0796$                  & $0.0711$              & $1.12$                   \\
-Service Time        & $1.1960$                  & $1.2203$              & $0.98$                   \\
-Average System Load & $38.22\%$                  & $39.00\%$              & $0.98$                   \\ \bottomrule
-\end{tabular}
-\caption{\glsentryfullpl{kpi} comparison between \glsentryfull{op} and \glsentryfull{onp} approaches}
-\label{tab:llqp_mc_vfa_op_vs_on}
+	\centering
+		\begin{tabular}{@{}llll@{}}
+		\toprule
+		\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_mc\_vfa & Speedup \\ \midrule
+		Lateness            & $1.2756$                  & $1.2914$              & $0.99$                   \\
+		Wait Time           & $0.0796$                  & $0.0711$              & $1.12$                   \\
+		Service Time        & $1.1960$                  & $1.2203$              & $0.98$                   \\
+		Average System Load & $38.22\%$                  & $39.00\%$              & $0.98$                   \\ \bottomrule
+		\end{tabular}
+	\caption{\glsentryfullpl{kpi} comparison between \glsentryfull{op} and \glsentryfull{onp} approaches}
+	\label{tab:llqp_mc_vfa_op_vs_on}
 \end{table}
 
 \subsection{Others}
@@ -1496,18 +1488,18 @@ Three different additional policies with \gls{rl} have been developed which have
 % \usepackage{booktabs}
 % \usepackage{graphicx}
 \begin{table}[!ht]
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lllll@{}}
-\toprule
-Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
-wz\_td\_vfa\_op       & \gls{wz}     & \gls{td}            & \gls{vfa} & \gls{op}                      \\
-wz\_one\_td\_vfa\_op   & \gls{wzo}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
-bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & \gls{pg}                \\ \bottomrule
-\end{tabular}%
-}
-\caption{Overview of additional developed policies with \glsentryfull{rl}}
-\label{tab:rl_others_policies_overview}
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}lllll@{}}
+		\toprule
+		Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+		wz\_td\_vfa\_op       & \gls{wz}     & \gls{td}            & \gls{vfa} & \gls{op}                      \\
+		wz\_one\_td\_vfa\_op   & \gls{wzo}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
+		bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & \gls{pg}                \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Overview of additional developed policies with \glsentryfull{rl}}
+	\label{tab:rl_others_policies_overview}
 \end{table}
 
 \tabref{tab:rl_others_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:others_rl_msa_comp_app}.
@@ -1516,19 +1508,19 @@ bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & \gls{pg} 
 % \usepackage{booktabs}
 % \usepackage{graphicx}
 \begin{table}[!ht]
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lllllll@{}}
-\toprule
-KPI                 & wz\_td\_vfa\_op & wz\_one\_td\_vfa\_op & bi\_one\_mc\_tf\_1l & bi\_one\_mc\_tf\_2l & bi\_one\_mc\_tf\_3l & bi\_one\_mc\_tf\_4l \\ \midrule
-Lateness            & $0.97$                & $1.2$                     & $1.07$                    & $0.9$                    & $0.84$                    & $0.84$                    \\
-Wait Time           & $0.89$                & $2.33$                     & $2.46$                    & $1.11$                    & $0.85$                    & $0.86$                    \\
-Service Time        & $1.21$                & $1.1$                     & $0.98$                    & $0.87$                    & $0.84$                    & $0.84$                    \\
-Average System Load & $1.22$                & $1.1$                     & $0.98$                    & $0.87$                    & $0.84$                    & $0.84$                    \\ \bottomrule
-\end{tabular}%
-}
-\caption{Speedup across all \glsentryfullpl{kpi} of the additional policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
-\label{tab:rl_others_kpis_comp_gain}
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}lllllll@{}}
+		\toprule
+		KPI                 & wz\_td\_vfa\_op & wz\_one\_td\_vfa\_op & bi\_one\_mc\_tf\_1l & bi\_one\_mc\_tf\_2l & bi\_one\_mc\_tf\_3l & bi\_one\_mc\_tf\_4l \\ \midrule
+		Lateness            & $0.97$                & $1.2$                     & $1.07$                    & $0.9$                    & $0.84$                    & $0.84$                    \\
+		Wait Time           & $0.89$                & $2.33$                     & $2.46$                    & $1.11$                    & $0.85$                    & $0.86$                    \\
+		Service Time        & $1.21$                & $1.1$                     & $0.98$                    & $0.87$                    & $0.84$                    & $0.84$                    \\
+		Average System Load & $1.22$                & $1.1$                     & $0.98$                    & $0.87$                    & $0.84$                    & $0.84$                    \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the additional policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
+	\label{tab:rl_others_kpis_comp_gain}
 \end{table}
 
 \section{Discussion}
@@ -1540,7 +1532,7 @@ Using mathematical optimization to solve the assignment problem proves to be an 
 
 \fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glsentryfullpl{kpi} speedup comparison between \glsentryfull{msa} and \glsentryfull{st} solvers for 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
 
-Yet another aspect mentioned by \citet[pp. 17-18]{Zeng2005} is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two solvers.
+Yet another aspect mentioned by \citet[pp. 17--18]{Zeng2005} is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two solvers.
 
 \begin{figure}[!ht]
 	\centering
@@ -1584,7 +1576,7 @@ Having said that, deep \glspl{ann} exhibits worse results compared to their equi
 
 In brief, \gls{vgp} states that even very large changes in partial derivatives on initial layers have imperceptible effects on subsequent layers \citep{Bengio1994} and \gls{egp} states that huge spikes in the norm of changes in partial derivatives which could potentially grow exponentially can happen under training, thus influencing internal parameters \citep{Bengio1994,Pascanu2012}.
 
-Yet another crucial aspect to consider when undergoing \gls{rl} methods is usage between \gls{onp} or \gls{op} learning (refer to \subsecref{subsec:onpol_pred} for \gls{onp} respectively to \subsecref{subsec:offpol_methods} for \gls{op} \subsecref{subsec:onpol_control}). As shown in \tabref{tab:llqp_mc_vfa_op_vs_on} (and \figref{fig:llqp_mc_vfa_on_vs_off}), \gls{op} methods converge slightly better compared to \gls{onp}, however the change is imperceptible and can be found in different factors (\eg random state seed choice or length of simulation). Having said that, it is important to note that these different approaches are being currently heavily studied by pioneers and the debate is still open, as \citet[pp. 245-249]{Sutton2017} explain in their book. The current key takeaways from this outgoing debate can be summarized as follows \citep{Sutton2017}:
+Yet another crucial aspect to consider when undergoing \gls{rl} methods is usage between \gls{onp} or \gls{op} learning (refer to \subsecref{subsec:onpol_pred} for \gls{onp} respectively to \subsecref{subsec:offpol_methods} for \gls{op} \subsecref{subsec:onpol_control}). As shown in \tabref{tab:llqp_mc_vfa_op_vs_on} (and \figref{fig:llqp_mc_vfa_on_vs_off}), \gls{op} methods converge slightly better compared to \gls{onp}, however the change is imperceptible and can be found in different factors (\eg random state seed choice or length of simulation). Having said that, it is important to note that these different approaches are being currently heavily studied by pioneers and the debate is still open, as \citet[pp. 245--249]{Sutton2017} explain in their book. The current key takeaways from this outgoing debate can be summarized as follows \citep{Sutton2017}:
 \begin{enumerate*}
 	\item Learning \gls{op}
 	\item Usage of scalable function approximation methods like linear semi-gradient 
@@ -1615,7 +1607,7 @@ Initially, a through literature review has been made in order to establish the e
 
 Subsequently, a discrete event simulation environment as outlined in \subsecref{subsec:discrete_event_sim} has been implemented which served as foundation for evaluating all future optimization policies.
 
-For \ref{itm:math_opt} five existing optimization policies as outlined in \secref{sec:opt_policies} have been implemented and evaluated against the existing policies defined by \citet[pp. 13-14]{Zeng2005}. Furthermore, for \ref{itm:novel_rl} a profound literature review about \gls{rl} had to be made and following on the theoretical foundations laid (see \secref{sec:rl_theory}) novel policies for solving the assignment problem based on \gls{rl} have been implemented (see \secref{sec:rl_policies}). Lastly, all \gls{rl} policies have been also evaluated and a comparison between them and the corresponding optimization methods has been made.
+For \ref{itm:math_opt} five existing optimization policies as outlined in \secref{sec:opt_policies} have been implemented and evaluated against the existing policies defined by \citet[pp. 13--14]{Zeng2005}. Furthermore, for \ref{itm:novel_rl} a profound literature review about \gls{rl} had to be made and following on the theoretical foundations laid (see \secref{sec:rl_theory}) novel policies for solving the assignment problem based on \gls{rl} have been implemented (see \secref{sec:rl_policies}). Lastly, all \gls{rl} policies have been also evaluated and a comparison between them and the corresponding optimization methods has been made.
 
 \section{Resulting Conclusions}
 
@@ -1662,8 +1654,6 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \chapter{Literature Overview}
 
 \fig[\textwidth]{literature_brainstorm}{Literature per topic categorization overview}{fig:literature_brainstorm}
-
-\clearpage
 
 \glsresetall
 
@@ -1740,8 +1730,6 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 \fig[\textwidth]{onebatchone_res/1_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \glsentryfull{esdmf} \glsentryfullpl{kpi}}{fig:1_BATCHONE_ESDMF_NU5_GI3_SIM1000_KPI}
 \fig[\textwidth]{onebatchone_res/1_BATCHONE_ST_NU5_GI3_SIM1000_KPI}{1-Batch-1 with \glsentryfull{st} \glsentryfullpl{kpi}}{fig:1_BATCHONE_ST_NU5_GI3_SIM1000_KPI}
 
-\clearpage
-
 \glsresetall
 
 \chapter{\glsentrylong{rl} Results}
@@ -1811,21 +1799,21 @@ Having said that, \ref{rq:two} can be answered positively as well: there are ind
 % \usepackage{booktabs}
 % \usepackage{graphicx}
 \begin{table}[!ht]
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lllll@{}}
-\toprule
-Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
-llqp\_mc\_vfa       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & None                      \\
-llqp\_td\_vfa   & \gls{llqp}     & \gls{td}            & \gls{vfa} & None                \\
-llqp\_mc\_pg   & \gls{llqp}     & \gls{mc}            & \gls{pg} & None                \\
-llqp\_mc\_pg\_wb   & \gls{llqp}     & \gls{mc}            & \gls{pg} & With Baseline                \\
-llqp\_td\_pg\_ac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{ac}                \\
-llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av}, \gls{ac}                \\ \bottomrule
-\end{tabular}%
-}
-\caption{Overview of additional \glsentryfull{llqp} policies with \glsentryfull{rl}}
-\label{tab:rl_llqp_add_policies_overview}
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}lllll@{}}
+		\toprule
+		Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+		llqp\_mc\_vfa       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & None                      \\
+		llqp\_td\_vfa   & \gls{llqp}     & \gls{td}            & \gls{vfa} & None                \\
+		llqp\_mc\_pg   & \gls{llqp}     & \gls{mc}            & \gls{pg} & None                \\
+		llqp\_mc\_pg\_wb   & \gls{llqp}     & \gls{mc}            & \gls{pg} & With Baseline                \\
+		llqp\_td\_pg\_ac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{ac}                \\
+		llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av}, \gls{ac}                \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Overview of additional \glsentryfull{llqp} policies with \glsentryfull{rl}}
+	\label{tab:rl_llqp_add_policies_overview}
 \end{table}
 
 \clearpage
@@ -1861,8 +1849,6 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 \fig[\textwidth]{others_rl_res/bi_one_mc_tf_3l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{3l} \glsentryfull{msa} comparison}{fig:bi_one_mc_tf_3l}
 \fig[\textwidth]{others_rl_res/bi_one_mc_tf_4l}{\glsentryfull{bi} with \glsentryfull{mc}, \glsentryfull{tf} and \glsentryfull{4l} \glsentryfull{msa} comparison}{fig:bi_one_mc_tf_4l}
 
-\clearpage
-
 \glsresetall
 
 \chapter{\glsentryshort{cd} Content}
@@ -1878,9 +1864,9 @@ llqp\_td\_pg\_avac   & \gls{llqp}     & \gls{td}            & \gls{pg} & \gls{av
 
 \backmatter
 
-\printglossaries
-
 \bibliographystyle{apalike}
 \bibliography{sources}
+
+\printglossaries
 
 \end{document}
