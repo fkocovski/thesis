@@ -90,11 +90,7 @@ Both the extended mathematical optimization methods as well as the \gls{rl} base
 
 \tableofcontents
 
-\clearpage
-
 \listoffigures
-
-\clearpage
 
 \listoftables
 
@@ -154,7 +150,7 @@ The first half of the thesis road-map consisted of an in-depth literature review
 	\item Analyzing novel approaches for complementing the existing solutions as outlined by \citet{Sutton2017}.
 \end{enumerate*}
 
-With a solid foundations laid down, starting December 1, 2016 the implementation phase began. Initially the focus was set on implementing the simulation environment, followed by the implementation of the optimization solution \ie the \gls{msa} solver, proposed by \citet{Zeng2005} and subsequently the optimization alternatives (refer to \subsecref{sec:opt_policies}).
+With a solid foundations laid down, starting December 1, 2016 the implementation phase began. Initially the focus was set on implementing the simulation environment, followed by the implementation of the optimization solution \ie the \gls{msa} formulation, proposed by \citet{Zeng2005} and subsequently the optimization alternatives (refer to \subsecref{sec:opt_policies}).
 
 \fig[\textwidth]{project_management_gantt_chart}{Project Management Gantt Chart for 2016}{fig:project_management_gantt_chart}
 
@@ -359,7 +355,7 @@ According to \citet{Matloff2008}, different world views for discrete event progr
 	\item Process oriented.
 \end{enumerate*}
 
-Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities \citep{Matloff2008}. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there won't be any change in state for the simulated entities \citep{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated \citep{Matloff2008}. By filling these gaps, a dramatical increase in computation can be observed \citep{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread \citep{Matloff2008}. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks exist \citep{Matloff2008}.
+Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities \citep{Matloff2008}. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there will not be any change in state for the simulated entities \citep{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated \citep{Matloff2008}. By filling these gaps, a dramatical increase in computation can be observed \citep{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread \citep{Matloff2008}. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks exist \citep{Matloff2008}.
 
 \citet{Milo2012} defines speedup as a metric for evaluating comparisons in computer architecture which is used when analyzing the results of this thesis.
 
@@ -525,10 +521,6 @@ All batch policies require the solution of an optimization problem. The authors 
 
 All variables definition still hold without loss of generality as defined by the authors \citep[pp. 5--7]{Zeng2005}.
 
-The class inheritance structure of the policies implementation can be seen in \figref{fig:policies}.
-
-\fig[\textwidth]{policies}{Policies class structure}{fig:policies}
-
 The authors' definition of the \gls{msa} problem is however a simplified version of the actual problem of ``minimizing the maximum task flowtime'' as defined by \citet{Baker1974} with consideration of the dynamic arrival of tasks problem, defined by the authors as the \gls{dmf} problem \citep{Zeng2005}. The \gls{dmf} problem is formally defined by \citet{Zeng2005} as follows:
 
 \begin{align}
@@ -590,7 +582,7 @@ Without further ado, the simplified formulation of \gls{edmf} (called \gls{sdmf}
 
 By comparing both formulation it is clear that \gls{sdmf} manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness. Please note, however, that this simplification is only possible because of the nature of the implementation.
 
-Based on this approach and by further exploiting the implicit order implementation of task arrival in the global queues for both batch policies, it is possible to argue that the $k$ sequence indexing can be relaxed as well, thus even further simplifying the mathematical formulation and respectively the optimization problem size and computation costs.
+Based on this approach and by further exploiting the implicit order implementation of task arrival in the global queues for both batch policies, it is possible to argue that the $k$ sequence indexing can be relaxed as well, thus even further simplifying the mathematical formulation and respectively the optimization problem size and formulation complexity.
 
 The formulation of the \gls{dmf} problem by relaxing both the $z$ variables and $k$ indexes, it is possible to formulate the same \gls{dmf} problem as follows:
 
@@ -629,23 +621,30 @@ The culminating ``flagship'' improvement of the optimization method proposed by 
 	\end{split}
 \end{align}
 
-\tabref{tab:big_oh_solvers} shows the computational complexity for the methods outlined in this chapter. The \gls{msa} method is the simplest solver and exhibits a linear complexity compared to the \gls{dmf} method proposed by \citet{Zeng2005}. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, all solve the \gls{dmf} method and do it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits a higher computational complexity but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \subsecref{subsec:optimization_discussion}.
+\tabref{tab:big_oh_formulations} shows the formulation complexity for the methods outlined in this chapter where $m$ is the number of users and $n$ is the batch size. The formulation complexity is expressed in number of binary variables that each problem formulation has. The \gls{msa} method is the simplest formulation and exhibits a linear complexity compared to the \gls{dmf} method proposed by \citet{Zeng2005}. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, all solve the \gls{dmf} method and do it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits a higher formulation complexity as shown in \equref{eq:st_complexity}
+
+\begin{equation}
+\label{eq:st_complexity}
+	\mathcal{O}(mn+mn^2) \subseteq \mathcal{O}(mn^2)
+\end{equation}
+ 
+ but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \subsecref{subsec:optimization_discussion}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!ht]
 	\centering
-		\begin{tabular}{@{}lc@{}}
+		\begin{tabular}{@{}ll@{}}
 		\toprule
-		Solver & Computation Costs \\ \midrule
-		\gls{msa}    & $O(mn)$           \\
-		\gls{dmf}   & $O(mn^2)$         \\
-		\gls{sdmf}  & $O(mn^2)$         \\
-		\gls{esdmf}  & $O(mn)$           \\
-		\gls{st} 	   & $O(m^2n^2)$ \\	\bottomrule
+		Problem Formulation & Formulation Complexity \\ \midrule
+		\gls{msa}    & $\mathcal{O}(mn)$           \\
+		\gls{dmf}   & $\mathcal{O}(mn^2)$         \\
+		\gls{sdmf}  & $\mathcal{O}(mn^2)$         \\
+		\gls{esdmf}  & $\mathcal{O}(mn)$           \\
+		\gls{st} 	   & $\mathcal{O}(mn^2)$ \\	\bottomrule
 		\end{tabular}
-	\caption{Comparison of computational costs for different solvers}
-	\label{tab:big_oh_solvers}
+	\caption{Comparison of formulation complexities expressed in number of binary variables for different problem formulations where $m$ is the number of users and $n$ is the batch size}
+	\label{tab:big_oh_formulations}
 \end{table}
 
 \section{\glsentrylong{rl} Theory}
@@ -805,7 +804,7 @@ This simplified case of linear function approximation for \gls{sv} functions fin
 \subsubsection{\glsentrylongpl{ann}}
 \label{subsubsec:ann_theory}
 
-\glspl{ann} can be used for nonlinear function approximation \citep[p. 199]{Sutton2017}. The simplest case of an \gls{ann} is a single feedforward perceptron, meaning that it has only one hidden layer \ie a layer that is neither an input nor an output layer and that the \gls{ann} at hand has no loops between its neurons, meaning that the output can not influence the input (compared to recurrent \glspl{ann}, in which the output indeed can influence the input) \citep[p. 216]{Sutton2017}. 
+\glspl{ann} can be used for nonlinear function approximation \citep[p. 199]{Sutton2017}. The simplest case of an \gls{ann} is a single feedforward perceptron, meaning that it has only one hidden layer \ie a layer that is neither an input nor an output layer and that the \gls{ann} at hand has no loops between its neurons, meaning that the output cannot influence the input (compared to recurrent \glspl{ann}, in which the output indeed can influence the input) \citep[p. 216]{Sutton2017}. 
 
 The connections between neurons inside an \gls{ann} are called weights and the analogy to its human counterpart is how strong synaptic connections are \citep[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer \gls{ann}.
 
@@ -1092,7 +1091,7 @@ As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there a
 
 As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the \gls{mc} method needs to reach the end of an entire episode (\ie here it consists of actually arriving home) in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, \gls{td} is much more flexible and robust since it executes its updates at each time step, hence its name: \gls{td}.
 For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the \gls{mc} update and to \equref{eq:td_update} for the \gls{td} update.
-For the case at hand, this means that training the policies has to be done in a different fashion for the two update methods: while \gls{td} based policies can be updated ``on-the-fly'', \gls{mc} methods require batch training sessions (\ie episodes) at the end of which they can effectively learn and update their internal $\theta$ parameters to be used for the next episode. Not only the training approach is different, but the logic of the policy itself is also different: for \gls{td} based policies, the update method is being called internally since the policy knows its temporal steps, while for \gls{mc} based policies the policy itself can not know a priori when an episode will finish and thus must relay on an ``artificial'' definition of such. The overall overhead is also different since \gls{mc} based policies have to keep track of their whole episode history which usually is composed of the state space, chosen action and reward at time step $t$.
+For the case at hand, this means that training the policies has to be done in a different fashion for the two update methods: while \gls{td} based policies can be updated ``on-the-fly'', \gls{mc} methods require batch training sessions (\ie episodes) at the end of which they can effectively learn and update their internal $\theta$ parameters to be used for the next episode. Not only the training approach is different, but the logic of the policy itself is also different: for \gls{td} based policies, the update method is being called internally since the policy knows its temporal steps, while for \gls{mc} based policies the policy itself cannot know a priori when an episode will finish and thus must relay on an ``artificial'' definition of such. The overall overhead is also different since \gls{mc} based policies have to keep track of their whole episode history which usually is composed of the state space, chosen action and reward at time step $t$.
 
 \citet{Sutton2017} outline a qualitative comparison between both update methods which can be found summarized in table \tabref{tab:mc_td_comp}.
 
@@ -1181,7 +1180,7 @@ Each simulation script is the abstract element that imports all required depende
 
 The script initializes the chosen workflow process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling the run method of the \texttt{SimPy} environment. A snippet of a simulation script can be found in \lstref{lst:simulation_script}.
 
-\begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the \gls{dmf} solver,label=lst:simulation_script,style=CustomPython]
+\begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the \gls{dmf} formulation,label=lst:simulation_script,style=CustomPython]
 	import simpy
 	from evaluation.statistics import calculate_statistics
 	from evaluation.subplot_evolution import evolution
@@ -1214,7 +1213,7 @@ The script initializes the chosen workflow process and then calls the tokens gen
 
 Two different types of processes have been defined:
 \begin{enumerate*}
-	\item Consisting of only one user task.
+	\item Consisting of only one user task
 	\item A complex workflow process that is modeled against an acquisition process used in the real estate field for the acquisition of real estate properties.
 \end{enumerate*}
 
@@ -1265,13 +1264,13 @@ and thus the average system load $\overline{l}$ over all $n$ users participating
 
 A summary plot with all \glspl{kpi} is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryfullpl{kpi}  summary plot for a 3-Batch policy using the \glsentryfull{msa} solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryfullpl{kpi}  summary plot for a 3-Batch policy using the \glsentryfull{msa} formulation, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
 
 Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \secref{sec:opt_policies}.
 
 The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the \glsentryfull{msa} solver, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the \glsentryfull{msa} formulation, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
 
 Finally, when comparing different policies between each other, \citet{Milo2012}'s definition of speedup $S$ between two quantities $q_1$ and $q_2$ is adopted, which he formally defines as:
 
@@ -1282,7 +1281,7 @@ Finally, when comparing different policies between each other, \citet{Milo2012}'
 \section{Optimization}
 \label{sec:op_results}
 
-This section focuses on the results of the different types of policies using the optimization solvers outlined in \secref{sec:opt_policies}. All simulations have been tested with different combination of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, the global variables have been set to the following parameters according to the default column in \tabref{tab:global_parameters_sim}.
+This section focuses on the results of the different types of policies using the optimization formulations outlined in \secref{sec:opt_policies}. All simulations have been tested with different combination of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, the global variables have been set to the following parameters according to the default column in \tabref{tab:global_parameters_sim}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -1316,17 +1315,17 @@ This section focuses on the results of the different types of policies using the
 
 In order to assert the validity of the interpretation of \citet{Zeng2005}'s works and all subsequent derivative policies a comparison with similar configurations has been made for all five optimization policies. \citet{Zeng2005}'s main efficiency parameter is defined as the maximum flowtime or in their own words: ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \citep[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}. In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results to \citet{Zeng2005}'s are obtained.
 
-\fig[\textwidth]{opt_kpis_comp}{\glsentryfullpl{kpi}  comparison for different optimization policies using the \glsentryfull{msa} solver for batch policies}{fig:opt_kpis_comp}  
+\fig[\textwidth]{opt_kpis_comp}{\glsentryfullpl{kpi}  comparison for different optimization policies using the \glsentryfull{msa} formulation for batch policies}{fig:opt_kpis_comp}  
 
-The simulations have been run with the parameters outlined in \tabref{tab:global_parameters_sim} by using the same solver used by \citet{Zeng2005}: \gls{msa}.
+The simulations have been run with the parameters outlined in \tabref{tab:global_parameters_sim} by using the same formulation used by \citet{Zeng2005}: \gls{msa}.
 
-By running the same simulations with the optimization solver implemented for this thesis (\ie \gls{st}, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized \glspl{kpi} amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
+By running the same simulations with the optimization formulation implemented for this thesis (\ie \gls{st}, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized \glspl{kpi} amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
 
-\fig[\textwidth]{opt_st_kpis_comp}{\glsentryfullpl{kpi}  comparison for different optimization policies using the \glsentryfull{st} solver for batch policies}{fig:opt_st_kpis_comp}
+\fig[\textwidth]{opt_st_kpis_comp}{\glsentryfullpl{kpi}  comparison for different optimization policies using the \glsentryfull{st} formulation for batch policies}{fig:opt_st_kpis_comp}
 
-The percent speedup for both batch policies with a higher batch size is tiny, but when considering the speedup between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy speedup is present for all \glspl{kpi}. For a detailed overview of the overall speedups of the \gls{st} against the \gls{msa} solver refer to \figref{fig:opt_kpis_comp_gain}.
+The percent speedup for both batch policies with a higher batch size is tiny, but when considering the speedup between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy speedup is present for all \glspl{kpi}. For a detailed overview of the overall speedups of the \gls{st} against the \gls{msa} formulation refer to \figref{fig:opt_kpis_comp_gain}.
 
-\fig[\textwidth]{opt_kpis_comp_gain}{\glsentryfullpl{kpi}  speedup comparison between the \glsentryfull{msa} and the \glsentryfull{st} solvers for 5-Batch, 5-Batch-1 and 1-Batch-1}{fig:opt_kpis_comp_gain}
+\fig[\textwidth]{opt_kpis_comp_gain}{\glsentryfullpl{kpi}  speedup comparison between the \glsentryfull{msa} and the \glsentryfull{st} formulations for 5-Batch, 5-Batch-1 and 1-Batch-1}{fig:opt_kpis_comp_gain}
 
 Astonishing speedups have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by \citet{Zeng2005} (for a detailed comparison of how different batch sizes affect the policy's \glspl{kpi} refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \citep[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
 
@@ -1342,7 +1341,7 @@ Astonishing speedups have been observed for the 1-Batch-1 policy, which is indee
 		Service Time        & $1.1$             \\
 		Average System Load & $1.1$             \\ \bottomrule
 		\end{tabular}
-	\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{st} against the \glsentryfull{msa} solver}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{st} against the \glsentryfull{msa} formulation}
 	\label{tab:opt_kpis_comp_gain}
 \end{table}
 
@@ -1416,7 +1415,7 @@ Five different batch policies with \gls{rl} have been developed. \tabref{tab:rl_
 		Average System Load & $1.11$                  & $1.11$                      & $1.12$                        & $1.1$                      & $1.1$                         \\ \bottomrule
 		\end{tabular}%
 	}
-	\caption{Speedup across all \glsentryfullpl{kpi} of the batch policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the batch policies with \glsentryfull{rl} against the \glsentryfull{msa} formulation}
 	\label{tab:rl_batch_kpis_comp_gain}
 \end{table}
 
@@ -1457,7 +1456,7 @@ Three different \gls{llqp} policies with \gls{rl} have been developed. \tabref{t
 		Service Time        & $1.01$                  & $1.0$                  & $1.0$                 \\
 		Average System Load & $1.01$                  & $1.0$                  & $1.0$                 \\ \bottomrule
 		\end{tabular}
-	\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{llqp} policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{llqp} policies with \glsentryfull{rl} against the \glsentryfull{msa} formulation}
 	\label{tab:rl_llqp_kpis_comp_gain}
 \end{table}
 
@@ -1519,7 +1518,7 @@ Three different additional policies with \gls{rl} have been developed which have
 		Average System Load & $1.22$                & $1.1$                     & $0.98$                    & $0.87$                    & $0.84$                    & $0.84$                    \\ \bottomrule
 		\end{tabular}%
 	}
-	\caption{Speedup across all \glsentryfullpl{kpi} of the additional policies with \glsentryfull{rl} against the \glsentryfull{msa} solver}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the additional policies with \glsentryfull{rl} against the \glsentryfull{msa} formulation}
 	\label{tab:rl_others_kpis_comp_gain}
 \end{table}
 
@@ -1528,11 +1527,11 @@ Three different additional policies with \gls{rl} have been developed which have
 \subsection{Optimization}
 \label{subsec:optimization_discussion}
 
-Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different solvers yield different solutions and computational complexities. \citet[p. 15]{Zeng2005} mention that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \citep[p. 13]{Zeng2005},\citep{Garey1990}. \citet[p. 13]{Zeng2005} propose however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of solvers. The \gls{st} ``flagship'' solver significantly outperforms the \gls{msa} solver (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher computational complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_solvers}) questions the practical use of this solver over the other methods. A speedup factor of $1.23$ in respect to lateness requiring a quadratic higher computational complexity poses a dubious trade-off from a business perspective.
+Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different formulations yield different solutions and formulation complexities. \citet[p. 15]{Zeng2005} mention that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \citep[p. 13]{Zeng2005},\citep{Garey1990}. \citet[p. 13]{Zeng2005} propose however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of formulations. The \gls{st} ``flagship'' formulation significantly outperforms the \gls{msa} formulation (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher formulation complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_formulations}) questions the practical use of this formulation over the other methods. A speedup factor of $1.23$ in respect to lateness having a quadratic higher formulation complexity poses a dubious trade-off from a business perspective.
 
-\fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glsentryfullpl{kpi} speedup comparison between \glsentryfull{msa} and \glsentryfull{st} solvers for 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
+\fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glsentryfullpl{kpi} speedup comparison between \glsentryfull{msa} and \glsentryfull{st} formulations for 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
 
-Yet another aspect mentioned by \citet[pp. 17--18]{Zeng2005} is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two solvers.
+Yet another aspect mentioned by \citet[pp. 17--18]{Zeng2005} is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two formulations.
 
 \begin{figure}[!ht]
 	\centering
@@ -1599,11 +1598,10 @@ On a more general note, different comparisons have shown huge spikes in speedup 
 This thesis' focus was analyzing different approaches for optimally allocating resources inside workflow processes by means of different methods.
 
 Initially, a through literature review has been made in order to establish the existing optimization solution (\ie foundations set by \citet{Zeng2005}), then a roadmap on how to further develop such methods has been laid out. The roadmap encloses a twofold approach:
-
-\begin{enumerate}[label=\textbf{A. \Roman*},ref=Approach \Roman*]
+\begin{enumerate*}[ref=Approach \Roman*]
  	\item Further develop mathematical optimizations \label{itm:math_opt}
  	\item Use \gls{rl} methods as novel solution for optimal job assignment. \label{itm:novel_rl}
- \end{enumerate} 
+ \end{enumerate*} 
 
 Subsequently, a discrete event simulation environment as outlined in \subsecref{subsec:discrete_event_sim} has been implemented which served as foundation for evaluating all future optimization policies.
 
@@ -1612,12 +1610,11 @@ For \ref{itm:math_opt} five existing optimization policies as outlined in \secre
 \section{Resulting Conclusions}
 
 Optimization methods are viable solutions for optimally assigning jobs to users inside workflow processes, as already argued by \citet{Zeng2005}. Further developed policies relying on mathematical optimization done for this thesis proved indeed to yield better results (see \subsecref{subsec:opt_comparison}), however the higher required complexity (refer to \subsecref{subsec:optimization_discussion}) poses a critical trade-off. \ref{rq:one} can be affirmatively answer: there is definitely potential for further development and optimization of existing methods but further questions arise:
-
-\begin{enumerate}[label=\textbf{Q. \Roman*}]
-	\item Does a slight increase in performance justify the higher computational requirements?
+\begin{enumerate*}
+	\item Does a slight increase in performance justify the higher formulation complexity requirements?
 	\item Can only one \gls{kpi} be chosen as central parameter to evaluate a policy's performance or is a combination of different \glspl{kpi} more suitable?
 	\item Is it always the best solution to use only one type of optimizer or is it better to follow a more flexible approach and chose different policies on a per case basis?
-\end{enumerate}
+\end{enumerate*}
 
 All these questions must be accounted for when considering policy based optimization in workflow processes integration in IT governance.
 
@@ -1643,7 +1640,7 @@ This thesis does a first step in laying the foundations for viable alternatives 
 
 \gls{rl} is a novel field that is currently still being actively researched and pursued, as it has yield promising results \citep{Mnih2015,Silver2016}. By using \glspl{ann} one can effectively approximate nonlinear functions as it has been outlined in \subsecref{subsubsec:ann_theory}. Even though in this thesis only feedforward \glspl{ann} have been used, the problem domain is very well suited for the recurrent variant as well.
 
-Moreover, bleeding edge domains have originated from \gls{rl} such as \gls{irl} \citep{Ng2000} and \gls{al} which is based on the former \citep{Abbeel2004}. \gls{al} could prove to be yet another captivating approach to solve the assignment problem in which the reward function is not explicitly modeled, instead an ``expert'' of the domain (\ie a mathematical solver such as \gls{msa}) demonstrates a task and by means of \gls{al} the policy is trained \citep{Abbeel2004}.
+Moreover, bleeding edge domains have originated from \gls{rl} such as \gls{irl} \citep{Ng2000} and \gls{al} which is based on the former \citep{Abbeel2004}. \gls{al} could prove to be yet another captivating approach to solve the assignment problem in which the reward function is not explicitly modeled, instead an ``expert'' of the domain (\ie a mathematical formulation such as \gls{msa}) demonstrates a task and by means of \gls{al} the policy is trained \citep{Abbeel2004}.
 
 Having said that, \ref{rq:two} can be answered positively as well: there are indeed state of the art approaches that can be used as alternatives or complements to the job assignment mathematical optimization. 
 
