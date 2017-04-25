@@ -12,6 +12,24 @@
 \usepackage{listings}
 \usepackage{xspace}
 
+%% additional packages
+\usepackage{url}
+\usepackage[inline]{enumitem}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage[colorlinks]{hyperref}
+\usepackage{bookmark}
+\usepackage{amsfonts}
+\usepackage[acronym]{glossaries}
+\usepackage[round,sort]{natbib}
+
+%% suppress warning for plot in .pdf
+\pdfsuppresswarningpagegroup=1
+
+%% style for enumerate
+\setlist[enumerate]{label=\textbf{\Roman*.}, ref=\Roman*}
+
 %% colors (PyCharm-like colors for listings)
 \definecolor{builtincolor}{RGB}{204,120,50}
 \definecolor{selfcolor}{RGB}{148,85,141}

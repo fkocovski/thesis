@@ -1,0 +1,13 @@
+\begin{abstract}
+
+Efficiently assigning resources, specifically human resources \ie users, in workflow processes in order to maximize the efficiency is a vital aspect when implementing workflow engines in corporate environments \citep{Mentzas2001}. By what means this optimal assignment is done, or more generally the resolvability of the assignment problem in combinatorial optimization, has been widely researched \citep{Zeng2005}. Usual methods consider mathematical optimization with numerical optimizers which has lead to promising results \citep{Zeng2005}. However computational complexity is a key limiting factor when approaching the assignment problem from a mathematical optimizer perspective \citep{Zeng2005}.
+
+This thesis expands the already prominent work in the field of optimal task assignment in workflow processes by extending the already researched mathematical optimization and proposes a novel approach by introducing \gls{rl} based optimization approaches \citep{Sutton2017}.
+
+By means of a discrete event simulation environment, in which existing policies for optimal job assignment in workflow processes, such as \gls{sq}, \gls{llqp}, K-Batch and 1-Batch-1, are extended and tested using both mathematical and \gls{rl} based optimization approaches. The discrete event simulation environment proposed in this thesis allows to control key variables that influence the efficiency of a policy, such as number of users, generation interval, service interval and length of the simulation.
+
+Both the extended mathematical optimization methods as well as the \gls{rl} based methods outperform the already existing approaches by a $1.3$ speedup factor under different circumstances. Even though promising results have been obtained, precautions have to be taken when interpreting the results: on one hand the mathematical optimizations obtained are coupled with higher computational complexity which raise business trade-offs, on the other hand, \gls{rl} based optimizations overcome the computational complexity problem of the former but require lengthy training sessions in order to assert optimal convergence.
+
+\gls{rl} based optimization methods lay the foundations for extensions by using alternative methods such as \gls{irl} \citep{Ng2000} and \gls{al} which promise to overcome the limitations of \gls{rl} methods by eliminating the requirement of internal reward functions and merely ``observing'' experts executing tasks and learning optimal behaviors from them \citep{Abbeel2004}.
+
+\end{abstract}

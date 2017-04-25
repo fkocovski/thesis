@@ -1,0 +1,359 @@
+\chapter{Empirical Analysis}
+\label{ch:empirical_analysis}
+
+\section{Methodology}
+
+In order to consistently and fairly evaluate all policies with the methods defined in the previous chapters, the following methodology was put in place:
+\begin{enumerate*}
+	\item Each policy has its own simulation script that initializes a process that uses the predefined policy as means to optimally assign jobs to tasks
+	\item Parameters are centrally defined
+	\item Different \glspl{kpi} have been defined which are used to assert the efficiency of one policy against one another.
+\end{enumerate*}
+
+\subsection{Simulation Script}
+
+Each simulation script is the abstract element that imports all required dependencies, initializes the \texttt{SimPy} simulation environment, the statistics file into which the policy dumps all data on runtime, the policy object itself to be used for the assignment and the workflow process to be used. 
+
+The script initializes the chosen workflow process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling the run method of the \texttt{SimPy} environment. A snippet of a simulation script can be found in \lstref{lst:simulation_script}.
+
+\begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the \gls{dmf} formulation,label=lst:simulation_script,style=CustomPython]
+	import simpy
+	from evaluation.statistics import calculate_statistics
+	from evaluation.subplot_evolution import evolution
+	from policies.optimization.batch.k_batch import K_BATCH
+	from simulations import *
+	from solvers.dmf_solver import dmf
+
+	policy_name = "{}_BATCH_DMF_NU{}_GI{}_SIM{}".format(BATCH_SIZE,NUMBER_OF_USERS, GENERATION_INTERVAL, SEED, SIM_TIME)
+
+	env = simpy.Environment()
+
+	file_policy = create_files("{}.csv".format(policy_name))
+
+	policy = K_BATCH(env, NUMBER_OF_USERS, WORKER_VARIABILITY, file_policy,BATCH_SIZE, dmf)
+
+	start_event = acquisition_process(env,policy,1,GENERATION_INTERVAL,False,None,None,None)
+
+	env.process(start_event.generate_tokens())
+
+	env.run(until=SIM_TIME)
+
+	file_policy.close()
+
+	calculate_statistics(file_policy.name, outfile=True)
+
+	evolution(file_policy.name, outfile=True)
+\end{lstlisting}
+
+\subsection{Workflow Process Modeling}
+
+Two different types of processes have been defined:
+\begin{enumerate*}
+	\item Consisting of only one user task
+	\item A complex workflow process that is modeled against an acquisition process used in the real estate field for the acquisition of real estate properties.
+\end{enumerate*}
+
+\figref{fig:simple_process} illustrates the simple process.
+
+\fig[0.5\textwidth]{simple_process}{Simple workflow process consisting of only one user task}{fig:simple_process}
+
+\figref{fig:acquisition_process} illustrates the complex acquisition process.
+
+\fig[\textwidth]{acquisition_process}{Acquisition workflow process consisting of multiple user tasks and decision nodes}{fig:acquisition_process}
+
+\subsection{Global Simulation and Process Parameters Definition}
+
+One key aspect in order to assert comparability across policies while simulated is to centrally define all parameters. \lstref{lst:central_parameters} shows the key central parameters defined as global variables.
+
+\begin{lstlisting}[caption=Global parameters definition that ensures comparability across simulation runs,label=lst:central_parameters,style=CustomPython]
+	NUMBER_OF_USERS = 3
+	SERVICE_INTERVAL = 1
+	GENERATION_INTERVAL = 3
+	SIM_TIME = 1000
+	BATCH_SIZE = 5
+	TASK_VARIABILITY = 0.2 * SERVICE_INTERVAL
+	WORKER_VARIABILITY = 0.2 * SERVICE_INTERVAL
+	SEED = 2
+\end{lstlisting}
+
+\subsection{\glsentryshortpl{kpi} for Asserting Policy's Efficacy and Data Visualization}
+
+Based on \citet{Pinedo2008}'s and \citet{Zeng2005}'s definitions in their works, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$ to token $j$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
+
+\begin{align}
+	L_j&=F_j-A_j \label{eq:lateness}\\
+	w_j&=S_j-A_j \\
+	p_{ij}&=F_j-S_j
+\end{align}
+
+Moreover, if we account for simulation time $T$, load $l_i$ of user $i$ is defined as the sum of all service times of tokens that have been assigned to him during the simulation divided by the total simulation time $T$, or formally:
+
+\begin{equation}
+	l_i=\frac{\sum_j p_{ij}}{T}
+\end{equation}
+
+and thus the average system load $\overline{l}$ over all $n$ users participating is defined as the average across all user's loads \ie
+
+\begin{equation}
+	\overline{l} = \frac{\sum_i l_i}{n}
+\end{equation}
+
+A summary plot with all \glspl{kpi} is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
+
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryfullpl{kpi}  summary plot for a 3-Batch policy using the \glsentryfull{msa} formulation, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
+
+Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \secref{sec:opt_policies}.
+
+The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example.
+
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the \glsentryfull{msa} formulation, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
+
+Finally, when comparing different policies between each other, \citet{Milo2012}'s definition of speedup $S$ between two quantities $q_1$ and $q_2$ is adopted, which he formally defines as:
+
+\begin{equation}
+	S=\frac{q_1}{q_2}
+\end{equation}
+
+\section{Optimization}
+\label{sec:op_results}
+
+This section focuses on the results of the different types of policies using the optimization formulations outlined in \secref{sec:opt_policies}. All simulations have been tested with different combination of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, the global variables have been set to the following parameters according to the default column in \tabref{tab:global_parameters_sim}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+	\centering
+		\begin{tabular}{@{}lll@{}}
+		\toprule
+		Variable            & Default     & Valid Range \\ \midrule
+		Number of Users     & $5$           & $1-\infty$      \\
+		Service Interval    & $1$           & $1-\infty$      \\
+		Generation Interval & $3$           & $1-\infty$      \\
+		Simulation Time     & $1000$          & $1-\infty$      \\
+		Batch Size          & $5$ ($1$ for 1-Batch-1)           & $1-\infty$      \\
+		Task Varaibility    & $20\%$        & $0\%-100\%$      \\
+		Worker Variability  & $20\%$        & $0\%-100\%$      \\
+		Random State Seed   & $2$           & $\emptyset-\infty$      \\
+		Workflow Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
+		\end{tabular}
+	\caption{Global parameters for simulation}
+	\label{tab:global_parameters_sim}
+\end{table}
+
+\subsection{Comparison with Existing Literature}
+\label{subsec:opt_comparison}
+
+\citet[pp. 18--22]{Zeng2005} outline in their work how different global parameters configurations and policy usage can affect \glspl{kpi}. They summarize their key findings as follows:
+\begin{enumerate*}
+	\item Usage of batch optimization should be done only with medium to high system load \citep[p. 24]{Zeng2005}.
+	\item Batch optimization policies without a fixed batch size, such as 1-Batch-1 yield best results \citep[p. 24]{Zeng2005}.
+\end{enumerate*}
+
+In order to assert the validity of the interpretation of \citet{Zeng2005}'s works and all subsequent derivative policies a comparison with similar configurations has been made for all five optimization policies. \citet{Zeng2005}'s main efficiency parameter is defined as the maximum flowtime or in their own words: ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \citep[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}. In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results to \citet{Zeng2005}'s are obtained.
+
+\fig[\textwidth]{opt_kpis_comp}{\glsentryfullpl{kpi}  comparison for different optimization policies using the \glsentryfull{msa} formulation for batch policies}{fig:opt_kpis_comp}  
+
+The simulations have been run with the parameters outlined in \tabref{tab:global_parameters_sim} by using the same formulation used by \citet{Zeng2005}: \gls{msa}.
+
+By running the same simulations with the optimization formulation implemented for this thesis (\ie \gls{st}, refer to \secref{sec:opt_policies}), ceteris paribus, the summarized \glspl{kpi} amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
+
+\fig[\textwidth]{opt_st_kpis_comp}{\glsentryfullpl{kpi}  comparison for different optimization policies using the \glsentryfull{st} formulation for batch policies}{fig:opt_st_kpis_comp}
+
+The percent speedup for both batch policies with a higher batch size is tiny, but when considering the speedup between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy speedup is present for all \glspl{kpi}. For a detailed overview of the overall speedups of the \gls{st} against the \gls{msa} formulation refer to \figref{fig:opt_kpis_comp_gain}.
+
+\fig[\textwidth]{opt_kpis_comp_gain}{\glsentryfullpl{kpi}  speedup comparison between the \glsentryfull{msa} and the \glsentryfull{st} formulations for 5-Batch, 5-Batch-1 and 1-Batch-1}{fig:opt_kpis_comp_gain}
+
+Astonishing speedups have been observed for the 1-Batch-1 policy, which is indeed the most efficient policy as mentioned by \citet{Zeng2005} (for a detailed comparison of how different batch sizes affect the policy's \glspl{kpi} refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}) \citep[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+	\centering
+		\begin{tabular}{@{}ll@{}}
+		\toprule
+		\gls{kpi}                 & Speedup \\ \midrule
+		Lateness            & $1.23$             \\
+		Wait Time           & $4.0$             \\
+		Service Time        & $1.1$             \\
+		Average System Load & $1.1$             \\ \bottomrule
+		\end{tabular}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{st} against the \glsentryfull{msa} formulation}
+	\label{tab:opt_kpis_comp_gain}
+\end{table}
+
+\section{\glsentrylong{rl}}
+\label{sec:rl_results}
+
+This section focuses on the results obtained with the \gls{rl} methods outlined in \secref{sec:rl_policies}. A more in-depth review of the different policies is required, thus a finer subdivision has been made in different subsections per policy type: \subsecref{subsec:rl_batch} focuses on batch policies, \subsecref{subsec:rl_llqp} focuses on \gls{llqp} policies and \subsecref{subsec:rl_others} focuses on all remaining policies that do not fit in either of the previous categories.
+
+In order to maintain fairness amongst \gls{rl} training methods, all required parameters are globally set and equal across all simulation scripts and can be found summarized in \tabref{tab:global_rl_params} which complement the global simulation parameters depicted in \tabref{tab:global_parameters_sim}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+	\centering
+		\begin{tabular}{@{}ll@{}}
+		\toprule
+		Parameter        & Value  \\ \midrule
+		Discount factor $\gamma$            & $0.5$    \\
+		Step size parameter $\alpha$            & $0.0001$ \\
+		\gls{ep} threshold $\epsilon$          & $0.1$    \\
+		\gls{mc} epochs        & $1000$   \\
+		\glspl{ann} \gls{mc} epochs & $10000$ \\
+		\gls{mc} and \glspl{ann} \gls{mc} epoch training time & $100$ \\
+		\gls{td} training time & $100000$   \\ \bottomrule
+		\end{tabular}
+	\caption{Global \glsentryfull{rl} parameters}
+	\label{tab:global_rl_params}
+\end{table}
+
+Comparisons will be made, where not otherwise stated, with the corresponding optimization policy simulated under the same conditions.
+
+\subsection{Batch}
+\label{subsec:rl_batch}
+
+Five different batch policies with \gls{rl} have been developed. \tabref{tab:rl_batch_policies_overview} gives an overview.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}lllll@{}}
+		\toprule
+		Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+		k\_batch\_mc\_vfa       & 1-Batch     & \gls{mc}            & \gls{vfa} & None                      \\
+		k\_batch\_mc\_vfa\_op   & 1-Batch     & \gls{mc}            & \gls{vfa} & \gls{op}                \\
+		k\_batch\_mc\_vfa\_opep & 1-Batch     & \gls{mc}            & \gls{vfa} & \gls{ep}, \gls{op} \\
+		k\_batch\_td\_vfa\_op   & 1-Batch     & \gls{td}            & \gls{vfa} & \gls{op}                \\
+		k\_batchone\_td\_vfa\_op   & 1-Batch-1     & \gls{td}            & \gls{vfa} & \gls{op}                \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Overview of developed batch policies with \glsentryfull{rl}}
+	\label{tab:rl_batch_policies_overview}
+\end{table}
+
+\tabref{tab:rl_batch_kpis_comp_gain} summarizes the results. For the detailed results refer to \subsecref{subsec:onebatch_rl_msa_comp_app} for 1-Batch respectively to \subsecref{subsec:onebatchone_rl_msa_comp_app} for 1-Batch-1.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}llllll@{}}
+		\toprule
+		\gls{kpi}                 & k\_batch\_mc\_vfa & k\_batch\_mc\_vfa\_op & k\_batch\_mc\_vfa\_opep & k\_batch\_td\_vfa\_op & k\_batchone\_td\_vfa\_op \\ \midrule
+		Lateness            & $1.22$                  & $1.24$                      & $1.22$                        & $1.23$                      & $1.23$                         \\
+		Wait Time           & $2.63$                  & $3.08$                      & $2.39$                        & $3.62$                      & $3.51$                         \\
+		Service Time        & $1.11$                  & $1.11$                      & $1.12$                        & $1.1$                      & $1.1$                         \\
+		Average System Load & $1.11$                  & $1.11$                      & $1.12$                        & $1.1$                      & $1.1$                         \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the batch policies with \glsentryfull{rl} against the \glsentryfull{msa} formulation}
+	\label{tab:rl_batch_kpis_comp_gain}
+\end{table}
+
+\subsection{\glsentrylong{llqp}}
+\label{subsec:rl_llqp}
+
+Three different \gls{llqp} policies with \gls{rl} have been developed. \tabref{tab:rl_llqp_policies_overview} gives an overview. Other policies have been implemented for evaluating different \gls{rl} methods, however they are not considered for the final evaluation. These policies can be seen in \tabref{tab:rl_llqp_add_policies_overview}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}lllll@{}}
+		\toprule
+		Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+		llqp\_mc\_vfa\_op       & \gls{llqp}     & \gls{mc}            & \gls{vfa} & \gls{op}                      \\
+		llqp\_td\_vfa\_op   & \gls{llqp}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
+		llqp\_td\_tf\_op   & \gls{llqp}     & \gls{td}            & \glspl{ann} & \gls{op}, \gls{1l}                \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Overview of developed \glsentryfull{llqp} policies with \glsentryfull{rl}}
+	\label{tab:rl_llqp_policies_overview}
+\end{table}
+
+\tabref{tab:rl_llqp_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:llqp_rl_msa_comp_app}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+	\centering
+		\begin{tabular}{@{}llll@{}}
+		\toprule
+		\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_td\_vfa\_op & llqp\_td\_tf\_op \\ \midrule
+		Lateness            & $1.0$                  & $1.0$                  & $1.0$                 \\
+		Wait Time           & $0.92$                  & $0.99$                  & $1.02$                 \\
+		Service Time        & $1.01$                  & $1.0$                  & $1.0$                 \\
+		Average System Load & $1.01$                  & $1.0$                  & $1.0$                 \\ \bottomrule
+		\end{tabular}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the \glsentryfull{llqp} policies with \glsentryfull{rl} against the \glsentryfull{msa} formulation}
+	\label{tab:rl_llqp_kpis_comp_gain}
+\end{table}
+
+\tabref{tab:llqp_mc_vfa_op_vs_on} shows the comparison between \gls{op} and \gls{onp} approaches.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+	\centering
+		\begin{tabular}{@{}llll@{}}
+		\toprule
+		\gls{kpi}                 & llqp\_mc\_vfa\_op & llqp\_mc\_vfa & Speedup \\ \midrule
+		Lateness            & $1.2756$                  & $1.2914$              & $0.99$                   \\
+		Wait Time           & $0.0796$                  & $0.0711$              & $1.12$                   \\
+		Service Time        & $1.1960$                  & $1.2203$              & $0.98$                   \\
+		Average System Load & $38.22\%$                  & $39.00\%$              & $0.98$                   \\ \bottomrule
+		\end{tabular}
+	\caption{\glsentryfullpl{kpi} comparison between \glsentryfull{op} and \glsentryfull{onp} approaches}
+	\label{tab:llqp_mc_vfa_op_vs_on}
+\end{table}
+
+\subsection{Others}
+\label{subsec:rl_others}
+
+Three different additional policies with \gls{rl} have been developed which have been used to fully emulate the behavior of K-Batch and 1-Batch-1 (as explained in \subsecref{subsec:batch_size_emulation}). \tabref{tab:rl_others_policies_overview} gives an overview.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}lllll@{}}
+		\toprule
+		Technical Name          & Policy Type & Update Method & $Q$ Value Method               & Other Characteristics     \\ \midrule
+		wz\_td\_vfa\_op       & \gls{wz}     & \gls{td}            & \gls{vfa} & \gls{op}                      \\
+		wz\_one\_td\_vfa\_op   & \gls{wzo}     & \gls{td}            & \gls{vfa} & \gls{op}                \\
+		bi\_one\_mc\_tf   & \gls{bi}     & \gls{mc}            & \glspl{ann} & \gls{pg}                \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Overview of additional developed policies with \glsentryfull{rl}}
+	\label{tab:rl_others_policies_overview}
+\end{table}
+
+\tabref{tab:rl_others_kpis_comp_gain} shows the summarized results. For the detailed results refer to \subsecref{subsec:others_rl_msa_comp_app}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{graphicx}
+\begin{table}[!ht]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}lllllll@{}}
+		\toprule
+		KPI                 & wz\_td\_vfa\_op & wz\_one\_td\_vfa\_op & bi\_one\_mc\_tf\_1l & bi\_one\_mc\_tf\_2l & bi\_one\_mc\_tf\_3l & bi\_one\_mc\_tf\_4l \\ \midrule
+		Lateness            & $0.97$                & $1.2$                     & $1.07$                    & $0.9$                    & $0.84$                    & $0.84$                    \\
+		Wait Time           & $0.89$                & $2.33$                     & $2.46$                    & $1.11$                    & $0.85$                    & $0.86$                    \\
+		Service Time        & $1.21$                & $1.1$                     & $0.98$                    & $0.87$                    & $0.84$                    & $0.84$                    \\
+		Average System Load & $1.22$                & $1.1$                     & $0.98$                    & $0.87$                    & $0.84$                    & $0.84$                    \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Speedup across all \glsentryfullpl{kpi} of the additional policies with \glsentryfull{rl} against the \glsentryfull{msa} formulation}
+	\label{tab:rl_others_kpis_comp_gain}
+\end{table}
