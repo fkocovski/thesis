@@ -3,16 +3,16 @@
 
 In order to consistently and fairly evaluate all policies with the methods defined in the previous chapters, the following methodology was put in place:
 \begin{enumerate*}
-	\item Each policy has its own simulation script that initializes a process that uses the predefined policy as means to optimally assign jobs to tasks
+	\item Each policy has its own simulation script that initializes a process that uses the predefined policy as means to solve role resolution
 	\item Parameters are centrally defined
 	\item Different \glspl{kpi} have been defined which are used to assert the efficiency of one policy against one another.
 \end{enumerate*}
 
 \section{Simulation Script}
 
-Each simulation script is the abstract element that imports all required dependencies, initializes the \texttt{SimPy} simulation environment, the statistics file into which the policy dumps all data on runtime, the policy object itself to be used for the assignment and the workflow process to be used. 
+Each simulation script is the abstract element that imports all required dependencies, initializes the \texttt{SimPy} simulation environment, the statistics file into which the policy dumps all data during runtime, the policy object itself to be used for the assignment and the process to be used. 
 
-The script initializes the chosen workflow process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling the run method of the \texttt{SimPy} environment. A snippet of a simulation script can be found in \lstref{lst:simulation_script}.
+The script initializes the chosen process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling the run method of the \texttt{SimPy} environment. A snippet of a simulation script can be found in \lstref{lst:simulation_script}.
 
 \begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the \gls{dmf} formulation,label=lst:simulation_script,style=CustomPython]
 	import simpy
@@ -43,21 +43,21 @@ The script initializes the chosen workflow process and then calls the tokens gen
 	evolution(file_policy.name, outfile=True)
 \end{lstlisting}
 
-\section{Workflow Process Modeling}
+\section{\glsentrylong{bpm}}
 
 Two different types of processes have been defined:
 \begin{enumerate*}
 	\item Consisting of only one user task
-	\item A complex workflow process that is modeled against an acquisition process used in the real estate field for the acquisition of real estate properties.
+	\item A complex process that is modeled against an acquisition process used in the real estate field for the acquisition of real estate properties.
 \end{enumerate*}
 
 \figref{fig:simple_process} illustrates the simple process.
 
-\fig[0.5\textwidth]{simple_process}{Simple workflow process consisting of only one user task}{fig:simple_process}
+\fig[0.5\textwidth]{simple_process}{Simple process consisting of only one user task}{fig:simple_process}
 
 \figref{fig:acquisition_process} illustrates the complex acquisition process.
 
-\fig[\textwidth]{acquisition_process}{Acquisition workflow process consisting of multiple user tasks and decision nodes}{fig:acquisition_process}
+\fig[\textwidth]{acquisition_process}{Acquisition process consisting of multiple user tasks and decision nodes}{fig:acquisition_process}
 
 \section{Global Simulation and Process Parameters Definition}
 
@@ -76,7 +76,7 @@ One key aspect in order to assert comparability across policies while simulated 
 
 \section{\glsentryshortpl{kpi} for Asserting Policy's Efficacy and Data Visualization}
 
-Based on \citet{Pinedo2008}'s and \citet{Zeng2005}'s definitions in their works, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$ to token $j$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
+Based on \citet{Pinedo2008}'s and \citet{Zeng2005}'s definitions, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$ to token $j$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
 
 \begin{align}
 	L_j&=F_j-A_j \label{eq:lateness}\\
@@ -100,7 +100,7 @@ A summary plot with all \glspl{kpi} is done for each simulation script. \figref{
 
 \fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryfullpl{kpi}  summary plot for a 3-Batch policy using the \glsentryfull{msa} formulation, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
 
-Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \secref{sec:opt_policies}.
+Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \chpref{ch:policies}.
 
 The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example.
 

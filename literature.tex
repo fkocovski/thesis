@@ -1,22 +1,23 @@
 \chapter{Related Work}
 \label{ch:related_work}
 
-This chapter servers as an overview of the state of the art literature that exists and has been used as a foundation basis for this work and is divided in different thematic subsections.
+This chapter servers as an overview of the state of the art literature that exists and has been used as a foundation basis.
 
 \section{Queueing}
+\label{sec:queueing}
 
-Queuing is the act of how people, or more general agents, are to be served while waiting (\ie queueing) inside a system \citep{Kendall1953}. Starting with the seminal contribution of \citet{Kendall1953} and his work on the Markov chains in queuing theory, where he formally defines different types of queues, many researches have been based upon.
+Queuing is the act of how people, or more general agents, are to be served while waiting (\ie queueing) inside a system \citep{Kendall1953}. Starting with the seminal contribution of \citet{Kendall1953} on Markov chains in queuing theory, where he formally defines different types of queues, upon which many researches have been based.
 
 \citet{Pinedo2008} outlines in his work the most prominent key metrics that can be used in order to assert and measure queues performance.
 
 \citet{Adan2015}'s statistical modeling techniques for randomized generation rates, such as the Erlang's distribution, are used in the discrete event simulation framework.
 
-\section{Workflow}
+\section{\glsentrylongpl{wfms}}
 \label{sec:workflow}
 
-\citet{Baker1974} formally defines the \gls{kpi} used by \citet{Zeng2005} in their work for evaluating their policies efficacy, called task flowtime.
+\citet{Baker1974} formally defines the \gls{kpi} used by \citet{Zeng2005} for evaluating policies, called task flowtime.
 
-Another good starting point in the workflow thematic is \citet{Macintosh1993}'s work in which he gives an overview of the five levels of process maturity:
+\citet{Macintosh1993} gives an overview of the five levels of process maturity:
 \begin{enumerate*}
 	\item Initial, the process has to be set up
 	\item Repeatable, the process has to be repeatable
@@ -25,54 +26,48 @@ Another good starting point in the workflow thematic is \citet{Macintosh1993}'s 
 	\item Optimizing, continuous process improvement.
 \end{enumerate*}
 
-\citet{Georgakopoulos1995} give a comprehensive business oriented overview of the different workflow technologies present on the market used as a sound foundation for analyzing the present technologies.
+\citet{Georgakopoulos1995} give a comprehensive business oriented overview of the different \glspl{wfms} technologies present on the market used as a sound foundation for analyzing the present technologies.
 
-\citet{Cheng2000} formally defines what role resolution in workflow processes is and the different approaches that can be used for governing this task.
+\citet{Cheng2000} formally defines the act of assigning jobs to users \ie role resolution in \glspl{wfms}.
 
-Following \citet{Georgakopoulos1995} business oriented overview, \citet{Giaglis2001} lays out four different process perspectives:
+Following \citet{Georgakopoulos1995}'s business oriented overview, \citet{Giaglis2001} lays out four different process perspectives:
 \begin{enumerate*}
 	\item Functional
 	\item Behavioral
 	\item Organizational
 	\item Informational.
 \end{enumerate*}
-
-His framework focuses on three dimensions \citep{Giaglis2001}:
+\citet{Giaglis2001}'s framework focuses on three dimensions:
 \begin{enumerate*}
 	\item Breadth, where modeling goals are typically addressed by technique
 	\item Depth, where modeling perspectives are covered
 	\item Fit, where typical project to which techniques can be fit.
 \end{enumerate*}
-
 The presented framework is used to combine the three different dimensions in order to assert a possible best fit of a specific modeling technique based on which approach to be used under the constraints of a modeling perspective to cover \citep{Giaglis2001}.
 
-\citet{Mentzas2001} focus on a qualitative level on how workflow technologies can facilitate implementation of business processes by focusing on the pros and cons of adopting alternative workflow modeling techniques. Moreover they formally define what a workflow management system is and subdivide it in three main categories \citep{Mentzas2001}:
+\citet{Mentzas2001} focuses on a qualitative level on how \glspl{wfms} can facilitate implementation of business processes by describing the pros and cons of adopting alternative \gls{bpm} techniques. Moreover, \citet{Mentzas2001} formally define what a \gls{wfms} is and subdivide it in three main categories:
 \begin{enumerate*}
 	\item Process modeling
 	\item Process re-engineering
-	\item Workflow implementation and automation.
+	\item \glspl{wfms} implementation and automation.
 \end{enumerate*}
-
 Each level of maturity as defined by \citet{Macintosh1993} requires a different model, such as the first three levels might require more descriptive models whereas levels four and five require decision support keen models in order to monitor and control processes \citep{Mentzas2001}.
 
-\citet{Aguilar-Saven2004} describes the main modeling techniques existing with workflow being one of them.
+\citet{Aguilar-Saven2004} reviews \gls{bpm} literature and describes the main \gls{bpm} techniques.
 
-Interestingly enough, workflow implementation in real world cases is not always only coupled with directly measurable effects, sometimes even unexpected results happen \citep{Reijers2005}. What is called the ``workflow paradox'' according to \citet{Reijers2005} is the concept that the very fact of companies accepting requests for workflow introduction might actually be the most promising way that leads to potentially better and more suitable alternatives.
+Interestingly enough, \glspl{wfms} implementation in real world cases is not always only coupled with directly measurable effects, sometimes even unexpected results happen \citep{Reijers2005}. What is called the ``workflow paradox'' according to \citet{Reijers2005} is the concept that the very fact of companies accepting requests for \glspl{wfms} introduction might actually be the most promising way that leads to potentially better and more suitable alternatives.
 
-\citet{Soerensen2005} focuses on problematics when modeling workflow processes with \gls{bpmn} such as presence of cycles and the consequences that these have in respect to termination and progress capability of workflow processes.
+\citet{Soerensen2005} focuses on problematics when modeling \glspl{wfms} with \gls{bpmn} such as the presence of cycles and the consequences that these have in respect to termination and progress capability of \glspl{wfms}.
 
-The key core topics on which this thesis lays its foundations upon is the work done by \citet{Zeng2005}: effective role resolution \ie the mechanism of assigning tasks to individual workers at runtime according to the role qualification defined in the workflow model, is the core aspect that is being extended during this thesis' work.
-
+Effective role resolution \ie the mechanism of assigning tasks to individual workers at runtime according to the role qualification defined in \glspl{wfms} as defined by \citet{Zeng2005} is the main focus of this thesis.
 \citet{Zeng2005} differentiate between staffing decisions and role resolution, with the former being the assignment of one or more roles to each user and the latter being the assignment of a specific task to an appropriate worker at runtime. Staffing decisions are usually made off-line and periodically, thus being more of a strategic nature \citep{Zeng2005}. If role resolution were to be made on-line it could translate to a major operational level decision \ie the differentiation between strategic vs operational playing role \citep{Zeng2005}.
-
-They moreover define three roles a workflow can fulfill \citep{Zeng2005}:
+They moreover define three roles a \glspl{wfms} can fulfill \citep{Zeng2005}:
 \begin{enumerate*}
 	\item System built-in policies
 	\item User customizable policies
 	\item Rule based policies.
 \end{enumerate*}
-
-Considering capacities of resources restrictions under the assignment problem is an NP-hard computational problem and \citet{Zeng2005} focus on how to solve the assignment problem and scheduling decisions with consideration of worker's preferences. For this purpose they define five workflow resolution policies:
+Considering capacities of resources restrictions under the role resolution problem is NP-hard and \citet{Zeng2005} focus on how to solve the it when accounting for worker's preferences. For this purpose they define five \gls{wfms} resolution policies:
 \begin{enumerate*}
 	\item \gls{llqp}
 	\item \gls{sq}
@@ -80,9 +75,7 @@ Considering capacities of resources restrictions under the assignment problem is
 	\item K-Batch-1
 	\item 1-Batch-1
 \end{enumerate*}
-
 For all batch policies a simplified version of \gls{dmf} has to be solved \citep{Zeng2005}.
-
 \citet{Zeng2005}'s key findings are outlined as follows:
 \begin{enumerate*}
 	\item Batch policies are to be used when system load is medium to high
@@ -91,12 +84,11 @@ For all batch policies a simplified version of \gls{dmf} has to be solved \citep
 	\item 1-Batch-1 online optimization policy yields best results in operational conditions.
 \end{enumerate*}
 
-On a detailed note, data flow inside workflow processes has to consider possible anomalies that might happen and this aspect has been extensively studies by \citet{Sun2006} where they formally define data flow methodologies for detecting such anomalies. Their framework is divided in two components \citep{Sun2006}:
+Data flow inside \glspl{wfms} has to consider possible anomalies that might happen and this aspect has been extensively studies by \citet{Sun2006} where they formally define data flow methodologies for detecting such anomalies. Their framework is divided in two components \citep{Sun2006}:
 \begin{enumerate*}
 	\item Data flow specification
 	\item Data flow analysis.
 \end{enumerate*}
-
 They moreover discuss aspects that data requirements have been analyzed but the required methodologies on discovering data flow errors have not been extensively researched \citep{Sun2006}.
 
 A more recent taxonomy of different \gls{bpm} applications is given by a collaboration between SAP and accenture \citep{EvolvedTechnologist2009}.
@@ -108,21 +100,21 @@ An analysis of the \glspl{csf} for \gls{bpm} is required in order to assert prod
 	\item Task-technology fit theory.
 \end{enumerate*}
 
-The domain of workflow processes and engines is permeated by \gls{bpmn} and \citet{Silver2011}'s guidelines are excellent formal foundations.
+The domain of \glspl{wfms} is permeated by \gls{bpmn} and \citet{Silver2011}'s guidelines are excellent formal foundations.
 
-Change management in workflow is yet another interesting aspect that should be considered and this has been broadly studied by \citet{Wang2011} where they developed an analytical framework for workflow change management through formal modeling of workflow constraints.
+Change management in \glspl{wfms} is yet another interesting aspect that should be considered and this has been broadly studied by \citet{Wang2011} where they developed an analytical framework for \glspl{wfms} change management through formal modeling of constraints.
 
-In companies different types of workflow models can exist and \citet{Fan2012} focus on two of these, namely:
+In companies different types of \glspl{wfms} can exist and \citet{Fan2012} focus on two of these, namely:
 \begin{enumerate*}
 	\item Conceptual
 	\item Logical.
 \end{enumerate*}
-
 Conceptual models serve as documentation for generic process requirements whereas logical models are used as definitions for technology oriented requirements \citep{Fan2012}. One difficult aspect is the transition from the former to the latter and \citet{Fan2012} propose a formal approach to efficiently support such transitions.
 
-\citet{Sun2013} cover the aspect of formal analysis for workflow models and they claim that it should help ``alleviating the intellectual challenge faced by business analysts.'' \citep[p. 2]{Sun2013}.
+\citet{Sun2013} cover the aspect of formal analysis for \glspl{wfms} and they claim that it should help ``alleviating the intellectual challenge faced by business analysts.'' \citep[p. 2]{Sun2013}.
 
 \section{\glsentrylong{rl}}
+\label{sec:rl}
 
 \gls{rl} is a branch of machine learning that promises to overcome the drawbacks posed by the latter by not requiring a training set for efficient machine decisions \citep{Sutton2017}.
 
@@ -132,13 +124,13 @@ One of the first \gls{mc} based \gls{pg} methods is the algorithm proposed by \c
 
 \citet{Haykin1998}'s comprehensive work on \glspl{ann} is an excellent theoretical foundation which serves as basis for critical concepts regarding the matter.
 
-Theoretical definitions on deep \glspl{ann} are also given by \citet{Lecun1998} which was used to better understand more recent developments in this domain.
+Theoretical definitions on deep \glspl{ann} are also given by \citet{Lecun1998} which were used to better understand more recent developments in this domain.
 
 \gls{pg} methods with \gls{vfa} and their convergence is of vital importance and according to \citet{Sutton1999} this can be achieved by representing the policy by an own function approximation which is independent of the value function and it is updated according to gradient of the expected rewards with respect to the afore mentioned policy.
 
 Another branch originated from \gls{rl} is \gls{irl}: \citet{Ng2000} outline the required algorithms for this domain.
 
-Discretization of the state action space is not always feasible and different techniques have to be used for tractability \citep{Smith2002}. \citet{Smith2002} proposes such an approach which he calls ``self-organizing map''.
+Discretization of the state action space is not always feasible and different techniques have to be used for tractability and \citet{Smith2002} proposes such an approach which he calls ``self-organizing map''.
 
 \citet{Abbeel2004} collaboration lays the basis for a bleeding edge branch of \gls{irl} called \gls{al}, which trains policies without rewards function by merely observing ``expert'' agents performing a task in a specific domain.
 
@@ -150,9 +142,9 @@ Yet another problem in which deep \glspl{ann} might incur in addition to \gls{vg
 
 Huge state space requirement is a clear limitation to lookup tables \citep{Sutton2017}. Even if memory would not be a constraint, the actual learning from such tables would be infeasible \citep{Sutton2017}. In order to pragmatically learn by reinforcement on such huge problems, \gls{vfa} in the domain of \gls{rl} proves to be a viable solution \citep{Sutton2017}. For different types of \gls{rl} approaches \ie \gls{mc} or \gls{td} methods exist different types of \gls{vfa}, ranging from simple linear combinations of features for \gls{mc} to \glspl{ann} for \gls{td} learning \citep{Sutton2017}. All these different methodologies are outlined in the tutorial by \citet{Geramifard2013} and complement the theoretical foundations laid by \citet{Sutton2017}.
 
-Overfitting for deep \glspl{ann} is a common problem \citep[p. 218]{Sutton2017}. \citet{Srivastava2014} propose the dropout method which proves to be a domain standard in regards to this problem.
+Overfitting for deep \glspl{ann} is a common problem \citep[p. 218]{Sutton2017}. \citet{Srivastava2014} propose the dropout method as solution which proves to be a domain standard in regards to this problem.
 
-As \glspl{mdp} grow in size, so does the required computational memory to solve possible discrete lookup tables modeling the state-actions spaces that characterizes them \citep{Sutton2017}. Notable examples that show how large some of the most common problems can be \citep{Sutton2017}:
+As \glspl{mdp} grow in size, so does the required computational memory to solve possible discrete lookup tables modeling the state-actions spaces that characterizes them \citep{Sutton2017}. \citet{Sutton2017} show notable examples that show how large some of the most common problems can be:
 \begin{enumerate*}
 	\item The game of backgammon has a total of $10^{20}$ states
 	\item The traditional Chinese abstract board game Go has an estimated total of $10^{170}$ states
@@ -163,35 +155,35 @@ When working with on-line algorithms such as \gls{td} it is important to choose 
 
 There are two main fields in \gls{rl}, one is using \gls{vfa} for either the state value function or for using control mechanisms with the state \gls{av} function, while the other one is using \gls{pg} methods for policy optimization \citep{Sutton2017}. The latter offers different methods such as the naive finite difference methods, \gls{mc} based \gls{pg} methods and finally \gls{ac} \gls{pg} methods as defined by \citet{Silver2014}.
 
-\citet{Clevert2015} discuss a special class of activation functions for \glspl{ann} called \glspl{elu} which are improvements over classical \glspl{relu}. \glspl{elu} activation functions are used for the modeling of the \glspl{ann} layers in this thesis.
+\citet{Clevert2015} discuss a special class of activation functions for \glspl{ann} called \glspl{elu} which are improvements over traditional \glspl{relu}. \glspl{elu} activation functions are used for the modeling of the \glspl{ann} layers later on.
 
 \citet{Gershman2016} proposes further advancements to \citet{Zhang2011}'s work on statistical identifiability by analyzing prior distributions of the parameters. He argues that his approach helps to some extent to overcome the identifiability problem \citep{Gershman2016}.
 
 Notable works in the field of \gls{rl} and its application include DeepMind Technologies Limited's work on novel algorithms for tackling fields previously barely scratched, as mentioned by \citet{Mnih2015} and \citet{Silver2016}.
 
-\citet{Sutton2017} started working on the \gls{rl} topic in the early nineties and are now planning their third edition of the famous book on machine learning, which is due in 2017. For this thesis, \gls{rl} is used in order for the policies to be able to improve themselves by continuously analyzing their own decision models and optimize upon them. Their work is the backbone used for this thesis for the \gls{rl} domain.
+\citet{Sutton2017} started working on the \gls{rl} topic in the early nineties and are now planning their third edition of the famous book on \gls{rl}, which is due in 2017.
 
 \section{Optimization}
+\label{sec:optimization}
 
-Dynamic allocation of jobs to users, or how \citet{Zeng2005} define it \ie \gls{dmf}, is a problem that is NP-hard, as demonstrated by \citet{Garey1990}.
+The NP-hardness of \gls{dmf} is formally proved by \citet{Garey1990}.
 
-Under mathematical optimization or specifically to the domain of the thesis, a \gls{milp} problem must be solved in order to optimally assign jobs to users in the workflow processes. The generalized assignment problem is a very well known problem in combinatorial mathematics and \citet{Cattrysse1992} give an overview of different algorithms for solving it. Heuristics are also a viable solution for solving such adaptation of the generalized assignment problem, as \citet{Racer1994} state. Moreover a global perspective of optimization from a mathematical perspective is given in \citet{Boyd2004}'s work on convex optimization.
+For role resolution in \glspl{wfms} a \gls{milp} problem must be solved in order to optimally assign jobs to users. The generalized assignment problem is a very well known problem in combinatorial mathematics and \citet{Cattrysse1992} give an overview of different algorithms for solving it. Heuristics are also a viable solution for solving such adaptation of the generalized assignment problem, as \citet{Racer1994} state. Moreover a global perspective of optimization from a mathematical perspective is given in \citet{Boyd2004}'s work on convex optimization.
 
-Last but not least, according to the AIMMS guidelines, there are different linear programming tricks that can be used to shape such problems in solvable outlines \citep{Bisschop2016}. In this thesis, a specific linear programming trick, called either-or constraints, was used by adding so called auxiliary variables to the evaluation method presented in order to efficiently solve an otherwise non solvable equation \citep[p. 77]{Bisschop2016}.
+According to the AIMMS guidelines, there are different linear programming maneuvers that can be used to shape such problems in solvable outlines \citep{Bisschop2016}. \citet{Zeng2005} propose that by adding auxiliary variables, their formulation of \gls{dmf} can be transformed in a \gls{milp} problem. For this purpose, the either-or constraints was used to transform \gls{dmf} into \gls{edmf} \citep[p. 77]{Bisschop2016}.
 
 \section{Simulation}
+\label{sec:simulation}
 
-\citet{Bahouth2007} focuse on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues. According to their findings, a significant speedup can be achieved if one addresses the afore mentioned facets \citep{Bahouth2007}.
+\citet{Bahouth2007} focuses on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues. According to their findings, a significant speedup can be achieved if one addresses the afore mentioned facets \citep{Bahouth2007}.
 
-Simulating queues can prove to be arduous \citep{Matloff2008}. The main differentiation needed here is that between continuous and step functions: the former is the result when the events being simulated yield values that if plotted against the simulation time give a continuous function \citep{Matloff2008}. On the other hand, if we simulate events that yield discrete values, such as inventory changes in a storage facility and plot the results against the simulation time we would get so called step functions \citep{Matloff2008}.
-
+Simulating queues can prove to be arduous \citep{Matloff2008}. The main differentiation needed here is the one between continuous and step functions: the former is the result when the events being simulated yield values that if plotted against the simulation time give a continuous function \citep{Matloff2008}. On the other hand, if we simulate events that yield discrete values, such as inventory changes in a storage facility and plot the results against the simulation time we would get so called step functions \citep{Matloff2008}.
 According to \citet{Matloff2008}, different world views for discrete event programing exist, as he calls them paradigms \citep{Matloff2008}:
 \begin{enumerate*}
 	\item Activity oriented
 	\item Event oriented
 	\item Process oriented.
 \end{enumerate*}
-
 Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities \citep{Matloff2008}. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there will not be any change in state for the simulated entities \citep{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated \citep{Matloff2008}. By filling these gaps, a dramatical increase in computation can be observed \citep{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread \citep{Matloff2008}. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks exist \citep{Matloff2008}.
 
 \citet{Milo2012} defines speedup as a metric for evaluating comparisons in computer architecture which is used when analyzing the results of this thesis.
