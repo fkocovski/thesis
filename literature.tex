@@ -5,13 +5,11 @@ This chapter servers as an overview of the state of the art literature that exis
 
 \section{Queueing}
 
-Queuing is a topic that talks about how people or more general agents are to be served while waiting (\ie queueing) inside a system \citep{Kendall1953}.
-
-Starting with one of the most notable contributions to this field done by \citet{Kendall1953} and his work on the Markov chains in queuing theory, where he formally defines different types of queues.
+Queuing is the act of how people, or more general agents, are to be served while waiting (\ie queueing) inside a system \citep{Kendall1953}. Starting with the seminal contribution of \citet{Kendall1953} and his work on the Markov chains in queuing theory, where he formally defines different types of queues, many researches have been based upon.
 
 \citet{Pinedo2008} outlines in his work the most prominent key metrics that can be used in order to assert and measure queues performance.
 
-\citet{Adan2016} describe the necessary basic concepts for queuing theory: statistical foundations outlined in their work about different modeling techniques for randomized generation rates, such as the Erlang's distributions which serves as backbone for this thesis.
+\citet{Adan2015}'s statistical modeling techniques for randomized generation rates, such as the Erlang's distribution, are used in the discrete event simulation framework.
 
 \section{Workflow}
 \label{sec:workflow}
@@ -29,7 +27,9 @@ Another good starting point in the workflow thematic is \citet{Macintosh1993}'s 
 
 \citet{Georgakopoulos1995} give a comprehensive business oriented overview of the different workflow technologies present on the market used as a sound foundation for analyzing the present technologies.
 
-On this note, \citet{Giaglis2001} lays out four different process perspectives:
+\citet{Cheng2000} formally defines what role resolution in workflow processes is and the different approaches that can be used for governing this task.
+
+Following \citet{Georgakopoulos1995} business oriented overview, \citet{Giaglis2001} lays out four different process perspectives:
 \begin{enumerate*}
 	\item Functional
 	\item Behavioral
@@ -58,6 +58,8 @@ Each level of maturity as defined by \citet{Macintosh1993} requires a different 
 \citet{Aguilar-Saven2004} describes the main modeling techniques existing with workflow being one of them.
 
 Interestingly enough, workflow implementation in real world cases is not always only coupled with directly measurable effects, sometimes even unexpected results happen \citep{Reijers2005}. What is called the ``workflow paradox'' according to \citet{Reijers2005} is the concept that the very fact of companies accepting requests for workflow introduction might actually be the most promising way that leads to potentially better and more suitable alternatives.
+
+\citet{Soerensen2005} focuses on problematics when modeling workflow processes with \gls{bpmn} such as presence of cycles and the consequences that these have in respect to termination and progress capability of workflow processes.
 
 The key core topics on which this thesis lays its foundations upon is the work done by \citet{Zeng2005}: effective role resolution \ie the mechanism of assigning tasks to individual workers at runtime according to the role qualification defined in the workflow model, is the core aspect that is being extended during this thesis' work.
 

@@ -1,26 +1,23 @@
 \chapter{Introduction}
 \label{ch:intro}
 
-\section{Problem Definition}
-
-Workflows are IT solutions that can help increase efficiency and get tasks done better and faster \citep{Mentzas2001}. However, a key element of each workflow process still remains the human aspect which can take many facets, such as humans analyzing, designing or executing workflow processes. This thesis focuses on the latter: human agents interacting with workflow processes in order to work on tasks. A business process that has been efficiently analyzed and subsequently optimally implemented still cannot ensure optimal execution, or no optimal execution can be achieved while a human intervention for task execution is present. It is here that optimal role resolution comes in play: optimally choosing and assigning a specific task inside the workflow process to the best possible actor is a non trivial task that has to be solved in order to close the ``optimization'' circle that workflow engines advertise.
-
-This field is relevant since an optimal role resolution can bring optimization from many sides:
+\glspl{wfms} empower business process automation \citep{Zeng2005}. One crucial aspect of this empowerment consists in effectively assigning jobs to users in \glspl{wfms} \citep{Zeng2005}. This concept is termed role resolution in the literature \citep{Cheng2000}. Solving the role resolution problem in \glspl{wfms} can lead to fully realize the potential gains such as:
 \begin{enumerate*}
 	\item Cost savings
 	\item Fairness in workload assignment
 	\item Optimal resources usage.
 \end{enumerate*}
 
-Currently different workflow engines exist, ranging from complete fully functional suites down to extensible frameworks that allow the implementer to adapt it to its own needs. Nonetheless, all these solutions lack optimality in the task assignment sector.
+Currently most \glspl{wfms} implement elementary role resolution policies \citep{Zeng2005}. Expanding on \citet{Zeng2005}'s work, this thesis focuses on further developing traditional \gls{milp} based approaches and proposes novel \gls{rl} based methods for solving the role resolution problem in \glspl{wfms}.
+
 
 \section{Objectives}
 \label{sec:objectives}
 
-The objectives of this thesis build upon the work of \citet{Zeng2005} in which they depicted preliminary policies for optimal role resolution and extends these capabilities from a twofold perspective:
+The objectives of this thesis build upon the work of \citet{Zeng2005} in which they describe policies for optimal role resolution in \glspl{wfms} and extends these capabilities from a twofold perspective:
 \begin{enumerate*}
-	\item Further develops the mathematical premises and extends the capabilities of the batch policies proposed by \citet{Zeng2005}
-	\item Explores the capabilities offered by \gls{rl} as addition and improvement for even preciser, faster and better task assignment.
+	\item Further develops the \gls{milp} based approaches proposed by \citet{Zeng2005}
+	\item Explores the capabilities offered by \gls{rl} as in order to overcome the deterministic limitations of traditional \gls{milp} based methods by approaching role resolution in \glspl{wfms} from a stochastic perspective.
 \end{enumerate*}
 
 Formally, this thesis tries to answer the following research questions:
@@ -32,28 +29,14 @@ Formally, this thesis tries to answer the following research questions:
 
 \section{Thesis Structure}
 
-This thesis is subdivided in five main chapters:
+This thesis is subdivided in seven main chapters:
 
 \begin{itemize}
-	\item \chpref{ch:intro} gives an overview of why the chosen topic is relevant, what is the current context of the work and how this work fits in. It moreover articulates the central research questions that permeate this thesis and gives an overview of this essay.
-	\item \chpref{ch:related_work} gives an overview of the most important conceptual definitions and the state of the art literature review in the touched thematic topics of this work.
-	\item \chpref{ch:discrete_event_sim} gives an overview of the approach used for the research \eg the analysis environment and the used tools, states the hypothesis that wants to be proved and eventually describes statistically and qualitatively the data sets upon which the methodology is applied.
-	\item \chpref{ch:empirical_analysis} builds upon \chpref{ch:discrete_event_sim} and makes its way into the hypothesis test field and the respective analysis results. Furthermore looks introspectively on the data correlation and gives an interpretation of the latter. Eventually in this section a statement about the contribution that the results bring into this field is given.
-	\item \chpref{ch:conclusion} is the culminating chapter in which a summary of the key findings of the thesis are outlined, the research questions posed in \secref{sec:objectives} are answered by looking at the actual usability, limitations and to whom the results are most applicable. Finally outlooks about the future trends and how the empirical results of this thesis can be extended by prospective researchers is given.
+	\item \chpref{ch:related_work} gives an overview of the state of the art literature in the touched thematic topics of this work.
+	\item \chpref{ch:foundations} outlines the theoretical foundations in \gls{bpmn}, \glspl{wfms}, their limitations and role resolution. 
+	\item \chpref{ch:discrete_event_sim} maps the theoretical concepts outlined in \chpref{ch:foundations} with the actual discrete event simulation framework used for evaluation. It explains in detail the governing logic of the subset of \gls{bpmn} elements implemented and the role resolution approach used.
+	\item \chpref{ch:policies} initially describes in detail the \gls{milp} based approach used in this thesis and how traditional methods have been extended, followed by a theoretical introduction in \gls{rl} which is eventually used in the culminating part where the \gls{rl} based approaches are explained.
+	\item \chpref{ch:empirical_analysis} describes the evaluation framework implemented, how both role resolution approaches are simulated and defines the \glspl{kpi} used to measure them.
+	\item \chpref{ch:results} initially exposes the results obtained by the \gls{milp} based methods and then compares them with the traditional methods of \citet{Zeng2005}. Subsequently, the results of the \gls{rl} based methods are also outlined.
+	\item \chpref{ch:conclusion} is the culminating chapter in which the results obtained in \chpref{ch:results} are critically discussed and interpreted, then	a summary of the key findings of the thesis is outlined and the research questions posed in \secref{sec:objectives} are answered by looking at the actual usability, limitations and to whom the results are most applicable to. Finally consequences and outlooks about the future trends and how the empirical results of this thesis can be extended by prospective researchers are given.
 \end{itemize}
-
-\section{Project Management}
-
-The first half of the thesis road-map consisted of an in-depth literature review with a twofold focus:
-\begin{enumerate*}
-	\item Analyzing existing literature and solutions in the domain as proposed by \citet{Zeng2005}.
-	\item Analyzing novel approaches for complementing the existing solutions as outlined by \citet{Sutton2017}.
-\end{enumerate*}
-
-With a solid foundations laid down, starting December 1, 2016 the implementation phase began. Initially the focus was set on implementing the simulation environment, followed by the implementation of the optimization solution \ie the \gls{msa} formulation, proposed by \citet{Zeng2005} and subsequently the optimization alternatives (refer to \subsecref{sec:opt_policies}).
-
-\fig[\textwidth]{project_management_gantt_chart}{Project Management Gantt Chart for 2016}{fig:project_management_gantt_chart}
-
-Starting January 1, 2017 the implementation focus shifted towards the novel \gls{rl} approaches as outlined by \citet{Sutton2017}, which continued until March 31, 2017. In parallel, the thesis report was being iteratively written. Starting April 17, 2017 the presentation's work started in conjunction with the thesis report.
-
-\fig[\textwidth]{project_management_gantt_chart_2017}{Project Management Gantt Chart for 2017}{fig:project_management_gantt_chart_2017}

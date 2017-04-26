@@ -45,7 +45,7 @@ Summary key findings:
   author = {Adan, Ivo and Resing, Jacques},
   title  = {{Queueing Systems}},
   month  = mar,
-  year   = {2016},
+  year   = {2015},
   review = {Interesting script that covers the necessary basics about queueing theory. Especially interesting is the initial statistics overview where Erlang's distribution is explained.},
 }
 
@@ -109,12 +109,19 @@ Brief description of these 3 types of discrete event simulations.},
   url     = {http://jmlr.org/proceedings/papers/v32/silver14.pdf},
 }
 
-@Misc{Sutton1999,
-  author = {Sutton, Richard S. and McAllester, David A. and Singh, Satinder and Mansour, Yishay},
-  title  = {Policy Gradient Methods for Reinforcement Learning with Function Approximation},
-  year   = {1999},
-  review = {Discussion on convergence of policy gradient methods with function approximation},
-  url    = {https://papers.nips.cc/paper/1713-policy-gradient-methods-for-reinforcement-learning-with-function-approximation.pdf},
+@InProceedings{Sutton1999,
+  author    = {Sutton, Richard S. and McAllester, David and Singh, Satinder and Mansour, Yishay},
+  title     = {Policy Gradient Methods for Reinforcement Learning with Function Approximation},
+  booktitle = {Proceedings of the 12th International Conference on Neural Information Processing Systems},
+  year      = {1999},
+  series    = {NIPS'99},
+  pages     = {1057--1063},
+  address   = {Cambridge, MA, USA},
+  publisher = {MIT Press},
+  acmid     = {3009806},
+  location  = {Denver, CO},
+  numpages  = {7},
+  url       = {http://dl.acm.org/citation.cfm?id=3009657.3009806},
 }
 
 @InProceedings{Zhang2011,
@@ -630,7 +637,7 @@ Data flow matrix (p. 7) is an interesting aspect to model data flows with write 
   url    = {http://www.is.informatik.uni-kiel.de/~ove/research/papers/2009-OrJoin.pdf},
 }
 
-@Article{Cheng2000357,
+@Article{Cheng2000,
   author   = {Edward C Cheng},
   title    = {An object-oriented organizational model to support dynamic role-based access control in electronic commerce},
   journal  = {Decision Support Systems},
@@ -640,7 +647,7 @@ Data flow matrix (p. 7) is an interesting aspect to model data flows with write 
   pages    = {357 - 369},
   issn     = {0167-9236},
   abstract = {Role-based access control (RBAC) provides flexibility to security management over the traditional approach of using user and group identifiers. In RBAC, access privileges are given to roles rather than to individual users. Users acquire the corresponding permissions when playing different roles. Roles can be defined simply as a label, but such an approach lacks the support to allow users to automatically change roles under different contexts; using static method also adds administrative overheads in role assignment. In electronic commerce (E-Commerce) and other cooperative computing environments, access to shared resources has to be controlled in the context of the entire business process; it is therefore necessary to model dynamic roles as a function of resource attributes and contextual information. In this paper, an object-oriented organizational model, Organization Modeling and Management (OMM), is presented as an underlying model to support dynamic role definition and role resolution in E-Commerce solution. The paper describes the \{OMM\} reference model and shows how it can be applied flexibly to capture the different classes of resources within a corporation, and to maintain the complex and dynamic roles and relationships between the resource objects. Administrative tools use the role model in \{OMM\} to define security policies for role definition and role assignment. At runtime, the E-Commerce application and the underlying resource manager queries the \{OMM\} system to resolve roles in order to authorize any access attempts. Contrary to traditional approaches, \{OMM\} separates the organization model from the applications; thus, it allows independent and flexible role modeling to support realistically the dynamic authorization requirements in a rapidly changing business world. },
-  doi      = {http://doi.org/10.1016/S0167-9236(00)00083-X},
+  doi      = {10.1016/S0167-9236(00)00083-X},
   keywords = {Electronic commerce, Role-based access control, Organization modeling, Role resolution, Business process management, Workflow },
   review   = {cited in zeng's paper that defines the term role resolution},
   url      = {http://www.sciencedirect.com/science/article/pii/S016792360000083X},

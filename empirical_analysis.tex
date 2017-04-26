@@ -1,0 +1,109 @@
+\chapter{Empirical Analysis}
+\label{ch:empirical_analysis}
+
+In order to consistently and fairly evaluate all policies with the methods defined in the previous chapters, the following methodology was put in place:
+\begin{enumerate*}
+	\item Each policy has its own simulation script that initializes a process that uses the predefined policy as means to optimally assign jobs to tasks
+	\item Parameters are centrally defined
+	\item Different \glspl{kpi} have been defined which are used to assert the efficiency of one policy against one another.
+\end{enumerate*}
+
+\section{Simulation Script}
+
+Each simulation script is the abstract element that imports all required dependencies, initializes the \texttt{SimPy} simulation environment, the statistics file into which the policy dumps all data on runtime, the policy object itself to be used for the assignment and the workflow process to be used. 
+
+The script initializes the chosen workflow process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling the run method of the \texttt{SimPy} environment. A snippet of a simulation script can be found in \lstref{lst:simulation_script}.
+
+\begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the \gls{dmf} formulation,label=lst:simulation_script,style=CustomPython]
+	import simpy
+	from evaluation.statistics import calculate_statistics
+	from evaluation.subplot_evolution import evolution
+	from policies.optimization.batch.k_batch import K_BATCH
+	from simulations import *
+	from solvers.dmf_solver import dmf
+
+	policy_name = "{}_BATCH_DMF_NU{}_GI{}_SIM{}".format(BATCH_SIZE,NUMBER_OF_USERS, GENERATION_INTERVAL, SEED, SIM_TIME)
+
+	env = simpy.Environment()
+
+	file_policy = create_files("{}.csv".format(policy_name))
+
+	policy = K_BATCH(env, NUMBER_OF_USERS, WORKER_VARIABILITY, file_policy,BATCH_SIZE, dmf)
+
+	start_event = acquisition_process(env,policy,1,GENERATION_INTERVAL,False,None,None,None)
+
+	env.process(start_event.generate_tokens())
+
+	env.run(until=SIM_TIME)
+
+	file_policy.close()
+
+	calculate_statistics(file_policy.name, outfile=True)
+
+	evolution(file_policy.name, outfile=True)
+\end{lstlisting}
+
+\section{Workflow Process Modeling}
+
+Two different types of processes have been defined:
+\begin{enumerate*}
+	\item Consisting of only one user task
+	\item A complex workflow process that is modeled against an acquisition process used in the real estate field for the acquisition of real estate properties.
+\end{enumerate*}
+
+\figref{fig:simple_process} illustrates the simple process.
+
+\fig[0.5\textwidth]{simple_process}{Simple workflow process consisting of only one user task}{fig:simple_process}
+
+\figref{fig:acquisition_process} illustrates the complex acquisition process.
+
+\fig[\textwidth]{acquisition_process}{Acquisition workflow process consisting of multiple user tasks and decision nodes}{fig:acquisition_process}
+
+\section{Global Simulation and Process Parameters Definition}
+
+One key aspect in order to assert comparability across policies while simulated is to centrally define all parameters. \lstref{lst:central_parameters} shows the key central parameters defined as global variables.
+
+\begin{lstlisting}[caption=Global parameters definition that ensures comparability across simulation runs,label=lst:central_parameters,style=CustomPython]
+	NUMBER_OF_USERS = 3
+	SERVICE_INTERVAL = 1
+	GENERATION_INTERVAL = 3
+	SIM_TIME = 1000
+	BATCH_SIZE = 5
+	TASK_VARIABILITY = 0.2 * SERVICE_INTERVAL
+	WORKER_VARIABILITY = 0.2 * SERVICE_INTERVAL
+	SEED = 2
+\end{lstlisting}
+
+\section{\glsentryshortpl{kpi} for Asserting Policy's Efficacy and Data Visualization}
+
+Based on \citet{Pinedo2008}'s and \citet{Zeng2005}'s definitions in their works, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$ to token $j$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
+
+\begin{align}
+	L_j&=F_j-A_j \label{eq:lateness}\\
+	w_j&=S_j-A_j \\
+	p_{ij}&=F_j-S_j
+\end{align}
+
+Moreover, if we account for simulation time $T$, load $l_i$ of user $i$ is defined as the sum of all service times of tokens that have been assigned to him during the simulation divided by the total simulation time $T$, or formally:
+
+\begin{equation}
+	l_i=\frac{\sum_j p_{ij}}{T}
+\end{equation}
+
+and thus the average system load $\overline{l}$ over all $n$ users participating is defined as the average across all user's loads \ie
+
+\begin{equation}
+	\overline{l} = \frac{\sum_i l_i}{n}
+\end{equation}
+
+A summary plot with all \glspl{kpi} is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
+
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryfullpl{kpi}  summary plot for a 3-Batch policy using the \glsentryfull{msa} formulation, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
+
+Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \secref{sec:opt_policies}.
+
+The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example.
+
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the \glsentryfull{msa} formulation, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
+
+Finally, when comparing different policies between each other, \citet{Milo2012}'s definition of speedup $S$ between two quantities $q_1$ and $q_2$ is adopted, which he formally defines as the quotient $S=\frac{q_1}{q_2}$.

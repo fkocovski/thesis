@@ -1,7 +1,5 @@
 \chapter{Policy Based Role Resolution}
-
-\section{Optimization Policies}
-\label{sec:opt_policies}
+\label{ch:policies}
 
 Different types of policies have been implemented following the foundations laid by \citet{Zeng2005} as outlined in \secref{sec:workflow}. In their work the authors investigate five ``role-resolution'' policies used for optimal task to user assignment \citep[p. 7]{Zeng2005}. Following a brief description of the five aforementioned policies:
 \begin{enumerate*}
@@ -11,6 +9,10 @@ Different types of policies have been implemented following the foundations laid
 	\item The next policy takes the ``K-Batch'' policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the \gls{sq} reaches the critical size $K$, however actual movement of tasks from the \gls{sq} to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$. This policy is called according to the authors as ``K-Batch-1''
 	\item The last policy further simplifies the fourth by weakening the batch size constraint and reduces it to one. This means that the optimal task assignment procedure is executed immediately. This policy is referred by the authors as ``1-Batch-1''.
 \end{enumerate*}
+
+\section{Optimization Policies}
+\label{sec:opt_policies}
+
 
 All batch policies require the solution of an optimization problem. The authors define this problem as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``\gls{msa}''\citep[p. 7]{Zeng2005}. The authors define the task flowtime as the elapsed simulation time between task generation and its completion \citep{Zeng2005,Baker1974}. Formally \gls{msa} is formulated as follows:
 
@@ -66,11 +68,7 @@ When considering the minimization of the maximum flowtime of a task inside a pro
 
 The whole concept consists in the introduction of an identity variable $I$ which is true only if task $j$ is currently being assigned as the $k$th task to user $i$, meaning that for this specific case also the waiting time for task $j$ has to be accounted for. For all other cases \ie $j<k$ the identity variable $I$ will not hold thus effectively zeroing the $w_j$ variable.
 
-\figref{fig:edmf_task_assignment} depicts the potential scenario where three tasks are assigned to a specific user $i$ following a sequence where task 2, 3 and $j$ are assigned respectively as first, second and third tasks (thus respecting the $k$ notation outlined above them).
-
 In order to calculate $z_{ijk}$, one has to consider also when user $i$ will actually be available to process his first task. This is depicted by the variable $a_i$, which summed together with the respective service times of user $i$ for task $j$ gives the complete work time user $i$ will require to process all tasks assigned to him.
-
-\fig[0.75\textwidth]{dmf_problem}{\gls{edmf} Task Assignment}{fig:edmf_task_assignment}
 
 Without further ado, the simplified formulation of \gls{edmf} (called \gls{sdmf}) is the following:
 
@@ -133,7 +131,7 @@ The culminating ``flagship'' improvement of the optimization method proposed by 
 	\mathcal{O}(mn+mn^2) \subseteq \mathcal{O}(mn^2)
 \end{equation}
  
- but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \subsecref{subsec:optimization_discussion}.
+ but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:optimization_discussion}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -315,11 +313,22 @@ The connections between neurons inside an \gls{ann} are called weights and the a
 
 The key about solving nonlinearity with \glspl{ann} is how they apply nonlinear functions to the sum of their weights, this process is done by means of activation functions \citep[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of them usually exhibits an ``$S$'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of \glspl{relu}, which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \citep[p. 216]{Sutton2017}.
 
-\fig[0.5\textwidth]{ann_1h}{Single layer \gls{ann}}{fig:ann_1h}
-
 Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development towards more complex \glspl{ann} with multiple hidden layers (\ie multi-layer perceptrons) has been on the rise \citep[p. 217]{Sutton2017}. These complex \glspl{ann} allow to solve many artificial intelligence tasks in a much more efficient way \citep{Bengio2009}. This area is called deep \gls{rl} and it has shed light on solutions that were never though possible before (for practical applications refer to \citet{Mnih2015} and \citet{Silver2016})\footnote{Note that the class of deep \glspl{ann} used in these works is a particular one called deep convolutional networks, which are specialized networks used for processing high dimensional data arranged in spatial arrays like images \citep[p. 219]{Sutton2017},\citep{Lecun1998}.} \citep{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer \glspl{ann}.
 
-\fig[0.75\textwidth]{ann_2h}{Multi layer \gls{ann}}{fig:ann_2h}
+\begin{figure}[!ht]
+	\centering
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{img/ann_1h}
+		\caption{Single layer \gls{ann}}
+		\label{fig:ann_1h}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{img/ann_2h}
+		\caption{Multi layer \gls{ann}}
+		\label{fig:ann_2h}
+	\end{minipage}
+\end{figure}
 
 Despite appearing more complex, \glspl{ann} rely on a similar approach for learning (\ie updating their internal parameters, or in this case the whole network's synaptic connections) based on the \gls{sgd} method outlined in \subsecref{subsec:onpol_pred} \citep[p. 217]{Sutton2017}. This algorithm is called backpropagation and consists of doing a forward pass in which the activation function of each neuron is computed and then a backward pass computes the partial derivatives for each synaptic connection \citep[p. 218]{Sutton2017}.
 

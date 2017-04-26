@@ -1,10 +1,10 @@
 \chapter{Conclusion}
 \label{ch:conclusion}
 
-\section{Discussion}
+This chapter interprets the results obtained in \chpref{ch:results} by means of discussing the optimization results in \secref{sec:optimization_discussion}, the \gls{rl} results in \secref{sec:rl_discussion}, summarizing them in \secref{sec:summary}, exposing the consequences in \secref{sec:consequences} and eventually outlining future work in \secref{sec:outlook}.
 
-\subsection{Optimization}
-\label{subsec:optimization_discussion}
+\section{Optimization Results Discussion}
+\label{sec:optimization_discussion}
 
 Using mathematical optimization to solve the assignment problem proves to be an efficient measure, however different formulations yield different solutions and formulation complexities. \citet[p. 15]{Zeng2005} mention that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \citep[p. 13]{Zeng2005},\citep{Garey1990}. \citet[p. 13]{Zeng2005} propose however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of formulations. The \gls{st} ``flagship'' formulation significantly outperforms the \gls{msa} formulation (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher formulation complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_formulations}) questions the practical use of this formulation over the other methods. A speedup factor of $1.23$ in respect to lateness having a quadratic higher formulation complexity poses a dubious trade-off from a business perspective.
 
@@ -29,8 +29,8 @@ Yet another aspect mentioned by \citet[pp. 17--18]{Zeng2005} is a more ``social'
 
 It is clear that \gls{st} is ``fairer'' at balancing loads across users compared to \gls{msa}. 
 
-\subsection{\glsentrylong{rl}}
-\label{subsec:rl_discussion}
+\section{\glsentrylong{rl} Results Discussion}
+\label{sec:rl_discussion}
 
 Let us first focus on \gls{llqp}, which, as explained in \secref{sec:opt_policies}, focuses on assigning a job to the least loaded qualified person. By comparing the results obtained with \gls{rl} against the optimization method, we clearly see that speedups across all \glspl{kpi} are imperceptible (refer to \subsecref{subsec:llqp_rl_msa_comp_app} for more details). This sheds light on two key aspects:
 \begin{enumerate*}
@@ -68,6 +68,7 @@ On a more general note, different comparisons have shown huge spikes in speedup 
 \fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glsentryfullpl{kpi} comparison between \glsentryfull{op} and \glsentryfull{onp} approaches}{fig:llqp_mc_vfa_on_vs_off}
 
 \section{Summary}
+\label{sec:summary}
 
 This thesis' focus was analyzing different approaches for optimally allocating resources inside workflow processes by means of different methods.
 
@@ -81,9 +82,10 @@ Subsequently, a discrete event simulation environment as outlined in \chpref{ch:
 
 For \ref{itm:math_opt} five existing optimization policies as outlined in \secref{sec:opt_policies} have been implemented and evaluated against the existing policies defined by \citet[pp. 13--14]{Zeng2005}. Furthermore, for \ref{itm:novel_rl} a profound literature review about \gls{rl} had to be made and following on the theoretical foundations laid (see \secref{sec:rl_theory}) novel policies for solving the assignment problem based on \gls{rl} have been implemented (see \secref{sec:rl_policies}). Lastly, all \gls{rl} policies have been also evaluated and a comparison between them and the corresponding optimization methods has been made.
 
-\section{Resulting Conclusions}
+\section{Consequences}
+\label{sec:consequences}
 
-Optimization methods are viable solutions for optimally assigning jobs to users inside workflow processes, as already argued by \citet{Zeng2005}. Further developed policies relying on mathematical optimization done for this thesis proved indeed to yield better results (see \subsecref{subsec:opt_comparison}), however the higher required complexity (refer to \subsecref{subsec:optimization_discussion}) poses a critical trade-off. \ref{rq:one} can be affirmatively answer: there is definitely potential for further development and optimization of existing methods but further questions arise:
+Optimization methods are viable solutions for optimally assigning jobs to users inside workflow processes, as already argued by \citet{Zeng2005}. Further developed policies relying on mathematical optimization done for this thesis proved indeed to yield better results (see \subsecref{subsec:opt_comparison}), however the higher required complexity (refer to \secref{sec:optimization_discussion}) poses a critical trade-off. \ref{rq:one} can be affirmatively answer: there is definitely potential for further development and optimization of existing methods but further questions arise:
 \begin{enumerate*}
 	\item Does a slight increase in performance justify the higher formulation complexity requirements?
 	\item Can only one \gls{kpi} be chosen as central parameter to evaluate a policy's performance or is a combination of different \glspl{kpi} more suitable?
@@ -109,6 +111,7 @@ Then again \gls{rl} methods are not exempt from disadvantages:
 In general \gls{rl} based approaches are a refreshing and novel methodology for solving optimization problems but require further development and sound domain knowledge.
 
 \section{Outlook}
+\label{sec:outlook}
 
 This thesis does a first step in laying the foundations for viable alternatives to existing optimization techniques for workflow processes. A direct follow up consists in testing in operative environments the introduction feasibility and efficiency measured in the simulation environment outlined in this thesis. This includes testing the robustness, efficacy and viability of the proposed policies by putting them under ``real-world'' stress situation in order to assert the efficiency claims. For \gls{rl} methods executing lengthy training sessions might prove impractical: thousands of training sessions required by \gls{rl} methods in order to comply with convergence properties can prove infeasible for companies that are not able to generate such amounts of data, thus directly limiting applicability of these methods.
 

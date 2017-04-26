@@ -7,7 +7,7 @@ As previously outlined in \secref{sec:role_resolution_theory}, a discrete event 
 
 Active components such as agents in a workflow are modeled as processes which live inside an environment and the interaction between them happens via events.
 
-As previously mentioned, processes in \texttt{SimPy} are described by \texttt{Python} generators. During their lifetime they create events, yield (note that with the term \texttt{yield} here it is to be understood as \texttt{Python}'s yield statements)\foot{https://docs.python.org/3.5/reference/simple_stmts.html\#the-yield-statement}{06.01.2017} them to the environment, which then wait until they are triggered. The important logic to understand here is how \texttt{SimPy} treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in \texttt{SimPy}'s notation when it gets triggered).
+As previously mentioned, processes in \texttt{SimPy} are described by \texttt{Python} generators. During their lifetime they create events, yield (note that with the term \texttt{yield} here it is to be understood as \texttt{Python}'s yield statements)\foot{http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python}{26.04.2017} them to the environment, which then wait until they are triggered. The important logic to understand here is how \texttt{SimPy} treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in \texttt{SimPy}'s notation when it gets triggered).
 
 \texttt{SimPy} offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since a timeout event are created and called by the appropriate method of the passed \texttt{Environment}.
 
@@ -58,7 +58,7 @@ This can be interpreted as that the whole simulation will persist for $100$ time
 
 \subsubsection{Master Random State}
 
-In order to assert fairness among all simulation runs a master random state is assigned to the start event. This master random state is generated from the \texttt{PCG}\foot{http://www.pcg-random.org/}{25.04.2017} family of random generators which exhibit peculiar characteristics, one amongst all is the possibility of ``jumping ahead'' in the state. By such means of ahead jumps it is possible to assign a fixed number of random yet consistent choices among all runs, since each generated token receives from the start event a ``jumped'' copy from the master state. The implementation of this recursive ahead jumps in random states is depicted in \lstref{lst:random_state_jump}.
+In order to assert fairness among all simulation runs a master random state is assigned to the start event. This master random state is generated from the \texttt{PCG}\foot{http://www.pcg-random.org/}{25.04.2017} family of random generators which exhibit peculiar characteristics, one amongst all is the possibility of ``jumping ahead'' in the state. The novelty of this approach allows to assign a fixed number of random yet consistent choices among all runs, since each generated token receives from the start event a ``jumped'' copy from the master state. The implementation of this recursive ahead jumps in random states is depicted in \lstref{lst:random_state_jump}.
 
 \begin{lstlisting}[caption=Master random state jump ahead,label=lst:random_state_jump,style=CustomPython]
     def generate_tokens(self):
@@ -73,6 +73,25 @@ In order to assert fairness among all simulation runs a master random state is a
         self.master_state.advance(int(1e9))
         return random_state
 \end{lstlisting}
+
+This approach greatly simplifies the analysis of the results since no matter the simulation conformation, it permits to ensure consistency and reproducibility among all configurations. Specifically, since each token gets a ``jumped'' copy of the master random state, it is ensured that under any circumstances the generation time during the simulation is consistent.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{img/pcg_msa}
+        \caption{Simulation run with \gls{msa}}
+        \label{fig:pcg_msa}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{img/pcg_st}
+        \caption{Simulation run with \gls{st}}
+        \label{fig:pcg_st}
+    \end{minipage}
+\end{figure}
+
+\figref{fig:pcg_msa} and \figref{fig:pcg_st} are snippets of the statistical data dumps for two arbitrary simulation runs that clearly display the randomness consistency concept outlined before. When comparing the arrival column on both figures, it is possible to see that even though different number of jobs are being generated, they are consistently generated across different simulation, each arriving at the same simulation time $t$. Note that both figures only show data filtered corresponding to the first direct user task connected to the start event. 
 
 \subsection{User Task}
 \label{subsec:user_task}
@@ -142,8 +161,9 @@ In \texttt{Python} one does not have to preallocate or deallocate memory by hand
 
 \section{Policy Based Role Resolution Implementation}
 \label{sec:policy_implementation}
+Role resolution according to policies acting as supervisors (as explained in \secref{sec:role_resolution_theory}) in the discrete event simulation environment is achieved by means of a particular class of objects \ie policies and policy jobs.
 
-Policies are a particular object that does not directly participate in the workflow processes, it serves a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level as already mentioned in \secref{sec:policy_implementation}. 
+Policies are a particular object that does not directly participate in the workflow processes, it serves a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level. 
 
 The implementation of the policy objects can be seen in \figref{fig:policies_init}.
 
@@ -155,14 +175,14 @@ As a blueprint, each policy object defines two abstract methods for requesting a
 
 \fig[0.5\textwidth]{policy_met_att}{Policy methods and attributes}{fig:policy_met_att}
 
-In its request method, each policy generates a policy job object, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token object as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job object serves as a bookkeeping agent by storing and dumping useful information every time it status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users. Refer to \figref{fig:policyjob_met_att} for its implementation overview.
+In its request method, each policy generates a policy job object, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token object as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job object serves as a bookkeeping agent by storing and dumping useful information every time its status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users. Refer to \figref{fig:policyjob_met_att} for its implementation overview.
 
 \fig[0.5\textwidth]{policyjob_met_att}{Policy job methods and attributes}{fig:policyjob_met_att}
 
 In regards to parameters service interval and task variability defined in \subsecref{subsec:user_task} a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. \citet[p. 8]{Zeng2005} in their work follow a two way process to generate such intervals. However in this thesis' implementation a refined version of this process is used:
 \begin{enumerate*}
 	\item At initialization time, each user task receives a service rate $s$ and a task variability $t$ value
-	\item Inside the policy request method, for each user task a sample of an average processing time following an Erlang distribution (a special case of the gamma distribution as defined by \citet{Adan2016}) which takes as input parameters a shape $k$ and a scale $\theta$ is made. The shape value $k$, as the name suggests, defines the curve shape that the Erlang distribution will follow. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_service_rate}
+	\item Inside the policy request method, for each user task a sample of an average processing time following an Erlang distribution (a special case of the gamma distribution as defined by \citet{Adan2015}) which takes as input parameters a shape $k$ and a scale $\theta$ is made. The shape value $k$, as the name suggests, defines the curve shape that the Erlang distribution will follow. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_service_rate}
 	\item The average processing time becomes a unique value of each user task object and is used by each policy to sample each user's service time, again from an Erlang sampled pool as depicted in \lstref{lst:user_service_rate} and we shall call this value $p_j$.
 \end{enumerate*}
 
