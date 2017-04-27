@@ -1,20 +1,20 @@
 \chapter{Discrete Event Simulation}
 \label{ch:discrete_event_sim}
 
-As previously outlined in \secref{sec:role_resolution_theory}, a discrete event simulation has been implemented in which role resolution policies have been tested. What follows is the descriptions of how this environment has been implemented, then in \secref{sec:wfms_implementation} the \gls{wfms} environment's implementation based on the outlined foundations in \secref{sec:bpmn} is described and eventually in \secref{sec:policy_implementation} the role resolution's implementation based on the outlined foundations in \secref{sec:role_resolution_theory} is also explained.
+As previously outlined in \secref{sec:role_resolution_theory}, a discrete event simulation has been implemented in which role resolution policies have been tested. What follows is the description of how this environment has been implemented, then in \secref{sec:wfms_implementation} the \gls{wfms} environment's implementation based on the outlined foundations in \secref{sec:bpmn} is described and eventually in \secref{sec:policy_implementation} the role resolution's implementation based on the outlined foundations in \secref{sec:role_resolution_theory} is also explained.
 
 \texttt{SimPy} is a \texttt{Python} process-based discrete-event simulation framework. It exploits \texttt{Python}'s generators according to which it models its processes.
 
 Active components such as agents in a \gls{wfms} are modeled as processes which live inside an environment and the interaction between them happens via events.
 
-As previously mentioned, processes in \texttt{SimPy} are described by \texttt{Python} generators. During their lifetime they create events, yield (note that with the term \texttt{yield} here it is to be understood as \texttt{Python}'s yield statements)\foot{http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python}{26.04.2017} them to the environment, which then wait until they are triggered. The important logic to understand here is how \texttt{SimPy} treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in \texttt{SimPy}'s notation when it gets triggered).
+As previously mentioned, processes in \texttt{SimPy} are described by \texttt{Python} generators. During their lifetime they create events, yield (note that with the term \texttt{yield} here it is to be understood as \texttt{Python}'s yield statements)\foot{http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python}{26.04.2017} them to the environment, which then wait until they are triggered. The important logic to understand is how \texttt{SimPy} treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in \texttt{SimPy}'s notation when it gets triggered).
 
 \texttt{SimPy} offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since timeout events are created and called by the appropriate method of the passed \texttt{Environment}.
 
 \section{\glsentrylong{wfms} Implementation}
 \label{sec:wfms_implementation}
 
-The analysis environment consists in an object-oriented implementations of \gls{wfms} elements such as start events, user tasks, gateways and end events which have been developed to allow the simulation framework to effectively run and are built upon the formal foundations outlined in \secref{sec:bpmn}. This object-oriented exoskeleton implementation of the \gls{wfms} elements can be seen depicted in \figref{fig:workflow_elements}.
+The analysis environment consists in an object-oriented implementation of \gls{wfms} elements such as start events, user tasks, gateways and end events which have been developed to allow the simulation framework to effectively run. They are built upon the formal foundations outlined in \secref{sec:bpmn}. This object-oriented exoskeleton implementation of the \gls{wfms} elements can be seen depicted in \figref{fig:workflow_elements}.
 
 \fig[\textwidth]{workflow_elements}{\glsentryshort{wfms} elements}{fig:workflow_elements}
 
@@ -94,7 +94,7 @@ This approach greatly simplifies the analysis of the results since no matter the
 
 User task objects also require a simulation environment, a policy, a descriptive name, a service interval and task variability. Each user task has a unique \texttt{child} field which is being set prior to starting the simulation.
 
-Each user task object has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. On this top level, without stepping into the single policies implementations, the logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to assign a user to the token and finally, after a service interval timeout which corresponds to the user's specific service interval has passed, they release the token. The logic can be seen in \lstref{lst:user_task}.
+Each user task object has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. The logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to assign a user to the token and finally, after a service interval timeout which corresponds to the user's specific service interval has passed, they release the token. The logic can be seen in \lstref{lst:user_task}.
 
 \begin{lstlisting}[caption=User task claim method,label=lst:user_task,style=CustomPython]
     def claim_token(self, token):
@@ -153,7 +153,7 @@ class COR(Node):
 
 \subsection{End Event}
 
-In \texttt{Python} one does not have to preallocate or deallocate memory by hand as when using pointer based programming languages such as \texttt{C} or \texttt{C++} since this is being taken care of internally. According to \citet{Silver2011}'s definition of activities, processes and end events (refer to \secref{sec:bpmn}), when a token reaches an end event, the corresponding process' activity instance is deleted and to be never again used. This is exactly what can be implicitly achieved by \texttt{Python}'s internal garbage collection strategies: tokens are objects that are being generated by start events, when they reach the last element in the process, all references to the token object are extinguished thus effectively engaging the internal garbage collection strategies which deallocate any memory previously allocated for it.
+In \texttt{Python} one does not have to preallocate or deallocate memory by hand as when using pointer based programming languages such as \texttt{C} or \texttt{C++} since this is being taken care of internally. According to \citet{Silver2011}'s definition of activities, processes and end events (refer to \secref{sec:bpmn}), when a token reaches an end event, the corresponding process' activity instance is deleted and to be never again used. This is exactly what can be implicitly achieved by \texttt{Python}'s internal garbage collection strategies: tokens are objects that are being generated by start events, when they reach the last element in the process, all references to the token object are extinguished thus effectively engaging the internal garbage collection strategies which deallocate any memory previously allocated for it. This translates into the fact that there is no need to explicitly model end events.
 
 \section{Policy Based Role Resolution Implementation}
 \label{sec:policy_implementation}

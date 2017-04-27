@@ -17,14 +17,13 @@ Currently most \glspl{wfms} implement elementary role resolution policies \citep
 The objectives of this thesis build upon the work of \citet{Zeng2005} in which they describe policies for optimal role resolution in \glspl{wfms} and extends these capabilities from a twofold perspective:
 \begin{enumerate*}
 	\item Further develops the \gls{milp} based approaches proposed by \citet{Zeng2005}
-	\item Explores the capabilities offered by \gls{rl} as in order to overcome the deterministic limitations of traditional \gls{milp} based methods by approaching role resolution in \glspl{wfms} from a stochastic perspective.
+	\item Explores the capabilities offered by \gls{rl} in order to overcome the deterministic limitations of traditional \gls{milp} based methods by approaching role resolution in \glspl{wfms} from a stochastic perspective.
 \end{enumerate*}
-
 Formally, this thesis tries to answer the following research questions:
 
 \begin{enumerate}[label=\textbf{Q. \Roman*},ref=Research Question \Roman*]
-\item Can current optimization methods for job assignment in \glspl{wfms} be further developed? \label{rq:one}
-\item Are there state of the art approaches that can complement job assignment with \gls{milp} based methods? \label{rq:two}
+\item Do traditional \gls{milp} based methods for role resolution in \glspl{wfms} exhibit further optimization potential? \label{rq:one}
+\item Do cutting edge alternative approaches for role resolution in \glspl{wfms} exist? \label{rq:two}
 \end{enumerate}
 
 \section{Thesis Structure}
@@ -32,11 +31,11 @@ Formally, this thesis tries to answer the following research questions:
 This thesis is subdivided in seven main chapters:
 
 \begin{itemize}
-	\item \chpref{ch:related_work} gives an overview of the state of the art literature in the touched thematic topics of this work.
+	\item \chpref{ch:related_work} gives an overview on the state of the art literature.
 	\item \chpref{ch:foundations} outlines the theoretical foundations in \gls{bpmn}, \glspl{wfms}, their limitations and role resolution. 
-	\item \chpref{ch:discrete_event_sim} maps the theoretical concepts outlined in \chpref{ch:foundations} with the actual discrete event simulation framework used for evaluation. It explains in detail the governing logic of the subset of \gls{bpmn} elements implemented and the role resolution approach used.
-	\item \chpref{ch:policies} initially describes in detail the \gls{milp} based approach and how traditional methods have been extended, followed by a theoretical introduction in \gls{rl} which is eventually used in the culminating part where the \gls{rl} based approaches are explained.
+	\item \chpref{ch:discrete_event_sim} maps the theoretical concepts outlined in \chpref{ch:foundations} with the actual discrete event simulation environment used for evaluation. It explains in detail the governing logic of the subset of \gls{bpmn} elements implemented and the role resolution approach used.
+	\item \chpref{ch:policies} initially describes in detail the \gls{milp} based approach and how traditional methods have been extended, followed by a theoretical introduction in \gls{rl} which is eventually used in the culminating part where \gls{rl} based approaches are explained.
 	\item \chpref{ch:empirical_analysis} describes the evaluation framework implemented, how both role resolution approaches are simulated and defines the \glspl{kpi} used to measure them.
-	\item \chpref{ch:results} initially exposes the results obtained by the \gls{milp} based methods and then compares them with the traditional methods of \citet{Zeng2005}. Subsequently, the results of the \gls{rl} based methods are also outlined.
-	\item \chpref{ch:conclusion} is the culminating chapter in which the results obtained in \chpref{ch:results} are critically discussed and interpreted, then	a summary of the key findings is outlined and the research questions posed in \secref{sec:objectives} are answered. Finally consequences and outlooks about the future trends and how the empirical results can be extended by prospective researchers are given.
+	\item \chpref{ch:results} initially exposes the results obtained by the \gls{milp} based methods and then compares them with the traditional methods of \citet{Zeng2005}. Subsequently, the results of the \gls{rl} based methods are outlined.
+	\item \chpref{ch:conclusion} is the culminating chapter in which the results obtained in \chpref{ch:results} are critically discussed and interpreted,	a summary of the key findings is outlined and the research questions posed in \secref{sec:objectives} are answered. Finally consequences and outlooks about future trends and how the empirical results can be extended by prospective researchers are given.
 \end{itemize}

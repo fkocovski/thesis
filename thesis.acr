@@ -29,7 +29,7 @@
 		\setentrycounter[]{page}\glsnumberformat{9}}}%
 \glossentry{bpmn}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{1\delimN 2}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{1}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{4}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{9\delimR 11}}}\glsgroupskip
 \glsgroupheading{C}\relax \glsresetentrylist %

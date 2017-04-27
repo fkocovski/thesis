@@ -6,11 +6,11 @@ This chapter servers as an overview of the state of the art literature that exis
 \section{Queueing}
 \label{sec:queueing}
 
-Queuing is the act of how people, or more general agents, are to be served while waiting (\ie queueing) inside a system \citep{Kendall1953}. Starting with the seminal contribution of \citet{Kendall1953} on Markov chains in queuing theory, where he formally defines different types of queues, upon which many researches have been based.
+Queuing is the act of how people, or more general agents, are to be served while waiting \ie queueing, inside a system \citep{Kendall1953}. Starting with the seminal contribution of \citet{Kendall1953} on Markov chains in queuing theory, where he formally defines different types of queues, upon which many researches have been based.
 
-\citet{Pinedo2008} outlines in his work the most prominent key metrics that can be used in order to assert and measure queues performance.
+\citet{Pinedo2008} outlines the most prominent key metrics that can be used in order to assert and measure queues performance.
 
-\citet{Adan2015}'s statistical modeling techniques for randomized generation rates, such as the Erlang's distribution, are used in the discrete event simulation framework.
+\citet{Adan2015}'s statistical modeling techniques for randomized generation rates, such as the Erlang's distribution, are used in the discrete event simulation environment.
 
 \section{\glsentrylongpl{wfms}}
 \label{sec:workflow}
@@ -21,12 +21,12 @@ Queuing is the act of how people, or more general agents, are to be served while
 \begin{enumerate*}
 	\item Initial, the process has to be set up
 	\item Repeatable, the process has to be repeatable
-	\item Defined, documentation standardization of processes
+	\item Defined, documentation and standardization of processes
 	\item Managed, measurement and control of processes
 	\item Optimizing, continuous process improvement.
 \end{enumerate*}
 
-\citet{Georgakopoulos1995} give a comprehensive business oriented overview of the different \glspl{wfms} technologies present on the market used as a sound foundation for analyzing the present technologies.
+\citet{Georgakopoulos1995} give a comprehensive business oriented overview of the different \glspl{wfms} technologies present on the market used as a sound foundation for analyzing today technologies.
 
 \citet{Cheng2000} formally defines the act of assigning jobs to users \ie role resolution in \glspl{wfms}.
 
@@ -45,7 +45,7 @@ Following \citet{Georgakopoulos1995}'s business oriented overview, \citet{Giagli
 \end{enumerate*}
 The presented framework is used to combine the three different dimensions in order to assert a possible best fit of a specific modeling technique based on which approach to be used under the constraints of a modeling perspective to cover \citep{Giaglis2001}.
 
-\citet{Mentzas2001} focuses on a qualitative level on how \glspl{wfms} can facilitate implementation of business processes by describing the pros and cons of adopting alternative \gls{bpm} techniques. Moreover, \citet{Mentzas2001} formally define what a \gls{wfms} is and subdivide it in three main categories:
+\citet{Mentzas2001} focus on a qualitative level on how \glspl{wfms} can facilitate implementation of business processes by describing the pros and cons of adopting alternative \gls{bpm} techniques. Moreover, \citet{Mentzas2001} formally define what a \gls{wfms} is and subdivide it in three main categories:
 \begin{enumerate*}
 	\item Process modeling
 	\item Process re-engineering
@@ -61,19 +61,19 @@ Interestingly enough, \glspl{wfms} implementation in real world cases is not alw
 
 Effective role resolution \ie the mechanism of assigning tasks to individual workers at runtime according to the role qualification defined in \glspl{wfms} as defined by \citet{Zeng2005} is the main focus of this thesis.
 \citet{Zeng2005} differentiate between staffing decisions and role resolution, with the former being the assignment of one or more roles to each user and the latter being the assignment of a specific task to an appropriate worker at runtime. Staffing decisions are usually made off-line and periodically, thus being more of a strategic nature \citep{Zeng2005}. If role resolution were to be made on-line it could translate to a major operational level decision \ie the differentiation between strategic vs operational playing role \citep{Zeng2005}.
-They moreover define three roles a \glspl{wfms} can fulfill \citep{Zeng2005}:
+\citet{Zeng2005} moreover define three roles a \glspl{wfms} can fulfill:
 \begin{enumerate*}
 	\item System built-in policies
 	\item User customizable policies
 	\item Rule based policies.
 \end{enumerate*}
-Considering capacities of resources restrictions under the role resolution problem is NP-hard and \citet{Zeng2005} focus on how to solve the it when accounting for worker's preferences. For this purpose they define five \gls{wfms} resolution policies:
+Considering capacities of resources restrictions under the role resolution problem is NP-hard and \citet{Zeng2005} focus on how to solve it when accounting for worker's preferences. For this purpose they define five \gls{wfms} resolution policies:
 \begin{enumerate*}
 	\item \gls{llqp}
 	\item \gls{sq}
 	\item K-Batch
 	\item K-Batch-1
-	\item 1-Batch-1
+	\item 1-Batch-1.
 \end{enumerate*}
 For all batch policies a simplified version of \gls{dmf} has to be solved \citep{Zeng2005}.
 \citet{Zeng2005}'s key findings are outlined as follows:
@@ -84,12 +84,12 @@ For all batch policies a simplified version of \gls{dmf} has to be solved \citep
 	\item 1-Batch-1 online optimization policy yields best results in operational conditions.
 \end{enumerate*}
 
-Data flow inside \glspl{wfms} has to consider possible anomalies that might happen and this aspect has been extensively studies by \citet{Sun2006} where they formally define data flow methodologies for detecting such anomalies. Their framework is divided in two components \citep{Sun2006}:
+Data flow inside \glspl{wfms} has to consider possible anomalies that might happen and this aspect has been extensively studies by \citet{Sun2006} where they formally define data flow methodologies for detecting such anomalies. \citet{Sun2006}'s framework is divided in two components:
 \begin{enumerate*}
 	\item Data flow specification
 	\item Data flow analysis.
 \end{enumerate*}
-They moreover discuss aspects that data requirements have been analyzed but the required methodologies on discovering data flow errors have not been extensively researched \citep{Sun2006}.
+They moreover discuss aspects such that data requirements have been analyzed but the required methodologies on discovering data flow errors have not been extensively researched \citep{Sun2006}.
 
 A more recent taxonomy of different \gls{bpm} applications is given by a collaboration between SAP and accenture \citep{EvolvedTechnologist2009}.
 
@@ -144,7 +144,7 @@ Huge state space requirement is a clear limitation to lookup tables \citep{Sutto
 
 Overfitting for deep \glspl{ann} is a common problem \citep[p. 218]{Sutton2017}. \citet{Srivastava2014} propose the dropout method as solution which proves to be a domain standard in regards to this problem.
 
-As \glspl{mdp} grow in size, so does the required computational memory to solve possible discrete lookup tables modeling the state-actions spaces that characterizes them \citep{Sutton2017}. \citet{Sutton2017} show notable examples that show how large some of the most common problems can be:
+As \glspl{mdp} grow in size, so does the required computational memory to solve possible discrete lookup tables modeling the state-actions spaces that characterizes them \citep{Sutton2017}. \citet{Sutton2017} show notable examples that demonstrate how large some of the most common problems can be:
 \begin{enumerate*}
 	\item The game of backgammon has a total of $10^{20}$ states
 	\item The traditional Chinese abstract board game Go has an estimated total of $10^{170}$ states
@@ -168,22 +168,22 @@ Notable works in the field of \gls{rl} and its application include DeepMind Tech
 
 The NP-hardness of \gls{dmf} is formally proved by \citet{Garey1990}.
 
-For role resolution in \glspl{wfms} a \gls{milp} problem must be solved in order to optimally assign jobs to users. The generalized assignment problem is a very well known problem in combinatorial mathematics and \citet{Cattrysse1992} give an overview of different algorithms for solving it. Heuristics are also a viable solution for solving such adaptation of the generalized assignment problem, as \citet{Racer1994} state. Moreover a global perspective of optimization from a mathematical perspective is given in \citet{Boyd2004}'s work on convex optimization.
+For role resolution in \glspl{wfms} a \gls{milp} problem must be solved in order to optimally assign jobs to users. The generalized assignment problem is a very well known problem in combinatorial mathematics and \citet{Cattrysse1992} give an overview of different algorithms for solving it. Heuristics are also a viable solution for solving such adaptations of the generalized assignment problem, as \citet{Racer1994} state. Moreover a global perspective of optimization from a mathematical perspective is given in \citet{Boyd2004}'s work on convex optimization.
 
 According to the AIMMS guidelines, there are different linear programming maneuvers that can be used to shape such problems in solvable outlines \citep{Bisschop2016}. \citet{Zeng2005} propose that by adding auxiliary variables, their formulation of \gls{dmf} can be transformed in a \gls{milp} problem. For this purpose, the either-or constraints was used to transform \gls{dmf} into \gls{edmf} \citep[p. 77]{Bisschop2016}.
 
 \section{Simulation}
 \label{sec:simulation}
 
-\citet{Bahouth2007} focuses on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues. According to their findings, a significant speedup can be achieved if one addresses the afore mentioned facets \citep{Bahouth2007}.
+\citet{Bahouth2007} concentrate on algorithmic analysis of discrete event simulation supplemented with focus on factors such as compiler efficiency, code interpretation and caching memory issues. According to their findings, a significant speedup can be achieved if one addresses the afore mentioned facets \citep{Bahouth2007}.
 
 Simulating queues can prove to be arduous \citep{Matloff2008}. The main differentiation needed here is the one between continuous and step functions: the former is the result when the events being simulated yield values that if plotted against the simulation time give a continuous function \citep{Matloff2008}. On the other hand, if we simulate events that yield discrete values, such as inventory changes in a storage facility and plot the results against the simulation time we would get so called step functions \citep{Matloff2008}.
-According to \citet{Matloff2008}, different world views for discrete event programing exist, as he calls them paradigms \citep{Matloff2008}:
+According to \citet{Matloff2008}, different world views for discrete event programing exist \ie paradigms:
 \begin{enumerate*}
 	\item Activity oriented
 	\item Event oriented
 	\item Process oriented.
 \end{enumerate*}
-Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities \citep{Matloff2008}. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there will not be any change in state for the simulated entities \citep{Matloff2008}. Event oriented circumnavigate this issue by advancing the simulation time directly to the next event to be simulated \citep{Matloff2008}. By filling these gaps, a dramatical increase in computation can be observed \citep{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread \citep{Matloff2008}. Management of threads has steadily decreased in todays computation since many different packages for governing such tasks exist \citep{Matloff2008}.
+Activity oriented can be summarized as simulation events where time is being subdivided in tiny intervals at which the program checks the status for all simulated entities \citep{Matloff2008}. Since petite subdivisions of time are possible in such types of simulations, it is clear that the program might prove tedious, since most of the time there will not be any change in state for the simulated entities \citep{Matloff2008}. Event oriented paradigms circumnavigate this issue by advancing the simulation time directly to the next event to be simulated \citep{Matloff2008}. By filling these gaps, a dramatical increase in computation can be observed \citep{Matloff2008}. Last but not least, the process oriented simulation models each simulation activity as a process or thread \citep{Matloff2008}. Management of threads difficulty has steadily decreased in todays computation since many different packages for governing such tasks exist \citep{Matloff2008}.
 
 \citet{Milo2012} defines speedup as a metric for evaluating comparisons in computer architecture which is used when analyzing the results of this thesis.
