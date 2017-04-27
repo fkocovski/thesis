@@ -3,12 +3,12 @@
 
 This chapter interprets the results obtained in \chpref{ch:results} by discussing the \gls{milp} results in \secref{sec:optimization_discussion}, the \gls{rl} results in \secref{sec:rl_discussion}, summarizing them in \secref{sec:summary}, exposing the consequences in \secref{sec:consequences} and eventually outlining future work in \secref{sec:outlook}.
 
-\section{Optimization Results Discussion}
+\section{\glsentrylong{milp} Results Discussion}
 \label{sec:optimization_discussion}
 
 Using \gls{milp} to solve role resolution proves to be an efficient measure, however different formulations yield different solutions and formulation complexities. \citet[p. 15]{Zeng2005} mention that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered. This consideration is done since the \gls{dmf} problem proves to be computationally expensive to solve \citep[p. 13]{Zeng2005},\citep{Garey1990}. \citet[p. 13]{Zeng2005} propose however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of formulations. The \gls{st} ``flagship'' formulation significantly outperforms the \gls{msa} formulation (refer to \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher formulation complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_formulations}) questions the practical use of this formulation over the other methods. A $1.23$-fold speedup in respect to lateness having quadratic higher formulation complexity poses a dubious trade-off from a business perspective.
 
-\fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glsentryfullpl{kpi} speedup comparison between \glsentryfull{msa} and \glsentryfull{st} formulations for 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
+\fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glsentryshortpl{kpi} speedup comparison between \glsentryshort{msa} and \glsentryshort{st} for 1-Batch-1}{fig:k_batchone_st_opt_kpis_comp}
 
 Yet another aspect mentioned by \citet[pp. 17--18]{Zeng2005} is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two formulations. It is clear that \gls{st} is ``fairer'' at balancing loads across users compared to \gls{msa}.
 
@@ -16,13 +16,13 @@ Yet another aspect mentioned by \citet[pp. 17--18]{Zeng2005} is a more ``social'
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/1_BATCHONE_MSA_NU5_GI3_SIM1000_FAIR}
-		\caption{User loads distribution for 1-Batch-1 using \glsentryfull{msa}}
+		\caption{User loads distribution for 1-Batch-1 using \glsentryshort{msa}}
 		\label{fig:msa_fairness}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/1_BATCHONE_ST_NU5_GI3_SIM1000_FAIR}
-		\caption{User loads distribution for 1-Batch-1 using \glsentryfull{st}}
+		\caption{User loads distribution for 1-Batch-1 using \glsentryshort{st}}
 		\label{fig:st_fairness}
 	\end{minipage}
 \end{figure}
@@ -65,7 +65,7 @@ The combination of all these three factors is referred to as ``the deadly triad'
 
 On a more general note, different comparisons have shown huge spikes in speedup of waiting time \eg as seen in \subsecref{subsec:onebatch_rl_msa_comp_app}. Even though compelling, the practical usage is limited: when considering \glspl{wfms} with fixed available resources \ie users participating, huge speedup in job waiting times does not always correlate with better system performance, since it might be the case that even if a job is ready to be assigned there are no available resources to complete such job.
 
-\fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glsentryfullpl{kpi} comparison between \glsentryfull{op} and \glsentryfull{onp} approaches}{fig:llqp_mc_vfa_on_vs_off}
+\fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glsentryshortpl{kpi} comparison between \glsentryshort{op} and \glsentryshort{onp} approaches}{fig:llqp_mc_vfa_on_vs_off}
 
 \section{Summary}
 \label{sec:summary}
@@ -85,7 +85,7 @@ For \ref{itm:math_opt} five existing optimization policies as outlined in \secre
 \section{Consequences}
 \label{sec:consequences}
 
-\gls{milp} methods are viable solutions for role resolution in \glspl{wfms}, as already argued by \citet{Zeng2005}. Further developed policies relying on \gls{milp} done for this thesis proved indeed to yield better results (see \secref{sec:opt_comparison}), however the higher complexity required (refer to \secref{sec:optimization_discussion}) poses a critical trade-off. \ref{rq:one} can be affirmatively answer: there is definitely potential for further development and optimization of existing methods but further questions arise:
+\gls{milp} methods are viable solutions for role resolution in \glspl{wfms}, as already argued by \citet{Zeng2005}. Further developed policies relying on \gls{milp} done for this thesis proved indeed to yield better results (see \secref{sec:opt_results}), however the higher complexity required (refer to \secref{sec:optimization_discussion}) poses a critical trade-off. \ref{rq:one} can be affirmatively answer: there is definitely potential for further development and optimization of existing methods but further questions arise:
 \begin{enumerate*}
 	\item Does a slight increase in performance justify the higher formulation complexity requirements?
 	\item Can only one \gls{kpi} be chosen as central parameter to evaluate a policy's performance or is a combination of different \glspl{kpi} more suitable?

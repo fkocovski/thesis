@@ -98,12 +98,12 @@ and thus the average system load $\overline{l}$ over all $n$ users participating
 
 A summary plot with all \glspl{kpi} is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryfullpl{kpi}  summary plot for a 3-Batch policy using the \glsentryfull{msa} formulation, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:kpi_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryshortpl{kpi}  summary plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$}{fig:kpi_plot}
 
 Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \chpref{ch:policies}.
 
 The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using the \glsentryfull{msa} formulation, with two users, generation interval set to three and simulation time $T$ set to 50}{fig:evo_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$}{fig:evo_plot}
 
 Finally, when comparing different policies between each other, \citet{Milo2012}'s definition of speedup $S$ between two quantities $q_1$ and $q_2$ is adopted, which he formally defines as the quotient $S=\frac{q_1}{q_2}$.

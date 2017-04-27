@@ -10,10 +10,34 @@
 	\item The last policy further simplifies the fourth by weakening the batch size constraint and reduces it to one. This means that the optimal task assignment procedure is executed immediately. This policy is referred by the authors as ``1-Batch-1''.
 \end{enumerate*}
 
-\section{Optimization Policies}
+\section{\glsentrylong{milp} Policies}
 \label{sec:opt_policies}
 
-All batch policies require the solution of an optimization problem which \citet{Zeng2005} define as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``\gls{msa}''\citep[p. 7]{Zeng2005}. \citet{Zeng2005} define the task flowtime as the elapsed simulation time between task generation and its completion \citep{Zeng2005,Baker1974}. Formally \gls{msa} is formulated as follows:
+All batch policies require the solution of an optimization problem which \citet{Zeng2005} define as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``\gls{msa}''\citep[p. 7]{Zeng2005}. \citet{Zeng2005} define the task flowtime as the elapsed simulation time between task generation and its completion \citep{Zeng2005,Baker1974}. 
+
+\tabref{tab:milp_variables} gives an overview of all variables used in this section for all \gls{milp} formulations.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+Variable & Description \\ \midrule
+$i$         & User            \\
+$j$         & Job            \\
+$k$         & Job assignment order            \\
+$x$         & Job to user assignment            \\
+$p$         & User service time for job            \\
+$a$         & User busy time            \\
+$w$         & Job waiting time in queue            \\
+$z$         & Maximum flowtime            \\ \bottomrule
+\end{tabular}
+\caption{Variables description used for all \glsentryshort{milp} formulations}
+\label{tab:milp_variables}
+\end{table}
+
+Formally \gls{msa} is formulated as follows:
 
 \begin{align}
 	\begin{split}
@@ -25,7 +49,7 @@ All batch policies require the solution of an optimization problem which \citet{
 	\end{split}
 \end{align}
 
-\citet{Zeng2005}' definition of \gls{msa} is however a simplified version of ``minimizing the maximum task flowtime with consideration of the dynamic arrival of tasks'', defined as \gls{dmf} \citep{Baker1974,Zeng2005}.\gls{dmf} is formally defined by \citet{Zeng2005} as follows:
+\citet{Zeng2005}' definition of \gls{msa} is however a simplified version of ``minimizing the maximum task flowtime with consideration of the dynamic arrival of tasks'', defined as \gls{dmf} \citep{Baker1974,Zeng2005}. \gls{dmf} is formally defined by \citet{Zeng2005} as follows:
 
 \begin{align}
     \min \quad z \notag \\
@@ -88,7 +112,7 @@ The formulation of \gls{dmf} by relaxing both the $z$ variables and $k$ indexes 
 
 \begin{align}
 	\begin{split}
-	    \min_{z_{\text{max}}} \quad z_{\text{max}}\\
+	    \min \quad z_{\text{max}}\\
 	    \text{subject to:} \\
 	    \sum_{i \in W} x_{ij} &= 1 \quad \forall j \in T\\
 	    a_i + \sum_{k=1}^j (p_{ik} + w_k I(k=j))x_{ik} &\leq z_{\text{max}}
@@ -107,7 +131,7 @@ The culminating ``flagship'' improvement of the optimization method proposed by 
 
 \begin{align}
 	\begin{split}
-	    \min_z \quad \sum_{i \in W} \sum_{k \in T} z_{ik}\\
+	    \min \quad \sum_{i \in W} \sum_{k \in T} z_{ik}\\
 	    \text{subject to:} \\
 	    \sum_{i \in W} \sum_{k \in T} x_{ijk} &= 1 \quad \forall j \in T\\
 	    a_i + \sum_{j \in T} p_{ij} x_{ijk} - M(1 - \sum_{j \in T} x_{ijk}) &\leq z_{i*k} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
@@ -137,11 +161,11 @@ The culminating ``flagship'' improvement of the optimization method proposed by 
 		\begin{tabular}{@{}ll@{}}
 		\toprule
 		Problem Formulation & Formulation Complexity \\ \midrule
-		\gls{msa}    & $\mathcal{O}(mn)$           \\
-		\gls{dmf}   & $\mathcal{O}(mn^2)$         \\
-		\gls{sdmf}  & $\mathcal{O}(mn^2)$         \\
-		\gls{esdmf}  & $\mathcal{O}(mn)$           \\
-		\gls{st} 	   & $\mathcal{O}(mn^2)$ \\	\bottomrule
+		\glsentryshort{msa}    & $\mathcal{O}(mn)$           \\
+		\glsentryshort{dmf}   & $\mathcal{O}(mn^2)$         \\
+		\glsentryshort{sdmf}  & $\mathcal{O}(mn^2)$         \\
+		\glsentryshort{esdmf}  & $\mathcal{O}(mn)$           \\
+		\glsentryshort{st} 	   & $\mathcal{O}(mn^2)$ \\	\bottomrule
 		\end{tabular}
 	\caption{Comparison of formulation complexities expressed in number of binary variables for different problem formulations where $m$ is the number of users and $n$ is the batch size}
 	\label{tab:big_oh_formulations}
@@ -317,13 +341,13 @@ Even though single layer perceptrons are powerful enough to approximate nonlinea
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/ann_1h}
-		\caption{Single layer \gls{ann}}
+		\caption{Single layer \glsentryshort{ann}}
 		\label{fig:ann_1h}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/ann_2h}
-		\caption{Multi layer \gls{ann}}
+		\caption{Multi layer \glsentryshort{ann}}
 		\label{fig:ann_2h}
 	\end{minipage}
 \end{figure}
@@ -435,7 +459,7 @@ By introducing a base line, we have seen that variance can be lowered, however, 
 The only negative aspect still remaining is that \gls{pg} methods are still based on a full \gls{mc} update trajectory: this can be also mitigated by replacing the update function by \gls{td} learning approaches, such as those defined in \subsecref{subsec:td_learning} \citep[p. 273]{Sutton2017}. The formal definition of a one-step \gls{ac} update method is depicted as follows:
 
 \begin{equation}
-	\theta_{t+1} \doteq \theta_t + \alpha(R_{t+1} + \overbrace{\gamma \hat{v}(S_{t+1},w)-\hat{v}(S_t,w)}^{\text{\gls{td} update}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
+	\theta_{t+1} \doteq \theta_t + \alpha(R_{t+1} + \overbrace{\gamma \hat{v}(S_{t+1},w)-\hat{v}(S_t,w)}^{\text{\glsentryshort{td} update}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
 \end{equation}
 
 and this is now a fully online implementation that executes updates after each newly visited state \citep[p. 274]{Sutton2017}. 
@@ -486,7 +510,7 @@ During the evaluation phase of a job the policy has to choose an action \ie a us
 
 As an example, let us consider a snippet of how a K-Batch policy using a linear \gls{svfa} performs its choices during its greedy phase: it iterates over all possible actions and performs the dot product between the state space and the corresponding $\theta$ vector and then maximizes the returned $Q$ value. This approach can be seen in \lstref{lst:e_greedy} 
 
-\begin{lstlisting}[caption=\gls{ep} approach,label=lst:e_greedy,style=CustomPython]
+\begin{lstlisting}[caption=\glsentrylong{ep} approach,label=lst:e_greedy,style=CustomPython]
     if self.greedy:
         action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
     else:
@@ -499,7 +523,7 @@ As an example, let us consider a snippet of how a K-Batch policy using a linear 
 
 and its respective \gls{svfa} in \lstref{lst:value_f_approx}.
 
-\begin{lstlisting}[caption=\glsentryfull{svfa},label=lst:value_f_approx,style=CustomPython]
+\begin{lstlisting}[caption=\glsentryshort{svfa},label=lst:value_f_approx,style=CustomPython]
     def q(self, states, action):
         features = self.features(states, action)
         q = np.dot(features[action], self.theta[action])
@@ -564,7 +588,7 @@ The policy probabilities method takes as input parameter the current state space
 
 Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, \glspl{ann} can be used for nonlinear function approximation. The assignment problem  poses itself very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our \glspl{ann} using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space (\ie input to the \glspl{ann}) together with its weights and biases, creates an activation function and maps the prediction layer (\ie output) with a softmax classification.
 
-\begin{lstlisting}[caption=Modeling of a single perceptron in \gls{tf},label=lst:ann_1h,style=CustomPython]
+\begin{lstlisting}[caption=Modeling of a single perceptron in \glsentryshort{tf},label=lst:ann_1h,style=CustomPython]
 	with tf.name_scope("neural_network"):
     	layer_1 = tf.add(tf.matmul(state_space_input, weights['h1']), biases['b1'])
     	layer_1 = tf.nn.elu(layer_1)
@@ -574,7 +598,7 @@ Up to this point we have used linear functions for the approximation of the $Q$ 
 
 In order to update the \glspl{ann}, a backpropagation has to take place. Such an update can both be made following a \gls{mc} or \gls{td} approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a \gls{sgd} approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an \glspl{ann} following a \gls{mc} update method is done.
 
-\begin{lstlisting}[caption=Backpropagation algorithm following a \gls{mc} update approach,label=lst:mc_backpropagation,style=CustomPython]
+\begin{lstlisting}[caption=Backpropagation algorithm following a \glsentryshort{mc} update approach,label=lst:mc_backpropagation,style=CustomPython]
     def train(self):
         for t, (state, output, choices) in enumerate(self.history):
             disc_rewards = self.discount_rewards(t)
@@ -593,7 +617,7 @@ In order to update the \glspl{ann}, a backpropagation has to take place. Such an
 
 As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there are mainly two different methods to update the policy's internal $\theta$ parameters \ie \gls{mc} and \gls{td}. Let us take the example outlined by \citet[p. 130]{Sutton2017} of leaving the office and getting home and the respective updates proposed by the two update methods. \figref{fig:mc_td} shows the graphical updates proposed by the two update methods.
 
-\fig[\textwidth]{mc_td}{\gls{mc} and \gls{td} proposed updates comparison (own plot based on \citet[p. 130]{Sutton2017})}{fig:mc_td}
+\fig[\textwidth]{mc_td}{\glsentryshort{mc} and \glsentryshort{td} proposed updates comparison (own plot based on \citet[p. 130]{Sutton2017})}{fig:mc_td}
 
 As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the \gls{mc} method needs to reach the end of an entire episode (\ie here it consists of actually arriving home) in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, \gls{td} is much more flexible and robust since it executes its updates at each time step, hence its name: \gls{td}.
 For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the \gls{mc} update and to \equref{eq:td_update} for the \gls{td} update.
@@ -607,14 +631,14 @@ For the case at hand, this means that training the policies has to be done in a 
 	\centering
 		\begin{tabular}{@{}lll@{}}
 		\toprule
-		Characteristic & \gls{mc}                     & \gls{td}                               \\ \midrule
+		Characteristic & \glsentryshort{mc}                     & \glsentryshort{td}                               \\ \midrule
 		Bootstrap      & No                     & Yes                              \\
 		Update Time    & End of episode         & Each time step                   \\
 		Discount       & Required               & Not required                     \\
 		Convergance    & Good                   & Very Good                        \\
 		Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \bottomrule
 		\end{tabular}
-	\caption{Qualitative comparison between \glsentryfull{mc} and \glsentryfull{td} update methods \citep[p. 130]{Sutton2017}}
+	\caption{Qualitative comparison between \glsentryshort{mc} and \glsentryshort{td} update methods \citep[p. 130]{Sutton2017}}
 	\label{tab:mc_td_comp}
 \end{table}
 
