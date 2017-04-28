@@ -1,21 +1,22 @@
 \chapter{Policy Based Role Resolution}
 \label{ch:policies}
 
-\citet[p. 7]{Zeng2005} investigate five ``role-resolution'' policies used for optimal role resolution. Following a brief description of the five aforementioned policies:
-\begin{enumerate*}
-	\item A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a \gls{fifo} fashion. The authors call this policy the ``\gls{llqp}''
-	\item A policy that maintains a single queue being shared among all users is referred to the authors as ``\gls{sq}''
-	\item Another policy that maintains both a \gls{sq} among all users and each user having an own queue and transfers tasks from the former to the latter is called ``K-Batch'' policy. Transfer of tasks from the \gls{sq} to users is done using an optimal task assignment procedure as soon as the \gls{sq} reaches a critical batch size $K$
-	\item The next policy takes the ``K-Batch'' policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the \gls{sq} reaches the critical size $K$, however actual movement of tasks from the \gls{sq} to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$. This policy is called according to the authors as ``K-Batch-1''
-	\item The last policy further simplifies the fourth by weakening the batch size constraint and reduces it to one. This means that the optimal task assignment procedure is executed immediately. This policy is referred by the authors as ``1-Batch-1''.
-\end{enumerate*}
+\citet[p. 7]{Zeng2005} investigate five role resolution policies used for optimal job assignment in \glspl{wfms}. Following a brief description of the five aforementioned policies:
+
+\begin{enumerate}[label=\textbf{P. \Roman*}]
+	\item A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a \gls{fifo} basis. The authors call this policy \gls{llqp}.
+	\item A policy that maintains a single queue being shared among all users is referred to as \gls{sq}.
+	\item Another policy that maintains both a \gls{sq} among all users and each user having an own queue and transfers tasks from the former to the latter is called K-Batch policy. Transfer of tasks from the \gls{sq} to users is done using an optimal task assignment procedure as soon as the \gls{sq} reaches a critical batch size $K$.
+	\item The next policy takes the K-Batch policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the \gls{sq} reaches the critical size $K$, however actual movement of tasks from the \gls{sq} to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$. This policy is called K-Batch-1.
+	\item The last policy further simplifies K-Batch-1 by weakening the batch size constraint by reducing it to one. This means that the optimal task assignment procedure is executed immediately. This policy is referred to as 1-Batch-1.
+\end{enumerate}
+
+\secref{sec:opt_policies} describes in detail the \gls{milp} approach used in order to solve the role resolution procedure required for K-Batch, K-Batch-1 and 1-Batch-1.
 
 \section{\glsentrylong{milp} Policies}
 \label{sec:opt_policies}
 
-All batch policies require the solution of an optimization problem which \citet{Zeng2005} define as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it ``\gls{msa}''\citep[p. 7]{Zeng2005}. \citet{Zeng2005} define the task flowtime as the elapsed simulation time between task generation and its completion \citep{Zeng2005,Baker1974}. 
-
-\tabref{tab:milp_variables} gives an overview of all variables used in this section for all \gls{milp} formulations.
+All batch policies require the solution of an optimization problem as explained in \chpref{ch:policies}. \tabref{tab:milp_variables} gives an overview of all variables used in this section for all \gls{milp} formulations.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -37,7 +38,7 @@ $z$         & Maximum flowtime            \\ \bottomrule
 \label{tab:milp_variables}
 \end{table}
 
-Formally \gls{msa} is formulated as follows:
+\citet{Zeng2005} define this optimization as ``minimizing the maximum flowtime given the dynamic availability of the workers'' and call it \gls{msa} \citep[p. 7]{Zeng2005}. \citet{Zeng2005} define the task flowtime as the elapsed simulation time between task generation and its completion \citep{Zeng2005,Baker1974}. Formally \gls{msa} is formulated as follows:
 
 \begin{align}
 	\begin{split}
@@ -91,7 +92,7 @@ The whole concept consists in the introduction of an identity variable $I$ which
 
 In order to calculate $z_{ijk}$, one has to consider when user $i$ will actually be available to process his first task as well. This is depicted by the variable $a_i$, which summed together with the respective service times of user $i$ for task $j$ gives the complete work time user $i$ will require in order to process all tasks assigned to him.
 
-Without further ado, the simplified formulation of \gls{edmf} (called \gls{sdmf}) is the following:
+Without further ado, the simplified formulation of \gls{edmf} \ie \gls{sdmf}, is the following:
 
 \begin{align}
 	\begin{split}
@@ -104,7 +105,7 @@ Without further ado, the simplified formulation of \gls{edmf} (called \gls{sdmf}
 	\end{split}
 \end{align}
 
-By comparing both formulation it is clear that \gls{sdmf} manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness\footnote{Note, however, that this simplification is only possible because of the nature of the implementation.}. 
+By comparing both formulations it is clear that \gls{sdmf} manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness\footnote{Note, however, that this simplification is only possible because of the nature of the implementation.}. 
 
 Based on this approach and by further exploiting the implicit order implementation of task arrival, it is possible to argue that the $k$ sequence indexing can be relaxed as well.
 
@@ -125,9 +126,11 @@ This version is however only possible by the nature of its implementation. Since
 
 The culminating ``flagship'' improvement of the optimization method proposed by \citet{Zeng2005} done in this thesis is a method that aims to optimally solve the assignment problem by changing its goal: minimize the service times by setting an upper bound on the maximum flowtime and is called \gls{st}. This method uses a two step process in order to optimally apply role resolution:
 \begin{enumerate*}
-	\item Optimally solve by means of using one of the \gls{dmf} optimization methods previously outlined. This yields an upper bound for the maximum flowtime
+	\item Solve to optimality by using \gls{esdmf}. This yields an upper bound for the maximum flowtime
 	\item Use this upper bound as a constraint for the actual optimization in order to effectively optimize the problem for the minimal service time amongst users, jobs and their corresponding service time.
 \end{enumerate*}
+
+The formulation of \gls{st} is the following:
 
 \begin{align}
 	\begin{split}
@@ -140,19 +143,19 @@ The culminating ``flagship'' improvement of the optimization method proposed by 
 	    \sum_{j \in T} x_{ijk} &\leq 1 \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k=0\\
 	    \sum_{j \in T} x_{ijk} &\leq \sum_{j \in T} x_{ijk-1} \quad \forall i \in W, \forall k \in T \quad \text{for} \quad k>0\\
 	    z_{i*k} &\geq 0 \quad \forall i \in W, \forall k \in T\\
-	    M &= \max_a a_i + \max_p \sum_{i \in W} \sum_{j \in T} p_{ij}\\
+	    M &= \max a_i + \max \sum_{i \in W} \sum_{j \in T} p_{ij}\\
 	    \epsilon &= \num{1e-4}
 	\end{split}
 \end{align}
 
-\tabref{tab:big_oh_formulations} shows the formulation complexity for the methods outlined in this chapter where $m$ is the number of users and $n$ is the batch size. The formulation complexity is expressed in number of binary variables that each problem formulation has. The \gls{msa} method is the simplest formulation and exhibits a linear complexity compared to the \gls{dmf} method proposed by \citet{Zeng2005}. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, all solve the \gls{dmf} method and do it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits a higher formulation complexity as shown in \equref{eq:st_complexity}
+\tabref{tab:big_oh_formulations} shows the formulation complexity for the methods outlined in this chapter where $m$ is the number of users and $n$ is the batch size. The formulation complexity is expressed in number of binary variables that each problem formulation has. The \gls{msa} method is the simplest formulation and exhibits a linear complexity compared to the \gls{dmf} method proposed by \citet{Zeng2005}. As it can be seen the methods implemented in this thesis, specifically the \gls{esdmf} method, all solve the \gls{dmf} method and do it by keeping the same linear complexity as the \gls{msa} method. The \gls{st} method proposed in this thesis exhibits the same formulation complexity as the traditional \gls{dmf}, as shown in \equref{eq:st_complexity}
 
 \begin{equation}
 \label{eq:st_complexity}
 	\mathcal{O}(mn+mn^2) \subseteq \mathcal{O}(mn^2)
 \end{equation}
  
- but achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:optimization_discussion}.
+and yet achieves a better optimization. This trade-off however requires a more in depth explanation which will follow in \secref{sec:optimization_discussion}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -174,7 +177,7 @@ The culminating ``flagship'' improvement of the optimization method proposed by 
 \section{\glsentrylong{rl} Theory}
 \label{sec:rl_theory}
 
-In this section the \gls{rl} approach used to solve the different role resolution problems is depicted. Initially \subsecref{subsec:rl_definitions} outlines the key definitions.
+In this section the \gls{rl} approach used to solve the different role resolution problems is depicted.
 
 \subsection{\glsentrylong{rl} Definition}
 \label{subsec:rl_definitions}
@@ -236,7 +239,7 @@ whereas optimal \gls{av} functions $q_*$ are formally defined as follows \citep[
 	\item Policy improvement is the idea of computing an improved policy under the conditions of its given value functions.
 \end{enumerate*}
 
-By combining these two approaches we obtain the two most notable \gls{dp} methods \ie policy and value iteration \citep[p. 95]{Sutton2017}.
+By combining these two approaches we obtain the two most notable \gls{dp} methods \ie policy iteration and value iteration \citep[p. 95]{Sutton2017}.
 
 One captivating property of \gls{dp} methods is the concept of bootstrapping: updating estimates of values of states by approximating the values of future states \citep[p. 96]{Sutton2017}.
 
@@ -274,8 +277,8 @@ where $G_t$ is the discounted return function defined by \equref{eq:expected_dis
 
 \gls{td} methods, same as \gls{mc} methods, are not exempt from sufficient exploration \citep[p. 147]{Sutton2017}. \gls{td} methods deal with this complication in two different ways \citep[p. 128]{Sutton2017}:
 \begin{enumerate*}
-	\item \gls{onp} by using an algorithm called \gls{sarsa}
-	\item \gls{op} by using an algorithm called Q-learning.
+	\item \gls{onp} learning by using an algorithm called \gls{sarsa}
+	\item \gls{op} learning by using an algorithm called Q-learning.
 \end{enumerate*}
 
 \subsection{\glsentrylong{onp} Prediction with Approximation}
@@ -324,16 +327,16 @@ This simplified case of linear function approximation for \gls{sv} functions fin
 	\nabla \hat{v} (s,\theta) = \phi (s)
 \end{equation}
 
-\equref{eq:sgd_linear} tells us that for the simple linear case the \gls{sgd} is nothing more than the corresponding features value  \citep[p. 199]{Sutton2017}.
+\equref{eq:sgd_linear} tells us that for the simple linear case the \gls{sgd} is nothing more than the corresponding features vector \citep[p. 199]{Sutton2017}.
 
 \subsubsection{\glsentrylongpl{ann}}
 \label{subsubsec:ann_theory}
 
 \glspl{ann} can be used for nonlinear function approximation \citep[p. 199]{Sutton2017}. The simplest case of an \gls{ann} is a single feedforward perceptron, meaning that it has only one hidden layer \ie a layer that is neither an input nor an output layer and that the \gls{ann} at hand has no loops between its neurons, meaning that the output cannot influence the input\footnote{Compared to recurrent \glspl{ann}, in which the output indeed can influence the input.} \citep[p. 216]{Sutton2017}. 
 
-The connections between neurons inside an \gls{ann} are called weights and the analogy to its human counterpart is how strong synaptic connections are \citep[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer \gls{ann}.
+The connections between neurons inside an \gls{ann} are called weights and the analogy to the human counterpart is how strong synaptic connections are \citep[p. 216]{Sutton2017}. Refer to \figref{fig:ann_1h} for a depiction of a single layer \gls{ann}.
 
-The key about solving nonlinearity with \glspl{ann} is how they apply nonlinear functions to the sum of their weights and this process is done by means of activation functions \citep[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of them usually exhibits an ``$S$'' shape (\ie sigmoid), such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of \glspl{relu}, which have become captivating in the last few years due to their peculiar characteristics such as $f(x) = \max(0,x)$ \citep[p. 216]{Sutton2017}.
+The key about solving nonlinearity with \glspl{ann} is how they apply nonlinear functions to the sum of their weights and this process is done by means of activation functions \citep[p. 216]{Sutton2017}. There are different types of activation functions that can be used but each one of them usually exhibits an $S$ shape \ie sigmoid, such as the sigmoid $\sigma(x) = \frac{1}{(1+e^{-x})}$, the $\tanh(x) = 2\sigma(2x)-1$ or the different classes of \glspl{relu} such as $f(x) = \max(0,x)$, which have become captivating in the last few years due to their peculiar characteristics \citep[p. 216]{Sutton2017}.
 
 Even though single layer perceptrons are powerful enough to approximate nonlinearity, in the past years a development towards more complex \glspl{ann} with multiple hidden layers \ie multi-layer perceptrons, has been on the rise \citep[p. 217]{Sutton2017}. These complex \glspl{ann} allow to solve many artificial intelligence tasks in a much more efficient way \citep{Bengio2009}. This area is called deep \gls{rl} and it has shed light on solutions that were never though possible before \citep{Bengio2009}. Refer to \figref{fig:ann_2h} for a depiction of a multi layer \glspl{ann}.
 
@@ -397,7 +400,7 @@ where $\delta_t$ is defined as:
 	\delta_t \doteq R_{t+1} + \gamma \underbrace{\sum_a \pi (a|S_{t+1}) \hat{q} (S_{t+1},a,\theta_t)}_{\max_a \hat{q} (S_{t+1},a,\theta_t)} - \hat{q} (S_t,A_t,\theta_t)
 \end{equation}
 
-what is important to note here, is that the episodic \gls{op} algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \citep[p. 244]{Sutton2017}. \citet[p. 244]{Sutton2017} state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed.
+what is to note here, is that the episodic \gls{op} algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \citep[p. 244]{Sutton2017}. \citet[p. 244]{Sutton2017} state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed.
 
 \subsection{\glsentrylong{pg} Methods}
 \label{subsec:polgrad_methods}
@@ -426,9 +429,7 @@ where $e \approx 2.71828$ \citep[p. 266]{Sutton2017}. Moreover, the preferences 
 
 simply linear in features \citep[p. 266]{Sutton2017}.
 
-With these definitions in mind, one can formally define one of the very first \gls{mc} based \gls{pg} methods: \texttt{REINFORCE} \citep{Williams1992}.
-
-\citet{Williams1992} defines his \texttt{REINFORCE} algorithm by the following update function:
+With these definitions in mind, one can formally define one of the very first \gls{mc} based \gls{pg} methods: \texttt{REINFORCE} \citep{Williams1992}. \citet{Williams1992} defines his \texttt{REINFORCE} algorithm by the following update function:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha \gamma^t G_t \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
@@ -476,14 +477,12 @@ Different subsections are used in order to separate better the different approac
 	\item Other policy methods that do not fit in any of the previous categories.
 \end{enumerate*}
 
-The two key concepts required in order to effectively apply \gls{rl} techniques for role resolution in \glspl{wfms} are:
+The three key concepts required in order to effectively apply \gls{rl} techniques for role resolution in \glspl{wfms} are:
 \begin{enumerate*}
 	\item Correctly defined states and actions spaces
 	\item Precise rewards definition
 	\item Effective update method for the policy's internal parameters. 
 \end{enumerate*}
-
-In the next subsections a distinction between prediction and update methods is outlined.
 
 \subsection{Prediction and Control Methods}
 
@@ -586,7 +585,7 @@ The policy probabilities method takes as input parameter the current state space
 
 \subsubsection{\glsentrylongpl{ann} as Function Approximation}
 
-Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, \glspl{ann} can be used for nonlinear function approximation. The assignment problem  poses itself very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our \glspl{ann} using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space (\ie input to the \glspl{ann}) together with its weights and biases, creates an activation function and maps the prediction layer (\ie output) with a softmax classification.
+Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, \glspl{ann} can be used for nonlinear function approximation. The assignment problem  poses itself very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our \glspl{ann} using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space \ie input to the \glspl{ann}, together with its weights and biases, creates an activation function and maps the prediction layer \ie output, with a softmax classification.
 
 \begin{lstlisting}[caption=Modeling of a single perceptron in \glsentryshort{tf},label=lst:ann_1h,style=CustomPython]
 	with tf.name_scope("neural_network"):
@@ -619,9 +618,11 @@ As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there a
 
 \fig[\textwidth]{mc_td}{\glsentryshort{mc} and \glsentryshort{td} proposed updates comparison (own plot based on \citet[p. 130]{Sutton2017})}{fig:mc_td}
 
-As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the \gls{mc} method needs to reach the end of an entire episode (\ie here it consists of actually arriving home) in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, \gls{td} is much more flexible and robust since it executes its updates at each time step, hence its name: \gls{td}.
+As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the \gls{mc} method needs to reach the end of an entire episode \eg here it consists of actually arriving home, in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, \gls{td} is much more flexible and robust since it executes its updates at each time step, hence its name: \gls{td}.
+
 For a formal overview of the difference between the two update methods, refer to \equref{eq:mc_update} for the \gls{mc} update and to \equref{eq:td_update} for the \gls{td} update.
-For the case at hand, this means that training the policies has to be done in a different fashion for the two update methods: while \gls{td} based policies can be updated ``on-the-fly'', \gls{mc} methods require batch training sessions (\ie episodes) at the end of which they can effectively learn and update their internal $\theta$ parameters to be used for the next episode. Not only the training approach is different, but the logic of the policy itself is also different: for \gls{td} based policies, the update method is being called internally since the policy knows its temporal steps, while for \gls{mc} based policies the policy itself cannot know a priori when an episode will finish and thus must relay on an ``artificial'' definition of such. The overall overhead is also different since \gls{mc} based policies have to keep track of their whole episode history which usually is composed of the state space, chosen action and reward at time step $t$.
+
+For the case at hand, this means that training the policies has to be done in a different fashion for the two update methods: while \gls{td} based policies can be updated ``on-the-fly'', \gls{mc} methods require batch training sessions \ie episodes, at the end of which they can effectively learn and update their internal $\theta$ parameters to be used for the next episode. Not only the training approach is different, but the logic of the policy itself is also different: for \gls{td} based policies, the update method is being called internally since the policy knows its temporal steps, while for \gls{mc} based policies the policy itself cannot know a priori when an episode will finish and thus must relay on an ``artificial'' definition of such. The overall overhead is also different since \gls{mc} based policies have to keep track of their whole episode history which usually is composed of the state space, chosen action and reward at time step $t$.
 
 \citet{Sutton2017} outline a qualitative comparison between both update methods which can be found summarized in table \tabref{tab:mc_td_comp}.
 

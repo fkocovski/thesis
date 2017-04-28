@@ -3,7 +3,7 @@
 
 This chapter outlines the results obtained by the \gls{milp} approach in \secref{sec:opt_results} respectively the \gls{rl} approach in \secref{sec:rl_results} following the guidelines defined in \chpref{ch:empirical_analysis}.
 
-All simulations have been tested with different combination of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, the global variables have been set to the following parameters according to the default column in \tabref{tab:global_parameters_sim}.
+All simulations have been tested with different combinations of global variables \ie number of users, service interval, generation interval, length of simulation time, batch size (where it applies), task variability, worker variability and random state seed (where it applies). For ease of reading purposes, the global variables have been set to the following parameters according to the default column in \tabref{tab:global_parameters_sim}. The rightmost column in \tabref{tab:global_parameters_sim} indicates the validity range for each variable.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -17,8 +17,8 @@ All simulations have been tested with different combination of global variables 
 		Generation Interval & $3$           & $1-\infty$      \\
 		Simulation Time     & $1000$          & $1-\infty$      \\
 		Batch Size          & $5$ ($1$ for 1-Batch-1)           & $1-\infty$      \\
-		Task Varaibility    & $20\%$        & $0\%-100\%$      \\
-		Worker Variability  & $20\%$        & $0\%-100\%$      \\
+		Task Varaibility    & $20\%$ of service interval       & $0\%-100\%$      \\
+		Worker Variability  & $20\%$ of service interval       & $0\%-100\%$      \\
 		Random State Seed   & $2$           & $\emptyset-\infty$      \\
 		Process    & Acquisition & Acquisition, Simple      \\ \bottomrule
 		\end{tabular}
@@ -35,15 +35,15 @@ All simulations have been tested with different combination of global variables 
 	\item Batch optimization policies without a fixed batch size, such as 1-Batch-1 yield best results \citep[p. 24]{Zeng2005}.
 \end{enumerate*}
 
-In order to assert the validity of the interpretation of \citet{Zeng2005}'s works and all subsequent derivative policies a comparison with similar configurations has been made for all five optimization policies. \citet{Zeng2005}'s main efficiency parameter is defined as the maximum flowtime or in their own words: ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \citep[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}. In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results to \citet{Zeng2005} are obtained.
+In order to assert the validity of the interpretation of \citet{Zeng2005}'s works and all subsequent derivative policies a comparison with similar configurations has been made for all five \gls{milp} based policies. \citet{Zeng2005}'s main efficiency parameter is defined as the maximum flowtime or in their own words: ``In business terms, maximum flowtime represents the guaranteed response time across tasks, indicating the quality of services'' \citep[p. 17]{Zeng2005}. In this study, the comparable parameter used to evaluate a policy's efficiency is called lateness and has been previously defined in \equref{eq:lateness}. In regards to lateness, \figref{fig:opt_kpis_comp} shows that akin results to \citet{Zeng2005} are obtained.
 
-\fig[\textwidth]{opt_kpis_comp}{\glsentryshortpl{kpi}  comparison for different optimization policies using \glsentryshort{msa}}{fig:opt_kpis_comp}  
+\fig[\textwidth]{opt_kpis_comp}{\glsentryshortpl{kpi}  comparison for different \gls{milp} based policies using \glsentryshort{msa}}{fig:opt_kpis_comp}  
 
 The simulations have been run with the parameters outlined in \tabref{tab:global_parameters_sim} by using the same formulation used by \citet{Zeng2005}: \gls{msa}.
 
-By running the same simulations with the optimization formulation implemented for this thesis \ie \gls{st}, refer to \secref{sec:opt_policies}, ceteris paribus, the summarized \glspl{kpi} amongst all optimization policies can be seen in \figref{fig:opt_st_kpis_comp}.
+By running the same simulations with the \gls{milp} based formulation implemented for this thesis \ie \gls{st}, ceteris paribus, the summarized \glspl{kpi} among all \gls{milp} based policies can be seen in \figref{fig:opt_st_kpis_comp}.
 
-\fig[\textwidth]{opt_st_kpis_comp}{\glsentryshortpl{kpi}  comparison for different optimization policies using \glsentryshort{st}}{fig:opt_st_kpis_comp}
+\fig[\textwidth]{opt_st_kpis_comp}{\glsentryshortpl{kpi}  comparison for different \gls{milp} based policies using \glsentryshort{st}}{fig:opt_st_kpis_comp}
 
 The speedup for both batch policies with a higher batch size is tiny, but when considering the speedup between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy speedup is present for all \glspl{kpi}. For a detailed overview of the overall speedups of \gls{st} against \gls{msa} refer to \figref{fig:opt_kpis_comp_gain}.
 
@@ -93,7 +93,7 @@ In order to maintain fairness amongst \gls{rl} training methods, all required pa
 	\label{tab:global_rl_params}
 \end{table}
 
-Comparisons will be made, where not otherwise stated, with the corresponding \gls{milp} policy under the same conditions.
+Comparisons will be made, where not otherwise stated, with the corresponding \gls{milp} based policy under the same conditions.
 
 \subsection{Batch}
 \label{subsec:rl_batch}

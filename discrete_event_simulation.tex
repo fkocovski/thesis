@@ -19,8 +19,9 @@ The analysis environment consists in an object-oriented implementation of \gls{w
 \fig[\textwidth]{workflow_elements}{\glsentryshort{wfms} elements}{fig:workflow_elements}
 
 \subsection{Start Event}
+\label{subsec:start_event}
 
-Start event objects require a simulation environment, a generation interval, an actions to follow array and its corresponding weights. The generation interval is a plain scalar value in contrast to \citet{Zeng2005}'s work, where the generation $\lambda$ interval follows a Poisson distribution and is defined as shown in \equref{eq:generation_interval} with a fixed service interval time unit $s$, number of users $n$ and an average system load $l$.
+Start events require a simulation environment, a generation interval, an actions to follow array and its corresponding weights. The generation interval is a plain scalar value in contrast to \citet{Zeng2005}'s work, where the generation $\lambda$ interval follows a Poisson distribution and is defined as shown in \equref{eq:generation_interval} with a fixed service interval time unit $s$, number of users $n$ and an average system load $l$.
 
 \begin{equation}
 \label{eq:generation_interval}
@@ -92,9 +93,9 @@ This approach greatly simplifies the analysis of the results since no matter the
 \subsection{User Task}
 \label{subsec:user_task}
 
-User task objects also require a simulation environment, a policy, a descriptive name, a service interval and task variability. Each user task has a unique \texttt{child} field which is being set prior to starting the simulation.
+User tasks also require a simulation environment, a policy, a descriptive name, a service interval and task variability. Each user task has a unique \texttt{child} field which is being set prior to starting the simulation.
 
-Each user task object has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. The logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to assign a user to the token and finally, after a service interval timeout which corresponds to the user's specific service interval has passed, they release the token. The logic can be seen in \lstref{lst:user_task}.
+Each user task has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. The logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to assign a user to the token and finally, after a service interval timeout which corresponds to the user's specific service interval has passed, they release the token. The logic can be seen in \lstref{lst:user_task}.
 
 \begin{lstlisting}[caption=User task claim method,label=lst:user_task,style=CustomPython]
     def claim_token(self, token):
@@ -128,7 +129,7 @@ class XOR(Node):
 
 \subsubsection{\glsentryshort{or}}
 
-\gls{or} gateways, in contrast to \gls{xor} gateways, require a synchronization between number of split path flows being fired at their diverging state which eventually reach a converging state. In other words, the number of parallel tokens fired at the diverging node must all be accounted for at the converging node. This is achieved by a counter object that each token holds: when a token reaches a divergent \gls{or} gateway, the token's conditions are read and for each path flow that the token has to follow its counter is incremented by $1$. The logic is depicted in \lstref{lst:or_counter_increment}.
+\gls{or} gateways, in contrast to \gls{xor} gateways, require a synchronization between number of split path flows being fired at their diverging state which eventually reach a converging state. In other words, the number of parallel tokens fired at the diverging node must all be accounted for at the converging node. This is achieved by a counter that each token holds: when a token reaches a divergent \gls{or} gateway, the token's conditions are read and for each path flow that the token has to follow its counter is incremented by $1$. The logic is depicted in \lstref{lst:or_counter_increment}.
 
 \begin{lstlisting}[caption=Token's counter increment logic at a divergent \glsentryshort{or} gateway,label=lst:or_counter_increment,style=CustomPython]
 class DOR(Node):
@@ -153,34 +154,34 @@ class COR(Node):
 
 \subsection{End Event}
 
-In \texttt{Python} one does not have to preallocate or deallocate memory by hand as when using pointer based programming languages such as \texttt{C} or \texttt{C++} since this is being taken care of internally. According to \citet{Silver2011}'s definition of activities, processes and end events (refer to \secref{sec:bpmn}), when a token reaches an end event, the corresponding process' activity instance is deleted and to be never again used. This is exactly what can be implicitly achieved by \texttt{Python}'s internal garbage collection strategies: tokens are objects that are being generated by start events, when they reach the last element in the process, all references to the token object are extinguished thus effectively engaging the internal garbage collection strategies which deallocate any memory previously allocated for it. This translates into the fact that there is no need to explicitly model end events.
+In \texttt{Python} one does not have to preallocate or deallocate memory by hand as when using pointer based programming languages such as \texttt{C} or \texttt{C++} since this is being taken care of internally. According to \citet{Silver2011}'s definition of activities, processes and end events (refer to \secref{sec:bpmn}), when a token reaches an end event, the corresponding process' activity instance is deleted and to be never again used. This is exactly what can be implicitly achieved by \texttt{Python}'s internal garbage collection strategies: tokens are being generated by start events, when they reach the last element in the process, all references to the token are extinguished thus effectively engaging the internal garbage collection strategies which deallocate any memory previously allocated for it. This translates into the fact that there is no need to explicitly model end events.
 
 \section{Policy Based Role Resolution Implementation}
 \label{sec:policy_implementation}
-Role resolution according to policies acting as supervisors (as explained in \secref{sec:role_resolution_theory}) in the discrete event simulation environment is achieved by means of a particular class of objects \ie policies and policy jobs.
+Role resolution according to policies acting as supervisors (as explained in \secref{sec:role_resolution_theory}) in the discrete event simulation environment is achieved by means of a particular classes \ie policies and policy jobs. The implementation can be seen in \figref{fig:policies_init}.
 
-Policies are a particular object that does not directly participate in the \gls{wfms}, it serves a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level. The implementation of the policy objects can be seen in \figref{fig:policies_init}.
+Policies do not directly participate in the \gls{wfms}, it serves a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level.
 
 \fig[0.33\textwidth]{policies_init}{Policies abstract implementation}{fig:policies_init}
 
-Each policy is a blueprint for the actual implementation of the policy itself. It holds minimal information such as a simulation environment, number of users and worker variability. As a blueprint, each policy object defines two abstract methods for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it. Refer to \figref{fig:policy_met_att} for its implementation overview.
+Each policy is a blueprint for the actual implementation of the policy itself. It holds minimal information such as a simulation environment, number of users and worker variability. As a blueprint, each policy defines two abstract methods for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it. Refer to \figref{fig:policy_met_att} for its implementation overview.
 
 \fig[0.5\textwidth]{policy_met_att}{Policy methods and attributes}{fig:policy_met_att}
 
-In its request method, each policy generates a policy job object, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job object serves as a bookkeeping agent by storing and dumping useful information every time its status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users. Refer to \figref{fig:policyjob_met_att} for its implementation overview.
+In its request method, each policy generates a policy job, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job serves as a bookkeeping agent by storing and dumping useful information every time its status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users. Refer to \figref{fig:policyjob_met_att} for its implementation overview.
 
 \fig[0.5\textwidth]{policyjob_met_att}{Policy job methods and attributes}{fig:policyjob_met_att}
 
 In regards to parameters service interval and task variability defined in \subsecref{subsec:user_task} a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. \citet[p. 8]{Zeng2005} follow a two way process to generate such intervals. However a refined version of this process is used in this case:
 \begin{enumerate*}
-	\item At initialization time, each user task receives a service rate $s$ and a task variability $t$ value
-	\item Inside the policy request method, for each user task a sample of an average processing time following an Erlang distribution (a special case of the gamma distribution as defined by \citet{Adan2015}) which takes as input parameters a shape $k$ and a scale $\theta$ is made. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_service_rate}
+	\item At initialization time, each user task receives a service rate $s$ and a task variability $t$ values
+	\item Inside the policy request method for each user task a sample of an average processing time is made, following an Erlang distribution which takes as input parameters a shape $k$ and a scale $\theta$. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_service_rate}
 	\item The average processing time becomes a unique value of each user task and is used by each policy to sample each user's service time, again from an Erlang sampled pool as depicted in \lstref{lst:user_service_rate} which we shall call $p_j$.
 \end{enumerate*}
 
 For each user eligible to work the assigned token, its service rate is sampled following the Erlang distribution. This time, the Erlang distribution takes as parameters the unique average processing time $p_j$ of user task $j$ and a worker variability $w$, which is a unique property of each policy.
 
-In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$, shape $k$ is evaluated as $k=p_j/w$ and scale $\theta$ as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate}
+In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$ working tokens at user task $j$, shape $k$ is evaluated as $k=p_j/w$ and scale $\theta$ as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate}
 
 \begin{lstlisting}[caption=User service rate sampling following an Erlang distribution,label=lst:user_service_rate,style=CustomPython]
     def request(self, user_task,token):
@@ -193,11 +194,11 @@ In order to sample a service rate $p_{ij}$ following the Erlang distribution for
                                    _ in range(self.number_of_users)]
 \end{lstlisting}
 
-The Erlang distribution is better suited to model service rates since with an appropriate $k$ one can approximate a normal distribution without incurring in the aspect of having to manually reset negative values to one. This is asserted by the formal definition of Erlang range $x \in [0,\infty)$.
+The Erlang distribution is better suited to model service rates since with an appropriate $k$ one can approximate a normal distribution without incurring in the aspect of having to manually reset negative values to one. This is ensured by the formal definition of Erlang's validity range $x \in [0,\infty)$.
 
-\texttt{NumPy}'s implementation of its Erlang distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.gamma.html}{06.01.2017}. \equref{eq:erlang_density} defines the probability density function of the Erlang's distribution with the alternative parametrization that uses $\mu$ instead of $\lambda$ as scale parameter, which is its reciprocal.
+\texttt{NumPy}'s implementation of the Erlang distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.gamma.html}{06.01.2017}. \equref{eq:erlang_density} defines the probability density function of the Erlang distribution with the alternative parametrization that uses $\mu$ instead of $\lambda$ as scale parameter, which is its reciprocal.
 
 \begin{equation}
 \label{eq:erlang_density}
-	f(x;k,\mu) = \frac{x^{k-1} e^{-\frac{x}{\mu}}}{\mu^k (k-1)!} \text{ for } x,\mu \geq 0
+	f(x;k,\mu) = \frac{x^{k-1} e^{-\frac{x}{\mu}}}{\mu^k (k-1)!} \quad \text{for} \quad x,\mu \geq 0
 \end{equation}
