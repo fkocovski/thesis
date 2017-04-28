@@ -10,7 +10,7 @@
 
 @Article{Zeng2005,
   author       = {Daniel D. Zeng and J. Leon Zhao},
-  title        = {Effective Role Resolution in Workflow Management},
+  title        = {{Effective Role Resolution in Workflow Management}},
   year         = {2005},
   volume       = {17},
   number       = {3},
@@ -41,7 +41,7 @@ Summary key findings:
 4) 1-batch-1 onliine optimization policy yields best results in operational conditions.},
 }
 
-@Misc{Adan2016,
+@Misc{Adan2015,
   author = {Adan, Ivo and Resing, Jacques},
   title  = {{Queueing Systems}},
   month  = mar,
@@ -51,9 +51,11 @@ Summary key findings:
 
 @Book{Sutton2017,
   title     = {Reinforcement Learning: An Introduction},
-  publisher = {The MIT Press},
+  publisher = {MIT Press},
   year      = {2017},
   author    = {Sutton, Richard S. and Barto, Andrew G.},
+  address   = {Cambridge, MA, USA},
+  edition   = {2},
   review    = {Focus on the 2017 WIP version},
   url       = {http://incompleteideas.net/sutton/book/bookdraft2016sep.pdf},
 }
