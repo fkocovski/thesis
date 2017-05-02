@@ -47,17 +47,13 @@ The script initializes the chosen process and then calls the tokens generation m
 
 Two different types of processes have been defined:
 \begin{enumerate*}
-	\item Consisting of only one user task
-	\item A complex process that is modeled against an acquisition process used in the real estate field for the acquisition of real estate properties.
+	\item A unitary process consisting of one start event, directly followed by one user task and eventually an end event (see \figref{fig:simple_process})
+	\item A compound process modeled against a demonstration acquisition process used in real estate for properties acquisition (see \figref{fig:acquisition_process}).
 \end{enumerate*}
 
-\figref{fig:simple_process} illustrates the simple process.
+\fig[0.5\textwidth]{simple_process}{Unitary process consisting of one start event, one user task and one end event}{fig:simple_process}
 
-\fig[0.5\textwidth]{simple_process}{Simple process consisting of only one user task}{fig:simple_process}
-
-\figref{fig:acquisition_process} illustrates the complex acquisition process.
-
-\fig[\textwidth]{acquisition_process}{Acquisition process consisting of multiple user tasks and decision nodes}{fig:acquisition_process}
+\fig[\textwidth]{acquisition_process}{Demonstration acquisition process consisting of one start event, multiple user tasks, multiple decision gateways and two end events}{fig:acquisition_process}
 
 As described in \secref{sec:wfms_implementation}, user tasks are the heart of each simulation. In each user task the policy has to solve the role resolution problem for each token reaching it. By focusing on a larger model, such as the one outlined in \figref{fig:acquisition_process} it is possible to simulate the policies in a ``real-world-like'' scenario. Furthermore, as explained in \subsecref{subsec:start_event}, the logical path flow for each token is manually prepared following a weighted probabilistic assignment and it gets designated to it. This approach permits to simulate only intrinsically correct paths. 
 
