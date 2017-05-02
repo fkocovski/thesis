@@ -8,39 +8,43 @@ In order to consistently and fairly evaluate all policies with the methods defin
 	\item Different \glspl{kpi} have been defined which are used to assert the efficiency of one policy against one another.
 \end{enumerate*}
 
-\section{Simulation Script}
+\section{Simulation Framework}
 
-Each simulation script is the abstract element that imports all required dependencies, initializes the \texttt{SimPy} discrete event simulation environment, the statistics file into which the policy job dumps all data during runtime, the policy itself to be used for the assignment and the process to be used. 
+Each policy is simulated by means of simulation scripts. It  imports all required dependencies, initializes the \texttt{SimPy} discrete event simulation environment, the statistics file into which the policy job dumps all data during runtime, the policy itself to be used for role resolution and the process to be used. 
+
+In order to assert comparability, parameters are centrally defined. \lstref{lst:central_parameters} shows the central parameters defined as global variables.
+
+\begin{lstlisting}[caption=Global parameters definition that ensures comparability across simulation runs,label=lst:central_parameters,style=CustomPython]
+NUMBER_OF_USERS = 3
+SERVICE_INTERVAL = 1
+GENERATION_INTERVAL = 3
+SIM_TIME = 1000
+BATCH_SIZE = 5
+TASK_VARIABILITY = 0.2 * SERVICE_INTERVAL
+WORKER_VARIABILITY = 0.2 * SERVICE_INTERVAL
+SEED = 2
+\end{lstlisting}
 
 The script initializes the chosen process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling \texttt{SimPy}'s run method. A snippet of a simulation script can be found in \lstref{lst:simulation_script}.
 
-\begin{lstlisting}[caption=Example of the structure of a simulation script. Here for the K-Batch policy using the \gls{dmf} formulation,label=lst:simulation_script,style=CustomPython]
-	import simpy
-	from evaluation.statistics import calculate_statistics
-	from evaluation.subplot_evolution import evolution
-	from policies.optimization.batch.k_batch import K_BATCH
-	from simulations import *
-	from solvers.dmf_solver import dmf
+\begin{lstlisting}[caption=Structure example of simulation framework using a K-Batch policy with \gls{dmf},label=lst:simulation_script,style=CustomPython]
+import simpy
+from evaluation.statistics import calculate_statistics
+from evaluation.subplot_evolution import evolution
+from policies.optimization.batch.k_batch import K_BATCH
+from simulations import *
+from solvers.dmf_solver import dmf
 
-	policy_name = "{}_BATCH_DMF_NU{}_GI{}_SIM{}".format(BATCH_SIZE,NUMBER_OF_USERS, GENERATION_INTERVAL, SEED, SIM_TIME)
-
-	env = simpy.Environment()
-
-	file_policy = create_files("{}.csv".format(policy_name))
-
-	policy = K_BATCH(env, NUMBER_OF_USERS, WORKER_VARIABILITY, file_policy,BATCH_SIZE, dmf)
-
-	start_event = acquisition_process(env,policy,1,GENERATION_INTERVAL,False,None,None,None)
-
-	env.process(start_event.generate_tokens())
-
-	env.run(until=SIM_TIME)
-
-	file_policy.close()
-
-	calculate_statistics(file_policy.name, outfile=True)
-
-	evolution(file_policy.name, outfile=True)
+policy_name = "{}_BATCH_DMF_NU{}_GI{}_SIM{}".format(BATCH_SIZE,NUMBER_OF_USERS, GENERATION_INTERVAL, SEED, SIM_TIME)
+env = simpy.Environment()
+file_policy = create_files("{}.csv".format(policy_name))
+policy = K_BATCH(env, NUMBER_OF_USERS, WORKER_VARIABILITY, file_policy,BATCH_SIZE, dmf)
+start_event = acquisition_process(env,policy,1,GENERATION_INTERVAL,False,None,None,None)
+env.process(start_event.generate_tokens())
+env.run(until=SIM_TIME)
+file_policy.close()
+calculate_statistics(file_policy.name, outfile=True)
+evolution(file_policy.name, outfile=True)
 \end{lstlisting}
 
 \section{\glsentrylong{bpm}}
@@ -55,24 +59,9 @@ Two different types of processes have been defined:
 
 \fig[\textwidth]{acquisition_process}{Demonstration acquisition process consisting of one start event, multiple user tasks, multiple decision gateways and two end events}{fig:acquisition_process}
 
-As described in \secref{sec:wfms_implementation}, user tasks are the heart of each simulation. In each user task the policy has to solve the role resolution problem for each token reaching it. By focusing on a larger model, such as the one outlined in \figref{fig:acquisition_process} it is possible to simulate the policies in a ``real-world-like'' scenario. Furthermore, as explained in \subsecref{subsec:start_event}, the logical path flow for each token is manually prepared following a weighted probabilistic assignment and it gets designated to it. This approach permits to simulate only intrinsically correct paths. 
+As described in \secref{sec:bpmn_implementation}, user tasks are the heart of each simulation. In each user task the policy has to solve the role resolution problem for each token reaching it. By focusing on a larger model, such as the one outlined in \figref{fig:acquisition_process} it is possible to simulate the policies in a ``real-world-like'' scenario. Furthermore, as explained in \subsecref{subsec:start_event}, the logical path flow for each token is manually prepared following a weighted probabilistic assignment and it gets designated to it. This approach permits to simulate only intrinsically correct paths. 
 
-\section{Global Simulation and Process Parameters Definition}
-
-One key aspect in order to assert comparability across policies while simulated is to centrally define all parameters. \lstref{lst:central_parameters} shows the key central parameters defined as global variables.
-
-\begin{lstlisting}[caption=Global parameters definition that ensures comparability across simulation runs,label=lst:central_parameters,style=CustomPython]
-	NUMBER_OF_USERS = 3
-	SERVICE_INTERVAL = 1
-	GENERATION_INTERVAL = 3
-	SIM_TIME = 1000
-	BATCH_SIZE = 5
-	TASK_VARIABILITY = 0.2 * SERVICE_INTERVAL
-	WORKER_VARIABILITY = 0.2 * SERVICE_INTERVAL
-	SEED = 2
-\end{lstlisting}
-
-\section{\glsentryshortpl{kpi} for Asserting Policy's Efficacy and Data Visualization}
+\section{\glsentrylongpl{kpi} and Data Visualization}
 
 Based on \citet{Pinedo2008}'s and \citet{Zeng2005}'s definitions, different \glspl{kpi} have been defined to assert the efficacy of a policy, such as lateness, waiting time, service time, number of tokens completed, user loads and system load. Following the formal definitions of the per token $j$ \glspl{kpi} in respect to lateness $L_j$, wait time $w_j$, service time $p_{ij}$ of assigned user $i$ to token $j$, arrival time $A_j$, assignment time $a_j$, start time $S_j$ and finish time $F_j$.
 

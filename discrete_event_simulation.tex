@@ -1,7 +1,7 @@
 \chapter{Discrete Event Simulation}
 \label{ch:discrete_event_sim}
 
-As previously outlined in \secref{sec:role_resolution_theory}, a discrete event simulation has been implemented in which role resolution policies have been tested. What follows is the description of how this environment has been implemented, then in \secref{sec:wfms_implementation} the \gls{wfms} environment's implementation based on the outlined foundations in \secref{sec:bpmn} is described and eventually in \secref{sec:policy_implementation} the role resolution's implementation based on the outlined foundations in \secref{sec:role_resolution_theory} is also explained.
+As previously outlined in \secref{sec:role_resolution_theory}, a discrete event simulation has been implemented in which role resolution policies have been tested. What follows is the description of how this environment has been implemented, then in \secref{sec:bpmn_implementation} the \gls{wfms} environment's implementation based on the outlined foundations in \secref{sec:bpmn} is described and eventually in \secref{sec:policy_implementation} the role resolution's implementation based on the outlined foundations in \secref{sec:role_resolution_theory} is also explained.
 
 \texttt{SimPy} is a \texttt{Python} process-based discrete-event simulation framework. It exploits \texttt{Python}'s generators according to which it models its processes.
 
@@ -11,8 +11,8 @@ As previously mentioned, processes in \texttt{SimPy} are described by \texttt{Py
 
 \texttt{SimPy} offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since timeout events are created and called by the appropriate method of the passed \texttt{Environment}.
 
-\section{\glsentrylong{wfms} Implementation}
-\label{sec:wfms_implementation}
+\section{\glsentrylong{bpmn} Implementation}
+\label{sec:bpmn_implementation}
 
 The analysis environment consists in an object-oriented implementation of \gls{wfms} elements such as start events, user tasks, gateways and end events which have been developed to allow the simulation framework to effectively run. They are built upon the formal foundations outlined in \secref{sec:bpmn}. This object-oriented exoskeleton implementation of the \gls{wfms} elements can be seen depicted in \figref{fig:workflow_elements}.
 
@@ -35,11 +35,11 @@ The path flow to be followed by the tokens generated is defined in a two step pr
 \end{enumerate*}
 
 \begin{lstlisting}[caption=Actions pool,label=lst:actions_pool,style=CustomPython]
-    actions_pool = [{xor.node_id: 0, xor_a.node_id: 0, dor_c.node_id: (1, 2), xor_d.node_id: 1, xor_f.node_id: 0, cor_g.node_id: 2, xor_h.node_id: 0}]
+actions_pool = [{xor.node_id: 0, xor_a.node_id: 0, dor_c.node_id: (1, 2), xor_d.node_id: 1, xor_f.node_id: 0, cor_g.node_id: 2, xor_h.node_id: 0}]
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Probability weights vector for each path flow,label=lst:probabilities_path_flow,style=CustomPython]
-    weights = [1 / len(actions_pool) for _ in range(len(actions_pool))]
+weights = [1 / len(actions_pool) for _ in range(len(actions_pool))]
 \end{lstlisting}
 
 Such an approach allows to fine tune how often tokens will follow a predefined path flow along the process in order to efficiently simulate and put under stress specific path flows of the process.
@@ -47,10 +47,10 @@ Such an approach allows to fine tune how often tokens will follow a predefined p
 The length of the simulation can either run indefinitely or be constrained to an upper bound in time steps $t$ as it can be seen from \lstref{lst:simulation_steps}. This means that the simulation will persist for $100$ time steps and it will then stop when the internal clock reaches $100$\footnote{Note that events that have been scheduled for time step $100$ will not be processed.}. The logic is similar to a new environment where the clock is zero and no events have been processed yet.
 
 \begin{lstlisting}[caption=Starting the simulation with discrete time steps,label=lst:simulation_steps,style=CustomPython]
-    # "global" variables
-    SIM_TIME = 100
-    # runs simulation
-    env.run(until=SIM_TIME)
+# "global" variables
+SIM_TIME = 100
+# runs simulation
+env.run(until=SIM_TIME)
 \end{lstlisting}
 
 \subsubsection{Master Random State}
@@ -58,17 +58,17 @@ The length of the simulation can either run indefinitely or be constrained to an
 In order to assert fairness among all simulation runs a master random state is assigned to the start event. This master random state is generated from the \texttt{PCG}\foot{http://www.pcg-random.org/}{25.04.2017} family of random generators which exhibit peculiar characteristics, one amongst all is the possibility of ``jumping ahead'' in the state. The novelty of this approach allows to assign a fixed number of random yet consistent choices among all runs, since each generated token receives from the start event a ``jumped'' copy from the master state. The implementation of this recursive ahead jumps in random states is depicted in \lstref{lst:random_state_jump}.
 
 \begin{lstlisting}[caption=Master random state jump ahead,label=lst:random_state_jump,style=CustomPython]
-    def generate_tokens(self):
-        while True:
-            random_state = self.advance_master_state()
-            token = Token(random_state)
+def generate_tokens(self):
+    while True:
+        random_state = self.advance_master_state()
+        token = Token(random_state)
 
-    def advance_master_state(self):
-        current_state = self.master_state.get_state()
-        random_state = pcg.RandomState()
-        random_state.set_state(current_state)
-        self.master_state.advance(int(1e9))
-        return random_state
+def advance_master_state(self):
+    current_state = self.master_state.get_state()
+    random_state = pcg.RandomState()
+    random_state.set_state(current_state)
+    self.master_state.advance(int(1e9))
+    return random_state
 \end{lstlisting}
 
 This approach greatly simplifies the analysis of the results since no matter the simulation conformation, it permits to ensure consistency and reproducibility among all configurations. Specifically, since each token gets a ``jumped'' copy of the master random state, it is ensured that under any circumstances the generation time during the simulation is consistent.
@@ -98,12 +98,12 @@ User tasks also require a simulation environment, a policy, a descriptive name, 
 Each user task has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. The logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to assign a user to the token and finally, after a service interval timeout which corresponds to the user's specific service interval has passed, they release the token. The logic can be seen in \lstref{lst:user_task}.
 
 \begin{lstlisting}[caption=User task claim method,label=lst:user_task,style=CustomPython]
-    def claim_token(self, token):
-        token.worked_by(self)
-        policy_job = self.policy.request(self, token)
-        service_time = yield policy_job.request_event
-        yield self.env.timeout(service_time)
-        self.policy.release(policy_job)
+def claim_token(self, token):
+    token.worked_by(self)
+    policy_job = self.policy.request(self, token)
+    service_time = yield policy_job.request_event
+    yield self.env.timeout(service_time)
+    self.policy.release(policy_job)
 \end{lstlisting}
 
 \subsection{Gateway}
@@ -184,14 +184,9 @@ For each user eligible to work the assigned token, its service rate is sampled f
 In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$ working tokens at user task $j$, shape $k$ is evaluated as $k=p_j/w$ and scale $\theta$ as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate}
 
 \begin{lstlisting}[caption=User service rate sampling following an Erlang distribution,label=lst:user_service_rate,style=CustomPython]
-    def request(self, user_task,token):
-        average_processing_time = token.random_state.gamma(
-            user_task.service_interval ** 2 / user_task.task_variability,
-            user_task.task_variability / user_task.service_interval)
-
-        policy_job.service_rate = [token.random_state.gamma(average_processing_time ** 2 / self.worker_variability,
-                                                           self.worker_variability / average_processing_time) for
-                                   _ in range(self.number_of_users)]
+def request(self, user_task,token):
+    average_processing_time = token.random_state.gamma(user_task.service_interval ** 2 / user_task.task_variability, user_task.task_variability / user_task.service_interval)
+    policy_job.service_rate = [token.random_state.gamma(average_processing_time ** 2 / self.worker_variability, self.worker_variability / average_processing_time) for _ in range(self.number_of_users)]
 \end{lstlisting}
 
 The Erlang distribution is better suited to model service rates since with an appropriate $k$ one can approximate a normal distribution without incurring in the aspect of having to manually reset negative values to one. This is ensured by the formal definition of Erlang's validity range $x \in [0,\infty)$.

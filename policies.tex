@@ -1,4 +1,4 @@
-\chapter{Policy Based Role Resolution}
+\chapter{Role Resolution Policies}
 \label{ch:policies}
 
 \citet[p. 7]{Zeng2005} investigate five role resolution policies used for optimal job assignment in \glspl{wfms}. Following a brief description of the five aforementioned policies:
@@ -507,37 +507,35 @@ Since the possible actions are represented by the number of users, the state spa
 
 During the evaluation phase of a job the policy has to choose an action \ie a user, by taking into account the current state space and its internal $\theta$ parameters. By using a \gls{svfa} as defined in \equref{eq:function_approximation_dot}, the policy evaluates the highest score for each possible user.
 
-As an example, let us consider a snippet of how a K-Batch policy using a linear \gls{svfa} performs its choices during its greedy phase: it iterates over all possible actions and performs the dot product between the state space and the corresponding $\theta$ vector and then maximizes the returned $Q$ value. This approach can be seen in \lstref{lst:e_greedy} 
+As an example, let us consider a snippet of how a K-Batch policy using a linear \gls{svfa} performs its choices during its greedy phase: it iterates over all possible actions and performs the dot product between the state space and the corresponding $\theta$ vector and then maximizes the returned $Q$ value. This approach can be seen in \lstref{lst:e_greedy} and its respective \gls{svfa} in \lstref{lst:value_f_approx}.
 
 \begin{lstlisting}[caption=\glsentrylong{ep} approach,label=lst:e_greedy,style=CustomPython]
-    if self.greedy:
-        action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
+if self.greedy:
+    action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
+else:
+    rnd = self.EPSILON_GREEDY_RANDOM_STATE.rand()
+    if rnd < self.epsilon:
+        action = self.EPSILON_GREEDY_RANDOM_STATE.randint(0, self.number_of_users)
     else:
-        rnd = self.EPSILON_GREEDY_RANDOM_STATE.rand()
-        if rnd < self.epsilon:
-            action = self.EPSILON_GREEDY_RANDOM_STATE.randint(0, self.number_of_users)
-        else:
-            action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
+        action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
 \end{lstlisting}
 
-and its respective \gls{svfa} in \lstref{lst:value_f_approx}.
-
 \begin{lstlisting}[caption=\glsentryshort{svfa},label=lst:value_f_approx,style=CustomPython]
-    def q(self, states, action):
-        features = self.features(states, action)
-        q = np.dot(features[action], self.theta[action])
-        return q
+def q(self, states, action):
+    features = self.features(states, action)
+    q = np.dot(features[action], self.theta[action])
+    return q
 \end{lstlisting}
  
  $Q$ values are however only one part of the requirements set by \gls{rl} methods, the next crucial aspect is defining the reward function. Since \gls{rl} agents are able to back-propagate what they have learned from one episode and thus update their internal factors, correctly defining a reward is a must. Since the goal for our domain is minimizing the maximum flowtime (from now on this metric will be referred to as lateness) of a job, the reward itself corresponds to the lateness of a job during a specific task. This can be evaluated a priori since for each policy job we know its internal parameters required to calculate the lateness \ie busy time of user $i$ plus the service time of user $i$ for job $j$, or formally $a_i+p_{ij}$.
 
  The last definition required in order to effectively apply the update on the policy's internal parameters $\theta$ is defining the \gls{sgd} method as outlined by \equref{eq:sgd_linear}. This method will give us the direction in which we have to update our internal $\theta$ parameters during our chosen update method and it is nothing more than the features themselves. As an example, refer to \lstref{lst:features_definition} for the concrete implementation.
 
- \begin{lstlisting}[caption=Features definition,label=lst:features_definition,style=CustomPython]
-    def features(self, states, action):
-        features = np.zeros((self.number_of_users, self.number_of_users + 1))
-        features[action] = states[action]
-        return features
+\begin{lstlisting}[caption=Features definition,label=lst:features_definition,style=CustomPython]
+def features(self, states, action):
+    features = np.zeros((self.number_of_users, self.number_of_users + 1))
+    features[action] = states[action]
+    return features
 \end{lstlisting}
 
 The features method outputs a matrix which has its values populated only for the actual chosen action. Let us assume our policy has chosen user 1 out of two possible users, then the state space looks as defined by \equref{eq:kbatch_sp_ex}:
@@ -569,18 +567,17 @@ and its features vector looks as defined by \equref{eq:kbatch_features_ex}:
 With \gls{pg} methods the approach on how an action is chosen is shifted. Instead of maximizing a $Q$ value through internal $\theta$ parameters in order to choose the ``best greedy'' action, we now have probabilistic choices. As already outlined in \subsecref{subsec:polgrad_methods}, having a probabilistic policy $\pi$ means that the best action is now chosen according to the highest probability which follows a softmax distribution as defined in \equref{eq:probabilistic_preferences} and its implementation can be seen in \lstref{lst:softmax_probabilities}.
 
 \begin{lstlisting}[caption=Softmax distribution of preferences probabilities,label=lst:softmax_probabilities,style=CustomPython]
-    def policy_probabilities(self, busy_times):
-        probabilities = [None] * self.number_of_users
-        for action in range(self.number_of_users):
-            probabilities[action] = np.exp(np.dot(self.features(busy_times, action), self.theta)) / sum(
-                np.exp(np.dot(self.features(busy_times, a), self.theta)) for a in range(self.number_of_users))
-        return probabilities
+def policy_probabilities(self, busy_times):
+    probabilities = [None] * self.number_of_users
+    for action in range(self.number_of_users):
+        probabilities[action] = np.exp(np.dot(self.features(busy_times, action), self.theta)) / sum(np.exp(np.dot(self.features(busy_times, a), self.theta)) for a in range(self.number_of_users))
+    return probabilities
 \end{lstlisting}
 
 The policy probabilities method takes as input parameter the current state space and computes for each user its probability according to the current internal $\theta$ parameter as defined in \equref{eq:dot_preferences}. The result of this method is a 1-D probabilities vector corresponding to a preference to assign a job to a specific user, where the index of the vector corresponds to the user and the value to its preference. Based on this preferences vector, the policy then computes a weighted random choice among all users, as can be seen in \lstref{lst:prob_user_choice}.
 
 \begin{lstlisting}[caption=Probabilistic user choice,label=lst:prob_user_choice,style=CustomPython]
-	chosen_action = self.RANDOM_STATE_PROBABILITIES.choice(self.number_of_users, p=probabilities)
+chosen_action = self.RANDOM_STATE_PROBABILITIES.choice(self.number_of_users, p=probabilities)
 \end{lstlisting}
 
 \subsubsection{\glsentrylongpl{ann} as Function Approximation}
@@ -588,27 +585,27 @@ The policy probabilities method takes as input parameter the current state space
 Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, \glspl{ann} can be used for nonlinear function approximation. The assignment problem  poses itself very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our \glspl{ann} using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space \ie input to the \glspl{ann}, together with its weights and biases, creates an activation function and maps the prediction layer \ie output, with a softmax classification.
 
 \begin{lstlisting}[caption=Modeling of a single perceptron in \glsentryshort{tf},label=lst:ann_1h,style=CustomPython]
-	with tf.name_scope("neural_network"):
-    	layer_1 = tf.add(tf.matmul(state_space_input, weights['h1']), biases['b1'])
-    	layer_1 = tf.nn.elu(layer_1)
-    	pred = [tf.add(tf.matmul(layer_1, weights['out'][b]), biases['out'][b]) for b in range(batch_input)]
-    	probabilities = [tf.nn.softmax(pred[b]) for b in range(batch_input)]
+with tf.name_scope("neural_network"):
+	layer_1 = tf.add(tf.matmul(state_space_input, weights['h1']), biases['b1'])
+	layer_1 = tf.nn.elu(layer_1)
+	pred = [tf.add(tf.matmul(layer_1, weights['out'][b]), biases['out'][b]) for b in range(batch_input)]
+	probabilities = [tf.nn.softmax(pred[b]) for b in range(batch_input)]
 \end{lstlisting}
 
 In order to update the \glspl{ann}, a backpropagation has to take place. Such an update can both be made following a \gls{mc} or \gls{td} approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a \gls{sgd} approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an \glspl{ann} following a \gls{mc} update method is done.
 
 \begin{lstlisting}[caption=Backpropagation algorithm following a \glsentryshort{mc} update approach,label=lst:mc_backpropagation,style=CustomPython]
-    def train(self):
-        for t, (state, output, choices) in enumerate(self.history):
-            disc_rewards = self.discount_rewards(t)
-            tmp_choices = [choice for choice in choices if choice is not None]
-            for job_index, chosen_user in enumerate(tmp_choices):
-                prob_value = output[job_index].flatten()[chosen_user]
-                reward = disc_rewards[job_index]
-                factor = reward / prob_value
-                grad_input = np.zeros((self.number_of_users, 1))
-                grad_input[chosen_user] = 1.0
-                self.sess.run(self.apply[job_index], {self.state_space_input: state, self.gradient_input: grad_input, self.factor_input: factor})
+def train(self):
+    for t, (state, output, choices) in enumerate(self.history):
+        disc_rewards = self.discount_rewards(t)
+        tmp_choices = [choice for choice in choices if choice is not None]
+        for job_index, chosen_user in enumerate(tmp_choices):
+            prob_value = output[job_index].flatten()[chosen_user]
+            reward = disc_rewards[job_index]
+            factor = reward / prob_value
+            grad_input = np.zeros((self.number_of_users, 1))
+            grad_input[chosen_user] = 1.0
+            self.sess.run(self.apply[job_index], {self.state_space_input: state, self.gradient_input: grad_input, self.factor_input: factor})
 \end{lstlisting}
 
 \subsection{Update Methods}
@@ -684,9 +681,9 @@ By changing the assignment order (refer to \figref{fig:user_job_assignment_order
 \subsecref{subsec:rl_others} outlines three different types of policies (refer to \tabref{tab:rl_others_policies_overview} for a detailed explanation of the policies) that take into account the previously outlined job assignment ordering principle and exploit it in their state space modeling. This is done by means of integrating an additional parameter $B$ that defines how many jobs have to be considered when trying to optimally assign jobs queuing in the global queue to users. This is done by listing all possible combinations by accounting for the job order as well. Refer to \lstref{lst:wz_combinations} for the actual implementation.
 
 \begin{lstlisting}[caption=State space modeling by considering $B$ jobs from the global queue and integrating all possible combinations,label=lst:wz_combinations,style=CustomPython]
-	combinations = list(itertools.product(range(self.number_of_users), repeat=self.wait_size))
-    for i, combination in enumerate(combinations):
-        state_space[i] = a + [p[user_index][job_index] for job_index, user_index in enumerate(combination)]
+combinations = list(itertools.product(range(self.number_of_users), repeat=self.wait_size))
+for i, combination in enumerate(combinations):
+    state_space[i] = a + [p[user_index][job_index] for job_index, user_index in enumerate(combination)]
 \end{lstlisting}
 
 This approach effectively simulates batch policies with batch sizes $K>1$.
