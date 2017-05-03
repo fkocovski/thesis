@@ -127,7 +127,7 @@ Gateways are those process nodes where conditions are tested (see \secref{sec:bp
 
 \gls{xor}'s logic is straightforward: each gateway has a forward method which is used to correctly move the token along the process. As soon as a token reaches a \gls{xor} gateway, the token's condition is tested and then forwarded to the next element. The implementation can be seen in \lstref{lst:xor_forward}. 
 
-\begin{lstlisting}[caption=\glsentryshort{xor}'s forward method in which the to be forwarded to node is retrieved from the token path by looking for the corresponding value with the node id. Eventually a call the \glsentryshort{xor}'s forward method is made.,label=lst:xor_forward,style=CustomPython]
+\begin{lstlisting}[caption=\glsentryshort{xor}'s forward method in which the to be forwarded to node is retrieved from the token path by looking for the corresponding value with the node id. Eventually a call to the \glsentryshort{xor}'s forward method is made.,label=lst:xor_forward,style=CustomPython]
 class XOR(Node):
     def forward(self, token):
         token.worked_by(self)
@@ -192,7 +192,7 @@ For each user eligible to work the assigned token, its service rate is sampled f
 
 In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$ working tokens at user task $j$, shape $k$ is evaluated as $k=p_j/w$ and scale $\theta$ as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate}
 
-\begin{lstlisting}[caption={User service rate sampling following an Erlang distribution where initially the average processing time is sampled. Afterwards, for each user a service time is sampled yet again relying on the average processing time and is assigned as an array to the policy job.},label=lst:user_service_rate,style=CustomPython]
+\begin{lstlisting}[caption={User service rate sampling following an Erlang distribution where initially the average processing time is sampled. Afterwards, for each user a service time is sampled yet again relying on the formerly sampled average processing time and is assigned as an array to the policy job.},label=lst:user_service_rate,style=CustomPython]
 def request(self, user_task,token):
     average_processing_time = token.random_state.gamma(user_task.service_interval ** 2 / user_task.task_variability, user_task.task_variability / user_task.service_interval)
     policy_job.service_rate = [token.random_state.gamma(average_processing_time ** 2 / self.worker_variability, self.worker_variability / average_processing_time) for _ in range(self.number_of_users)]

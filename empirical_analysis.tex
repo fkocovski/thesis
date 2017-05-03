@@ -14,7 +14,7 @@ Each policy is simulated by means of simulation scripts. It  imports all require
 
 In order to assert comparability, parameters are centrally defined. \lstref{lst:central_parameters} shows the central parameters defined as global variables.
 
-\begin{lstlisting}[caption=Global parameters definition which ensure comparability across simulation runs.,label=lst:central_parameters,style=CustomPython]
+\begin{lstlisting}[caption=Global simulation parameters definition which ensure comparability across simulation runs.,label=lst:central_parameters,style=CustomPython]
 NUMBER_OF_USERS = 3
 SERVICE_INTERVAL = 1
 GENERATION_INTERVAL = 3
@@ -85,7 +85,7 @@ and thus the average system load $\overline{l}$ over all $n$ users participating
 
 A summary plot with all \glspl{kpi} is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryshortpl{kpi} summary plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$. The left subgraph displays box plots for the \glsentryshortpl{kpi} lateness, wait time and service time and the orange box in the upper right corner shows the mean values. The right subgraph the histograms indicate the per user load while the dashed horizontal orange line indicates the average system load.}{fig:kpi_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryshortpl{kpi} summary plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$. The left subgraph displays box plots for the \glsentryshortpl{kpi} lateness, wait time and service time and the orange box in the upper right corner shows the mean values. In the right subgraph the histograms indicate the per user load while the dashed horizontal orange line indicates the average system load.}{fig:kpi_plot}
 
 The left subplot in \figref{fig:kpi_plot} shows box plots for the three most importans \glspl{kpi} \ie $L_j$, $w_j$ and $p_{ij}$, and the right subplot shows the per user $i$ load $l_i$ and the average system load $\overline{l}$.
 
@@ -93,7 +93,7 @@ Additionally, for a more in depth visualization of a policy's performance, an ev
 
 The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example. Starting from the top, the initial box represents the state of the global queue over time $t$. We can see that for this specific simulation, the first token reaches the first user task called ``Setup Acquisition Offer'' around $t=5$. Around $t=10$ a second token reaches the same user task, which we can see from the fact that the size of the queue has grown up to $2$. Around $t=20$ we see a drop in the global queue size to $0$. If we compare the queues sizes underneath, which correspond to user 1 respectively user 2, we note that all three tokens have been successfully assigned: user 1 received 2 tokens while user 2 only 1. The change in color helps to identify at which user task a token is being worked.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$. Each colored box corresponds to the quanity of tokens in the global respectively user queues.}{fig:evo_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$. Each colored box corresponds to the quantity of tokens in either the global queue or in the user queues.}{fig:evo_plot}
 
 Finally, when comparing different policies between each other, \citet{Milo2012}'s definition of speedup $S$ between two quantities $q_1$ and $q_2$ is adopted, which he formally defines as the quotient: 
 

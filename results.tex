@@ -47,7 +47,7 @@ By running the same simulations with the \gls{milp} based formulation implemente
 
 The speedup for both batch policies with a higher batch size is tiny, but when considering the speedup between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy speedup is present for all \glspl{kpi}. For a detailed overview of the overall speedups of \gls{st} against \gls{msa} refer to \figref{fig:opt_kpis_comp_gain}.
 
-\fig[\textwidth]{opt_kpis_comp_gain}{Speedup comparison between \glsentryshortpl{kpi} for \glsentryshort{msa} and \glsentryshort{st} for 5-Batch, 5-Batch-1 and 1-Batch-1. Values bigger than $1.00$ indicate a speedup while values smaller than $1.00$ indicate a speeddown. Higher is better.}{fig:opt_kpis_comp_gain}
+\fig[\textwidth]{opt_kpis_comp_gain}{Speedup comparison between \glsentryshortpl{kpi} for \glsentryshort{msa} and \glsentryshort{st} for 5-Batch, 5-Batch-1 and 1-Batch-1. Values bigger than $1.00$ indicate speedup. Higher is better.}{fig:opt_kpis_comp_gain}
 
 Astonishing speedups have been observed for the 1-Batch-1 policy\footnote{For a detailed comparison of how different batch sizes affect the policy's \glspl{kpi} refer to \subsecref{subsec:kbatch_bscomp_app} and \subsecref{subsec:kbatchone_bscomp_app}.}, which is indeed the most efficient policy as mentioned by \citet[p. 24]{Zeng2005}. \tabref{tab:opt_kpis_comp_gain} summarizes these values.
 
