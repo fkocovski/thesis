@@ -397,7 +397,7 @@ For the purpose of this thesis, the focus has been put upon the episodic \gls{av
 where $\delta_t$ is defined as:
 
 \begin{equation}
-	\delta_t \doteq R_{t+1} + \gamma \underbrace{\sum_a \pi (a|S_{t+1}) \hat{q} (S_{t+1},a,\theta_t)}_{\max_a \hat{q} (S_{t+1},a,\theta_t)} - \hat{q} (S_t,A_t,\theta_t)
+	\delta_t \doteq R_{t+1} + \gamma \overbrace{\sum_a \pi (a|S_{t+1}) \hat{q} (S_{t+1},a,\theta_t)}^{\max_a \hat{q} (S_{t+1},a,\theta_t)} - \hat{q} (S_t,A_t,\theta_t)
 \end{equation}
 
 what is to note here, is that the episodic \gls{op} algorithm does not use importance sampling as defined by \equref{eq:importance_sampling} \citep[p. 244]{Sutton2017}. \citet[p. 244]{Sutton2017} state that this approach is clear for tabular methods but it is rather a ``judgment call'' for methods using approximation functions and deeper understanding of the theory of function approximation is needed.
