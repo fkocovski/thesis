@@ -344,7 +344,7 @@ Even though single layer perceptrons are powerful enough to approximate nonlinea
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/ann_1h}
-		\caption{\glsentrylong{ann} with only one hidden layer.}
+		\caption{\glsentrylong{ann} with one hidden layer.}
 		\label{fig:ann_1h}
 	\end{minipage}
 	\hfill
@@ -566,7 +566,7 @@ and its features vector looks as defined by \equref{eq:kbatch_features_ex}:
 
 With \gls{pg} methods the approach on how an action is chosen is shifted. Instead of maximizing a $Q$ value through internal $\theta$ parameters in order to choose the ``best greedy'' action, we now have probabilistic choices. As already outlined in \subsecref{subsec:polgrad_methods}, having a probabilistic policy $\pi$ means that the best action is now chosen according to the highest probability which follows a softmax distribution as defined in \equref{eq:probabilistic_preferences} and its implementation can be seen in \lstref{lst:softmax_probabilities}.
 
-\begin{lstlisting}[caption=Softmax distribution of preferences probabilities,label=lst:softmax_probabilities,style=CustomPython]
+\begin{lstlisting}[caption=Softmax distribution of preferences probabilities.,label=lst:softmax_probabilities,style=CustomPython]
 def policy_probabilities(self, busy_times):
     probabilities = [None] * self.number_of_users
     for action in range(self.number_of_users):
@@ -576,7 +576,7 @@ def policy_probabilities(self, busy_times):
 
 The policy probabilities method takes as input parameter the current state space and computes for each user its probability according to the current internal $\theta$ parameter as defined in \equref{eq:dot_preferences}. The result of this method is a 1-D probabilities vector corresponding to a preference to assign a job to a specific user, where the index of the vector corresponds to the user and the value to its preference. Based on this preferences vector, the policy then computes a weighted random choice among all users, as can be seen in \lstref{lst:prob_user_choice}.
 
-\begin{lstlisting}[caption=Probabilistic user choice,label=lst:prob_user_choice,style=CustomPython]
+\begin{lstlisting}[caption=Probabilistic user choice by accounting for preferences weights.,label=lst:prob_user_choice,style=CustomPython]
 chosen_action = self.RANDOM_STATE_PROBABILITIES.choice(self.number_of_users, p=probabilities)
 \end{lstlisting}
 
@@ -584,7 +584,7 @@ chosen_action = self.RANDOM_STATE_PROBABILITIES.choice(self.number_of_users, p=p
 
 Up to this point we have used linear functions for the approximation of the $Q$ value for the different policies. As mentioned in \subsecref{subsec:onpol_pred}, \glspl{ann} can be used for nonlinear function approximation. The assignment problem  poses itself very well for this kind of application, in which we model our input layer as a 1-D vector containing all required information such as waiting time $w$ of job $j$, service time $p_{ij}$ of user $i$ for job $j$ and busy time $a_i$ of user $i$. By following a \gls{pg} approach, we can categorize the output layer of our \glspl{ann} using a softmax categorization function, mapping the preferences of job $j$ to user $i$ assignment as probabilities. \lstref{lst:ann_1h} show the modeling of a single layer perceptron in \gls{tf}: one hidden layer connects the state space \ie input to the \glspl{ann}, together with its weights and biases, creates an activation function and maps the prediction layer \ie output, with a softmax classification.
 
-\begin{lstlisting}[caption=Modeling of a single perceptron in \glsentryshort{tf},label=lst:ann_1h,style=CustomPython]
+\begin{lstlisting}[caption={Modeling of a single perceptron in \glsentryshort{tf}, where the initial hidden layer is composed as the product between the input layer and its corresponding weights plus the corresponding biases by using an \glsentryshort{elu} activation function.},label=lst:ann_1h,style=CustomPython]
 with tf.name_scope("neural_network"):
 	layer_1 = tf.add(tf.matmul(state_space_input, weights['h1']), biases['b1'])
 	layer_1 = tf.nn.elu(layer_1)
@@ -594,7 +594,7 @@ with tf.name_scope("neural_network"):
 
 In order to update the \glspl{ann}, a backpropagation has to take place. Such an update can both be made following a \gls{mc} or \gls{td} approach (refer to \subsecref{subsec:update_methods} for a detailed distinction between these two update methods). As outlined in \subsecref{subsec:onpol_pred}, we follow a \gls{sgd} approach in which we update all the synaptic connections by computing the partial derivatives of all the weights. \lstref{lst:mc_backpropagation} shows how the backpropagation for an \glspl{ann} following a \gls{mc} update method is done.
 
-\begin{lstlisting}[caption=Backpropagation algorithm following a \glsentryshort{mc} update approach,label=lst:mc_backpropagation,style=CustomPython]
+\begin{lstlisting}[caption={Backpropagation algorithm following a \glsentryshort{mc} update approach. Initially rewards are discounted which are eventually used to calculate the multiplying factor for the partial derivatives.},label=lst:mc_backpropagation,style=CustomPython]
 def train(self):
     for t, (state, output, choices) in enumerate(self.history):
         disc_rewards = self.discount_rewards(t)
@@ -613,7 +613,7 @@ def train(self):
 
 As outlined in \subsecref{subsec:mc} and \subsecref{subsec:td_learning}, there are mainly two different methods to update the policy's internal $\theta$ parameters \ie \gls{mc} and \gls{td}. Let us take the example outlined by \citet[p. 130]{Sutton2017} of leaving the office and getting home and the respective updates proposed by the two update methods. \figref{fig:mc_td} shows the graphical updates proposed by the two update methods.
 
-\fig[\textwidth]{mc_td}{\glsentryshort{mc} and \glsentryshort{td} proposed updates comparison (own plot based on \citet[p. 130]{Sutton2017})}{fig:mc_td}
+\fig[\textwidth]{mc_td}{\glsentryshort{mc} and \glsentryshort{td} proposed updates comparison. \glsentryshort{mc} approaches have to wait until the end of an episode in order to update since they require a full episode to effectively discount rewards, compared to \glsentryshort{td} approaches that are able to update at each following time step $t+1$. Adapted from \citet[p. 130]{Sutton2017}.}{fig:mc_td}
 
 As it can be clearly seen, the main deference lays in when the actual updating takes place. On one hand, the \gls{mc} method needs to reach the end of an entire episode \eg here it consists of actually arriving home, in order to fully back-propagate its learned value and update the $\theta$ parameters. On the other hand, \gls{td} is much more flexible and robust since it executes its updates at each time step, hence its name: \gls{td}.
 
@@ -636,7 +636,7 @@ For the case at hand, this means that training the policies has to be done in a 
 		Convergance    & Good                   & Very Good                        \\
 		Learning Rate  & Slow for long episodes & Very fast even for long episodes \\ \bottomrule
 		\end{tabular}
-	\caption{Qualitative comparison between \glsentryshort{mc} and \glsentryshort{td} update methods \citep[p. 130]{Sutton2017}}
+	\caption{Qualitative comparison between \glsentryshort{mc} and \glsentryshort{td} update methods. Adapted from \citep[p. 130]{Sutton2017}.}
 	\label{tab:mc_td_comp}
 \end{table}
 
@@ -655,7 +655,7 @@ Correctly defined state spaces is a crucial requirement for effective \gls{rl} m
 		User 1 & $1$     & $2$     & $3$     \\
 		User 2 & $4$     & $5$     & $6$     \\ \bottomrule
 		\end{tabular}
-	\caption{Service times of both users for all three jobs}
+	\caption{Sample service times of both users for all three jobs.}
 	\label{tab:users_service_times_example}
 \end{table}
 
@@ -667,20 +667,20 @@ By changing the assignment order (refer to \figref{fig:user_job_assignment_order
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/user_job_assignment_order}
-		\caption{User 1 receives job 1 while user 2 receives jobs 2 and 3}
+		\caption{User 1 receives job 1 while user 2 receives jobs 2 and 3.}
 		\label{fig:user_job_assignment_order}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/user_job_assignment_order2}
-		\caption{User 1 receives jobs 2 and 1 while user 2 receives job 3}
+		\caption{User 1 receives jobs 2 and 1 while user 2 receives job 3.}
 		\label{fig:user_job_assignment_order2}
 	\end{minipage}
 \end{figure}
 
 \subsecref{subsec:rl_others} outlines three different types of policies (refer to \tabref{tab:rl_others_policies_overview} for a detailed explanation of the policies) that take into account the previously outlined job assignment ordering principle and exploit it in their state space modeling. This is done by means of integrating an additional parameter $B$ that defines how many jobs have to be considered when trying to optimally assign jobs queuing in the global queue to users. This is done by listing all possible combinations by accounting for the job order as well. Refer to \lstref{lst:wz_combinations} for the actual implementation.
 
-\begin{lstlisting}[caption=State space modeling by considering $B$ jobs from the global queue and integrating all possible combinations,label=lst:wz_combinations,style=CustomPython]
+\begin{lstlisting}[caption=State space modeling by considering $B$ jobs from the global queue and integrating all possible combinations.,label=lst:wz_combinations,style=CustomPython]
 combinations = list(itertools.product(range(self.number_of_users), repeat=self.wait_size))
 for i, combination in enumerate(combinations):
     state_space[i] = a + [p[user_index][job_index] for job_index, user_index in enumerate(combination)]

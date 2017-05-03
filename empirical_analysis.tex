@@ -14,7 +14,7 @@ Each policy is simulated by means of simulation scripts. It  imports all require
 
 In order to assert comparability, parameters are centrally defined. \lstref{lst:central_parameters} shows the central parameters defined as global variables.
 
-\begin{lstlisting}[caption=Global parameters definition that ensures comparability across simulation runs,label=lst:central_parameters,style=CustomPython]
+\begin{lstlisting}[caption=Global parameters definition which ensure comparability across simulation runs.,label=lst:central_parameters,style=CustomPython]
 NUMBER_OF_USERS = 3
 SERVICE_INTERVAL = 1
 GENERATION_INTERVAL = 3
@@ -27,7 +27,7 @@ SEED = 2
 
 The script initializes the chosen process and then calls the tokens generation method of the start event. Eventually the whole simulation is started by calling \texttt{SimPy}'s run method. A snippet of a simulation script can be found in \lstref{lst:simulation_script}.
 
-\begin{lstlisting}[caption=Structure example of simulation framework using a K-Batch policy with \gls{dmf},label=lst:simulation_script,style=CustomPython]
+\begin{lstlisting}[caption={Structure example of simulation framework using a K-Batch policy with \gls{dmf}. Initially dependencies are imported. Afterwards the discrete event simulation environment, a policy file for storing statistical data, a policy and a process returning its start event are initialized. Finally, by calling the environment's run method the simulation is started.},label=lst:simulation_script,style=CustomPython]
 import simpy
 from evaluation.statistics import calculate_statistics
 from evaluation.subplot_evolution import evolution
@@ -55,9 +55,9 @@ Two different types of processes have been defined:
 	\item A compound process modeled against a demonstration acquisition process used in real estate for properties acquisition (see \figref{fig:acquisition_process}).
 \end{enumerate*}
 
-\fig[0.5\textwidth]{simple_process}{Unitary process consisting of one start event, one user task and one end event}{fig:simple_process}
+\fig[0.5\textwidth]{simple_process}{Unitary process consisting of one start event, one user task and one end event.}{fig:simple_process}
 
-\fig[\textwidth]{acquisition_process}{Demonstration acquisition process consisting of one start event, multiple user tasks, multiple decision gateways and two end events}{fig:acquisition_process}
+\fig[\textwidth]{acquisition_process}{Demonstration acquisition process consisting of one start event, multiple user tasks, multiple decision gateways and two end events.}{fig:acquisition_process}
 
 As described in \secref{sec:bpmn_implementation}, user tasks are the heart of each simulation. In each user task the policy has to solve the role resolution problem for each token reaching it. By focusing on a larger model, such as the one outlined in \figref{fig:acquisition_process} it is possible to simulate the policies in a ``real-world-like'' scenario. Furthermore, as explained in \subsecref{subsec:start_event}, the logical path flow for each token is manually prepared following a weighted probabilistic assignment and it gets designated to it. This approach permits to simulate only intrinsically correct paths. 
 
@@ -85,7 +85,7 @@ and thus the average system load $\overline{l}$ over all $n$ users participating
 
 A summary plot with all \glspl{kpi} is done for each simulation script. \figref{fig:kpi_plot} shows an example of how this summary looks like.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryshortpl{kpi}  summary plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$}{fig:kpi_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_KPI}{\glsentryshortpl{kpi} summary plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$. The left subgraph displays box plots for the \glsentryshortpl{kpi} lateness, wait time and service time and the orange box in the upper right corner shows the mean values. The right subgraph the histograms indicate the per user load while the dashed horizontal orange line indicates the average system load.}{fig:kpi_plot}
 
 The left subplot in \figref{fig:kpi_plot} shows box plots for the three most importans \glspl{kpi} \ie $L_j$, $w_j$ and $p_{ij}$, and the right subplot shows the per user $i$ load $l_i$ and the average system load $\overline{l}$.
 
@@ -93,7 +93,7 @@ Additionally, for a more in depth visualization of a policy's performance, an ev
 
 The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example. Starting from the top, the initial box represents the state of the global queue over time $t$. We can see that for this specific simulation, the first token reaches the first user task called ``Setup Acquisition Offer'' around $t=5$. Around $t=10$ a second token reaches the same user task, which we can see from the fact that the size of the queue has grown up to $2$. Around $t=20$ we see a drop in the global queue size to $0$. If we compare the queues sizes underneath, which correspond to user 1 respectively user 2, we note that all three tokens have been successfully assigned: user 1 received 2 tokens while user 2 only 1. The change in color helps to identify at which user task a token is being worked.
 
-\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$}{fig:evo_plot}
+\fig[\textwidth]{3_BATCH_MSA_NU2_GI3_SIM50_EVO}{Evolution plot for a 3-Batch policy using \glsentryshort{msa}, two users, generation interval set to $3$ and simulation time set to $50$. Each colored box corresponds to the quanity of tokens in the global respectively user queues.}{fig:evo_plot}
 
 Finally, when comparing different policies between each other, \citet{Milo2012}'s definition of speedup $S$ between two quantities $q_1$ and $q_2$ is adopted, which he formally defines as the quotient: 
 
