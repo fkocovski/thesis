@@ -16,7 +16,7 @@ As previously mentioned, processes in \texttt{SimPy} are described by \texttt{Py
 
 The analysis environment consists in an object-oriented implementation of \gls{wfms} elements such as start events, user tasks, gateways and end events which have been developed to allow the simulation framework to effectively run. They are built upon the formal foundations outlined in \secref{sec:bpmn}. This object-oriented exoskeleton implementation of the \gls{wfms} elements can be seen depicted in \figref{fig:workflow_elements}.
 
-\fig[\textwidth]{workflow_elements}{\glsentryshort{wfms} elements}{fig:workflow_elements}
+\fig[\textwidth]{workflow_elements}{Class diagram of \glsentryshort{bpmn} elements implementation for the discrete event simulation environment.}{fig:workflow_elements}
 
 \subsection{Start Event}
 \label{subsec:start_event}
@@ -28,25 +28,34 @@ Start events require a simulation environment, a generation interval, an actions
 	\lambda = \frac{l n}{s}
 \end{equation}
 
-The path flow to be followed by the tokens generated is defined in a two step process:
+The path flow to be followed by the tokens generated is defined in a three step process:
 \begin{enumerate*}
 	\item A per process action pool is defined a priori in order to assert that tokens navigate the process in a ``semantically correct'' fashion. This is achieved by creating an array containing an arbitrary number of dictionaries \ie hash-maps, where the key is the gateway node id and the value is which path \ie child, should be chosen next (see \lstref{lst:actions_pool})
-	\item A weights vector is defined which assigns a probability to each possible path flow to the actions pool (see \lstref{lst:probabilities_path_flow}).
+	\item A weights vector is defined which assigns a probability to each possible path flow to the actions pool (see \lstref{lst:probabilities_path_flow})
+    \item Start events sample a path by accounting for the weighted probability and assign it to each newly generated token (see \lstref{lst:path_tokens_assignment}).
 \end{enumerate*}
 
-\begin{lstlisting}[caption=Actions pool,label=lst:actions_pool,style=CustomPython]
+\begin{lstlisting}[caption=Fixed actions pool consisting of different hashmaps each corresponding to a full path a token must follow during an instance. Keys correspond to node ids and values define which direction to take at gateways.,label=lst:actions_pool,style=CustomPython]
 actions_pool = [{xor.node_id: 0, xor_a.node_id: 0, dor_c.node_id: (1, 2), xor_d.node_id: 1, xor_f.node_id: 0, cor_g.node_id: 2, xor_h.node_id: 0}]
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Probability weights vector for each path flow,label=lst:probabilities_path_flow,style=CustomPython]
+\begin{lstlisting}[caption=Probability weights vector defining how often a path will be chosen. In this case equal probability is assigned to all paths in the action pool.,label=lst:probabilities_path_flow,style=CustomPython]
 weights = [1 / len(actions_pool) for _ in range(len(actions_pool))]
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Start event token generation method in which an action is being sampled from the action pool by accounting for its weighted probability.,label=lst:path_tokens_assignment,style=CustomPython]
+def generate_tokens(self):
+    while True:
+        if self.actions is not None:
+            path = token.random_state.choice(self.actions, p=self.weights)
+            token.actions = path
 \end{lstlisting}
 
 Such an approach allows to fine tune how often tokens will follow a predefined path flow along the process in order to efficiently simulate and put under stress specific path flows of the process.
 
 The length of the simulation can either run indefinitely or be constrained to an upper bound in time steps $t$ as it can be seen from \lstref{lst:simulation_steps}. This means that the simulation will persist for $100$ time steps and it will then stop when the internal clock reaches $100$\footnote{Note that events that have been scheduled for time step $100$ will not be processed.}. The logic is similar to a new environment where the clock is zero and no events have been processed yet.
 
-\begin{lstlisting}[caption=Starting the simulation with discrete time steps,label=lst:simulation_steps,style=CustomPython]
+\begin{lstlisting}[caption=Discrete event simulation environment start by calling its corresponding run method with a discrete simulation time step $t$ set. In this case the simulation will run for $100$ time steps.,label=lst:simulation_steps,style=CustomPython]
 # "global" variables
 SIM_TIME = 100
 # runs simulation
@@ -57,7 +66,7 @@ env.run(until=SIM_TIME)
 
 In order to assert fairness among all simulation runs a master random state is assigned to the start event. This master random state is generated from the \texttt{PCG}\foot{http://www.pcg-random.org/}{25.04.2017} family of random generators which exhibit peculiar characteristics, one amongst all is the possibility of ``jumping ahead'' in the state. The novelty of this approach allows to assign a fixed number of random yet consistent choices among all runs, since each generated token receives from the start event a ``jumped'' copy from the master state. The implementation of this recursive ahead jumps in random states is depicted in \lstref{lst:random_state_jump}.
 
-\begin{lstlisting}[caption=Master random state jump ahead,label=lst:random_state_jump,style=CustomPython]
+\begin{lstlisting}[caption=Random state advancement method which initially copies the current state of the master random state. It then creates a new random state and sets its state to the former copy then eventually advances the master random state by \num{1e9} units.,label=lst:random_state_jump,style=CustomPython]
 def generate_tokens(self):
     while True:
         random_state = self.advance_master_state()
@@ -77,13 +86,13 @@ This approach greatly simplifies the analysis of the results since no matter the
     \centering
     \begin{minipage}[b]{0.45\textwidth}
         \includegraphics[width=\textwidth]{img/pcg_msa}
-        \caption{Simulation run with \glsentryshort{msa}}
+        \caption{Simulation run with \glsentryshort{msa} showing token times at the first directly connected user task to the start event.}
         \label{fig:pcg_msa}
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.45\textwidth}
         \includegraphics[width=\textwidth]{img/pcg_st}
-        \caption{Simulation run with \glsentryshort{st}}
+        \caption{Simulation run with \glsentryshort{st} showing token times at the first directly connected user task to the start event.}
         \label{fig:pcg_st}
     \end{minipage}
 \end{figure}
@@ -97,7 +106,7 @@ User tasks also require a simulation environment, a policy, a descriptive name, 
 
 Each user task has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. The logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to assign a user to the token and finally, after a service interval timeout which corresponds to the user's specific service interval has passed, they release the token. The logic can be seen in \lstref{lst:user_task}.
 
-\begin{lstlisting}[caption=User task claim method,label=lst:user_task,style=CustomPython]
+\begin{lstlisting}[caption={User task claim method where a call to the corresponding policy request method is made. The policy performs role resolution effectively mapping a token to a user and returns the user's service time which is then yielded as a timeout in the discrete event simulation environment. When this time has elapsed, the policy releases the user.},label=lst:user_task,style=CustomPython]
 def claim_token(self, token):
     token.worked_by(self)
     policy_job = self.policy.request(self, token)
@@ -118,7 +127,7 @@ Gateways are those process nodes where conditions are tested (see \secref{sec:bp
 
 \gls{xor}'s logic is straightforward: each gateway has a forward method which is used to correctly move the token along the process. As soon as a token reaches a \gls{xor} gateway, the token's condition is tested and then forwarded to the next element. The implementation can be seen in \lstref{lst:xor_forward}. 
 
-\begin{lstlisting}[caption=\glsentryshort{xor}'s forward method,label=lst:xor_forward,style=CustomPython]
+\begin{lstlisting}[caption=\glsentryshort{xor}'s forward method in which the to be forwarded to node is retrieved from the token path by looking for the corresponding value with the node id. Eventually a call the \glsentryshort{xor}'s forward method is made.,label=lst:xor_forward,style=CustomPython]
 class XOR(Node):
     def forward(self, token):
         token.worked_by(self)
@@ -131,7 +140,7 @@ class XOR(Node):
 
 \gls{or} gateways, in contrast to \gls{xor} gateways, require a synchronization between number of split path flows being fired at their diverging state which eventually reach a converging state. In other words, the number of parallel tokens fired at the diverging node must all be accounted for at the converging node. This is achieved by a counter that each token holds: when a token reaches a divergent \gls{or} gateway, the token's conditions are read and for each path flow that the token has to follow its counter is incremented by $1$. The logic is depicted in \lstref{lst:or_counter_increment}.
 
-\begin{lstlisting}[caption=Token's counter increment logic at a divergent \glsentryshort{or} gateway,label=lst:or_counter_increment,style=CustomPython]
+\begin{lstlisting}[caption=Token's counter increment logic at a divergent \glsentryshort{or} gateway in which the corresponding counter object is incremeted by $1$ at each method's call.,label=lst:or_counter_increment,style=CustomPython]
 class DOR(Node):
     def choose_child(self, action, token):
         child = self.children[action]
@@ -141,7 +150,7 @@ class DOR(Node):
 
 Each diverging \gls{or} gateway has a corresponding converging \gls{or} gateway which is used to catch all parallel tokens fired by the former. When a token reaches a converging \gls{or} gateway, its counter is decremented each time by $1$ and only when the counter reaches $0$ the token is actually forwarded along. This logic can be seen in \lstref{lst:or_counter_decrement}.
 
-\begin{lstlisting}[caption=Token's counter decrement logic at a convergent \glsentryshort{or} gateway,label=lst:or_counter_decrement,style=CustomPython]
+\begin{lstlisting}[caption=Token's counter decrement logic at a convergent \glsentryshort{or} gateway in which the corresponding counter object is decremented by $1$ at each method's call.,label=lst:or_counter_decrement,style=CustomPython]
 class COR(Node):
     def forward(self, token):
         token.worked_by(self)
@@ -162,15 +171,15 @@ Role resolution according to policies acting as supervisors (as explained in \se
 
 Policies do not directly participate in the \gls{wfms}, it serves a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level.
 
-\fig[0.33\textwidth]{policies_init}{Policies abstract implementation}{fig:policies_init}
+\fig[0.33\textwidth]{policies_init}{Class diagram showing policies and policy jobs classes as independent objects.}{fig:policies_init}
 
 Each policy is a blueprint for the actual implementation of the policy itself. It holds minimal information such as a simulation environment, number of users and worker variability. As a blueprint, each policy defines two abstract methods for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it. Refer to \figref{fig:policy_met_att} for its implementation overview.
 
-\fig[0.5\textwidth]{policy_met_att}{Policy methods and attributes}{fig:policy_met_att}
+\fig[0.5\textwidth]{policy_met_att}{Class diagram showing policy methods and attributes.}{fig:policy_met_att}
 
 In its request method, each policy generates a policy job, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job serves as a bookkeeping agent by storing and dumping useful information every time its status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users. Refer to \figref{fig:policyjob_met_att} for its implementation overview.
 
-\fig[0.5\textwidth]{policyjob_met_att}{Policy job methods and attributes}{fig:policyjob_met_att}
+\fig[0.5\textwidth]{policyjob_met_att}{Class diagram showing policy job methods and attributes.}{fig:policyjob_met_att}
 
 In regards to parameters service interval and task variability defined in \subsecref{subsec:user_task} a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. \citet[p. 8]{Zeng2005} follow a two way process to generate such intervals. However a refined version of this process is used in this case:
 \begin{enumerate*}
@@ -183,7 +192,7 @@ For each user eligible to work the assigned token, its service rate is sampled f
 
 In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$ working tokens at user task $j$, shape $k$ is evaluated as $k=p_j/w$ and scale $\theta$ as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate}
 
-\begin{lstlisting}[caption=User service rate sampling following an Erlang distribution,label=lst:user_service_rate,style=CustomPython]
+\begin{lstlisting}[caption={User service rate sampling following an Erlang distribution where initially the average processing time is sampled. Afterwards, for each user a service time is sampled yet again relying on the average processing time and is assigned as an array to the policy job.},label=lst:user_service_rate,style=CustomPython]
 def request(self, user_task,token):
     average_processing_time = token.random_state.gamma(user_task.service_interval ** 2 / user_task.task_variability, user_task.task_variability / user_task.service_interval)
     policy_job.service_rate = [token.random_state.gamma(average_processing_time ** 2 / self.worker_variability, self.worker_variability / average_processing_time) for _ in range(self.number_of_users)]

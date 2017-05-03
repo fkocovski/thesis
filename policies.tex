@@ -34,7 +34,7 @@ $a$         & User busy time            \\
 $w$         & Job waiting time in queue            \\
 $z$         & Maximum flowtime            \\ \bottomrule
 \end{tabular}
-\caption{Variables description used for all \glsentryshort{milp} formulations}
+\caption{Description of used varaibles for all \glsentryshort{milp} formulations.}
 \label{tab:milp_variables}
 \end{table}
 
@@ -344,13 +344,13 @@ Even though single layer perceptrons are powerful enough to approximate nonlinea
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/ann_1h}
-		\caption{Single layer \glsentryshort{ann}}
+		\caption{\glsentrylong{ann} with only one hidden layer.}
 		\label{fig:ann_1h}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/ann_2h}
-		\caption{Multi layer \glsentryshort{ann}}
+		\caption{\glsentrylong{ann} with two hidden layers.}
 		\label{fig:ann_2h}
 	\end{minipage}
 \end{figure}
@@ -509,7 +509,7 @@ During the evaluation phase of a job the policy has to choose an action \ie a us
 
 As an example, let us consider a snippet of how a K-Batch policy using a linear \gls{svfa} performs its choices during its greedy phase: it iterates over all possible actions and performs the dot product between the state space and the corresponding $\theta$ vector and then maximizes the returned $Q$ value. This approach can be seen in \lstref{lst:e_greedy} and its respective \gls{svfa} in \lstref{lst:value_f_approx}.
 
-\begin{lstlisting}[caption=\glsentrylong{ep} approach,label=lst:e_greedy,style=CustomPython]
+\begin{lstlisting}[caption={\glsentrylong{ep} approach where if the policy is defined as greedy, actions are chosen by maximing the $Q$ values otherwise, with probability $\epsilon$ actions are randomly sampled.},label=lst:e_greedy,style=CustomPython]
 if self.greedy:
     action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
 else:
@@ -520,7 +520,7 @@ else:
         action = max(range(self.number_of_users), key=lambda action: self.q(state_space, action))
 \end{lstlisting}
 
-\begin{lstlisting}[caption=\glsentryshort{svfa},label=lst:value_f_approx,style=CustomPython]
+\begin{lstlisting}[caption=\glsentryshort{svfa} which performs the dot product between features $\phi$ and weight parameters $\theta$.,label=lst:value_f_approx,style=CustomPython]
 def q(self, states, action):
     features = self.features(states, action)
     q = np.dot(features[action], self.theta[action])
@@ -531,7 +531,7 @@ def q(self, states, action):
 
  The last definition required in order to effectively apply the update on the policy's internal parameters $\theta$ is defining the \gls{sgd} method as outlined by \equref{eq:sgd_linear}. This method will give us the direction in which we have to update our internal $\theta$ parameters during our chosen update method and it is nothing more than the features themselves. As an example, refer to \lstref{lst:features_definition} for the concrete implementation.
 
-\begin{lstlisting}[caption=Features definition,label=lst:features_definition,style=CustomPython]
+\begin{lstlisting}[caption=Features definition which initializes a null matrix and fills the column corresponding to the chosen action by the policy.,label=lst:features_definition,style=CustomPython]
 def features(self, states, action):
     features = np.zeros((self.number_of_users, self.number_of_users + 1))
     features[action] = states[action]
