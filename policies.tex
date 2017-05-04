@@ -344,13 +344,13 @@ Even though single layer perceptrons are powerful enough to approximate nonlinea
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/ann_1h}
-		\caption{\glsentrylong{ann} with one hidden layer.}
+		\caption{\glsentrylong{hl1}.}
 		\label{fig:ann_1h}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{img/ann_2h}
-		\caption{\glsentrylong{ann} with two hidden layers.}
+		\caption{\glsentrylong{hl2}.}
 		\label{fig:ann_2h}
 	\end{minipage}
 \end{figure}
@@ -448,7 +448,7 @@ and this method has solid convergence properties \citep[p. 271]{Sutton2017}.
 \texttt{REINFORCE}, however, being a method based on \gls{mc} it might exhibit high variance and prove relatively slow in its learning rate \citep[p. 271]{Sutton2017}. By introducing a baseline $b(s)$ to compare the \gls{av}:
 
 \begin{equation}
-	\theta_{t+1} \doteq \theta_t + \alpha (G_t - \overbrace{b(S_t)}^{\text{baseline}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
+	\theta_{t+1} \doteq \theta_t + \alpha (G_t - \overbrace{b(S_t)}^{\text{Baseline}}) \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
 \end{equation}
 
 one can achieve a positive effect towards diminishing variance of the update rule \citep[p. 271]{Sutton2017}.
