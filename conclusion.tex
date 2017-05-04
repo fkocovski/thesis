@@ -8,7 +8,7 @@ This chapter interprets the results obtained in \chpref{ch:results} by discussin
 
 Using \gls{milp} to solve role resolution proves to be an efficient measure, however different formulations yield different solutions and formulation complexities. \citet[p. 15]{Zeng2005} mention that \gls{msa} greatly simplifies \gls{dmf} since only those tasks that are immediately available are considered. \citet{Garey1990} state that \gls{dmf} proves to be computationally expensive to solve. \citet[p. 13]{Zeng2005} propose however that by introducing auxiliary variables one can reduce the complexity of \gls{dmf} and effectively solving it. This is what has been done in this thesis, as outlined in \secref{sec:opt_policies} by introducing new types of formulations. The \gls{st} ``flagship'' formulation significantly outperforms \gls{msa} as can be seen from \figref{fig:k_batchone_st_opt_kpis_comp}). Having said that, the higher formulation complexity of \gls{st} compared to \gls{msa} (see \tabref{tab:big_oh_formulations}) questions the practical use of this formulation over the other methods. A $1.23$-fold speedup in respect to lateness having quadratic higher formulation complexity and requiring a double optimization pose a dubious trade-off from a business perspective.
 
-\fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glsentryshortpl{kpi} speedup comparison between \glsentryshort{msa} and \glsentryshort{st} for 1-Batch-1. Higher is better.}{fig:k_batchone_st_opt_kpis_comp}
+\fig[\textwidth]{k_batchone_st_opt_kpis_comp}{\glsentryshortpl{kpi} speedup comparison between \glsentryshort{msa} and \glsentryshort{st} for 1-Batch-1. Higher is better. Values bigger than $1.00$ indicate speedup.}{fig:k_batchone_st_opt_kpis_comp}
 
 Yet another aspect mentioned by \citet[pp. 17--18]{Zeng2005} is a more ``social'' aspect: the fairness of a policy \ie how fairly are single users treated by a policy during job assignment. \figref{fig:msa_fairness} and \figref{fig:st_fairness} both show how fairly are users treated in the same scenario by the two formulations. \gls{st} achieves a more equally distributed user load, making it ``fairer'' at balancing loads across users compared to \gls{msa}.
 
@@ -62,7 +62,7 @@ whose combination is referred to as ``the deadly triad'' \citep[p. 249]{Sutton20
 
 On a more general note, different comparisons have shown huge spikes in speedup of waiting time \eg as seen in \subsecref{subsec:onebatch_rl_msa_comp_app}. Even though compelling, the practical usage is limited: when considering \glspl{wfms} with fixed available resources \ie users participating, huge speedup in job waiting times does not always correlate with better system performance, since it might be the case that even if a job is ready to be assigned there are no available resources to complete such job.
 
-\fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glsentryshortpl{kpi} comparison between \glsentryshort{op} and \glsentryshort{onp} approaches. Values bigger than $1.00$ indicate speedup while values smaller than $1.00$ indicate speeddown. Higher is not necessarily better (refer to \tabref{tab:llqp_mc_vfa_op_vs_on}).}{fig:llqp_mc_vfa_on_vs_off}
+\fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glsentryshortpl{kpi} comparison between \glsentryshort{op} and \glsentryshort{onp} approaches. Higher is not necessarily better (refer to \tabref{tab:llqp_mc_vfa_op_vs_on}). Values bigger than $1.00$ indicate speedup while values smaller than $1.00$ indicate speeddown.}{fig:llqp_mc_vfa_on_vs_off}
 
 \section{Summary}
 \label{sec:summary}
