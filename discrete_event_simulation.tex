@@ -6,13 +6,13 @@ As previously outlined in \secref{sec:role_resolution_theory}, a discrete event 
 \section{\glsentrylong{bpmn} Implementation}
 \label{sec:bpmn_implementation}
 
-\texttt{SimPy} is a \texttt{Python} process-based discrete-event simulation framework. It exploits \texttt{Python}'s generators according to which it models its processes. These processes are used to model the interaction between \gls{bpmn} elements. Processes create shared resources which are consumed by other processes via events. This approach is used to model start events and user tasks as \texttt{SimPy} processes: start event generate shared resources \ie tokens, which are then being consumed via events by user tasks. On the other hand, gateways are not modeled using this process based approach and are implemented as normal functions, since they do not actively generate or consume shared resources, they only forward them.
+\texttt{SimPy} is a \texttt{Python} process-based discrete-event simulation framework. It exploits \texttt{Python}'s generators according to which it models its processes. These processes are used to model the interaction between \gls{bpmn} elements. Processes create shared resources which are consumed by other processes via events. This approach is used to model start events and user tasks as \texttt{SimPy} processes: start events generate shared resources \ie tokens, which are then being consumed via events by user tasks. On the other hand, gateways are not modeled using this process based approach and are implemented as normal functions, since they do not actively generate or consume shared resources, they only forward them.
 
 As previously mentioned, processes in \texttt{SimPy} are described by \texttt{Python} generators. During their lifetime they create events, yield (note that with the term \texttt{yield} here it is to be understood as \texttt{Python}'s yield statements)\foot{http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python}{26.04.2017} them to the environment, which then wait until they are triggered. The important logic to understand is how \texttt{SimPy} treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs \ie in \texttt{SimPy}'s notation when it gets triggered.
 
 \texttt{SimPy} offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since timeout events are created and called by the appropriate method of the passed \texttt{Environment}.
 
-The analysis environment consists in an object-oriented implementation of \gls{wfms} elements such as start events, user tasks, gateways and end events which have been developed to allow the simulation framework to effectively run. They are built upon the formal foundations outlined in \secref{sec:bpmn}.
+The analysis environment consists in an object-oriented implementation of \gls{bpmn} elements such as start events, user tasks, gateways and end events which have been developed to allow the simulation framework to effectively run. They are built upon the formal foundations outlined in \secref{sec:bpmn}.
 
 \subsection{Start Event}
 \label{subsec:start_event}
@@ -42,7 +42,7 @@ It is important to note that user tasks act as ``black-boxes'': they do not have
 
 \subsection{Gateway}
 
-Gateways are those process nodes where conditions are tested (see \secref{sec:bpmn}). As previously mentioned, in the discrete event simulation environment each newly generated token holds an array with all conditions assigned to it, which are then tested at decision nodes in order to correctly forward or split the token along the path flow. For the purpose of this thesis two types of gateways have been implemented:
+Gateways are those process nodes where conditions are tested (see \secref{sec:bpmn}). Each newly generated token holds an array with all conditions assigned to it (refer to \secref{sec:sim_reproducibility} for a detailed explanation of this mechanism), which are then tested at decision nodes in order to correctly forward or split the token along the path flow. For the purpose of this thesis two types of gateways have been implemented:
 \begin{enumerate*}
      \item \gls{xor}
      \item \gls{or} whose logic has been split between its converging and diverging part.
@@ -95,11 +95,11 @@ End events in this discrete event simulation environment are not explicitly mode
 
 Role resolution according to policies acting as supervisors (as explained in \secref{sec:role_resolution_theory}) in the discrete event simulation environment is achieved by means of a particular classes \ie policies and policy jobs.
 
-Policies do not directly participate in the \gls{wfms}, it serves a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level. It holds minimal information such as a simulation environment, number of users and worker variability. As a blueprint, each policy defines two abstract methods for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it.
+Policies do not directly participate in the \gls{wfms}, they serve a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level. It holds minimal information such as a simulation environment, number of users and worker variability. As a blueprint, each policy defines two abstract methods for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it.
 
 In its request method, each policy generates a policy job, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job serves as a bookkeeping agent by storing and dumping useful information every time its status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users.
 
-In regards to parameters service interval and task variability defined in \subsecref{subsec:user_task} a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. \citet[p. 8]{Zeng2005} follow a two way process to generate such intervals. However a refined version of this process is used in this case:
+In regards to parameters service interval and task variability, a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. \citet[p. 8]{Zeng2005} follow a two way process to generate such intervals. However a refined version of this process is used in this case:
 \begin{enumerate*}
 	\item At initialization time, each user task receives a service rate $s$ and a task variability $t$ values
 	\item Inside the policy request method for each user task a sample of an average processing time is made, following an Erlang distribution which takes as input parameters a shape $k$ and a scale $\theta$. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_service_rate}
