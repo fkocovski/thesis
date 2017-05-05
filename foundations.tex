@@ -4,21 +4,21 @@
 \section{\glsentrylong{bpmn}}
 \label{sec:bpmn}
 
-\gls{bpm} is the act of representing a business process \citep{Silver2011}. Modeling requires a standardized notation that allows for consistent model representation and this is achieved in the \gls{bpm} field by the \gls{bpmn} which is a graphical representation of a semantic process \citep{Silver2011}. \gls{bpmn} is thus to be understood as a language used to draw diagrams \ie a diagramming language \citep{Silver2011}. Its most favorable point is that it is a standard maintained by the \gls{omg} and that it is widely adopted worldwide \citep{Silver2011}. \citet{Silver2011} outlines two fundamental principles that \gls{bpmn} should adhere to:
+\gls{bpm} is the discipline of representing a business process in a humanly readable way \citep{Silver2011}. Modeling requires a standardized notation that allows for consistent model representation and this is achieved in the \gls{bpm} field by the \gls{bpmn} which is a graphical representation of a semantic process \citep{Silver2011}. \gls{bpmn} is thus to be understood as a language for drawing diagrams \ie a diagramming language \citep{Silver2011}. Its most favorable point is that it is a standard maintained by the \gls{omg} and that it is widely adopted \citep{Silver2011}. \citet{Silver2011} outlines two fundamental principles that \gls{bpmn} should adhere to:
 
 \begin{enumerate}[label=\textbf{P. \Roman*},ref=Principle \Roman*]
  	\item ``A given \gls{bpmn} diagram should have one and only one interpretation. The process logic should be completely and unambiguously described by the diagram alone.'' \citep[p. v]{Silver2011}. \label{bpmn:p1}
  	\item ``A given \gls{bpmn} diagram should have one and only one \gls{xml} serialization. Otherwise model interchange between tools cannot be achieved.'' \citep[p. v]{Silver2011}. \label{bpmn:p2}
 \end{enumerate} 
 
-\ref{bpmn:p1} is more modelers-oriented with no necessary implementation knowledge that should be able to fully understand a diagram by looking at it, while \ref{bpmn:p2} applies more to implementers and process interpreters \citep{Silver2011}.
+\ref{bpmn:p1} is more modelers-oriented with no necessary implementation knowledge that should be able to fully understand a diagram by looking at it, while \ref{bpmn:p2} applies more to implementers and process interpreters \citep{Silver2011}. 
 
 \citet{Silver2011} differentiates between two important concepts:
-\begin{enumerate*}
-	\item Activities
-	\item Processes.
-\end{enumerate*}
-Activities are to be understood as units of work performed, or as \citet{Silver2011} defines them: ``discrete actions with well-defined start and end that are performed repeatedly in the course of business, whose instances can be arbitrarily repeated.'' \citep[p. 10]{Silver2011}. More informally one can see each activity instance as a token that is being generated at a starting state and during its lifetime follows a path along the process flow. On the other hand, processes are sequence of actions that lead from a start state to and end state \citep[p. 11]{Silver2011}.
+
+\begin{enumerate}
+	\litem{Activities} Activities are to be understood as units of work performed, or as \citet{Silver2011} defines them: ``discrete actions with well-defined start and end that are performed repeatedly in the course of business, whose instances can be arbitrarily repeated.'' \citep[p. 10]{Silver2011}.
+	\litem{Processes} More informally one can see each activity instance as a token that is being generated at a starting state and during its lifetime follows a path along the process flow. On the other hand, processes are sequence of actions that lead from a start state to and end state \citep[p. 11]{Silver2011}.
+\end{enumerate}
 
 Modeling such processes is done by relying as previously mentioned on \gls{bpmn} in which different building blocks are defined \citep{Silver2011}. A traditional model designed following the \gls{bpmn} guidelines can be found in \figref{fig:normal_process}.
 
@@ -30,26 +30,21 @@ In the following paragraphs the different elements outlined are explained and \f
 
 \subsection{Start Event}
 
-The main purpose of start events is to indicate where a process starts and it is a strict requirement set by \gls{bpmn} that each process must have such one and at most one \citep{Silver2011}. Technically, start events are those process elements that generate tokens that flow through a process which when they reach a user task get worked by the assigned user.
+Every process begins with a start event and it is a strict requirement set by \gls{bpmn} that each process must have such one and at most one \citep{Silver2011}. Technically, start events are those process elements that generate tokens that flow through a process which when they reach a user task get worked by the assigned user.
 
 \subsection{User Task}
 
-Activities are defined by \citet{Silver2011} as atomic units of work that are performed in a process. They are the only elements that assign a performer to them \citep{Silver2011}. For the purpose of this thesis, the only type of activities considered is the user task. They get a user assigned which will work the token that has reached this task.
+Activities are defined by \citet{Silver2011} as atomic units of work that are performed in a process. User tasks are activities performed by a human actor. They are the only elements that assign a performer to them \citep{Silver2011}. For the purpose of this thesis, the only type of activities considered is the user task. They get a user assigned which will work the token that has reached this task. In a real world adoption of \glspl{wfms} bottlenecks can be encountered on each stage along a process. In the discrete event simulation environment proposed in this thesis, however, the focus is put only on user tasks and all other process elements are considered to be executed instantly.
 
 \subsection{Gateway}
 
-Diamond shaped gateways are elements that control the tokens flow inside a process by effectively splitting its path into alternative ones \citep{Silver2011}. There are three main types of gateways:
-\begin{enumerate*}
-	\item \gls{xor}
-	\item Parallel
-	\item \gls{or}.
-\end{enumerate*}
+Gateways are elements that control the tokens flow inside a process by effectively splitting its path into alternative ones \citep{Silver2011}. There are three main types of gateways:
 
-\gls{xor} gateways define exclusivity among the alternative paths a token can flow through, meaning that only one path can be pursued per instance \citep{Silver2011}. \gls{xor} gateways do not make decisions, they merely test conditions to activate a specific path \citep{Silver2011}. The decision making process is left to tasks \citep{Silver2011}.
-
-Parallel gateways, in contrast to \gls{xor} gateways, unconditionally split and duplicate the flow of a token inside a process \citep{Silver2011}.
-
-Last but not least, \gls{or} gateways are in a way similar to \gls{xor} gateways since they also have conditional flows but each condition is independent \ie more than one can be true and if that is the case, then the paths are split following the parallel gateway logic \citep{Silver2011}. Normally, \gls{or} gateways always have a default path to be followed \citep{Silver2011}.
+\begin{enumerate}
+	\litem{\gls{xor}} Define exclusivity among the alternative paths a token can flow through, meaning that only one path can be pursued per instance \citep{Silver2011}. \gls{xor} gateways do not make decisions, they merely test conditions to activate a specific path \citep{Silver2011}. The decision making process is left to tasks \citep{Silver2011}.
+	\litem{\gls{and}} In contrast to \gls{xor} gateways, \gls{and} gateways unconditionally split and duplicate the flow of a token inside a process \citep{Silver2011}.
+	\litem{\gls{or}} Are in a way similar to \gls{xor} gateways since they also have conditional flows but each condition is independent \ie more than one can be true and if that is the case, then the paths are split following the \gls{and} gateway logic \citep{Silver2011}. Normally, \gls{or} gateways always have a default path to be followed \citep{Silver2011}. A diverging \gls{or} splits the token's path flow and the converging counterpart catches all fired tokens by its diverging correspondent.
+\end{enumerate}
 
 \subsection{End Event}
 
@@ -83,13 +78,16 @@ Both \figref{fig:repeat_loops} and \figref{fig:while_loops} show the representat
 
 As it is out of scope for this thesis to reiterate over \citet{Soerensen2005}'s work on cyclic processes, we only model and subsequently simulate acyclic processes.
 
-In a real world adoption of \glspl{wfms} bottlenecks can be encountered on each stage along a process. In the discrete event simulation environment proposed in this thesis, however, the focus is put only on user tasks and all other process elements are considered to be executed instantly.
-
 \section{Policy Based Role Resolution}
 \label{sec:role_resolution_theory}
 
-As mentioned in \secref{sec:bpmn}, user task elements get users assigned which then work tokens that reach this specific task. The concept of assigning a user to a token (or task) is referred to in the literature as role resolution \citep{Zeng2005,Cheng2000}. When referring to \figref{fig:normal_process}, we see that tokens are being generated by the left most start event and immediately reach a user task. Let us moreover assume that we have a pool of different users that all qualify to process the token at this specific user task, however they all exhibit different skill levels and at the time of arrival they are also variously occupied. 
+As mentioned in \secref{sec:bpmn}, user tasks are activities performed by human actors. The concept of assigning a user to a token (or task) is referred to in the literature as role resolution \citep{Zeng2005,Cheng2000}. When referring to \figref{fig:normal_process}, we see that tokens are being generated by the start event and immediately reach a user task. Let us moreover assume that we have a pool of different users that all qualify to process the token at this specific user task, however they all exhibit different skill levels and at the time of arrival they are also variously occupied. 
 
-Formally, applying role resolution is done by following predefined policies which govern how users are being effectively assigned to work tokens \citep{Zeng2005}. As already mentioned, this thesis focuses on extending the foundations laid by \citet{Zeng2005} in which they define five different types of policies for effective role resolution.
+\glspl{wfms} normally differentiate between two approaches when it comes to working tokens flowing a process:
+
+\begin{enumerate}
+	\litem{Conventional} Human actors explicitly claim jobs according to their personal preferences from a pool of jobs.
+	\litem{Policy Based} Mapping of jobs to humans is done by means of solving role resolution according to specific policies defined. Formally, applying role resolution is done by following predefined policies which govern how users are being effectively assigned to work tokens \citep{Zeng2005}. 
+\end{enumerate}
 
 In order to effectively test different polices governing role resolution in \glspl{wfms}, in this thesis a discrete event simulation environment has been prepared. By means of simulating processes with different policies acting as supervisors, different metrics can be evaluated to assess policies' efficiency. Role resolution in this simulation environment happens on a per user task basis \ie when a token reaches a user task, a policy follows its internal definitions on how to optimally assign available users to this token. A simulation environment has been implemented since on one hand it allows to generate the required amount of data relatively fast (which in a real world situation not only could prove to be hard to obtain, but extremely costly as well) and on the other hand, it allows to equally test all role resolution policies by ensuring that they all undergo the exact same processes with the same conditions.

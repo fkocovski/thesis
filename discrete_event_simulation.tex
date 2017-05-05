@@ -1,37 +1,155 @@
 \chapter{Discrete Event Simulation}
 \label{ch:discrete_event_sim}
 
-As previously outlined in \secref{sec:role_resolution_theory}, a discrete event simulation has been implemented in which role resolution policies have been tested. What follows is the description of how this environment has been implemented, then in \secref{sec:bpmn_implementation} the \gls{wfms} environment's implementation based on the outlined foundations in \secref{sec:bpmn} is described and eventually in \secref{sec:policy_implementation} the role resolution's implementation based on the outlined foundations in \secref{sec:role_resolution_theory} is also explained.
-
-\texttt{SimPy} is a \texttt{Python} process-based discrete-event simulation framework. It exploits \texttt{Python}'s generators according to which it models its processes.
-
-Active components such as agents in a \gls{wfms} are modeled as processes which live inside an environment and the interaction between them happens via events.
-
-As previously mentioned, processes in \texttt{SimPy} are described by \texttt{Python} generators. During their lifetime they create events, yield (note that with the term \texttt{yield} here it is to be understood as \texttt{Python}'s yield statements)\foot{http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python}{26.04.2017} them to the environment, which then wait until they are triggered. The important logic to understand is how \texttt{SimPy} treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs (or in \texttt{SimPy}'s notation when it gets triggered).
-
-\texttt{SimPy} offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since timeout events are created and called by the appropriate method of the passed \texttt{Environment}.
+As previously outlined in \secref{sec:role_resolution_theory}, a discrete event simulation has been implemented in which role resolution policies have been tested. \secref{sec:bpmn_implementation} describes the \gls{bpmn} environment's implementation based on the outlined foundations in \secref{sec:bpmn}, \secref{sec:policy_implementation} describes the role resolution's implementation based on the outlined foundations in \secref{sec:role_resolution_theory} and eventually \secref{sec:sim_reproducibility} outlines the approach used in order to ensure reproducibility across different simulation runs.
 
 \section{\glsentrylong{bpmn} Implementation}
 \label{sec:bpmn_implementation}
 
-The analysis environment consists in an object-oriented implementation of \gls{wfms} elements such as start events, user tasks, gateways and end events which have been developed to allow the simulation framework to effectively run. They are built upon the formal foundations outlined in \secref{sec:bpmn}. This object-oriented exoskeleton implementation of the \gls{wfms} elements can be seen depicted in \figref{fig:workflow_elements}.
+\texttt{SimPy} is a \texttt{Python} process-based discrete-event simulation framework. It exploits \texttt{Python}'s generators according to which it models its processes. These processes are used to model the interaction between \gls{bpmn} elements. Processes create shared resources which are consumed by other processes via events. This approach is used to model start events and user tasks as \texttt{SimPy} processes: start event generate shared resources \ie tokens, which are then being consumed via events by user tasks. On the other hand, gateways are not modeled using this process based approach and are implemented as normal functions, since they do not actively generate or consume shared resources, they only forward them.
 
-\fig[\textwidth]{workflow_elements}{Class diagram of \glsentryshort{bpmn} elements implementation for the discrete event simulation environment.}{fig:workflow_elements}
+As previously mentioned, processes in \texttt{SimPy} are described by \texttt{Python} generators. During their lifetime they create events, yield (note that with the term \texttt{yield} here it is to be understood as \texttt{Python}'s yield statements)\foot{http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python}{26.04.2017} them to the environment, which then wait until they are triggered. The important logic to understand is how \texttt{SimPy} treats yielded events: when a process yields an event it gets suspended. From the suspended state a process gets resumed when the event actually occurs \ie in \texttt{SimPy}'s notation when it gets triggered.
+
+\texttt{SimPy} offers a built-in event type called \texttt{Timeout}: events of this type are automatically triggered after a determined simulation time step. Consistency is asserted since timeout events are created and called by the appropriate method of the passed \texttt{Environment}.
+
+The analysis environment consists in an object-oriented implementation of \gls{wfms} elements such as start events, user tasks, gateways and end events which have been developed to allow the simulation framework to effectively run. They are built upon the formal foundations outlined in \secref{sec:bpmn}.
 
 \subsection{Start Event}
 \label{subsec:start_event}
 
-Start events require a simulation environment, a generation interval, an actions to follow array and its corresponding weights. The generation interval is a plain scalar value in contrast to \citet{Zeng2005}'s work, where the generation $\lambda$ interval follows a Poisson distribution and is defined as shown in \equref{eq:generation_interval} with a fixed service interval time unit $s$, number of users $n$ and an average system load $l$.
+Start events autonomously generate tokens whose arrival, in contrast to \citet{Zeng2005}'s work where the generation $\lambda$ interval is defined as shown in \equref{eq:generation_interval} with a fixed service interval time unit $s$, number of users $n$ and an average system load $l$, is modeled as a stochastic Poisson process where each arrival time is distributed following an exponential distribution. 
 
 \begin{equation}
 \label{eq:generation_interval}
 	\lambda = \frac{l n}{s}
 \end{equation}
 
+\subsection{User Task}
+\label{subsec:user_task}
+
+Each user task has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. This method effectively registers a new token to the policy. The logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to assign a user to the token and finally, after a service interval timeout which corresponds to the user's specific service interval has passed, they release the token. The logic can be seen in \lstref{lst:user_task}.
+
+\begin{lstlisting}[caption={User task claim method where a call to the corresponding policy request method is made. The policy performs role resolution effectively mapping a token to a user and returns the user's service time which is then yielded as a timeout in the discrete event simulation environment. When this time has elapsed, the policy releases the user.},label=lst:user_task,style=CustomPython]
+def claim_token(self, token):
+    token.worked_by(self)
+    policy_job = self.policy.request(self, token)
+    service_time = yield policy_job.request_event
+    yield self.env.timeout(service_time)
+    self.policy.release(policy_job)
+\end{lstlisting}
+
+It is important to note that user tasks act as ``black-boxes'': they do not have knowledge of how the mapping of jobs to users is made, as this is up to the policy.
+
+\subsection{Gateway}
+
+Gateways are those process nodes where conditions are tested (see \secref{sec:bpmn}). As previously mentioned, in the discrete event simulation environment each newly generated token holds an array with all conditions assigned to it, which are then tested at decision nodes in order to correctly forward or split the token along the path flow. For the purpose of this thesis two types of gateways have been implemented:
+\begin{enumerate*}
+     \item \gls{xor}
+     \item \gls{or} whose logic has been split between its converging and diverging part.
+ \end{enumerate*} 
+
+\subsubsection{\glsentryshort{xor}}
+
+\gls{xor}'s logic is straightforward: each gateway has a forward method which is used to correctly move the token along the process. As soon as a token reaches a \gls{xor} gateway, the token's condition is tested and then forwarded to the next element. The implementation can be seen in \lstref{lst:xor_forward}. 
+
+\begin{lstlisting}[caption=\glsentryshort{xor}'s forward method in which the to be forwarded to node is retrieved from the token path by looking for the corresponding value with the node id. Eventually a call to the \glsentryshort{xor}'s forward method is made.,label=lst:xor_forward,style=CustomPython]
+class XOR(Node):
+    def forward(self, token):
+        token.worked_by(self)
+        action = token.get_action(self)
+        child = self.children[action]
+        self.child_forward(child, self.env, token)
+\end{lstlisting}
+
+\subsubsection{\glsentryshort{or}}
+
+\gls{or} gateways, in contrast to \gls{xor} gateways, require a synchronization between number of split path flows being fired at their diverging state which eventually reach a converging state. In other words, the number of parallel tokens fired at the diverging node must all be accounted for at the converging node. This is achieved by a counter that each token holds: when a token reaches a divergent \gls{or} gateway, the token's conditions are read and for each path flow that the token has to follow its counter is incremented by $1$\footnote{This is a simplification used in this implementation, as for the more general and formal definition according to \gls{bpmn} this does not always hold.}. The logic is depicted in \lstref{lst:or_counter_increment}.
+
+\begin{lstlisting}[caption=Token's counter increment logic at a divergent \glsentryshort{or} gateway in which the corresponding counter object is incremeted by $1$ at each method's call.,label=lst:or_counter_increment,style=CustomPython]
+class DOR(Node):
+    def choose_child(self, action, token):
+        child = self.children[action]
+        token.counter.increment()
+        self.child_forward(child, self.env, token)
+\end{lstlisting}
+
+Each diverging \gls{or} gateway has a corresponding converging \gls{or} gateway which is used to catch all parallel tokens fired by the former. When a token reaches a converging \gls{or} gateway, its counter is decremented each time by $1$ and only when the counter reaches $0$ the token is actually forwarded along. This logic can be seen in \lstref{lst:or_counter_decrement}.
+
+\begin{lstlisting}[caption=Token's counter decrement logic at a convergent \glsentryshort{or} gateway in which the corresponding counter object is decremented by $1$ at each method's call.,label=lst:or_counter_decrement,style=CustomPython]
+class COR(Node):
+    def forward(self, token):
+        token.worked_by(self)
+        token.counter.decrement()
+        if token.counter.count == 0:
+            action = token.get_action(self)
+            child = self.children[action]
+            self.child_forward(child, self.env, token)
+\end{lstlisting}
+
+\subsection{End Event}
+
+End events in this discrete event simulation environment are not explicitly modeled: this simplification is made since end events do neither generate nor consume shared resources and do not interact in any way with other elements inside the simulation environment.
+
+\section{Policy Based Role Resolution Implementation}
+\label{sec:policy_implementation}
+
+Role resolution according to policies acting as supervisors (as explained in \secref{sec:role_resolution_theory}) in the discrete event simulation environment is achieved by means of a particular classes \ie policies and policy jobs.
+
+Policies do not directly participate in the \gls{wfms}, it serves a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level. It holds minimal information such as a simulation environment, number of users and worker variability. As a blueprint, each policy defines two abstract methods for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it.
+
+In its request method, each policy generates a policy job, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job serves as a bookkeeping agent by storing and dumping useful information every time its status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users.
+
+In regards to parameters service interval and task variability defined in \subsecref{subsec:user_task} a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. \citet[p. 8]{Zeng2005} follow a two way process to generate such intervals. However a refined version of this process is used in this case:
+\begin{enumerate*}
+	\item At initialization time, each user task receives a service rate $s$ and a task variability $t$ values
+	\item Inside the policy request method for each user task a sample of an average processing time is made, following an Erlang distribution which takes as input parameters a shape $k$ and a scale $\theta$. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_service_rate}
+	\item The average processing time becomes a unique value of each user task and is used by each policy to sample each user's service time, again from an Erlang sampled pool as depicted in \lstref{lst:user_service_rate} which we shall call $p_j$.
+\end{enumerate*}
+
+For each user eligible to work the assigned token, its service rate is sampled following the Erlang distribution. This time, the Erlang distribution takes as parameters the unique average processing time $p_j$ of user task $j$ and a worker variability $w$, which is a unique property of each policy.
+
+In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$ working tokens at user task $j$, shape $k$ is evaluated as $k=p_j/w$ and scale $\theta$ as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate}
+
+\begin{lstlisting}[caption={User service rate sampling following an Erlang distribution where initially the average processing time is sampled. Afterwards, for each user a service time is sampled yet again relying on the formerly sampled average processing time and is assigned as an array to the policy job.},label=lst:user_service_rate,style=CustomPython]
+def request(self, user_task,token):
+    average_processing_time = token.random_state.gamma(user_task.service_interval ** 2 / user_task.task_variability, user_task.task_variability / user_task.service_interval)
+    policy_job.service_rate = [token.random_state.gamma(average_processing_time ** 2 / self.worker_variability, self.worker_variability / average_processing_time) for _ in range(self.number_of_users)]
+\end{lstlisting}
+
+The Erlang distribution is better suited to model service rates since the formal definition of Erlang's validity range $x \in [0,\infty)$ it is possible to approximate a normal distribution without incurring in the aspect of having to manually reset negative values to one.
+
+\section{Simulation Reproducibility}
+\label{sec:sim_reproducibility}
+
+In order to ensure that each different simulation run can be compared with other ones, reproducibility has to be asserted. In the discrete event simulation environment, three key factors are sampled randomly:
+\begin{enumerate*}
+    \item Tokens generation time
+    \item Tokens process path flow
+    \item Tokens service time per user.
+\end{enumerate*}
+
+In order to assert fairness among all simulation runs a master random state is assigned to the start event. This master random state is generated from the \texttt{PCG}\foot{http://www.pcg-random.org/}{25.04.2017} family of random generators which exhibit peculiar characteristics, one amongst all is the possibility of ``jumping ahead'' in the state. The novelty of this approach allows to assign a fixed number of random yet consistent choices among all runs, since each generated token receives from the start event a ``jumped'' copy from the master state. The implementation of this recursive ahead jumps in random states is depicted in \lstref{lst:random_state_jump}.
+
+\begin{lstlisting}[caption=Random state advancement method which initially copies the current state of the master random state. It then creates a new random state and sets its state to the former copy then eventually advances the master random state by \num{1e9} units.,label=lst:random_state_jump,style=CustomPython]
+def generate_tokens(self):
+    while True:
+        random_state = self.advance_master_state()
+        token = Token(random_state)
+
+def advance_master_state(self):
+    current_state = self.master_state.get_state()
+    random_state = pcg.RandomState()
+    random_state.set_state(current_state)
+    self.master_state.advance(int(1e9))
+    return random_state
+\end{lstlisting}
+
+This approach greatly simplifies the analysis of the results since no matter the simulation conformation, it permits to ensure consistency and reproducibility among all configurations. Specifically, since each token gets a ``jumped'' copy of the master random state, it is ensured that under any circumstances the generation time during the simulation is consistent. This is ensured by the fact that each token holds a reference to a random number generator which is \num{1e9} long. The reference asserts that no matter the choices made by a policy, during simulation each token will always have the same random number generator reference for sampling.
+
 The path flow to be followed by the tokens generated is defined in a three step process:
 \begin{enumerate*}
-	\item A per process action pool is defined a priori in order to assert that tokens navigate the process in a ``semantically correct'' fashion. This is achieved by creating an array containing an arbitrary number of dictionaries \ie hash-maps, where the key is the gateway node id and the value is which path \ie child, should be chosen next (see \lstref{lst:actions_pool})
-	\item A weights vector is defined which assigns a probability to each possible path flow to the actions pool (see \lstref{lst:probabilities_path_flow})
+    \item A per process action pool is defined a priori in order to assert that tokens navigate the process in a ``semantically correct'' fashion. This is achieved by creating an array containing an arbitrary number of dictionaries \ie hash-maps, where the key is the gateway node id and the value is which path \ie child, should be chosen next (see \lstref{lst:actions_pool})
+    \item A weights vector is defined which assigns a probability to each possible path flow to the actions pool (see \lstref{lst:probabilities_path_flow})
     \item Start events sample a path by accounting for the weighted probability and assign it to each newly generated token (see \lstref{lst:path_tokens_assignment}).
 \end{enumerate*}
 
@@ -62,147 +180,3 @@ SIM_TIME = 100
 env.run(until=SIM_TIME)
 \end{lstlisting}
 
-\subsubsection{Master Random State}
-
-In order to assert fairness among all simulation runs a master random state is assigned to the start event. This master random state is generated from the \texttt{PCG}\foot{http://www.pcg-random.org/}{25.04.2017} family of random generators which exhibit peculiar characteristics, one amongst all is the possibility of ``jumping ahead'' in the state. The novelty of this approach allows to assign a fixed number of random yet consistent choices among all runs, since each generated token receives from the start event a ``jumped'' copy from the master state. The implementation of this recursive ahead jumps in random states is depicted in \lstref{lst:random_state_jump}.
-
-\begin{lstlisting}[caption=Random state advancement method which initially copies the current state of the master random state. It then creates a new random state and sets its state to the former copy then eventually advances the master random state by \num{1e9} units.,label=lst:random_state_jump,style=CustomPython]
-def generate_tokens(self):
-    while True:
-        random_state = self.advance_master_state()
-        token = Token(random_state)
-
-def advance_master_state(self):
-    current_state = self.master_state.get_state()
-    random_state = pcg.RandomState()
-    random_state.set_state(current_state)
-    self.master_state.advance(int(1e9))
-    return random_state
-\end{lstlisting}
-
-This approach greatly simplifies the analysis of the results since no matter the simulation conformation, it permits to ensure consistency and reproducibility among all configurations. Specifically, since each token gets a ``jumped'' copy of the master random state, it is ensured that under any circumstances the generation time during the simulation is consistent.
-
-\begin{figure}[!ht]
-    \centering
-    \begin{minipage}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{img/pcg_msa}
-        \caption{Simulation run with \glsentryshort{msa} showing token times at the first directly connected user task to the start event.}
-        \label{fig:pcg_msa}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{img/pcg_st}
-        \caption{Simulation run with \glsentryshort{st} showing token times at the first directly connected user task to the start event.}
-        \label{fig:pcg_st}
-    \end{minipage}
-\end{figure}
-
-\figref{fig:pcg_msa} and \figref{fig:pcg_st} are snippets of the statistical data dumps for two arbitrary simulation runs that clearly display the randomness consistency concept outlined before. When comparing the arrival column on both figures, it is possible to see that even though different number of jobs are being generated, they are consistently generated across different simulation, each arriving at the same simulation time $t$\footnote{Note that both figures only show data filtered corresponding to the first direct user task connected to the start event.}.
-
-\subsection{User Task}
-\label{subsec:user_task}
-
-User tasks also require a simulation environment, a policy, a descriptive name, a service interval and task variability. Each user task has a unique \texttt{child} field which is being set prior to starting the simulation.
-
-Each user task has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. The logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to assign a user to the token and finally, after a service interval timeout which corresponds to the user's specific service interval has passed, they release the token. The logic can be seen in \lstref{lst:user_task}.
-
-\begin{lstlisting}[caption={User task claim method where a call to the corresponding policy request method is made. The policy performs role resolution effectively mapping a token to a user and returns the user's service time which is then yielded as a timeout in the discrete event simulation environment. When this time has elapsed, the policy releases the user.},label=lst:user_task,style=CustomPython]
-def claim_token(self, token):
-    token.worked_by(self)
-    policy_job = self.policy.request(self, token)
-    service_time = yield policy_job.request_event
-    yield self.env.timeout(service_time)
-    self.policy.release(policy_job)
-\end{lstlisting}
-
-\subsection{Gateway}
-
-Gateways are those process nodes where conditions are tested (see \secref{sec:bpmn}). As previously mentioned, in the discrete event simulation environment each newly generated token holds an array with all conditions assigned to it, which are then tested at decision nodes in order to correctly forward or split the token along the path flow. For the purpose of this thesis two types of gateways have been implemented:
-\begin{enumerate*}
-     \item \gls{xor}
-     \item \gls{or} whose logic has been split between its converging and diverging part.
- \end{enumerate*} 
-
-\subsubsection{\glsentryshort{xor}}
-
-\gls{xor}'s logic is straightforward: each gateway has a forward method which is used to correctly move the token along the process. As soon as a token reaches a \gls{xor} gateway, the token's condition is tested and then forwarded to the next element. The implementation can be seen in \lstref{lst:xor_forward}. 
-
-\begin{lstlisting}[caption=\glsentryshort{xor}'s forward method in which the to be forwarded to node is retrieved from the token path by looking for the corresponding value with the node id. Eventually a call to the \glsentryshort{xor}'s forward method is made.,label=lst:xor_forward,style=CustomPython]
-class XOR(Node):
-    def forward(self, token):
-        token.worked_by(self)
-        action = token.get_action(self)
-        child = self.children[action]
-        self.child_forward(child, self.env, token)
-\end{lstlisting}
-
-\subsubsection{\glsentryshort{or}}
-
-\gls{or} gateways, in contrast to \gls{xor} gateways, require a synchronization between number of split path flows being fired at their diverging state which eventually reach a converging state. In other words, the number of parallel tokens fired at the diverging node must all be accounted for at the converging node. This is achieved by a counter that each token holds: when a token reaches a divergent \gls{or} gateway, the token's conditions are read and for each path flow that the token has to follow its counter is incremented by $1$. The logic is depicted in \lstref{lst:or_counter_increment}.
-
-\begin{lstlisting}[caption=Token's counter increment logic at a divergent \glsentryshort{or} gateway in which the corresponding counter object is incremeted by $1$ at each method's call.,label=lst:or_counter_increment,style=CustomPython]
-class DOR(Node):
-    def choose_child(self, action, token):
-        child = self.children[action]
-        token.counter.increment()
-        self.child_forward(child, self.env, token)
-\end{lstlisting}
-
-Each diverging \gls{or} gateway has a corresponding converging \gls{or} gateway which is used to catch all parallel tokens fired by the former. When a token reaches a converging \gls{or} gateway, its counter is decremented each time by $1$ and only when the counter reaches $0$ the token is actually forwarded along. This logic can be seen in \lstref{lst:or_counter_decrement}.
-
-\begin{lstlisting}[caption=Token's counter decrement logic at a convergent \glsentryshort{or} gateway in which the corresponding counter object is decremented by $1$ at each method's call.,label=lst:or_counter_decrement,style=CustomPython]
-class COR(Node):
-    def forward(self, token):
-        token.worked_by(self)
-        token.counter.decrement()
-        if token.counter.count == 0:
-            action = token.get_action(self)
-            child = self.children[action]
-            self.child_forward(child, self.env, token)
-\end{lstlisting}
-
-\subsection{End Event}
-
-In \texttt{Python} one does not have to preallocate or deallocate memory by hand as when using pointer based programming languages such as \texttt{C} or \texttt{C++} since this is being taken care of internally. According to \citet{Silver2011}'s definition of activities, processes and end events (refer to \secref{sec:bpmn}), when a token reaches an end event, the corresponding process' activity instance is deleted and to be never again used. This is exactly what can be implicitly achieved by \texttt{Python}'s internal garbage collection strategies: tokens are being generated by start events, when they reach the last element in the process, all references to the token are extinguished thus effectively engaging the internal garbage collection strategies which deallocate any memory previously allocated for it. This translates into the fact that there is no need to explicitly model end events.
-
-\section{Policy Based Role Resolution Implementation}
-\label{sec:policy_implementation}
-Role resolution according to policies acting as supervisors (as explained in \secref{sec:role_resolution_theory}) in the discrete event simulation environment is achieved by means of a particular classes \ie policies and policy jobs. The implementation can be seen in \figref{fig:policies_init}.
-
-Policies do not directly participate in the \gls{wfms}, it serves a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level.
-
-\fig[0.33\textwidth]{policies_init}{Class diagram showing policies and policy jobs classes as independent objects.}{fig:policies_init}
-
-Each policy is a blueprint for the actual implementation of the policy itself. It holds minimal information such as a simulation environment, number of users and worker variability. As a blueprint, each policy defines two abstract methods for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it. Refer to \figref{fig:policy_met_att} for its implementation overview.
-
-\fig[0.5\textwidth]{policy_met_att}{Class diagram showing policy methods and attributes.}{fig:policy_met_att}
-
-In its request method, each policy generates a policy job, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job serves as a bookkeeping agent by storing and dumping useful information every time its status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users. Refer to \figref{fig:policyjob_met_att} for its implementation overview.
-
-\fig[0.5\textwidth]{policyjob_met_att}{Class diagram showing policy job methods and attributes.}{fig:policyjob_met_att}
-
-In regards to parameters service interval and task variability defined in \subsecref{subsec:user_task} a detailed explanation is required. Both are used to randomly sample service rate intervals for each user active during the simulation. \citet[p. 8]{Zeng2005} follow a two way process to generate such intervals. However a refined version of this process is used in this case:
-\begin{enumerate*}
-	\item At initialization time, each user task receives a service rate $s$ and a task variability $t$ values
-	\item Inside the policy request method for each user task a sample of an average processing time is made, following an Erlang distribution which takes as input parameters a shape $k$ and a scale $\theta$. In this case both values $k$ and $\theta$ are dynamically evaluated at runtime as $k=s/t$ and $\theta = t$. This concept is depicted in \lstref{lst:user_service_rate}
-	\item The average processing time becomes a unique value of each user task and is used by each policy to sample each user's service time, again from an Erlang sampled pool as depicted in \lstref{lst:user_service_rate} which we shall call $p_j$.
-\end{enumerate*}
-
-For each user eligible to work the assigned token, its service rate is sampled following the Erlang distribution. This time, the Erlang distribution takes as parameters the unique average processing time $p_j$ of user task $j$ and a worker variability $w$, which is a unique property of each policy.
-
-In order to sample a service rate $p_{ij}$ following the Erlang distribution for each user $i$ working tokens at user task $j$, shape $k$ is evaluated as $k=p_j/w$ and scale $\theta$ as $\theta = w$ as it can be seen in \lstref{lst:user_service_rate}
-
-\begin{lstlisting}[caption={User service rate sampling following an Erlang distribution where initially the average processing time is sampled. Afterwards, for each user a service time is sampled yet again relying on the formerly sampled average processing time and is assigned as an array to the policy job.},label=lst:user_service_rate,style=CustomPython]
-def request(self, user_task,token):
-    average_processing_time = token.random_state.gamma(user_task.service_interval ** 2 / user_task.task_variability, user_task.task_variability / user_task.service_interval)
-    policy_job.service_rate = [token.random_state.gamma(average_processing_time ** 2 / self.worker_variability, self.worker_variability / average_processing_time) for _ in range(self.number_of_users)]
-\end{lstlisting}
-
-The Erlang distribution is better suited to model service rates since with an appropriate $k$ one can approximate a normal distribution without incurring in the aspect of having to manually reset negative values to one. This is ensured by the formal definition of Erlang's validity range $x \in [0,\infty)$.
-
-\texttt{NumPy}'s implementation of the Erlang distribution is used\foot{https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.gamma.html}{06.01.2017}. \equref{eq:erlang_density} defines the probability density function of the Erlang distribution with the alternative parametrization that uses $\mu$ instead of $\lambda$ as scale parameter, which is its reciprocal.
-
-\begin{equation}
-\label{eq:erlang_density}
-	f(x;k,\mu) = \frac{x^{k-1} e^{-\frac{x}{\mu}}}{\mu^k (k-1)!} \quad \text{for} \quad x,\mu \geq 0
-\end{equation}

@@ -41,11 +41,7 @@ In order to assert the validity of the interpretation of \citet{Zeng2005}'s work
 
 The simulations have been run with the parameters outlined in \tabref{tab:global_parameters_sim} by using the same formulation used by \citet{Zeng2005}: \gls{msa}.
 
-By running the same simulations with the \gls{milp} based formulation implemented for this thesis \ie \gls{st}, ceteris paribus, the summarized \glspl{kpi} among all \gls{milp} based policies can be seen in \figref{fig:opt_st_kpis_comp}.
-
-\fig[\textwidth]{opt_st_kpis_comp}{\glsentryshortpl{kpi}  comparison for different \gls{milp} based policies using \glsentryshort{st}. Lower is better.}{fig:opt_st_kpis_comp}
-
-The speedup for both batch policies with a higher batch size is tiny, but when considering the speedup between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy speedup is present for all \glspl{kpi}. For a detailed overview of the overall speedups of \gls{st} against \gls{msa} refer to \figref{fig:opt_kpis_comp_gain}.
+The same simulations has been run with the \gls{milp} based formulation implemented for this thesis \ie \gls{st}. The speedup for both batch policies with a higher batch size is tiny, but when considering the speedup between the 1-Batch-1 policy with \gls{msa} and \gls{st}, a wealthy speedup is present for all \glspl{kpi}. For a detailed overview of the overall speedups of \gls{st} against \gls{msa} refer to \figref{fig:opt_kpis_comp_gain}.
 
 \fig[\textwidth]{opt_kpis_comp_gain}{Speedup comparison between \glsentryshortpl{kpi} for \glsentryshort{msa} and \glsentryshort{st} for 5-Batch, 5-Batch-1 and 1-Batch-1. Higher is better. Values bigger than $1.00$ indicate speedup.}{fig:opt_kpis_comp_gain}
 

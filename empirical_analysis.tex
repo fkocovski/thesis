@@ -47,6 +47,8 @@ calculate_statistics(file_policy.name, outfile=True)
 evolution(file_policy.name, outfile=True)
 \end{lstlisting}
 
+Initially all required dependencies are imported. This includes the core framework for the simulation \texttt{SimPy}, different statistical methods for saving and plotting the simulation data, the policy to be used and, in case of batch based policy, which formulation to be used for role resolution. Policy and process both get a \texttt{SimPy} environment assigned in order to comply with the simulation requirements. Eventually the simulation is started by calling the corresponding run method of the environment.
+
 \section{\glsentrylong{bpm}}
 
 Two different types of processes have been defined:
@@ -89,7 +91,7 @@ A summary plot with all \glspl{kpi} is done for each simulation script. \figref{
 
 The left subplot in \figref{fig:kpi_plot} shows box plots for the three most importans \glspl{kpi} \ie $L_j$, $w_j$ and $p_{ij}$, and the right subplot shows the per user $i$ load $l_i$ and the average system load $\overline{l}$.
 
-Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \chpref{ch:policies}.
+Additionally, for a more in depth visualization of a policy's performance, an evolution plot is also necessary. All types of policies share a common queues configuration, with a single global queue and a user specific queue. Each policy defines the maximal threshold a specific queue can reach. For a detailed explanation of the queues conformation refer to \secref{sec:role_resolution_theory}.
 
 The evolution plot shows the state change for the policy being analyzed by plotting the flow of a token across different user tasks. \figref{fig:evo_plot} shows such an example. Starting from the top, the initial box represents the state of the global queue over time $t$. We can see that for this specific simulation, the first token reaches the first user task called ``Setup Acquisition Offer'' around $t=5$. Around $t=10$ a second token reaches the same user task, which we can see from the fact that the size of the queue has grown up to $2$. Around $t=20$ we see a drop in the global queue size to $0$. If we compare the queues sizes underneath, which correspond to user 1 respectively user 2, we note that all three tokens have been successfully assigned: user 1 received 2 tokens while user 2 only 1. The change in color helps to identify at which user task a token is being worked.
 

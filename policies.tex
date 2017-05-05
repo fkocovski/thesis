@@ -1,22 +1,31 @@
 \chapter{Role Resolution Policies}
 \label{ch:policies}
 
-\citet[p. 7]{Zeng2005} investigate five role resolution policies used for optimal job assignment in \glspl{wfms}. Following a brief description of the five aforementioned policies:
+\secref{sec:opt_policies} describes in detail the \gls{milp} approach used in order to solve the role resolution procedure required for K-Batch, K-Batch-1 and 1-Batch-1. \secref{sec:rl_theory} outlines the theoretical foundations in \gls{rl} which are eventually used in \secref{sec:rl_policies} to define the \gls{rl} based policies for role resolution.
 
-\begin{enumerate}[label=\textbf{P. \Roman*}]
-	\item A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a \gls{fifo} basis. The authors call this policy \gls{llqp}.
-	\item A policy that maintains a single queue being shared among all users is referred to as \gls{sq}.
-	\item Another policy that maintains both a \gls{sq} among all users and each user having an own queue and transfers tasks from the former to the latter is called K-Batch policy. Transfer of tasks from the \gls{sq} to users is done using an optimal task assignment procedure as soon as the \gls{sq} reaches a critical batch size $K$.
-	\item The next policy takes the K-Batch policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the \gls{sq} reaches the critical size $K$, however actual movement of tasks from the \gls{sq} to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$. This policy is called K-Batch-1.
-	\item The last policy further simplifies K-Batch-1 by weakening the batch size constraint by reducing it to one. This means that the optimal task assignment procedure is executed immediately. This policy is referred to as 1-Batch-1.
+\section{Policy Based Role Resolution Foundations}
+\label{sec:pol_rol_res_basics}
+
+Policy based role resolution works by queuing process tokens in different types of queues which can be arbitrarily long. Normally a global queue together with a number of user queues corresponding to the number of users participating are present. Arriving tokens are either queued in the global queue then pushed towards single user queues and eventually worked by users or either the global or the user queues can be omitted, thus favoring a more direct assignment approach. A graphical representation of one such queues conformation can be seen in \figref{fig:policy_queues}.
+
+\fig[\textwidth]{policy_queues}{One possible conformation of queues where role resolution is applied. One global queue size is present which queues arriving tokens in a \glsentryshort{fifo} order. Upon solving role resolution, tokens are moved from the global queue to the chosen user queues.}{fig:policy_queues}
+
+As already mentioned, this thesis focuses on extending the foundations laid by \citet[p. 7]{Zeng2005} in which they define five different types of policies for effective role resolution in \glspl{wfms}. Following a brief description of the five aforementioned policies:
+
+\begin{enumerate}
+	\litem{\gls{llqp}} A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a \gls{fifo} basis. This policy does not have a global queue \ie as soon as a job arrives it gets assigned to a user whose queue is the shortest.
+	\litem{\gls{sq}} This policy maintains a single queue being shared among all users. Users do not have own queues \ie they can get only one job assigned to them at a time. While assigning jobs, \gls{sq} checks which users are available at the moment of assignment, if no free user is found, the current job is then queued in the global queue to be assigned again in the next run.
+	\litem{K-Batch} This policy maintains both a \gls{sq} among all users and each user has an own queue. Transfer of tasks from the \gls{sq} to users is done using an optimal task assignment procedure as soon as the \gls{sq} reaches a critical batch size $K$.
+	\litem{K-Batch-1} This policy takes the K-Batch policy but reduces the individual queue size of each user to one. This means that the optimization problem is still being solved as soon as the \gls{sq} reaches the critical size $K$, however actual movement of tasks from the \gls{sq} to the individual user queue happens only when user $i$ is not busy \ie his individual queue is empty at simulation time $t$.
+	\litem{1-Batch-1} This policy further simplifies K-Batch-1 by weakening the batch size constraint and reduces it to one. This means that the optimal task assignment procedure is executed immediately.
 \end{enumerate}
 
-\secref{sec:opt_policies} describes in detail the \gls{milp} approach used in order to solve the role resolution procedure required for K-Batch, K-Batch-1 and 1-Batch-1.
+Both \gls{llqp} and \gls{sq} policies assign jobs to users in a greedy fashion while batch based policies solve an optimization problem in order to effectively apply role resolution.
 
 \section{\glsentrylong{milp} Policies}
 \label{sec:opt_policies}
 
-All batch policies require the solution of an optimization problem as explained in \chpref{ch:policies}. \tabref{tab:milp_variables} gives an overview of all variables used in this section for all \gls{milp} formulations.
+All batch policies require the solution of an optimization problem as explained in \secref{sec:pol_rol_res_basics}. \tabref{tab:milp_variables} gives an overview of all variables used in this section for all \gls{milp} formulations.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -50,7 +59,7 @@ $z$         & Maximum flowtime            \\ \bottomrule
 	\end{split}
 \end{align}
 
-\citet{Zeng2005}' definition of \gls{msa} is however a simplified version of ``minimizing the maximum task flowtime with consideration of the dynamic arrival of tasks'', defined as \gls{dmf} \citep{Baker1974,Zeng2005}. \gls{dmf} is formally defined by \citet{Zeng2005} as follows:
+This definition of \gls{msa} is a simplified version of ``minimizing the maximum task flowtime with consideration of the dynamic arrival of tasks'', defined as \gls{dmf} \citep{Baker1974,Zeng2005}. \gls{dmf} is formally defined by \citet{Zeng2005} as follows:
 
 \begin{align}
     \min \quad z \notag \\
@@ -63,7 +72,7 @@ $z$         & Maximum flowtime            \\ \bottomrule
     s_j &\geq 0 \notag 
 \end{align}
 
-As \citet{Zeng2005} note in their work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints and mention, that by adding auxiliary variables the aforementioned \gls{dmf} formulation can be effectively converted into a \gls{milp} problem and thus solve it \citep[p. 6]{Zeng2005}. On this note they argue that the application of \gls{dmf} in practice poses some problems \citep{Zeng2005}. In this thesis a conversion of the \gls{dmf} formulation proposed by \citet{Zeng2005} by adding the required auxiliary variables is introduced in order to adequately solve the optimization problem. The formulation is called \gls{edmf} and is devised as follows:
+As \citet{Zeng2005} note in their work, \equref{eq:nonlinear_constraints_dmf} contains nonlinear constraints and mention, that by adding auxiliary variables the aforementioned \gls{dmf} formulation can be effectively converted into a \gls{milp} problem and thus solve it \citep[p. 6]{Zeng2005}. In this thesis a conversion of the \gls{dmf} formulation proposed by \citet{Zeng2005} by adding the required auxiliary variables is introduced in order to adequately solve the optimization problem. The formulation is called \gls{edmf} and is devised as follows:
 
 \begin{align}
 	\begin{split}
@@ -88,7 +97,7 @@ When considering the minimization of the maximum flowtime of a task inside a pro
 	a_i + \sum_{t=1}^k \sum_j (p_{ij} + w_j I(t=k))x_{ijt}
 \end{equation}
 
-The whole concept consists in the introduction of an identity variable $I$ which is true if and only if task $j$ is currently being assigned as the $k$th task to user $i$, meaning that for this specific case also the waiting time for task $j$ has to be accounted for. For all other cases \ie $j<k$, the identity variable $I$ will not hold thus effectively zeroing the $w_j$ variable.
+The whole concept consists in the introduction of an indicator function $I$ which is $1$ if and only if task $j$ is currently being assigned as the $k$th task to user $i$, meaning that for this specific case also the waiting time for task $j$ has to be accounted for. For all other cases \ie $j<k$, the indicator function $I$ will be $0$ thus effectively zeroing the $w_j$ variable.
 
 In order to calculate $z_{ijk}$, one has to consider when user $i$ will actually be available to process his first task as well. This is depicted by the variable $a_i$, which summed together with the respective service times of user $i$ for task $j$ gives the complete work time user $i$ will require in order to process all tasks assigned to him.
 
@@ -105,7 +114,7 @@ Without further ado, the simplified formulation of \gls{edmf} \ie \gls{sdmf}, is
 	\end{split}
 \end{align}
 
-By comparing both formulations it is clear that \gls{sdmf} manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness\footnote{Note, however, that this simplification is only possible because of the nature of the implementation.}. 
+By comparing both formulations it is clear that \gls{sdmf} manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness\footnote{Note, however, that this simplification is only possible because of the objective function which preserves the arrival order.}. 
 
 Based on this approach and by further exploiting the implicit order implementation of task arrival, it is possible to argue that the $k$ sequence indexing can be relaxed as well.
 
