@@ -64,6 +64,14 @@ On a more general note, different comparisons have shown huge spikes in speedup 
 
 \fig[\textwidth]{llqp_mc_vfa_on_vs_off}{\glsentryshortpl{kpi} comparison between \glsentryshort{op} and \glsentryshort{onp} approaches. Higher is not necessarily better (refer to \tabref{tab:llqp_mc_vfa_op_vs_on}). Values bigger than $1.00$ indicate speedup while values smaller than $1.00$ indicate speeddown.}{fig:llqp_mc_vfa_on_vs_off}
 
+Statistical non-identifiability is yet another problematic when using \gls{rl} methods. Effectively learning depends on the ability of \gls{rl} based methods to follow the \gls{sgd} in order to update their internal parameters. However, learning from different training sessions can be prone to statistical non-identifiability \ie the standard deviation among training sessions upon which \gls{rl} methods rely can be too high, thus hindering the effect of the \gls{sgd}. In order to better understand this aspect, an \gls{llqp} policy with \gls{pg} was used in which its internal $\theta$ parameters have been fixed to arbitrary values $\eta$. \figref{fig:LLQP_MC_PG_ETA_NU5_GI3_SIM100_ETA} shows the statistical non-identifiability problem where, even though a change in reward is observed, the standard deviation among simulation runs is higher than the change itself, thus hindering the effects of \gls{sgd}.
+
+\fig[\textwidth]{LLQP_MC_PG_ETA_NU5_GI3_SIM100_ETA}{\glsentryshort{llqp} policy with \glsentryshort{pg} whose internal $\theta$ values have been fixed to arbitrary $\eta$ values. Gradually incrementing $\eta$ values yields different rewards, however, the standard deviation among these simulations is higher than the change, thus hindering the effect of the \glsentryshort{sgd} method. Average reward is the mean lateness and lower values are better.}{fig:LLQP_MC_PG_ETA_NU5_GI3_SIM100_ETA}
+
+This problematic can be mitigated when following the principles outlined in \secref{sec:sim_reproducibility}, in which a master random state is used in order to ensure reproducibility of the simulation runs.
+
+When using \gls{pg} methods, especially if the training policy $\pi$ follows a full random approach \ie an \glsentrylong{ep} policy where $\epsilon=1$, training conditions have to be chosen cautiously. This means that system loads should not be set too high at the beginning, since no update of the internal $\theta$ parameters has taken place yet, which can lead to instability of the learning rate or even complete divergence. In order to mitigate this problem, for \gls{pg} based policies both the desired system load and the $\epsilon$ threshold for \glsentrylong{ep} are achieved following a sigmoid approach \ie both parameters start from a lower system load respectively from a more random approach and gradually tend towards the desired values.
+
 \section{Summary}
 \label{sec:summary}
 
