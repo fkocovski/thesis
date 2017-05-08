@@ -27,7 +27,14 @@ Start events autonomously generate tokens whose arrival, in contrast to \citet{Z
 \subsection{User Task}
 \label{subsec:user_task}
 
-Each user task has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. This method effectively registers a new token to the policy. The logic is straightforward: start events generate tokens, user tasks that are direct children of start events claim the newly generated tokens, ask the designated policies to assign a user to the token and finally, after a service interval timeout which corresponds to the user's specific service interval has passed, they release the token. The logic can be seen in \lstref{lst:user_task}.
+Each user task has a claim token method, which takes tokens as input parameters and finally makes a call to its designed policy, passing the token. This method effectively registers a new token to the policy. The logic is straightforward: 
+\begin{enumerate*}
+    \item Start events generate tokens
+    \item User tasks claim the newly generated tokens
+    \item User tasks ask the designated policies to assign a user to the token
+    \item After a service interval timeout which corresponds to the user's specific service interval has passed, user tasks release the token.
+\end{enumerate*}
+The logic can be seen in \lstref{lst:user_task}.
 
 \begin{lstlisting}[caption={User task claim method where a call to the corresponding policy request method is made. The policy performs role resolution effectively mapping a token to a user and returns the user's service time which is then yielded as a timeout in the discrete event simulation environment. When this time has elapsed, the policy releases the user.},label=lst:user_task,style=CustomPython]
 def claim_token(self, token):
@@ -88,14 +95,14 @@ class COR(Node):
 
 \subsection{End Event}
 
-End events in this discrete event simulation environment are not explicitly modeled: this simplification is made since end events do neither generate nor consume shared resources and do not interact in any way with other elements inside the simulation environment.
+End events in this discrete event simulation environment are not explicitly modeled: this simplification is possible since end events do neither generate nor consume shared resources and do not interact in any way with other elements inside the simulation environment.
 
 \section{Policy Based Role Resolution Implementation}
 \label{sec:policy_implementation}
 
 Role resolution according to policies acting as supervisors (as explained in \secref{sec:role_resolution_theory}) in the discrete event simulation environment is achieved by means of a particular classes \ie policies and policy jobs.
 
-Policies do not directly participate in the \gls{wfms}, they serve a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level. It holds minimal information such as a simulation environment, number of users and worker variability. As a blueprint, each policy defines two abstract methods for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it.
+Policies serve a role as a general supervisor that has the whole overview of the process allowing it to operate on an abstract level. It holds minimal information such as a simulation environment, number of users and worker variability. As a blueprint, each policy defines two abstract methods for requesting an optimal assignment for a specific token and for later releasing that token and effectively freeing the user that was busy working on it.
 
 In its request method, each policy generates a policy job, which is again an abstract implementation of a job that the policy will work in order to return an optimized assignment to a user task. Each policy job requires a user task and a token as initialization parameters in order to be uniquely identifiable inside the whole process. Moreover, each policy job serves as a bookkeeping agent by storing and dumping useful information every time its status changes, such as arrival, assigned, started and finished times, assigned user and a list of service times for all available users.
 
@@ -116,7 +123,7 @@ def request(self, user_task,token):
     policy_job.service_rate = [token.random_state.gamma(average_processing_time ** 2 / self.worker_variability, self.worker_variability / average_processing_time) for _ in range(self.number_of_users)]
 \end{lstlisting}
 
-The Erlang distribution is better suited to model service rates since the formal definition of Erlang's validity range $x \in [0,\infty)$ it is possible to approximate a normal distribution without incurring in the aspect of having to manually reset negative values to one.
+The Erlang distribution is better suited to model service rates since the formal definition of its validity range $x \in [0,\infty)$ allows to approximate a normal distribution without incurring in the aspect of having to manually reset negative values to one.
 
 \section{Simulation Reproducibility}
 \label{sec:sim_reproducibility}

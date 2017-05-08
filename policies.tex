@@ -1,7 +1,7 @@
 \chapter{Role Resolution Policies}
 \label{ch:policies}
 
-\secref{sec:opt_policies} describes in detail the \gls{milp} approach used in order to solve the role resolution procedure required for K-Batch, K-Batch-1 and 1-Batch-1. \secref{sec:rl_theory} outlines the theoretical foundations in \gls{rl} which are eventually used in \secref{sec:rl_policies} to define the \gls{rl} based policies for role resolution.
+Initially, \secref{sec:pol_rol_res_basics} outlines the foundations in the policy based role resolution approach, \secref{sec:opt_policies} describes in detail the \gls{milp} approach used in order to solve the role resolution procedure required for K-Batch, K-Batch-1 and 1-Batch-1. \secref{sec:rl_theory} outlines the theoretical foundations in \gls{rl} which are eventually used in \secref{sec:rl_policies} to define the \gls{rl} based policies for role resolution.
 
 \section{Policy Based Role Resolution Foundations}
 \label{sec:pol_rol_res_basics}
@@ -10,7 +10,7 @@ Policy based role resolution works by queuing process tokens in different types 
 
 \fig[\textwidth]{policy_queues}{One possible conformation of queues where role resolution is applied. One global queue size is present which queues arriving tokens in a \glsentryshort{fifo} order. Upon solving role resolution, tokens are moved from the global queue to the chosen user queues.}{fig:policy_queues}
 
-As already mentioned, this thesis focuses on extending the foundations laid by \citet[p. 7]{Zeng2005} in which they define five different types of policies for effective role resolution in \glspl{wfms}. Following a brief description of the five aforementioned policies:
+\citet[p. 7]{Zeng2005} define five different types of policies for effective role resolution in \glspl{wfms}:
 
 \begin{enumerate}
 	\litem{\gls{llqp}} A load balancing policy consists in assigning a task as soon as it arrives to a qualified worker with the shortest task queue at that moment. In this policy workers execute tasks assigned to them on a \gls{fifo} basis. This policy does not have a global queue \ie as soon as a job arrives it gets assigned to a user whose queue is the shortest.
@@ -88,7 +88,7 @@ As \citet{Zeng2005} note in their work, \equref{eq:nonlinear_constraints_dmf} co
 	\end{split}
 \end{align}
 
-This formulation clearly gets rid of the nonlinear constraints while still accounting for dynamical arrival of tasks, making thus \gls{dmf} as defined by \citet{Zeng2005} effectively solvable.
+This formulation clearly gets rid of the nonlinear constraints in \equref{eq:nonlinear_constraints_dmf} while still accounting for dynamical arrival of tasks, making thus \gls{dmf} effectively solvable.
 
 When considering the minimization of the maximum flowtime of a task inside a process, \gls{edmf} can be further simplified by adopting some assumptions about the order and sequence of tasks. Based on how batch policies are implemented, queued policy jobs are implicitly stored in a sorted fashion. This means that the $z$ helper variable defined for \gls{edmf} is not strictly necessary and thus can be compressed by \equref{eq:simplified_z_with_k}:
 
@@ -116,9 +116,7 @@ Without further ado, the simplified formulation of \gls{edmf} \ie \gls{sdmf}, is
 
 By comparing both formulations it is clear that \gls{sdmf} manages to simplify the mathematical formulation and relaxing the required amount of constraints while still attaining the same level of effectiveness\footnote{Note, however, that this simplification is only possible because of the objective function which preserves the arrival order.}. 
 
-Based on this approach and by further exploiting the implicit order implementation of task arrival, it is possible to argue that the $k$ sequence indexing can be relaxed as well.
-
-The formulation of \gls{dmf} by relaxing both the $z$ variables and $k$ indexes is the following:
+Based on this approach and by further exploiting the implicit order implementation of task arrival, it is possible to argue that the $k$ sequence indexing can be relaxed as well. The formulation of \gls{dmf} by relaxing both the $z$ variables and $k$ indexes is referred to as \gls{esdmf} and is formally defined as follows:
 
 \begin{align}
 	\begin{split}
@@ -129,8 +127,6 @@ The formulation of \gls{dmf} by relaxing both the $z$ variables and $k$ indexes 
 	\end{split}
 \end{align}
 
-and is colloquially called \gls{esdmf}.
-
 This version is however only possible by the nature of its implementation. Since both the global as well as the local queues are implemented as \gls{fifo} queues, it is possible to relax the ordering constraint from the mathematical formulation since it is already implicitly defined by the implementation.
 
 The culminating ``flagship'' improvement of the optimization method proposed by \citet{Zeng2005} done in this thesis is a method that aims to optimally solve the assignment problem by changing its goal: minimize the service times by setting an upper bound on the maximum flowtime and is called \gls{st}. This method uses a two step process in order to optimally apply role resolution:
@@ -138,7 +134,6 @@ The culminating ``flagship'' improvement of the optimization method proposed by 
 	\item Solve to optimality by using \gls{esdmf}. This yields an upper bound for the maximum flowtime
 	\item Use this upper bound as a constraint for the actual optimization in order to effectively optimize the problem for the minimal service time amongst users, jobs and their corresponding service time.
 \end{enumerate*}
-
 The formulation of \gls{st} is the following:
 
 \begin{align}
@@ -244,7 +239,7 @@ whereas optimal \gls{av} functions $q_*$ are formally defined as follows \citep[
 
 \gls{dp} is a set of ideas and algorithms that can be used to solve \glspl{mdp} \citep[p. 95]{Sutton2017}. There are two approaches in \gls{dp} for solving \glspl{mdp} \citep[p. 95]{Sutton2017}:
 \begin{enumerate*}
-	\item Policy evaluations is the iterative computation of value functions of a given policy
+	\item Policy evaluation is the iterative computation of value functions of a given policy
 	\item Policy improvement is the idea of computing an improved policy under the conditions of its given value functions.
 \end{enumerate*}
 
@@ -322,21 +317,21 @@ An exceptional case is linear methods for function approximation, where the appr
 	\phi (s) \doteq \left( \phi_1 (s), \phi_2 (s), \ldots, \phi_n (s) \right)^\top
 \end{equation}
 
-which has the same number of components as $\theta$ \citep[p. 198]{Sutton2017}. With this definition in mind, we can now formally define the \gls{svfa} as the inner product between $\theta$ and $\phi (s)$ \citep[p. 198]{Sutton2017}:
+which has the same number of components as $\theta$ \citep[p. 198]{Sutton2017}. \gls{svfa} are formally defined as the inner product between $\theta$ and $\phi (s)$ \citep[p. 198]{Sutton2017}:
 
 \begin{equation}
 \label{eq:function_approximation_dot}
 	\hat{v} (s,\theta) \doteq \theta^\top \phi (s) \doteq \sum_{i=1}^n \theta_i \phi_i (s)
 \end{equation}
 
-This simplified case of linear function approximation for \gls{sv} functions finally brings us to how we can use the \gls{sgd}:
+This simplified case of linear function approximation for \gls{sv} functions outlines the usage of the \gls{sgd}:
 
 \begin{equation}
 \label{eq:sgd_linear}
 	\nabla \hat{v} (s,\theta) = \phi (s)
 \end{equation}
 
-\equref{eq:sgd_linear} tells us that for the simple linear case the \gls{sgd} is nothing more than the corresponding features vector \citep[p. 199]{Sutton2017}.
+\equref{eq:sgd_linear} states that for the simple linear case the \gls{sgd} is nothing more than the corresponding features vector \citep[p. 199]{Sutton2017}.
 
 \subsubsection{\glsentrylongpl{ann}}
 \label{subsubsec:ann_theory}
@@ -438,7 +433,7 @@ where $e \approx 2.71828$ \citep[p. 266]{Sutton2017}. Moreover, the preferences 
 
 simply linear in features \citep[p. 266]{Sutton2017}.
 
-With these definitions in mind, one can formally define one of the very first \gls{mc} based \gls{pg} methods: \texttt{REINFORCE} \citep{Williams1992}. \citet{Williams1992} defines his \texttt{REINFORCE} algorithm by the following update function:
+\citet{Williams1992} formally defines one of the very first \gls{mc} based \gls{pg} methods: \texttt{REINFORCE}, which exhibits the following update function:
 
 \begin{equation}
 	\theta_{t+1} \doteq \theta_t + \alpha \gamma^t G_t \frac{\nabla_\theta \pi(A_t|S_t,\theta)}{\pi(A_t|S_t,\theta)}
